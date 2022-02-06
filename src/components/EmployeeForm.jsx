@@ -2,11 +2,19 @@ import { useState } from 'react'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
-// import components
-import Select from './Select'
 // import data
 import { departments } from '../assets/data/departments'
 import { states } from '../assets/data/states'
+// import components
+import Select from './Select'
+// import functions & constants
+import { 
+    usZipCodes,
+    dateRegex,
+    textRegex,
+    addressRegex,
+    AgeNotValidate
+ } from '../utils/functions/validation'
 
 /**
  * CSS for the component using styled.components
@@ -20,6 +28,7 @@ const Container = styled.div`
 
 const Form = styled.form`
   background: ${colors.tertiary};
+  font-family: 'Montserrat';
   display: flex;
   flex-direction: column;
   padding: 1.2rem;
@@ -32,6 +41,7 @@ const Form = styled.form`
   input, select {
     border-radius: 0.2rem;
     border: 1px solid black;
+    font-family: 'Montserrat';
     font-size: 1rem;
     margin: 0.5rem 0rem 1rem;
     padding: 6px;
@@ -45,6 +55,12 @@ const FieldSet = styled.fieldset`
   margin: 1rem 0rem;
   display: flex;
   flex-direction: column;
+`;
+
+const IsError = styled.span`
+  text-align: center;
+  font-weight: bold;
+  color: ${colors.warning};
 `;
 
 const Save = styled.button`
@@ -74,13 +90,10 @@ const Save = styled.button`
  */
 const EmployeeForm = () => {
 
-const isLoading = false
+  const isLoading = false
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-  }
-
-  // local state
+  // local states
+  const [error, setError] = useState()
   const [input, setInput] = useState({
       firstName: "",
       lastName: "",
@@ -92,7 +105,33 @@ const isLoading = false
       zipCode: "",
       department: "",
     })
-    console.log(input)
+
+  /**
+   * @function ValidateForm
+   */
+  const ValidateForm = () => {
+    (
+      textRegex.test(input.firstName) &&
+      textRegex.test(input.lastName) &&
+      !AgeNotValidate(input.dateOfBirth) &&
+      dateRegex.test(input.startDate) &&
+      addressRegex.test(input.street) &&
+      textRegex.test(input.city) &&
+      input?.state &&
+      usZipCodes.test(input.zipCode) &&
+      input?.department
+    ) ?
+      setError('') :
+      setError('Please check the information entered')
+  }
+
+   /**
+   * @function handleSubmit
+   */
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    ValidateForm()
+  }
 
   return (
     <Container>
@@ -102,6 +141,8 @@ const isLoading = false
             id="firstName"
             value={input.firstName}
             required={true}
+            minLength={2}
+            maxLength={30}
             onChange={(e) => setInput({...input, firstName: e.target.value})}/>       
 
         <label htmlFor="lastName">Last Name</label>
@@ -109,6 +150,8 @@ const isLoading = false
             id="lastName" 
             value={input.lastName}
             required={true}
+            minLength={2}
+            maxLength={30}
             onChange={(e) => setInput({...input, lastName: e.target.value})}/>       
 
         <label htmlFor="dateOfBirth">Date Of Birth</label>
@@ -132,6 +175,8 @@ const isLoading = false
             id="street"
             value={input.street}
             required={true}
+            minLength={2}
+            maxLength={60}
             onChange={(e) => setInput({...input, street: e.target.value})}/>  
 
           <label htmlFor="city">City</label>
@@ -139,6 +184,8 @@ const isLoading = false
             id="city"
             value={input.city}
             required={true}
+            minLength={2}
+            maxLength={30}
             onChange={(e) => setInput({...input, city: e.target.value})}/>  
 
           <Select 
@@ -154,11 +201,13 @@ const isLoading = false
             onChange={(e) => setInput({...input, zipCode: e.target.value})}/>  
         </FieldSet>
         
-          <Select 
+          <Select
             id={"department"}
             listItems={departments}
             onChange={(e) => setInput({...input, department: e.target.value})} />
-
+            
+            <IsError>{error}</IsError>
+            
         <Save type="submit" disabled={isLoading ? true : false}>Save</Save>
       </Form>  
     </Container>

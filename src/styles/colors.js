@@ -7,6 +7,7 @@ const colors = {
   lightGreen: '#999900',
   middleGreen: ' #669900',
   darkGreen: '#666600',
+  warning: '#ff0000',
 
  // night mode colors
   mainBackgroundDarkMode: '#2F2E41',
