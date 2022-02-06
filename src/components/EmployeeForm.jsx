@@ -2,6 +2,11 @@ import { useState } from 'react'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
+// import components
+import Select from './Select'
+// import data
+import { departments } from '../assets/data/departments'
+import { states } from '../assets/data/states'
 
 /**
  * CSS for the component using styled.components
@@ -85,7 +90,7 @@ const isLoading = false
       city: "",
       state: "",
       zipCode: "",
-      department: "Sales",
+      department: "",
     })
     console.log(input)
 
@@ -96,62 +101,64 @@ const isLoading = false
           <input type="text"
             id="firstName"
             value={input.firstName}
+            required={true}
             onChange={(e) => setInput({...input, firstName: e.target.value})}/>       
 
         <label htmlFor="lastName">Last Name</label>
           <input type="text"
             id="lastName" 
             value={input.lastName}
+            required={true}
             onChange={(e) => setInput({...input, lastName: e.target.value})}/>       
 
         <label htmlFor="dateOfBirth">Date Of Birth</label>
-          <input type="text"
+          <input type="date"
             id="dateOfBirth" 
             value={input.birth}
+            required={true}
             onChange={(e) => setInput({...input, dateOfBirth: e.target.value})}/>   
         
         <label htmlFor="startDate">Start Date</label>
-          <input type="text"
+          <input type="date"
             id="startDate" 
             value={input.start}
+            required={true}
             onChange={(e) => setInput({...input, startDate: e.target.value})}/>  
 
         <FieldSet>
           <legend>Address</legend>
-            <label htmlFor="street">Street</label>
-            <input type="text"
-              id="street"
-              value={input.street}
-              onChange={(e) => setInput({...input, street: e.target.value})}/>  
-    
-            <label htmlFor="city">City</label>
-            <input type="text"
-              id="city"
-              value={input.city}
-              onChange={(e) => setInput({...input, city: e.target.value})}/>  
+          <label htmlFor="street">Street</label>
+          <input type="text"
+            id="street"
+            value={input.street}
+            required={true}
+            onChange={(e) => setInput({...input, street: e.target.value})}/>  
 
-            <label htmlFor="state">State</label>
-            <select name="state"
-              id="state">
-              </select>
-          
-            <label htmlFor="zipCode">Zip Code</label>
-            <input type="number"
-              id="zipCode"
-              value={input.zipCode}
-              onChange={(e) => setInput({...input, zipCode: e.target.value})}/>  
+          <label htmlFor="city">City</label>
+          <input type="text"
+            id="city"
+            value={input.city}
+            required={true}
+            onChange={(e) => setInput({...input, city: e.target.value})}/>  
+
+          <Select 
+            id={"state"}
+            listItems={states}
+            onChange={(e) => setInput({...input, state: e.target.value})} />
+        
+          <label htmlFor="zipCode">Zip Code</label>
+          <input type="number"
+            id="zipCode"
+            value={input.zipCode}
+            required={true}
+            onChange={(e) => setInput({...input, zipCode: e.target.value})}/>  
         </FieldSet>
         
-          <label htmlFor="department">Department</label>
-          <select name="department"
-              id="department" onChange={(e) => setInput({...input, department: e.target.value})}>  
-              <option>Sales</option>
-              <option>Marketing</option>
-              <option>Engineering</option>
-              <option>Human Resources</option>
-              <option>Legal</option>
-          </select>
-      
+          <Select 
+            id={"department"}
+            listItems={departments}
+            onChange={(e) => setInput({...input, department: e.target.value})} />
+
         <Save type="submit" disabled={isLoading ? true : false}>Save</Save>
       </Form>  
     </Container>
