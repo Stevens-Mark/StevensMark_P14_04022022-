@@ -86,31 +86,36 @@ const Save = styled.button`
 /**
  * Renders the 'EmployeeForm' form
  * @function EmployeeForm
+ * @param {function} props: set state for isModalOpen
  * @returns {JSX}
  */
-const EmployeeForm = () => {
+const EmployeeForm = ( props ) => {
 
+  const { setModalIsOpen } = props
   const isLoading = false
 
   // local states
-  const [error, setError] = useState()
-  const [input, setInput] = useState({
-      firstName: "",
-      lastName: "",
-      dateOfBirth: "",
-      startDate: "",
-      street: "",
-      city: "",
-      state: "",
-      zipCode: "",
-      department: "",
-    })
+ const initialState = {
+  firstName: "",
+  lastName: "",
+  dateOfBirth: "",
+  startDate: "",
+  street: "",
+  city: "",
+  state: "",
+  zipCode: "",
+  department: "",
+ }
+
+  const [error, setError] = useState(false)
+  // const [valid, setValid] = useState(false)
+  const [input, setInput] = useState(initialState)
 
   /**
    * @function ValidateForm
    */
   const ValidateForm = () => {
-    (
+    if (
       textRegex.test(input.firstName) &&
       textRegex.test(input.lastName) &&
       !AgeNotValidate(input.dateOfBirth) &&
@@ -120,9 +125,15 @@ const EmployeeForm = () => {
       input?.state &&
       usZipCodes.test(input.zipCode) &&
       input?.department
-    ) ?
-      setError('') :
-      setError('Please check the information entered')
+    ) {
+      setError(false)
+      // setValid(true) 
+      setModalIsOpen(true)
+      setInput(initialState)}
+      else {
+      setError(true)
+      // setValid(false)
+      }
   }
 
    /**
@@ -206,8 +217,8 @@ const EmployeeForm = () => {
             listItems={departments}
             onChange={(e) => setInput({...input, department: e.target.value})} />
             
-            <IsError>{error}</IsError>
-            
+            {error && <IsError>'Please recheck the information entered.'</IsError>}
+
         <Save type="submit" disabled={isLoading ? true : false}>Save</Save>
       </Form>  
     </Container>

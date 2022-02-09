@@ -1,14 +1,16 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 // import components
 import Title from '../components/Title'
 import EmployeeForm from "../components/EmployeeForm"
+import Modal from "../components/modal"
 
 /**
  * Renders the 'CreateEmployee' page
- * @function SignIn
+ * @function CreateEmployee
  * @returns {JSX}
  */
 const CreateEmployee = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   useEffect(() => {
     document.title = 'HRNet | Create'
@@ -17,7 +19,10 @@ const CreateEmployee = () => {
   return (
     <main>
       <Title heading="Create Employee" />
-      <EmployeeForm />
+      <EmployeeForm setModalIsOpen={setModalIsOpen}/>
+      {modalIsOpen && 
+      <Modal setModalIsOpen={setModalIsOpen} />
+      }
     </main>
   )
 }

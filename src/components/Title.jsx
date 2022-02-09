@@ -18,6 +18,7 @@ import PropTypes from 'prop-types'
 /**
  * Renders a Title on a page
  * @function Title
+ * @param {string} heading: to display
  * @returns {JSX}
  */
  const Title = ( { heading } ) => {
