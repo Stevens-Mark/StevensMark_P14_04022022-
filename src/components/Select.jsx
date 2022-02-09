@@ -17,8 +17,10 @@ import { capitalize } from '../utils/functions/capitalize'
         id={id}
         required={true}
         onChange={onChange}
-        defaultValue={'DEFAULT'} >
-          <option value="DEFAULT" disabled>Select a {id}</option>
+        key={'DEFAULT'}
+        defaultValue={'DEFAULT'} 
+        >
+          <option value="DEFAULT" disabled hidden>Select a {id}</option>
 
           {[...listItems]
             .sort((a, b) => (a.name < b.name ? -1 : 1))

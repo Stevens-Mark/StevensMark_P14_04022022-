@@ -10,10 +10,11 @@ import Select from './Select'
 // import functions & constants
 import { 
     usZipCodes,
-    dateRegex,
+    // dateRegex,
     textRegex,
     addressRegex,
-    AgeNotValidate
+    AgeNotValidate,
+    ValidStartDate
  } from '../utils/functions/validation'
 
 /**
@@ -110,30 +111,22 @@ const EmployeeForm = ( props ) => {
   const [error, setError] = useState(false)
   // const [valid, setValid] = useState(false)
   const [input, setInput] = useState(initialState)
-
+  
   /**
    * @function ValidateForm
    */
   const ValidateForm = () => {
-    if (
+    return (
       textRegex.test(input.firstName) &&
       textRegex.test(input.lastName) &&
       !AgeNotValidate(input.dateOfBirth) &&
-      dateRegex.test(input.startDate) &&
+      ValidStartDate(input.startDate) &&
       addressRegex.test(input.street) &&
       textRegex.test(input.city) &&
       input?.state &&
       usZipCodes.test(input.zipCode) &&
-      input?.department
-    ) {
-      setError(false)
-      // setValid(true) 
-      setModalIsOpen(true)
-      setInput(initialState)}
-      else {
-      setError(true)
-      // setValid(false)
-      }
+      input?.department ? true : false
+    ) 
   }
 
    /**
@@ -141,7 +134,16 @@ const EmployeeForm = ( props ) => {
    */
   const handleSubmit = (event) => {
     event.preventDefault()
-    ValidateForm()
+    if (ValidateForm())
+      {
+        setError(false)
+        setModalIsOpen(true)
+        setInput(initialState)
+        event.target.reset()
+        console.log(input)
+      } else {
+          setError(true)
+        } 
   }
 
   return (
@@ -168,14 +170,14 @@ const EmployeeForm = ( props ) => {
         <label htmlFor="dateOfBirth">Date Of Birth</label>
           <input type="date"
             id="dateOfBirth" 
-            value={input.birth}
+            value={input.dateOfBirth}
             required={true}
             onChange={(e) => setInput({...input, dateOfBirth: e.target.value})}/>   
         
         <label htmlFor="startDate">Start Date</label>
           <input type="date"
             id="startDate" 
-            value={input.start}
+            value={input.startDate}
             required={true}
             onChange={(e) => setInput({...input, startDate: e.target.value})}/>  
 
