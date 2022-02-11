@@ -1,8 +1,8 @@
 // Regex's used for form validation
 export const usZipCodes = /(^\d{5}$)|(^\d{5}-\d{4}$)/
-// export const dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
 export const textRegex = /^[a-zA-Z ]+$/
 export const addressRegex = /^[0-9a-zA-Z ]+$/g
+// export const dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
 
 /**
  * Checks whether user is over 18yrs old
@@ -31,19 +31,29 @@ export const GetCurrentDate = () => {
   }
 
 /**
+* Gets the date 30 days before today's date
+* @function GetDateMonthBefore
+* @returns prior date: format 2022-02-12
+* */
+export const GetDateMonthBefore = () => {
+  const priorDate = new Date(new Date().setDate(new Date().getDate() - 30))
+  const date = priorDate.getDate()
+  const month = priorDate.getMonth() + 1
+  const year = priorDate.getFullYear()
+  return `${year}-${month<10?`0${month}`:`${month}`}-${date}`
+  }
+
+/**
  * Checks whether user entered a valid start date
+ * A valid date is a max of 30 days before today's date
  * @function ValidStartDate
  * @param {string} start date
  * @returns {boolean}
  * */
-// export const ValidStartDate = ( startDate ) => {
-//   if (Date.parse(startDate) < Date.parse(GetCurrentDate())) { 
-//       return false 
-//     } else { 
-//       return true
-//     }
-//   }
+export const ValidStartDate = ( startDate ) => {
+  return (Date.parse(startDate) < Date.parse(GetDateMonthBefore()))? false : true
+  // return (Date.parse(startDate) < Date.parse(GetCurrentDate()))? false : true
+  }
 
-  export const ValidStartDate = ( startDate ) => {
-    return (Date.parse(startDate) < Date.parse(GetCurrentDate()))? false : true
-    }
+
+

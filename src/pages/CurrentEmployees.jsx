@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import EmployeesTable from '../components/EmployeesTable'
 // import components
 import Title from '../components/Title'
 
@@ -16,6 +17,7 @@ const CurrentEmployees = () => {
   return (
       <main>     
         <Title heading="Currrent Employees" />
+        <EmployeesTable />
       </main>
   )
 }

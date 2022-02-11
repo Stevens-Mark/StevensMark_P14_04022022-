@@ -2,7 +2,7 @@ import { useState } from 'react'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
-// import data
+// import data FOR dropdown menus
 import { departments } from '../assets/data/departments'
 import { states } from '../assets/data/states'
 // import components
@@ -10,7 +10,6 @@ import Select from './Select'
 // import functions & constants
 import { 
     usZipCodes,
-    // dateRegex,
     textRegex,
     addressRegex,
     AgeNotValidate,
@@ -96,24 +95,36 @@ const EmployeeForm = ( props ) => {
   const isLoading = false
 
   // local states
- const initialState = {
-  firstName: "",
-  lastName: "",
-  dateOfBirth: "",
-  startDate: "",
-  street: "",
-  city: "",
-  state: "",
-  zipCode: "",
-  department: "",
- }
-
+  const initialState = {
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    startDate: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    department: "",
+  }
   const [error, setError] = useState(false)
-  // const [valid, setValid] = useState(false)
   const [input, setInput] = useState(initialState)
   
+
   /**
+   * Save new employyee record to local storage
+   * @function SaveEmployee
+   */
+  const SaveEmployee = () => {
+    const employees = JSON.parse(localStorage.getItem('employees')) || []
+    const employee = input
+    employees.push(employee)
+    localStorage.setItem('employees', JSON.stringify(employees))
+  }
+
+  /**
+   * Simple validaion check of data entered by user
    * @function ValidateForm
+   * @returns {boolean}
    */
   const ValidateForm = () => {
     return (
@@ -129,7 +140,7 @@ const EmployeeForm = ( props ) => {
     ) 
   }
 
-   /**
+  /**
    * @function handleSubmit
    */
   const handleSubmit = (event) => {
@@ -137,10 +148,10 @@ const EmployeeForm = ( props ) => {
     if (ValidateForm())
       {
         setError(false)
+        SaveEmployee()
         setModalIsOpen(true)
         setInput(initialState)
         event.target.reset()
-        console.log(input)
       } else {
           setError(true)
         } 
