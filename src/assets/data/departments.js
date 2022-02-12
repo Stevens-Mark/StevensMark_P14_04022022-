@@ -1,22 +1,22 @@
 export const departments = [
   {
       "name": "Sales",
-      "value": "sales"
+      "value": "Sales"
   },
   {
       "name": "Marketing",
-      "value": "marketing"
+      "value": "Marketing"
   },
   {
       "name": "Engineering",
-      "value": "engineering"
+      "value": "Engineering"
   },
   {
       "name": "Human Resources",
-      "value": "humanResources"
+      "value": "Human Resources"
   },
   {
       "name": "Legal",
-      "value": "legal"
+      "value": "Legal"
   }
 ]
