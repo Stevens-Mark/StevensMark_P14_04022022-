@@ -1,6 +1,6 @@
 
 import React, { useMemo } from 'react'
-import { useTable, useSortBy } from 'react-table'
+import { useTable, useSortBy, usePagination } from 'react-table'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
@@ -13,6 +13,7 @@ import mockedData from '../assets/data/MOCK_DATA.json'
  */
 const Container = styled.div`
   display :flex;
+  flex-direction: column;
   justify-content: center;
   //  padding: 0 0 20px;
 `;
@@ -36,32 +37,64 @@ const TData = styled.td`
   border: solid 1px gray;
 `;
 
+const TFooter = styled.span`
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+`;
+
 /**
  * Renders the 'EmployeesTable on current employees Page' 
  * @function EmployeesTable
  * @returns {JSX}
  */
-
 const EmployeesTable = () => {
 
 const employees = JSON.parse(localStorage.getItem('employees')) || []
   console.log(employees)
 
-
  const data = useMemo(() => mockedData, [] )
-
  const columns = useMemo(() => headerList, [] )
 
  const {
-   getTableProps,
-   getTableBodyProps,
-   headerGroups,
-   rows,
-   prepareRow,
- } = useTable({ columns, data }, useSortBy)
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    prepareRow,
+    page,
+
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize },
+  } = useTable(
+      { columns,
+        data,
+        initialState: { pageIndex: 0 },
+      }, 
+        useSortBy,
+        usePagination
+      )
 
  return (
      <Container>
+
+        <span>
+          Show{' '}
+          <select
+            value={pageSize}
+            onChange={e => {setPageSize(Number(e.target.value))}}>
+            {[10, 25, 50, 100].map(pageSize => (
+              <option key={pageSize} value={pageSize}>{pageSize}</option>))}
+          </select>
+          {' '}entries
+        </span>
+
        <Table {...getTableProps()}>
          <thead>
          {headerGroups.map(headerGroup => (
@@ -83,7 +116,7 @@ const employees = JSON.parse(localStorage.getItem('employees')) || []
          ))}
          </thead>
          <tbody {...getTableBodyProps()}>
-         {rows.map(row => {
+         {page.map((row, i) => {
            prepareRow(row)
            return (
                <tr {...row.getRowProps()}>
@@ -100,6 +133,30 @@ const employees = JSON.parse(localStorage.getItem('employees')) || []
          })}
          </tbody>
        </Table>
+
+       <TFooter>
+       <span>
+        Go to page:{' '}
+        <input
+          type="number"
+          Value={pageIndex + 1}
+          min={1}
+          max={pageOptions.length}
+          onChange={e => {
+            const page = e.target.value ? Number(e.target.value) - 1 : 0
+            gotoPage(page)}}/>
+        </span>
+        <span>
+          Showing Page{' '}<strong>{pageIndex + 1} of {pageOptions.length}</strong>
+          {pageOptions.length===1? ' page' : ' pages'}
+        </span>
+        <span>
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>{' '}
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>{'<'}</button>{' '}
+          <button onClick={() => nextPage()} disabled={!canNextPage}>{'>'}</button>{' '}
+          <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
+        </span>
+      </TFooter>
      </Container>
  )
 }

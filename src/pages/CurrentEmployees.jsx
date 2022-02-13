@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import EmployeesTable from '../components/EmployeesTable'
+import EmployeesTable from '../components/EmployeesTables'
 // import components
 import Title from '../components/Title'
 
