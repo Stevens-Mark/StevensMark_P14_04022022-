@@ -110,9 +110,8 @@ const EmployeeForm = ( props ) => {
   const [error, setError] = useState(false)
   const [input, setInput] = useState(initialState)
   
-
   /**
-   * Save new employyee record to local storage
+   * Save new employee record to local storage
    * @function SaveEmployee
    */
   const SaveEmployee = () => {

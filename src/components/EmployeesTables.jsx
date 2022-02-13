@@ -1,5 +1,5 @@
 
-import React, { useMemo, useEffect } from 'react'
+import React, { useMemo } from 'react'
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table'
 // styling
 import styled from 'styled-components'
@@ -29,7 +29,7 @@ const Table = styled.table`
 const THeader = styled.th`
   border-bottom: solid 3px ${colors.primary};
   color: ${colors.secondary};
-  padding: 0px 8px;
+  padding: 0px 0PX 5px;
 `;
 
 const TData = styled.td`
@@ -50,13 +50,14 @@ const Controls = styled.span`
  */
 const EmployeesTable = () => {
 
-const employees = JSON.parse(localStorage.getItem('employees')) || []
-  console.log(employees)
+  // const employees = JSON.parse(localStorage.getItem('employees')) || []
+  const employees = mockedData
+  
+  const columns = useMemo(() => headerList, [] )
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const data = useMemo(() => employees, [] )
 
- const data = useMemo(() => mockedData, [] )
- const columns = useMemo(() => headerList, [] )
-
- const {
+  const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
@@ -72,21 +73,16 @@ const employees = JSON.parse(localStorage.getItem('employees')) || []
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize, globalFilter}
+    state: { pageIndex, pageSize, globalFilter }
   } = useTable(
       { columns,
         data,
-        initialState: { pageIndex: 0 },
+        // initialState: { pageIndex: 0 },
       }, 
         useGlobalFilter,
         useSortBy,
         usePagination,
       )
-
-  // useEffect(() => {
-  //   // props.dispatch({ type: actions.resetPage })
-  //   console.log(globalFilter)
-  // }, [globalFilter])
 
  return (
      <Container>
@@ -121,9 +117,9 @@ const employees = JSON.parse(localStorage.getItem('employees')) || []
                      <span>
                        {column.isSorted
                            ? column.isSortedDesc
-                               ? '🔽'
-                               : '🔼'
-                           : '⏸️'}
+                               ? ' 🔽'
+                               : ' 🔼'
+                           : ' ⏸️'}
                     </span>
                    </THeader>
                ))}
@@ -154,7 +150,7 @@ const employees = JSON.parse(localStorage.getItem('employees')) || []
         Go to page:{' '}
         <input
           type="number"
-          Value={pageIndex + 1}
+          value={pageIndex + 1}
           min={1}
           max={pageOptions.length}
           onChange={e => {
