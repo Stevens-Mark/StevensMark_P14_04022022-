@@ -11,12 +11,12 @@ import Title from '../components/Title'
 const CurrentEmployees = () => {
   
   useEffect(() => {
-    document.title = 'HRNet | Currrent Employees'
+    document.title = 'HRNet | Current Employees'
   }, [])
 
   return (
       <main>     
-        <Title heading="Currrent Employees" />
+        <Title heading="Current Employees" />
         <EmployeesTable />
       </main>
   )

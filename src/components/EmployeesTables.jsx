@@ -1,6 +1,6 @@
 
-import React, { useMemo } from 'react'
-import { useTable, useSortBy, usePagination } from 'react-table'
+import React, { useMemo, useEffect } from 'react'
+import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
@@ -37,7 +37,7 @@ const TData = styled.td`
   border: solid 1px gray;
 `;
 
-const TFooter = styled.span`
+const Controls = styled.span`
   display: flex;
   justify-content: space-between;
   margin: 10px;
@@ -62,6 +62,7 @@ const employees = JSON.parse(localStorage.getItem('employees')) || []
     headerGroups,
     prepareRow,
     page,
+    setGlobalFilter,
 
     canPreviousPage,
     canNextPage,
@@ -71,30 +72,44 @@ const employees = JSON.parse(localStorage.getItem('employees')) || []
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    state: { pageIndex, pageSize, globalFilter}
   } = useTable(
       { columns,
         data,
         initialState: { pageIndex: 0 },
       }, 
+        useGlobalFilter,
         useSortBy,
-        usePagination
+        usePagination,
       )
+
+  // useEffect(() => {
+  //   // props.dispatch({ type: actions.resetPage })
+  //   console.log(globalFilter)
+  // }, [globalFilter])
 
  return (
      <Container>
-
-        <span>
-          Show{' '}
-          <select
-            value={pageSize}
-            onChange={e => {setPageSize(Number(e.target.value))}}>
-            {[10, 25, 50, 100].map(pageSize => (
-              <option key={pageSize} value={pageSize}>{pageSize}</option>))}
-          </select>
-          {' '}entries
-        </span>
-
+        <Controls>
+          <span>
+            Show{' '}
+            <select
+              value={pageSize}
+              onChange={e => {setPageSize(Number(e.target.value))}}>
+              {[10, 25, 50, 100].map(pageSize => (
+                <option key={pageSize} value={pageSize}>{pageSize}</option>))}
+            </select>
+            {' '}entries
+          </span>
+          <span>
+            <input
+            type="text"
+            placeholder='search'
+            value={globalFilter || ""}
+            onChange={e => setGlobalFilter(e.target.value)}/>
+          </span>
+        </Controls>
+        
        <Table {...getTableProps()}>
          <thead>
          {headerGroups.map(headerGroup => (
@@ -134,7 +149,7 @@ const employees = JSON.parse(localStorage.getItem('employees')) || []
          </tbody>
        </Table>
 
-       <TFooter>
+       <Controls>
        <span>
         Go to page:{' '}
         <input
@@ -156,7 +171,7 @@ const employees = JSON.parse(localStorage.getItem('employees')) || []
           <button onClick={() => nextPage()} disabled={!canNextPage}>{'>'}</button>{' '}
           <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
         </span>
-      </TFooter>
+      </Controls>
      </Container>
  )
 }
