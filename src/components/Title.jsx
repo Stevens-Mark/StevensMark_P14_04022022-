@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 /**
  * CSS for the component using styled.components
  */
- const Span = styled.div`
+ const Wrapper = styled.div`
   padding-top: 1rem;
   text-align: center;
 
@@ -23,10 +23,10 @@ import PropTypes from 'prop-types'
  */
  const Title = ( { heading } ) => {
   return (
-    <Span>
+    <Wrapper>
       <i className="fa fa-user-circle"></i>
      <h2>{heading}</h2>
-     </Span> 
+    </Wrapper> 
   )
 }
 

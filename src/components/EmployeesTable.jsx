@@ -7,6 +7,9 @@ import colors from '../styles/colors'
 // import data needed for table
 import { headerList } from '../assets/data/tableHeader'
 import mockedData from '../assets/data/MOCK_DATA.json'
+// Import components
+import GlobalSearch from './GlobalSearch'
+import Pagination from './Pagination'
 
 /**
  * CSS for the component using styled.components
@@ -15,7 +18,13 @@ const Container = styled.div`
   display :flex;
   flex-direction: column;
   justify-content: center;
-  //  padding: 0 0 20px;
+
+  input, select {
+    border-radius: 0.2rem;
+    border: 1px solid black;
+    font-size: 1rem;
+    padding: 4px;
+  }
 `;
 
 const Table = styled.table`
@@ -24,17 +33,17 @@ const Table = styled.table`
   color: ${colors.primary};
   padding: 10px;
   margin: 10px;
-`;
 
-const THeader = styled.th`
-  border-bottom: solid 3px ${colors.primary};
-  color: ${colors.secondary};
-  padding: 0px 0PX 5px;
-`;
+  th {
+    border-bottom: solid 3px ${colors.primary};
+    color: ${colors.secondary};
+    padding: 0px 0PX 5px;
+  }
 
-const TData = styled.td`
-  padding: 5px;
-  border: solid 1px gray;
+  td {
+    padding: 5px;
+    border: solid 1px gray;
+  }
 `;
 
 const Controls = styled.span`
@@ -64,6 +73,7 @@ const EmployeesTable = () => {
     prepareRow,
     page,
     setGlobalFilter,
+    preGlobalFilteredRows,
 
     canPreviousPage,
     canNextPage,
@@ -77,7 +87,6 @@ const EmployeesTable = () => {
   } = useTable(
       { columns,
         data,
-        // initialState: { pageIndex: 0 },
       }, 
         useGlobalFilter,
         useSortBy,
@@ -87,23 +96,8 @@ const EmployeesTable = () => {
  return (
      <Container>
         <Controls>
-          <span>
-            Show{' '}
-            <select
-              value={pageSize}
-              onChange={e => {setPageSize(Number(e.target.value))}}>
-              {[10, 25, 50, 100].map(pageSize => (
-                <option key={pageSize} value={pageSize}>{pageSize}</option>))}
-            </select>
-            {' '}entries
-          </span>
-          <span>
-            <input
-            type="text"
-            placeholder='search'
-            value={globalFilter || ""}
-            onChange={e => setGlobalFilter(e.target.value)}/>
-          </span>
+          <Pagination pageSize={pageSize} setPageSize={setPageSize}/>
+          <GlobalSearch globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} preGlobalFilteredRows={preGlobalFilteredRows}/>
         </Controls>
         
        <Table {...getTableProps()}>
@@ -111,7 +105,7 @@ const EmployeesTable = () => {
          {headerGroups.map(headerGroup => (
              <tr {...headerGroup.getHeaderGroupProps()}>
                {headerGroup.headers.map(column => (
-                   <THeader
+                   <th
                        {...column.getHeaderProps(column.getSortByToggleProps())}>
                      {column.render('Header')}
                      <span>
@@ -121,7 +115,7 @@ const EmployeesTable = () => {
                                : ' 🔼'
                            : ' ⏸️'}
                     </span>
-                   </THeader>
+                   </th>
                ))}
              </tr>
          ))}
@@ -133,10 +127,10 @@ const EmployeesTable = () => {
                <tr {...row.getRowProps()}>
                  {row.cells.map(cell => {
                    return (
-                       <TData
+                       <td
                            {...cell.getCellProps()}>
                          {cell.render('Cell')}
-                       </TData>
+                       </td>
                    )
                  })}
                </tr>
