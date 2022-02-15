@@ -23,7 +23,7 @@ import {
 const Container = styled.div`
   display :flex;
   justify-content: center;
-  padding: 0 0 20px;
+  padding: 0 0 1.25rem;
 `;
 
 const Form = styled.form`
@@ -32,7 +32,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   padding: 1.2rem;
-  width: 300px;
+  max-width: 25rem;
   
   label {
     font-weight: bold;
@@ -40,14 +40,11 @@ const Form = styled.form`
 
   input, select {
     border-radius: 0.2rem;
-    border: 1px solid black;
+    border: 1px solid ${colors.secondary};
     font-family: 'Montserrat';
     font-size: 1rem;
     margin: 0.5rem 0rem 1rem;
-    padding: 6px;
-  }
-  @media screen and (min-width: 475px) {
-    width: 400px;
+    padding: 0.375rem;
   }
 `;
 

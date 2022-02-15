@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 
   const { globalFilter, setGlobalFilter, preGlobalFilteredRows } = props
   const count = preGlobalFilteredRows.length
-  
+
   return (
     <span>
       <input
@@ -18,7 +18,7 @@ import PropTypes from 'prop-types'
         placeholder={`Search ${count} records...`}
         value={globalFilter || ""}
         onChange={e => setGlobalFilter(e.target.value)}/>
-  </span>
+    </span>
   )
 }
 

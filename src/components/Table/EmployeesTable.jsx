@@ -22,9 +22,9 @@ const Container = styled.div`
 
   input, select {
     border-radius: 0.2rem;
-    border: 1px solid black;
+    border: 1px solid ${colors.secondary};
     font-size: 1rem;
-    padding: 4px;
+    padding: 0.25rem;
   }
 `;
 
@@ -32,13 +32,13 @@ const Table = styled.table`
   border: solid 1px ${colors.secondary};
   background: ${colors.tertiary};
   color: ${colors.primary};
-  padding: 10px;
-  margin: 10px;
+  padding: 0.625rem;
+  margin: 0.625rem;
 
   th {
     border-bottom: solid 3px ${colors.primary};
     color: ${colors.secondary};
-    padding: 0px 0PX 5px;
+    padding: 0px 0px 5px;
   }
 
   td {

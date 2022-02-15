@@ -37,7 +37,7 @@ const MODAL = styled.div`
 const Content = styled.div`
   // margin: 5% auto;
   width: 100%;
-  max-width: 400px;
+  max-width:  25rem;
   animation: modalopen 4s both ease-in-out;
   background-color: ${colors.primary};
   border-radius: 10px;
@@ -49,21 +49,21 @@ const Content = styled.div`
 
 const Close = styled.button`
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 0.938rem;
+  top: 0.938rem;
   background: transparent;
   border: none;
   img {
-    width: 15px;
-    height: 15px;
+    width: 0.938rem;
+    height: 0.938rem;
     cursor: pointer;
   }
 `;
 
 const ModalBody = styled.div`
 text-align: center;
-  padding: 15px 8%;
-  margin: 15px auto;
+  padding: 0.938rem 8%;
+  margin: 0.938rem auto;
   img {
     width: clamp(5rem, 6vw, 6rem);
   }
