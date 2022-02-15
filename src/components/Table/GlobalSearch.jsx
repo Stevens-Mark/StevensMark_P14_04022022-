@@ -7,14 +7,17 @@ import PropTypes from 'prop-types'
  * @returns {JSX} input field & sets search keyword
  */
  const GlobalSearch = ( props ) => {
-  const count = props.preGlobalFilteredRows.length
+
+  const { globalFilter, setGlobalFilter, preGlobalFilteredRows } = props
+  const count = preGlobalFilteredRows.length
+  
   return (
     <span>
       <input
         type="text"
         placeholder={`Search ${count} records...`}
-        value={props.globalFilter || ""}
-        onChange={e => props.setGlobalFilter(e.target.value)}/>
+        value={globalFilter || ""}
+        onChange={e => setGlobalFilter(e.target.value)}/>
   </span>
   )
 }
