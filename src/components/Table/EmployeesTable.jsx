@@ -35,6 +35,12 @@ const Table = styled.table`
   padding: 0.625rem;
   margin: 0.625rem;
 
+  @media (max-width: 1201px) {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
   th {
     border-bottom: solid 3px ${colors.primary};
     color: ${colors.secondary};
@@ -48,9 +54,15 @@ const Table = styled.table`
 `;
 
 const Controls = styled.span`
+  align-items: center;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  margin: 10px;
+  margin: 0.625rem;
+
+  span {
+    margin: 0.2rem 0rem;
+  }
 `;
 
 /**
