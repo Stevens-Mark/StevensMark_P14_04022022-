@@ -227,7 +227,7 @@ const EmployeeForm = ( props ) => {
             listItems={departments}
             onChange={(e) => setInput({...input, department: e.target.value})} />
             
-            {error && <IsError>'Please recheck the information entered.'</IsError>}
+            {error && <IsError>Please recheck the information entered.</IsError>}
 
         <Save type="submit" disabled={isLoading ? true : false}>Save</Save>
       </Form>  

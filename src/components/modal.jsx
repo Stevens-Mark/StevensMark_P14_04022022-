@@ -86,7 +86,7 @@ text-align: center;
           <ModalBody>
           <img src={logo} alt="Wealth Health"/>
               <h1>Success !</h1>
-              <p>The new employee has been created</p>
+              <p>A new employee record has been created</p>
           </ModalBody>
       </Content>
     </MODAL>

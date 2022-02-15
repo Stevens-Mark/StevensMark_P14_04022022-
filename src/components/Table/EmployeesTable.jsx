@@ -72,8 +72,11 @@ const Controls = styled.span`
  */
 const EmployeesTable = () => {
 
-  // const employees = JSON.parse(localStorage.getItem('employees')) || []
-  const employees = mockedData
+  const employees = JSON.parse(localStorage.getItem('employees')) || []
+
+   if (employees.length<1)                                          // ONLY FOR DEMO otherwise REMOVE THIS CODE
+    mockedData.forEach(employee => employees.push(employee))       // if no employees data held in localStorage already...
+    localStorage.setItem('employees', JSON.stringify(employees))  // Add mock employee records. 
   
   const columns = useMemo(() => headerList, [] )
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,7 +110,6 @@ const EmployeesTable = () => {
         usePagination,
       )
 
-      console.log(globalFilter)
   return (
     <Container>
       <Controls>
