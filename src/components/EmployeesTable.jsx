@@ -10,6 +10,7 @@ import mockedData from '../assets/data/MOCK_DATA.json'
 // Import components
 import GlobalSearch from './GlobalSearch'
 import Pagination from './Pagination'
+import TableFooter from './TableFooter'
 
 /**
  * CSS for the component using styled.components
@@ -71,6 +72,7 @@ const EmployeesTable = () => {
     getTableBodyProps,
     headerGroups,
     prepareRow,
+    rows,
     page,
     setGlobalFilter,
     preGlobalFilteredRows,
@@ -93,6 +95,7 @@ const EmployeesTable = () => {
         usePagination,
       )
 
+      console.log(globalFilter)
  return (
      <Container>
         <Controls>
@@ -155,6 +158,9 @@ const EmployeesTable = () => {
           Showing Page{' '}<strong>{pageIndex + 1} of {pageOptions.length}</strong>
           {pageOptions.length===1? ' page' : ' pages'}
         </span>
+
+        {/* <TableFooter pageIndex={pageIndex} pageSize={pageSize} pageCount={pageCount} rows={rows} noOfEntries={data.length}/> */}
+  
         <span>
           <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>{' '}
           <button onClick={() => previousPage()} disabled={!canPreviousPage}>{'<'}</button>{' '}
