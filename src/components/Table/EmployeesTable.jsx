@@ -4,13 +4,13 @@ import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table
 // styling
 import styled from 'styled-components'
 import colors from '../../styles/colors'
-// import data needed for table
-import { headerList } from '../../assets/data/tableHeader'
-import mockedData from '../../assets/data/MOCK_DATA.json'
 // Import components
 import GlobalSearch from './GlobalSearch'
 import Pagination from './Pagination'
 import SearchResult from './SearchResult'
+// import data needed for table
+import { headerList } from '../../assets/data/tableHeader'
+import mockedData from '../../assets/data/MOCK_DATA.json'
 
 /**
  * CSS for the component using styled.components
@@ -34,6 +34,7 @@ const Table = styled.table`
   color: ${colors.primary};
   padding: 0.625rem;
   margin: 0.625rem;
+  border-collapse: collapse;
 
   @media (max-width: 1201px) {
     display: block;
@@ -61,7 +62,14 @@ const Controls = styled.span`
   margin: 0.625rem;
 
   span {
-    margin: 0.2rem 0rem;
+    margin: 0.3rem 0rem;
+    > input[type=number] {
+      width: 40px;
+    }
+    > span {
+      padding-left: 10px;
+      white-space: nowrap;
+    }
   }
 `;
 
@@ -94,7 +102,7 @@ const EmployeesTable = () => {
 
     canPreviousPage,
     canNextPage,
-    pageOptions,
+    // pageOptions,
     pageCount,
     gotoPage,
     nextPage,
@@ -120,31 +128,31 @@ const EmployeesTable = () => {
       <Table {...getTableProps()}>
         <thead>
         {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                  <th
-                      {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    {column.render('Header')}
-                    <span>
-                      {column.isSorted
-                          ? column.isSortedDesc
-                              ? ' 🔽'
-                              : ' 🔼'
-                          : ' ⏸️'}
-                  </span>
-                  </th>
-              ))}
-            </tr>
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map(column => (
+              <th
+                  {...column.getHeaderProps(column.getSortByToggleProps())}>
+                {column.render('Header')}
+                <span>
+                  {column.isSorted
+                    ? column.isSortedDesc
+                        ? ' 🔽'
+                        : ' 🔼'
+                    : ' ⏸️'}
+                </span>
+              </th>
+            ))}
+          </tr>
         ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-        {page.map((row, i) => {
+        {page.map((row, i) => { 
           prepareRow(row)
           return (
-              <tr {...row.getRowProps()}>
+              <tr {...row.getRowProps() }>
                 {row.cells.map(cell => {
                   return (
-                      <td
+                      <td 
                           {...cell.getCellProps()}>
                         {cell.render('Cell')}
                       </td>
@@ -157,32 +165,39 @@ const EmployeesTable = () => {
       </Table>
 
       <Controls>
-        {!globalFilter?
-          <>
+        {rows.length<1 && !globalFilter?
+          <span>
+            <strong>There are No records available...</strong>
+          </span> :
+        <>       
+          {!globalFilter?
             <span>
-              Go to page:{' '}
-              <input
-                type="number"
-                value={pageIndex + 1}
-                min={1}
-                max={pageOptions.length}
-                onChange={e => {
-                  const page = e.target.value ? Number(e.target.value) - 1 : 0
-                  gotoPage(page)}}/>
+              Showing Page{' '}<strong>{pageIndex + 1} of {pageCount}</strong>
+              {pageCount===1? ' page' : ' pages'}
             </span>
+            :    
+            <SearchResult pageIndex={pageIndex} pageSize={pageSize} pageCount={pageCount} rows={rows} noOfEntries={data.length}/>
+          }
+
+          <span>
+            Go to page:{' '}
+            <input
+              type="number"
+              value={pageIndex + 1}
+              min={1}
+              max={pageCount}
+              onChange={e => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0
+                gotoPage(page)}}/> {globalFilter && pageCount>0? `of ${pageCount} ` : ''}
+                
             <span>
-              Showing Page{' '}<strong>{pageCount<1? '0' : pageIndex + 1} of {pageOptions.length}</strong>
-              {pageOptions.length===1? ' page' : ' pages'}
-            </span>
-          </> :
-          <SearchResult pageIndex={pageIndex} pageSize={pageSize} pageCount={pageCount} rows={rows} noOfEntries={data.length}/>
-        }
-        <span>
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>{' '}
-          <button onClick={() => previousPage()} disabled={!canPreviousPage}>{'<'}</button>{' '}
-          <button onClick={() => nextPage()} disabled={!canNextPage}>{'>'}</button>{' '}
-          <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>
-        </span>
+              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>{' '}
+              <button onClick={() => previousPage()} disabled={!canPreviousPage}>{'<'}</button>{' '}
+              <button onClick={() => nextPage()} disabled={!canNextPage}>{'>'}</button>{' '}
+              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>   
+            </span>   
+          </span>
+        </> }
       </Controls>
     </Container>
   )

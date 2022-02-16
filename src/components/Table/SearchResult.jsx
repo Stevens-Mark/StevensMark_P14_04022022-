@@ -17,10 +17,10 @@ const SearchResult = ( props ) => {
     <>
       {rows.length>0?
         <span>
-          Entries <strong>{minRows} to {maxRows}</strong> of <strong>{rows.length} {rows.length===1? ' record' : ' records'} found</strong> (filtered from a total of {noOfEntries} records) 
+          Entries <strong>{minRows} to {maxRows}</strong> of <strong>{rows.length} {rows.length===1? 'record' : 'records'} found</strong> (filtered from a total of {noOfEntries} {noOfEntries===1? 'record' : 'records'}) 
         </span> :
         <span>
-          <strong>No records found</strong> (filtered from a total of  {noOfEntries} records) 
+          <strong>No records found</strong> (filtered from a total of {noOfEntries} {noOfEntries===1? 'record' : 'records'}) 
         </span>
       }
     </>

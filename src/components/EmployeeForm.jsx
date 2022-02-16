@@ -2,12 +2,13 @@ import { useState } from 'react'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
-// import data FOR dropdown menus
+// import data for dropdown menus
 import { departments } from '../assets/data/departments'
 import { states } from '../assets/data/states'
 // import components
 import Select from './Select'
 // import functions & constants
+import { capitalize } from '../utils/functions/capitalize'
 import { 
     usZipCodes,
     textRegex,
@@ -19,7 +20,6 @@ import {
 /**
  * CSS for the component using styled.components
  */
-
 const Container = styled.div`
   display :flex;
   justify-content: center;
@@ -47,7 +47,6 @@ const Form = styled.form`
     padding: 0.375rem;
   }
 `;
-
 
 const FieldSet = styled.fieldset`
   margin: 1rem 0rem;
@@ -164,7 +163,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={30}
-            onChange={(e) => setInput({...input, firstName: e.target.value})}/>       
+            onChange={(e) => setInput({...input, firstName: capitalize(e.target.value)})}/>       
 
         <label htmlFor="lastName">Last Name</label>
           <input type="text"
@@ -173,7 +172,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={30}
-            onChange={(e) => setInput({...input, lastName: e.target.value})}/>       
+            onChange={(e) => setInput({...input, lastName: capitalize(e.target.value)})}/>       
 
         <label htmlFor="dateOfBirth">Date Of Birth</label>
           <input type="date"
@@ -198,7 +197,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={60}
-            onChange={(e) => setInput({...input, street: e.target.value})}/>  
+            onChange={(e) => setInput({...input, street: capitalize(e.target.value)})}/>  
 
           <label htmlFor="city">City</label>
           <input type="text"
@@ -207,7 +206,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={30}
-            onChange={(e) => setInput({...input, city: e.target.value})}/>  
+            onChange={(e) => setInput({...input, city: capitalize(e.target.value)})}/>  
 
           <Select 
             id={"state"}
