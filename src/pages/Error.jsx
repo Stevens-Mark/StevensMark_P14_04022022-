@@ -33,7 +33,7 @@ const ReturnLink = styled(Link)`
 `;
 
 /**
- * Component to render Error 404 page
+ * Renders Error 404 page
  * @function Error
  * @returns {JSX}
  */

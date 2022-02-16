@@ -31,6 +31,7 @@ const MainNav = styled.nav`
 `;
 
 const LogoWrapper = styled.span`
+  align-items: center;
   display: flex;
   img {
     width: clamp(5rem, 7vw, 7rem);

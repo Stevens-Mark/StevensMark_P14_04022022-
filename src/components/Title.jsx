@@ -25,7 +25,7 @@ import PropTypes from 'prop-types'
   return (
     <Wrapper>
       <i className="fa fa-user-circle"></i>
-     <h2>{heading}</h2>
+      <h2>{heading}</h2>
     </Wrapper> 
   )
 }

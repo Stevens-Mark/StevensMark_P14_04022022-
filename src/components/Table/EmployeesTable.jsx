@@ -171,7 +171,7 @@ const EmployeesTable = () => {
                   gotoPage(page)}}/>
             </span>
             <span>
-              Showing Page{' '}<strong>{pageIndex + 1} of {pageOptions.length}</strong>
+              Showing Page{' '}<strong>{pageCount<1? '0' : pageIndex + 1} of {pageOptions.length}</strong>
               {pageOptions.length===1? ' page' : ' pages'}
             </span>
           </> :

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 /**
  * Sets the number of entries to render on a page
  * @function Pagination
- * @returns {JSX} dropdown & sets pageSize state
+ * @param {number} pageSize
+ * @param {function} setPageSize (to set State)
+ * @returns {JSX} dropdown & pageSize (state)
  */
  const Pagination = ( { pageSize, setPageSize } ) => {
   return (
