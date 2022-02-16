@@ -25,7 +25,7 @@ import reportWebVitals from './reportWebVitals';
 
     main {
       min-height: 85vh;
-      background: ${colors.middleGreen};
+      background: ${colors.primary};
       padding-top: 125px;
     }
 

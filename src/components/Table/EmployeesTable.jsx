@@ -43,14 +43,20 @@ const Table = styled.table`
   }
 
   th {
-    border-bottom: solid 3px ${colors.primary};
+    border-bottom: solid 3px ${colors.darkGreen};
     color: ${colors.secondary};
-    padding: 0px 0px 5px;
+    background: ${colors.tertiary};
+    padding: 0.313rem;
+   }
+ 
+  tr:nth-child(2n+1) {
+    background: ${colors.zircon};
   }
 
   td {
-    padding: 5px;
-    border: solid 1px gray;
+    // color: ${colors.secondary};
+    border: solid 0.5px ${colors.gray};
+    padding: 0.313rem;
   }
 `;
 
@@ -64,10 +70,11 @@ const Controls = styled.span`
   span {
     margin: 0.3rem 0rem;
     > input[type=number] {
-      width: 40px;
+      width: 2.5rem;
+      
     }
     > span {
-      padding-left: 10px;
+      padding-left: 0.5rem;
       white-space: nowrap;
     }
   }
@@ -138,7 +145,7 @@ const EmployeesTable = () => {
                     ? column.isSortedDesc
                         ? ' 🔽'
                         : ' 🔼'
-                    : ' ⏸️'}
+                    : ' 🔃'}
                 </span>
               </th>
             ))}
@@ -188,13 +195,13 @@ const EmployeesTable = () => {
               max={pageCount}
               onChange={e => {
                 const page = e.target.value ? Number(e.target.value) - 1 : 0
-                gotoPage(page)}}/> {globalFilter && pageCount>0? `of ${pageCount} ` : ''}
+                gotoPage(page)}}/> {globalFilter && pageCount>1? `of ${pageCount} ` : ''}
                 
             <span>
-              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>{' '}
-              <button onClick={() => previousPage()} disabled={!canPreviousPage}>{'<'}</button>{' '}
-              <button onClick={() => nextPage()} disabled={!canNextPage}>{'>'}</button>{' '}
-              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'>>'}</button>   
+              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'⏪'}</button>{' '}
+              <button onClick={() => previousPage()} disabled={!canPreviousPage}>{'◀️'}</button>{' '}
+              <button onClick={() => nextPage()} disabled={!canNextPage}>{'▶️'}</button>{' '}
+              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'⏩'}</button>   
             </span>   
           </span>
         </> }
