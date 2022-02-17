@@ -71,12 +71,12 @@ const Controls = styled.span`
     margin: 0.3rem 0rem;
     > input[type=number] {
       width: 2.5rem;
-      
     }
-    > span {
-      padding-left: 0.5rem;
-      white-space: nowrap;
-    }
+  }
+  div span:nth-child(2) {
+    padding-left: 0.5rem;
+    white-space: nowrap;
+    
   }
 `;
 
@@ -185,8 +185,8 @@ const EmployeesTable = () => {
             :    
             <SearchResult pageIndex={pageIndex} pageSize={pageSize} pageCount={pageCount} rows={rows} noOfEntries={data.length}/>
           }
-
-          <span>
+        <div>
+            <span>
             Go to page:{' '}
             <input
               type="number"
@@ -196,14 +196,14 @@ const EmployeesTable = () => {
               onChange={e => {
                 const page = e.target.value ? Number(e.target.value) - 1 : 0
                 gotoPage(page)}}/> {globalFilter && pageCount>1? `of ${pageCount} ` : ''}
-                
+            </span>    
             <span>
               <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'⏪'}</button>{' '}
               <button onClick={() => previousPage()} disabled={!canPreviousPage}>{'◀️'}</button>{' '}
               <button onClick={() => nextPage()} disabled={!canNextPage}>{'▶️'}</button>{' '}
               <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'⏩'}</button>   
             </span>   
-          </span>
+          </div>
         </> }
       </Controls>
     </Container>
