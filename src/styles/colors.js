@@ -2,9 +2,11 @@
 
 const colors = {
   primary: '#669900',
+  primaryInverted: '#9966ff',
   secondary: '#000',
   tertiary: '#fff',
   darkGreen: '#666600',
+  emojiBlue: '0066cc',
   zircon: '#EDF0F1',
   gray: '#808080',
   warning: '#ff0000',

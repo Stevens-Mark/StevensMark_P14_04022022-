@@ -5,6 +5,7 @@ import CreateEmployee from './pages/CreateEmployee'
 import CurrentEmployees from './pages/CurrentEmployees'
 import  Error from './pages/Error'
 import Footer from './components/Footer'
+import GoToTop from './utils/GoToTop'
 
 /**
  * Manages routes & renders pages
@@ -21,6 +22,7 @@ export default function App() {
           <Route path='*' component={Error}/>
         </Switch> 
       <Footer />
+      <GoToTop />
     </Router>  
   )
 }

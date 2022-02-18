@@ -36,7 +36,7 @@ const Table = styled.table`
   margin: 0.625rem;
   border-collapse: collapse;
 
-  @media (max-width: 1201px) {
+  @media (max-width: 1216px) {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
@@ -54,7 +54,6 @@ const Table = styled.table`
   }
 
   td {
-    // color: ${colors.secondary};
     border: solid 0.5px ${colors.gray};
     padding: 0.313rem;
   }
@@ -74,9 +73,10 @@ const Controls = styled.span`
     }
   }
   div span:nth-child(2) {
-    padding-left: 0.5rem;
     white-space: nowrap;
-    
+  }
+  button {
+    margin: 0.3rem 0rem;
   }
 `;
 
@@ -180,7 +180,7 @@ const EmployeesTable = () => {
           {!globalFilter?
             <span>
               Showing Page{' '}<strong>{pageIndex + 1} of {pageCount}</strong>
-              {pageCount===1? ' page' : ' pages'}
+              {pageCount===1? ' page ' : ' pages '}
             </span>
             :    
             <SearchResult pageIndex={pageIndex} pageSize={pageSize} pageCount={pageCount} rows={rows} noOfEntries={data.length}/>
