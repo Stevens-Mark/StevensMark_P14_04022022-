@@ -17,7 +17,7 @@ import PropTypes from 'prop-types'
         type="text"
         placeholder={`Search ${count} records...`}
         value={globalFilter || ""}
-        onChange={e => setGlobalFilter(e.target.value)}/>
+        onChange={e => setGlobalFilter(e.target.value)} />
     </span>
   )
 }

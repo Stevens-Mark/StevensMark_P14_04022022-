@@ -28,6 +28,9 @@ const MainNav = styled.nav`
   font-size: clamp(0.9rem, 1.4vw, 1.2rem);
   justify-content: space-between;
   padding: 0.313rem 0.5rem; 
+  span:nth-child(n+2) a {
+    margin-right: 1.2rem;
+  }
 `;
 
 const LogoWrapper = styled.span`
@@ -40,7 +43,6 @@ const LogoWrapper = styled.span`
 
 const LINK = styled(NavLink)`
   font-weight: bold;
-  margin-right: 1.2rem;
 
   &.${(props) => props.activeClassName} {
     color: ${colors.primary};

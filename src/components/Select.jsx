@@ -1,5 +1,14 @@
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { capitalize } from '../utils/functions/capitalize'
+
+/**
+ * CSS for component using styled.components
+ */
+const Selected =styled.select`
+  width: 100%;
+`;
+
 /**
  * Renders the Select dropdown menu
  * @function Select
@@ -13,7 +22,7 @@ import { capitalize } from '../utils/functions/capitalize'
   return (
     <>
       <label htmlFor={id}>{capitalize(id)}</label>
-      <select name={id}
+      <Selected name={id}
         id={id}
         required={true}
         onChange={onChange}
@@ -26,7 +35,7 @@ import { capitalize } from '../utils/functions/capitalize'
             .sort((a, b) => (a.name < b.name ? -1 : 1))
             .map((item, index) => 
               ( <option key={`${item}-${index}`} value={item.value}>{item.name}</option> ))}
-      </select>
+      </Selected>
     </>
   )
 }

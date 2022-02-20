@@ -28,11 +28,14 @@ const Container = styled.div`
 
 const Form = styled.form`
   background: ${colors.tertiary};
-  font-family: 'Montserrat';
   display: flex;
   flex-direction: column;
+  font-family: 'Montserrat';
   padding: 1.2rem;
-  max-width: 25rem;
+  width: 17rem;
+  @media (min-width: 445px) {
+    width: 25rem;
+  }
   
   label {
     font-weight: bold;
@@ -49,15 +52,15 @@ const Form = styled.form`
 `;
 
 const FieldSet = styled.fieldset`
-  margin: 1rem 0rem;
   display: flex;
   flex-direction: column;
+  margin: 1rem 0rem;
 `;
 
 const IsError = styled.span`
-  text-align: center;
-  font-weight: bold;
   color: ${colors.warning};
+  font-weight: bold;
+  text-align: center;
 `;
 
 const Save = styled.button`

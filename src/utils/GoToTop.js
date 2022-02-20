@@ -8,28 +8,31 @@ import upArrow from '../assets/icons/circleUpArrow.svg'
  * CSS for component using styled.components
  */
 const ToTopButton = styled.img`
-  position: fixed;
-  z-index: 9999;
-  top:auto;
-  bottom: 1rem;
-  right: 1.25rem;
-  width: clamp(1.5rem, 2.2vw, 2rem);
-  padding: 3px;
-  filter: invert(29%) sepia(72%) saturate(4967%) hue-rotate(198deg) brightness(88%) contrast(103%);
-  border: 2px solid ${colors.secondary};
-  cursor: pointer;
   border-radius: 50%;
+  border: 2px solid ${colors.secondary};
+  bottom: 5rem;
+  cursor: pointer;
+  filter: invert(29%) sepia(72%) saturate(4967%) hue-rotate(198deg) brightness(88%) contrast(103%);
+  padding: 3px;
+  position: fixed;
+  right: 1.25rem;
+  top:auto;
   transition: 0.4s;
+  width: clamp(1.5rem, 2.2vw, 2rem);
+  z-index: 9999;
  
   &:hover {
     background: ${colors.primaryInverted};
     filter: invert(100%);
   }
 
+  @media screen and (min-width: 329px) {
+    bottom: 4rem; 
+  }
   @media screen and (min-width: 1950px) {
+    bottom: 4rem;
     left: 50%;
     transform: translate(-50%, 0); 
-    bottom: 9rem;
   }
 `;
 

@@ -9,16 +9,15 @@ import logo from '../assets/logos/wealthLogo.webp'
 /**
  * Keyframes for about mobile heading
  */
-export const modalopen = keyframes`
-  from { opacity: 0;  transform: translateY(-150px); }
-  to { opacity: 1; } transform: translateY(0px);}
-`;
+// export const modalopen = keyframes`
+//   from { opacity: 0;  transform: translateY(-150px); }
+//   to { opacity: 1; } transform: translateY(0px);}
+// `;
 
 /**
  * CSS for the component using styled.components
  */
 const MODAL = styled.div`
-  // display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -28,23 +27,18 @@ const MODAL = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  // height: 100%;
   width: 100%;
-  // overflow: auto;
   background-color: rgba(255, 255, 255, 0.9);
 `;
 
 const Content = styled.div`
-  // margin: 5% auto;
   width: 100%;
   max-width:  25rem;
-  animation: modalopen 4s both ease-in-out;
+  // animation: modalopen 4s both ease-in-out;
   background-color: ${colors.primary};
   border-radius: 10px;
-  // overflow: hidden;
   position: relative;
   color: ${colors.tertiary};
-
 `;
 
 const Close = styled.button`
