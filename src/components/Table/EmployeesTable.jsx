@@ -53,6 +53,11 @@ const Table = styled.table`
     background: ${colors.zircon};
   }
 
+  tr:hover{
+    color: ${colors.tertiary};
+    background: ${colors.darkBrown};
+  }
+
   td {
     border: solid 0.5px ${colors.gray};
     padding: 0.313rem;
@@ -106,10 +111,8 @@ const EmployeesTable = () => {
     page,
     setGlobalFilter,
     preGlobalFilteredRows,
-
     canPreviousPage,
     canNextPage,
-    // pageOptions,
     pageCount,
     gotoPage,
     nextPage,

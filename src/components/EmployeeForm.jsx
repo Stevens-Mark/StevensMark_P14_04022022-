@@ -11,12 +11,8 @@ import Select from './Select'
 import { capitalize } from '../utils/functions/capitalize'
 import { 
     usZipCodes,
-    textRegex,
-    addressRegex,
-    // AgeNotValidate,
     SetBirthDateLimit,
-    ValidStartDate,
-    GetDateMonthBefore
+    SetDateLimit
  } from '../utils/functions/validation'
 
 /**
@@ -123,18 +119,13 @@ const EmployeeForm = ( props ) => {
   }
 
   /**
-   * Simple validation check of data entered by user
+   * Simple validation check
+   * The other inputs are handled by 'min, max, required' attributes & handleText Function
    * @function ValidateForm
    * @returns {boolean}
    */
   const ValidateForm = () => {
     return (
-      textRegex.test(input.firstName) &&
-      textRegex.test(input.lastName) &&
-      // input?.dateOfBirth &&
-      ValidStartDate(input.startDate) &&
-      addressRegex.test(input.street) &&
-      textRegex.test(input.city) &&
       input?.state &&
       usZipCodes.test(input.zipCode) &&
       input?.department ? true : false
@@ -158,6 +149,26 @@ const EmployeeForm = ( props ) => {
         } 
   }
 
+    /**
+     * Restricts what the user can enter in the text input fields & saves to state
+     * @function handleText
+     * @param {object} input targeted
+     */
+    const handleText = (e) => {
+      if (e.target.id !=='street') {
+        setInput({
+          ...input,
+          [e.target.id]: capitalize(e.target.value.replace(/[^a-zA-ZÀ-ÿ-.\s]/g, '')).trimStart(),
+        })
+      }
+        else {
+          setInput({
+            ...input,
+            [e.target.id]: capitalize(e.target.value.replace(/[^0-9a-zA-Z-.\s]/g, '')).trimStart(),
+          })
+        }
+    }
+
   return (
     <Container>
       <Form onSubmit={handleSubmit}>  
@@ -168,7 +179,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={30}
-            onChange={(e) => setInput({...input, firstName: capitalize(e.target.value.replace(/[^a-zA-ZÀ-ÿ-\s]/g, "")).trimStart()})}/>        
+            onChange={(e) => handleText(e)}/>        
 
         <label htmlFor="lastName">Last Name</label>
           <input type="text"
@@ -177,7 +188,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={30}
-             onChange={(e) => setInput({...input, lastName:  capitalize(e.target.value.replace(/[^a-zA-ZÀ-ÿ-\s]/g, "")).trimStart()})}/>       
+            onChange={(e) => handleText(e)}/>       
 
         <label htmlFor="dateOfBirth">Date Of Birth</label>
           <input type="date"
@@ -193,7 +204,8 @@ const EmployeeForm = ( props ) => {
             id="startDate" 
             value={input.startDate}
             required={true}
-            min={GetDateMonthBefore()}
+            min={SetDateLimit(30)}
+            max={SetDateLimit(-120)}
             onChange={(e) => setInput({...input, startDate: e.target.value})}/>   
 
         <FieldSet>
@@ -205,7 +217,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={60}
-            onChange={(e) => setInput({...input, street: capitalize(e.target.value.replace(/[^0-9a-zA-Z-\s]/g, "")).trimStart()})}/> 
+            onChange={(e) => handleText(e)}/> 
 
           <label htmlFor="city">City</label>
           <input type="text"
@@ -214,7 +226,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={30}
-            onChange={(e) => setInput({...input, city: capitalize(e.target.value.replace(/[^a-zA-ZÀ-ÿ-\s]/g, "")).trimStart()})}/> 
+            onChange={(e) => handleText(e)}/> 
 
           <Select 
             id={"state"}
@@ -224,6 +236,7 @@ const EmployeeForm = ( props ) => {
           <label htmlFor="zipCode">Zip Code</label>
           <input type="number"
             id="zipCode"
+            placeholder='5 digits'
             value={input.zipCode}
             required={true}
             onChange={(e) => setInput({...input, zipCode: e.target.value})}/>  

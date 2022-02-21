@@ -1,7 +1,7 @@
 // Regex's used for form validation
 export const usZipCodes = /(^\d{5}$)|(^\d{5}-\d{4}$)/
-export const textRegex = /^[a-zA-ZÀ-ÿ- ]+$/
-export const addressRegex = /^[0-9a-zA-ZÀ-ÿ- ]+$/g
+// export const textRegex = /^[a-zA-ZÀ-ÿ- ]+$/
+// export const addressRegex = /^[0-9a-zA-ZÀ-ÿ- ]+$/g
 // export const dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
 
 /**
@@ -20,7 +20,7 @@ export const addressRegex = /^[0-9a-zA-ZÀ-ÿ- ]+$/g
 /**
 * Returns today's date 'x' amount of years ago based on the age supplied
 * @function SetBirthDateLimit
-* @param {number} age
+* @param {number} age (currently set between 18-70 yrs)
 * @returns Date Limit: format 2022-02-12
 * */
 export const SetBirthDateLimit = ( age ) => {
@@ -29,25 +29,12 @@ export const SetBirthDateLimit = ( age ) => {
   }
 
 /**
-* Gets today's date
-* @function GetCurrentDate
-* @returns today's date: format 2022-02-12
+* Returns the date 'x' days before/after today's date
+* @function SetDateLimit (currently set between 30 days in the past & 120 days in the future)
+* @returns date limit: format 2022-02-12
 * */
-// export const GetCurrentDate = () => {
-//   const newDate = new Date()
-//   const date = newDate.getDate()
-//   const month = newDate.getMonth() + 1
-//   const year = newDate.getFullYear()
-//   return `${year}-${month<10?`0${month}`:`${month}`}-${date}`
-//   }
-
-/**
-* Gets the date 30 days before today's date
-* @function GetDateMonthBefore
-* @returns prior date: format 2022-02-12
-* */
-export const GetDateMonthBefore = () => {
-  const priorDate = new Date(new Date().setDate(new Date().getDate() - 30))
+export const SetDateLimit = ( days ) => {
+  const priorDate = new Date(new Date().setDate(new Date().getDate() - days))
   const date = priorDate.getDate()
   const month = priorDate.getMonth() + 1
   const year = priorDate.getFullYear()
@@ -61,10 +48,9 @@ export const GetDateMonthBefore = () => {
  * @param {string} start date
  * @returns {boolean}
  * */
-export const ValidStartDate = ( startDate ) => {
-  return (Date.parse(startDate) < Date.parse(GetDateMonthBefore()))? false : true
-  // return (Date.parse(startDate) < Date.parse(GetCurrentDate()))? false : true
-  }
+// export const ValidStartDate = ( startDate ) => {
+//   return (Date.parse(startDate) < Date.parse(GetDateMonthBefore()))? false : true
+//   }
 
 
 
