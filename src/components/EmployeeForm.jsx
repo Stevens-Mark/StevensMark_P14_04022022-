@@ -120,12 +120,15 @@ const EmployeeForm = ( props ) => {
 
   /**
    * Simple validation check
-   * The other inputs are handled by 'min, max, required' attributes & handleText Function
    * @function ValidateForm
    * @returns {boolean}
    */
   const ValidateForm = () => {
     return (
+      input.firstName.length>1 &&
+      input.lastName.length>1 &&
+      input.street.length>1 &&
+      input.city.length>1 &&
       input?.state &&
       usZipCodes.test(input.zipCode) &&
       input?.department ? true : false
@@ -177,7 +180,6 @@ const EmployeeForm = ( props ) => {
             id="firstName"
             value={input.firstName}
             required={true}
-            minLength={2}
             maxLength={30}
             onChange={(e) => handleText(e)}/>        
 
@@ -186,7 +188,6 @@ const EmployeeForm = ( props ) => {
             id="lastName" 
             value={input.lastName}
             required={true}
-            minLength={2}
             maxLength={30}
             onChange={(e) => handleText(e)}/>       
 
@@ -215,7 +216,6 @@ const EmployeeForm = ( props ) => {
             id="street"
             value={input.street}
             required={true}
-            minLength={2}
             maxLength={60}
             onChange={(e) => handleText(e)}/> 
 
@@ -224,7 +224,6 @@ const EmployeeForm = ( props ) => {
             id="city"
             value={input.city}
             required={true}
-            minLength={2}
             maxLength={30}
             onChange={(e) => handleText(e)}/> 
 
