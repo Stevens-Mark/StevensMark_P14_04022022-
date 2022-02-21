@@ -13,8 +13,10 @@ import {
     usZipCodes,
     textRegex,
     addressRegex,
-    AgeNotValidate,
-    ValidStartDate
+    // AgeNotValidate,
+    SetBirthDateLimit,
+    ValidStartDate,
+    GetDateMonthBefore
  } from '../utils/functions/validation'
 
 /**
@@ -121,7 +123,7 @@ const EmployeeForm = ( props ) => {
   }
 
   /**
-   * Simple validaion check of data entered by user
+   * Simple validation check of data entered by user
    * @function ValidateForm
    * @returns {boolean}
    */
@@ -129,7 +131,7 @@ const EmployeeForm = ( props ) => {
     return (
       textRegex.test(input.firstName) &&
       textRegex.test(input.lastName) &&
-      !AgeNotValidate(input.dateOfBirth) &&
+      // input?.dateOfBirth &&
       ValidStartDate(input.startDate) &&
       addressRegex.test(input.street) &&
       textRegex.test(input.city) &&
@@ -166,7 +168,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={30}
-            onChange={(e) => setInput({...input, firstName: capitalize(e.target.value)})}/>       
+            onChange={(e) => setInput({...input, firstName: capitalize(e.target.value.replace(/[^a-zA-ZÀ-ÿ-\s]/g, "")).trimStart()})}/>        
 
         <label htmlFor="lastName">Last Name</label>
           <input type="text"
@@ -175,13 +177,15 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={30}
-            onChange={(e) => setInput({...input, lastName: capitalize(e.target.value)})}/>       
+             onChange={(e) => setInput({...input, lastName:  capitalize(e.target.value.replace(/[^a-zA-ZÀ-ÿ-\s]/g, "")).trimStart()})}/>       
 
         <label htmlFor="dateOfBirth">Date Of Birth</label>
           <input type="date"
             id="dateOfBirth" 
             value={input.dateOfBirth}
             required={true}
+            max={SetBirthDateLimit(18)}
+            min={SetBirthDateLimit(70)}
             onChange={(e) => setInput({...input, dateOfBirth: e.target.value})}/>   
         
         <label htmlFor="startDate">Start Date</label>
@@ -189,7 +193,8 @@ const EmployeeForm = ( props ) => {
             id="startDate" 
             value={input.startDate}
             required={true}
-            onChange={(e) => setInput({...input, startDate: e.target.value})}/>  
+            min={GetDateMonthBefore()}
+            onChange={(e) => setInput({...input, startDate: e.target.value})}/>   
 
         <FieldSet>
           <legend>Address</legend>
@@ -200,7 +205,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={60}
-            onChange={(e) => setInput({...input, street: capitalize(e.target.value)})}/>  
+            onChange={(e) => setInput({...input, street: capitalize(e.target.value.replace(/[^0-9a-zA-Z-\s]/g, "")).trimStart()})}/> 
 
           <label htmlFor="city">City</label>
           <input type="text"
@@ -209,7 +214,7 @@ const EmployeeForm = ( props ) => {
             required={true}
             minLength={2}
             maxLength={30}
-            onChange={(e) => setInput({...input, city: capitalize(e.target.value)})}/>  
+            onChange={(e) => setInput({...input, city: capitalize(e.target.value.replace(/[^a-zA-ZÀ-ÿ-\s]/g, "")).trimStart()})}/> 
 
           <Select 
             id={"state"}
@@ -227,7 +232,7 @@ const EmployeeForm = ( props ) => {
           <Select
             id={"department"}
             listItems={departments}
-            onChange={(e) => setInput({...input, department: e.target.value})} />
+            onChange={(e) => setInput({...input, department: e.target.value})} /> 
             
             {error && <IsError>Please recheck the information entered.</IsError>}
 
