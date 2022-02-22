@@ -1,9 +1,11 @@
-import React from 'react';
+import React from 'react'
 import ReactDOM from 'react-dom';
-import { createGlobalStyle } from "styled-components";
-import colors from './styles/colors';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from "react-redux"
+import store from './Redux/store/store'
+import { createGlobalStyle } from "styled-components"
+import colors from './styles/colors'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
 
 /**
  * CSS Global styles for the site using styled.components
@@ -52,10 +54,13 @@ import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <GlobalStyle />
-    <App />
-  </React.StrictMode>,
+  // The Provider must encompass the entire application!
+  <Provider store={store}>
+    <React.StrictMode>
+      <GlobalStyle />
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 

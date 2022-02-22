@@ -31,5 +31,5 @@ export default SearchResult
 
 // Prototypes
 SearchResult.propTypes = {
-   props: PropTypes.object
+   props: PropTypes.object.isRequired
 }

@@ -1,3 +1,5 @@
+// data for 'header' in the table
+
 export const headerList =
   [     
     {

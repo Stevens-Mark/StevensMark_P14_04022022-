@@ -82,7 +82,7 @@ export default Modal
 
 // Prototypes
 Modal.propTypes = {
-  props: PropTypes.func,
+  props: PropTypes.func.isRequired,
 }
 
 

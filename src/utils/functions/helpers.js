@@ -49,8 +49,15 @@ export const SetDateLimit = ( days ) => {
  * @returns {boolean}
  * */
 // export const ValidStartDate = ( startDate ) => {
-//   return (Date.parse(startDate) < Date.parse(GetDateMonthBefore()))? false : true
+//   return (Date.parse(startDate) < Date.parse(SetDateLimit(30)))? false : true
 //   }
 
-
-
+/**
+ * Capitalizes the first letter of a given string
+ * @function capitalize
+ * @param {string} string 
+ * @returns {string} string 
+ */
+ export const capitalize = (string) => {
+  return string && string[0].toUpperCase() + string.slice(1);
+}

@@ -1,3 +1,5 @@
+// data to use in the 'states' dropdown menu
+
 export const states = [
       {
           "name": "Alabama",

@@ -1,3 +1,5 @@
+// data for 'departments' dropdown menu
+
 export const departments = [
   {
       "name": "Sales",

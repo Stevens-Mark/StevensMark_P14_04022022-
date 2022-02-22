@@ -37,7 +37,7 @@ const ToTopButton = styled.img`
 `;
 
 /**
-* A go to top button appears after scrolling down a distance
+* A 'go to top' button appears after scrolling down a distance
  * @function GoToTop
  * @returns {JSX} back to top button
  */

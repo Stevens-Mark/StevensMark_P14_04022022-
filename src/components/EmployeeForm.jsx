@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
@@ -7,13 +9,14 @@ import { departments } from '../assets/data/departments'
 import { states } from '../assets/data/states'
 // import components
 import Select from './Select'
-// import functions & constants
-import { capitalize } from '../utils/functions/capitalize'
+// import functions, actions & constants
+import { capitalize } from '../utils/functions/helpers'
+import { addEmployee } from '../Redux/employeesSlice'
 import { 
     usZipCodes,
     SetBirthDateLimit,
     SetDateLimit
- } from '../utils/functions/validation'
+ } from '../utils/functions/helpers'
 
 /**
  * CSS for the component using styled.components
@@ -107,19 +110,12 @@ const EmployeeForm = ( props ) => {
   const [error, setError] = useState(false)
   const [input, setInput] = useState(initialState)
   
-  /**
-   * Save new employee record to local storage
-   * @function SaveEmployee
-   */
-  const SaveEmployee = () => {
-    const employees = JSON.parse(localStorage.getItem('employees')) || []
-    const employee = input
-    employees.push(employee)
-    localStorage.setItem('employees', JSON.stringify(employees))
-  }
+  const dispatch = useDispatch()
 
   /**
    * Simple validation check
+   * But there is some control using attributes maxLength, required
+   * and the handleText, SetBirthDateLimit & SetBirthDateLimit functions
    * @function ValidateForm
    * @returns {boolean}
    */
@@ -143,9 +139,9 @@ const EmployeeForm = ( props ) => {
     if (ValidateForm())
       {
         setError(false)
-        SaveEmployee()
-        setModalIsOpen(true)
-        setInput(initialState)
+        dispatch(addEmployee(input))  // dispatch input data/add employee to store
+        setModalIsOpen(true)          // launch success modal
+        setInput(initialState)        // reset state & inputs
         event.target.reset()
       } else {
           setError(true)
@@ -153,19 +149,19 @@ const EmployeeForm = ( props ) => {
   }
 
     /**
-     * Restricts what the user can enter in the text input fields & saves to state
+     * Restricts what the user can enter in the TEXT input fields & saves to state
      * @function handleText
-     * @param {object} input targeted
+     * @param {object} the targeted input 
      */
     const handleText = (e) => {
-      if (e.target.id !=='street') {
+      if (e.target.id !=='street') {    // permits letters only
         setInput({
           ...input,
           [e.target.id]: capitalize(e.target.value.replace(/[^a-zA-ZÀ-ÿ-.\s]/g, '')).trimStart(),
         })
       }
         else {
-          setInput({
+          setInput({                    // permits alphanumeric
             ...input,
             [e.target.id]: capitalize(e.target.value.replace(/[^0-9a-zA-Z-.\s]/g, '')).trimStart(),
           })
@@ -255,3 +251,8 @@ const EmployeeForm = ( props ) => {
 }
 
 export default EmployeeForm
+
+// Prototypes
+EmployeeForm.propTypes = {
+  props: PropTypes.func,
+}

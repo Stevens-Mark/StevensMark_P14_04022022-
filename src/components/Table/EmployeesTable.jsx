@@ -1,16 +1,19 @@
 
 import React, { useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+// import selector & action
+import { selectEmployees } from '../../Redux/selectors'
+import { fetchEmployees } from '../../Redux/employeesSlice'
+// import for table
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table'
-// styling
-import styled from 'styled-components'
-import colors from '../../styles/colors'
-// Import components
 import GlobalSearch from './GlobalSearch'
 import Pagination from './Pagination'
 import SearchResult from './SearchResult'
-// import data needed for table
+// import header data needed for table
 import { headerList } from '../../assets/data/tableHeader'
-import mockedData from '../../assets/data/MOCK_DATA.json'
+// styling
+import styled from 'styled-components'
+import colors from '../../styles/colors'
 
 /**
  * CSS for the component using styled.components
@@ -92,15 +95,13 @@ const Controls = styled.span`
  */
 const EmployeesTable = () => {
 
-  const employees = JSON.parse(localStorage.getItem('employees')) || []
+  const employees = useSelector(selectEmployees).employees
 
-   if (employees.length<1)                                          // ONLY FOR DEMO otherwise REMOVE THIS CODE
-    mockedData.forEach(employee => employees.push(employee))       // if no employees data held in localStorage already...
-    localStorage.setItem('employees', JSON.stringify(employees))  // Add mock employee records. 
-  
+  const dispatch = useDispatch()
+  if(employees.length<1) dispatch(fetchEmployees()) // dispatch action to fetch mockData if no data in table (DEMO ONLY: TO BE REMOVED LATER...?)
+                  
   const columns = useMemo(() => headerList, [] )
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const data = useMemo(() => employees, [] )
+  const data = useMemo(() => employees, [employees] )
 
   const {
     getTableProps,
