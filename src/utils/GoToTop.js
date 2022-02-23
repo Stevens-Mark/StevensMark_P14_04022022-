@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 // for styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
+import { selectTheme } from '../Redux/selectors'
+// import up arrow for 'gototop' button
 import upArrow from '../assets/icons/circleUpArrow.svg'
 
 /**
@@ -12,7 +15,7 @@ const ToTopButton = styled.img`
   border: 2px solid ${colors.secondary};
   bottom: 6.2rem;
   cursor: pointer;
-  filter: invert(29%) sepia(72%) saturate(4967%) hue-rotate(198deg) brightness(88%) contrast(103%);
+  filter: ${({ theme }) => (theme === 'light' ? '' : 'invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)')};
   padding: 3px;
   position: fixed;
   right: 1.25rem;
@@ -22,7 +25,7 @@ const ToTopButton = styled.img`
   z-index: 9999;
  
   &:hover {
-    background: ${colors.chromeBlue};
+    background: ${colors.primaryInverted};
     filter: invert(100%);
   }
 
@@ -43,6 +46,7 @@ const ToTopButton = styled.img`
  */
 const GoToTop = () => {
 
+  const theme = useSelector(selectTheme) // retrieve Redux state
   const [showButton, setShowButton] = useState(false)   // The back-to-top button is hidden at the beginning
 
   useEffect(() => {
@@ -66,7 +70,7 @@ const GoToTop = () => {
   return (
     <>       
       {showButton && (
-        <ToTopButton onClick={scrollToTop} src={upArrow} alt="Back to top arrow" title="Back To Top"/>
+        <ToTopButton theme={theme} onClick={scrollToTop} src={upArrow} alt="Back to top arrow" title="Back To Top"/>
       )}
   </>
   )

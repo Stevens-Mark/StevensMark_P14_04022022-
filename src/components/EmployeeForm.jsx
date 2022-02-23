@@ -61,7 +61,7 @@ const FieldSet = styled.fieldset`
 `;
 
 const IsError = styled.span`
-  color: ${colors.warning};
+  color: ${({ theme }) => (theme === 'light' ? `${colors.warning}` : `${colors.chromeBlue}`)};
   font-weight: bold;
   text-align: center;
 `;
@@ -247,7 +247,7 @@ const EmployeeForm = ( props ) => {
             listItems={departments}
             onChange={(e) => setInput({...input, department: e.target.value})} /> 
             
-            {error && <IsError>Please recheck the information entered.</IsError>}
+            {error && <IsError theme={theme}>Please recheck the information entered.</IsError>}
 
         <Save theme={theme} type="submit" disabled={isLoading ? true : false}>Save</Save>
       </Form>  

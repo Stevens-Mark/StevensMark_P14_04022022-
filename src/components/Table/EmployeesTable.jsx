@@ -3,6 +3,7 @@ import React, { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import selector & action
 import { selectEmployees } from '../../Redux/selectors'
+import { selectTheme } from '../../Redux/selectors'
 import { fetchEmployees } from '../../Redux/employeesSlice'
 // import for table
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table'
@@ -32,12 +33,12 @@ const Container = styled.div`
 `;
 
 const Table = styled.table`
-  border: solid 1px ${colors.secondary};
-  background: ${colors.tertiary};
-  color: ${colors.primary};
-  padding: 0.625rem;
-  margin: 0.625rem;
+  background: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightNavy}`)};
   border-collapse: collapse;
+  border: solid 1px ${({ theme }) => (theme === 'light' ? `${colors.secondary}` : `${colors.gray}`)};
+  color: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.lightGreen}`)};
+  margin: 0.625rem;
+  padding: 0.625rem;
 
   @media (max-width: 1216px) {
     display: block;
@@ -46,19 +47,19 @@ const Table = styled.table`
   }
 
   th {
-    border-bottom: solid 3px ${colors.darkGreen};
-    color: ${colors.secondary};
-    background: ${colors.tertiary};
+    background: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightNavy}`)};
+    border-bottom: solid 3px ${({ theme }) => (theme === 'light' ? `${colors.darkBrown}` : `${colors.slate}`)};
+    color: ${({ theme }) => (theme === 'light' ? `${colors.secondary}` : `${colors.lightGreen}`)};
     padding: 0.313rem;
    }
  
   tr:nth-child(2n+1) {
-    background: ${colors.zircon};
+    background: ${({ theme }) => (theme === 'light' ? `${colors.zircon}` : `${colors.lightestNavy}`)};
   }
 
   tr:hover{
     color: ${colors.tertiary};
-    background: ${colors.darkBrown};
+    background: ${({ theme }) => (theme === 'light' ? `${colors.darkBrown}` : `${colors.slate}`)};
   }
 
   td {
@@ -95,7 +96,9 @@ const Controls = styled.span`
  */
 const EmployeesTable = () => {
 
+  // retrieve Redux state
   const employees = useSelector(selectEmployees).employees
+  const theme = useSelector(selectTheme) 
 
   const dispatch = useDispatch()
   if(employees.length<1) dispatch(fetchEmployees()) // dispatch action to fetch mockData if no data in table (DEMO ONLY: TO BE REMOVED LATER...?)
@@ -136,7 +139,7 @@ const EmployeesTable = () => {
         <GlobalSearch globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} preGlobalFilteredRows={preGlobalFilteredRows}/>
       </Controls>
       
-      <Table {...getTableProps()}>
+      <Table theme={theme} {...getTableProps()}>
         <thead>
         {headerGroups.map(headerGroup => (
           <tr  {...headerGroup.getHeaderGroupProps()}>
