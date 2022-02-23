@@ -17,7 +17,7 @@ import PropTypes from 'prop-types'
         type="text"
         placeholder={`Search ${count} records...`}
         value={globalFilter || ""}
-        onChange={e => setGlobalFilter(e.target.value)} />
+        onChange={e => setGlobalFilter((e.target.value.replace(/[^0-9a-zA-ZÀ-ÿ-.\s]/g, '').trimStart()))} /> 
     </span>
   )
 }

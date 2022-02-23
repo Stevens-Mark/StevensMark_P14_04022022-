@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 import { useSelector } from 'react-redux'
 import colors from './colors'
+// import fonts from  local folder (just for FireFox)
+import montserratFF from '../assets/fonts/MontserratRegular.ttf'
 
 /**
  * CSS Global styles for the site using styled.components
@@ -44,6 +46,13 @@ a {
   position: absolute !important;
   white-space: nowrap !important; /* 3 */
   width: 1px !important;
+}
+
+@font-face {
+  font-family: 'MontserratFF';
+  font-style: normal;
+  font-weight: normal;
+  src: url(${montserratFF}) format("truetype");
 }
 `;
 

@@ -167,7 +167,7 @@ const EmployeeForm = ( props ) => {
         else {
           setInput({                    // permits alphanumeric
             ...input,
-            [e.target.id]: capitalize(e.target.value.replace(/[^0-9a-zA-Z-.\s]/g, '')).trimStart(),
+            [e.target.id]: capitalize(e.target.value.replace(/[^0-9a-zA-ZÀ-ÿ-.\s]/g, '')).trimStart(),
           })
         }
     }
