@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
+import { selectTheme } from '../Redux/selectors'
 // import data for dropdown menus
 import { departments } from '../assets/data/departments'
 import { states } from '../assets/data/states'
@@ -28,7 +29,8 @@ const Container = styled.div`
 `;
 
 const Form = styled.form`
-  background: ${colors.tertiary};
+  background: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightNavy}`)};
+  border: 1px solid ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightGreen}`)};
   display: flex;
   flex-direction: column;
   font-family: 'Montserrat';
@@ -43,13 +45,13 @@ const Form = styled.form`
   }
 
   input, select {
+    background: ${colors.zircon};
     border-radius: 0.2rem;
     border: 1px solid ${colors.secondary};
     font-family: 'Montserrat';
     font-size: 1rem;
     margin: 0.5rem 0rem 1rem;
     padding: 0.375rem;
-  }
 `;
 
 const FieldSet = styled.fieldset`
@@ -65,9 +67,10 @@ const IsError = styled.span`
 `;
 
 const Save = styled.button`
-  background-color: ${colors.primary};
+  background-color: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.chromeBlue}`)};
   border-radius: 0.2rem;
   border: none;
+  color: ${colors.secondary};
   cursor: pointer;
   display: block;
   font-size: 1.1rem;
@@ -94,7 +97,7 @@ const EmployeeForm = ( props ) => {
 
   const { setModalIsOpen } = props
   const isLoading = false
-
+  
   // local states
   const initialState = {
     firstName: "",
@@ -109,7 +112,8 @@ const EmployeeForm = ( props ) => {
   }
   const [error, setError] = useState(false)
   const [input, setInput] = useState(initialState)
-  
+
+  const theme = useSelector(selectTheme) // retrieve Redux state
   const dispatch = useDispatch()
 
   /**
@@ -170,7 +174,7 @@ const EmployeeForm = ( props ) => {
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit}>  
+      <Form theme={theme} onSubmit={handleSubmit}>  
         <label htmlFor="firstName">First Name</label>
           <input type="text"
             id="firstName"
@@ -233,6 +237,7 @@ const EmployeeForm = ( props ) => {
             id="zipCode"
             placeholder='5 digits'
             value={input.zipCode}
+            min={0}
             required={true}
             onChange={(e) => setInput({...input, zipCode: e.target.value})}/>  
         </FieldSet>
@@ -244,7 +249,7 @@ const EmployeeForm = ( props ) => {
             
             {error && <IsError>Please recheck the information entered.</IsError>}
 
-        <Save type="submit" disabled={isLoading ? true : false}>Save</Save>
+        <Save theme={theme} type="submit" disabled={isLoading ? true : false}>Save</Save>
       </Form>  
     </Container>
   )

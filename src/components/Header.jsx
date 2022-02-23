@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
+import { selectTheme } from '../Redux/selectors'
 // logo import
 import logo from '../assets/logos/wealthLogo.webp'
 
@@ -10,8 +12,9 @@ import logo from '../assets/logos/wealthLogo.webp'
  * CSS for the component using styled.components
  */
 const HEADER = styled.header`
-  background: ${colors.tertiary};
+  background-color: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.navy}`)};
   box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
+  box-shadow: ${({ theme }) => (theme === 'light' ? '0 2px 4px rgba(0, 0, 0, .8)' : '0 2px 4px rgba(255, 255, 255, .8)')}; 
   left: 0;
   margin: 0 auto;
   max-width: 1920px;
@@ -45,10 +48,10 @@ const LINK = styled(NavLink)`
   font-weight: bold;
 
   &.${(props) => props.activeClassName} {
-    color: ${colors.primary};
+    color: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.chromeBlue}`)};
   }
   &:hover {
-    color: ${colors.primary};
+    color: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.chromeBlue}`)};
     text-decoration: underline;
   }
 `;
@@ -60,6 +63,8 @@ const LINK = styled(NavLink)`
  */
 const Header = () => {
 
+  const theme = useSelector(selectTheme) // retrieve Redux state
+  // local states
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -75,15 +80,15 @@ const Header = () => {
   }, [prevScrollPos])
 
    return (
-     <HEADER  position={visible ? '0' : '-140px' }>
+     <HEADER theme={theme} position={visible ? '0' : '-140px' }>
       <MainNav>
         <LogoWrapper>
           <LINK to="/"><img src={logo} alt="Wealth Health"/></LINK> 
           <h1>HRNet</h1>
         </LogoWrapper>
           <span>
-            <LINK activeClassName="active" exact to='/'>Create</LINK> 
-            <LINK activeClassName="active" to="/employees">View</LINK> 
+            <LINK theme={theme} activeClassName="active" exact to='/'>Create</LINK> 
+            <LINK theme={theme} activeClassName="active" to="/employees">View</LINK> 
           </span>
       </MainNav>
     </HEADER>
