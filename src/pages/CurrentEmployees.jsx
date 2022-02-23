@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import EmployeesTable from '../components/Table/EmployeesTable'
 // import components
 import Title from '../components/Title'
+import EmployeesTable from '../components/Table/EmployeesTable'
 
 /**
  * Renders the 'CurrentEmployees Page' 

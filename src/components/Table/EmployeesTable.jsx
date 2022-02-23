@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployees } from '../../Redux/selectors'
 import { selectTheme } from '../../Redux/selectors'
 import { fetchEmployees } from '../../Redux/employeesSlice'
-// import for table
+// imports for table
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table'
 import GlobalSearch from './GlobalSearch'
 import Pagination from './Pagination'

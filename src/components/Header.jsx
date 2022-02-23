@@ -13,7 +13,6 @@ import logo from '../assets/logos/wealthLogo.webp'
  */
 const HEADER = styled.header`
   background-color: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.navy}`)};
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
   box-shadow: ${({ theme }) => (theme === 'light' ? '0 2px 4px rgba(0, 0, 0, .8)' : '0 2px 4px rgba(255, 255, 255, .8)')}; 
   left: 0;
   margin: 0 auto;

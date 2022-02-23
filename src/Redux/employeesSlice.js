@@ -14,9 +14,7 @@ import mockData from '../assets/data/MOCK_DATA.json'
  const employeesSlice = createSlice({
   name: 'employee',
   initialState: {
-    isLoading: false,
     employees: [],
-    isError: '',
   },
   reducers: {     // reducers allows to define the actions and the reducer
     addEmployee: (draft, action) => {

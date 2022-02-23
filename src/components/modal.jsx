@@ -13,7 +13,6 @@ import logo from '../assets/logos/wealthLogo.webp'
  */
 const MODAL = styled.div`
   align-items: center;
-  // background-color: rgba(255, 255, 255, 0.9);
   background-color: ${({ theme }) => (theme === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(168, 178, 209, 0.9)')};
   bottom: 0;
   display: flex;
