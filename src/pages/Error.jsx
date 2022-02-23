@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+// for styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
+import { selectTheme } from '../Redux/selectors'
 
 /**
  * CSS for the component using styled.components
  */
 const ErrorWrapper = styled.main`
   align-items: center;
-  color: ${colors.tertiary};
+  color: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightGreen}`)};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +28,7 @@ const ErrorWrapper = styled.main`
 `;
 
 const ReturnLink = styled(Link)`
-  color: ${colors.tertiary};
+  color: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightGreen}`)};
   font-size: clamp(0.875rem, 1.5vw, 1.375rem);
   font-weight: 500;
   margin-bottom: 5rem;
@@ -38,12 +41,14 @@ const ReturnLink = styled(Link)`
  * @returns {JSX}
  */
 const Error = () => {
-  
+
+  const theme = useSelector(selectTheme) // retrieve Redux state
+
   return (
-    <ErrorWrapper>
+    <ErrorWrapper theme={theme}>
       <h1>404</h1>
       <p>Oops, the page you requested does not exist.</p>
-      <ReturnLink to="/">Return to the Create Employee page</ReturnLink>
+      <ReturnLink theme={theme} to="/">Return to the Create Employee page</ReturnLink>
     </ErrorWrapper>
   )
 }
