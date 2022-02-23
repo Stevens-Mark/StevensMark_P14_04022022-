@@ -18,11 +18,14 @@ const HEADER = styled.header`
   left: 0;
   margin: 0 auto;
   max-width: 1920px;
+  min-height: 5.5rem;
   position: fixed;
   right: 0;
   top: ${({ position }) => position};
   transition: top 0.6s;
   z-index: 999;
+
+  }
 `;
 
 const MainNav = styled.nav`
@@ -40,8 +43,14 @@ const LogoWrapper = styled.span`
   align-items: center;
   display: flex;
   img {
-    width: clamp(5rem, 7vw, 7rem);
+    width: clamp(4rem, 7vw, 7rem);
   }
+  div {
+    margin-right: 1rem;
+  }
+  h1 {
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    margin: unset;
 `;
 
 const LINK = styled(NavLink)`
@@ -84,7 +93,10 @@ const Header = () => {
       <MainNav>
         <LogoWrapper>
           <LINK to="/"><img src={logo} alt="Wealth Health"/></LINK> 
-          <h1>HRNet</h1>
+          <div>
+            <h1>Wealth Health</h1>
+            <span>HRNet</span>
+          </div>
         </LogoWrapper>
           <span>
             <LINK theme={theme} activeClassName="active" exact to='/'>Create</LINK> 

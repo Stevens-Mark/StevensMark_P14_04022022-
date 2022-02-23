@@ -12,6 +12,7 @@ import PropTypes from 'prop-types'
   }
   h2 {
     margin: 0.5rem 0rem;
+    font-size: clamp(1.2rem, 1.6vw, 1.5rem);
   }
 `;
 
