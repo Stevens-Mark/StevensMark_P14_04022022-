@@ -10,7 +10,7 @@ import upArrow from '../assets/icons/circleUpArrow.svg'
 const ToTopButton = styled.img`
   border-radius: 50%;
   border: 2px solid ${colors.secondary};
-  bottom: 5rem;
+  bottom: 6.2rem;
   cursor: pointer;
   filter: invert(29%) sepia(72%) saturate(4967%) hue-rotate(198deg) brightness(88%) contrast(103%);
   padding: 3px;
@@ -22,15 +22,15 @@ const ToTopButton = styled.img`
   z-index: 9999;
  
   &:hover {
-    background: ${colors.primaryInverted};
+    background: ${colors.chromeBlue};
     filter: invert(100%);
   }
 
   @media screen and (min-width: 329px) {
-    bottom: 4rem; 
+    bottom: 5rem; 
   }
   @media screen and (min-width: 1950px) {
-    bottom: 4rem;
+    bottom: 5rem;
     left: 50%;
     transform: translate(-50%, 0); 
   }

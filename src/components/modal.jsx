@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
+import { selectTheme } from '../Redux/selectors'
 // logo icons
 import close from '../assets/icons/close.svg'
 import logo from '../assets/logos/wealthLogo.webp'
@@ -10,45 +12,46 @@ import logo from '../assets/logos/wealthLogo.webp'
  * CSS for the component using styled.components
  */
 const MODAL = styled.div`
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
   align-items: center;
+  // background-color: rgba(255, 255, 255, 0.9);
+  background-color: ${({ theme }) => (theme === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(168, 178, 209, 0.9)')};
+  bottom: 0;
+  display: flex;
   justify-content: center;
+  left: 0;
+  left: 0;
+  position: fixed;
+  top: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 1;
 `;
 
 const Content = styled.div`
-  width: 100%;
-  max-width:  25rem;
-  background-color: ${colors.primary};
+  background-color: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.lightNavy}`)};
   border-radius: 10px;
+  color: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightGreen}`)};
+  max-width:  25rem;
   position: relative;
-  color: ${colors.tertiary};
+  width: 100%;
 `;
 
 const Close = styled.button`
+  background: transparent;
+  border: none;
   position: absolute;
   right: 0.938rem;
   top: 0.938rem;
-  background: transparent;
-  border: none;
   img {
-    width: 0.938rem;
-    height: 0.938rem;
     cursor: pointer;
+    height: 0.938rem;
+    width: 0.938rem;
   }
 `;
 
 const ModalBody = styled.div`
-text-align: center;
-  padding: 0.938rem 8%;
   margin: 0.938rem auto;
+  padding: 0.938rem 8%;
+  text-align: center;
   img {
     width: clamp(5rem, 6vw, 6rem);
   }
@@ -63,10 +66,11 @@ text-align: center;
  const Modal = ( props ) => {
 
   const { setModalIsOpen } = props
+  const theme = useSelector(selectTheme) // retrieve Redux state
 
   return (
-    <MODAL>
-      <Content>       
+    <MODAL theme={theme}>
+      <Content theme={theme}>       
         <Close onClick={() => setModalIsOpen(false)}><img src={close} alt="Close button" /></Close>
           <ModalBody>
           <img src={logo} alt="Wealth Health"/>
