@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { useEffect } from "react"
 import { useSelector } from 'react-redux'
 // styling
 import styled from 'styled-components'
@@ -65,15 +66,45 @@ const ModalBody = styled.div`
  const Modal = ( props ) => {
 
   const { setModalIsOpen } = props
-  const theme = useSelector(selectTheme) // retrieve Redux state
+  const theme = useSelector(selectTheme)  // retrieve Redux state
+
+  const activeElement = document.activeElement
+
+  const handleEscape = () => { setModalIsOpen(false) }
+  const handlekeys = (e) => { e.preventDefault() }    // prevent keys to effectively trap focus in modal
+  
+  const keyListenersMap = new Map([   // map of keyboard listeners
+    [27, handleEscape],
+    [9, handlekeys],
+    [18, handlekeys],
+    [37, handlekeys],
+    [38, handlekeys],
+    [39, handlekeys],
+    [40, handlekeys],
+  ])
+
+  const handleKeydown = (e) => {
+    const listener = keyListenersMap.get(e.keyCode)  // get the listener corresponding to the pressed key  
+    return listener && listener(e)                  // call the listener if it exists
+  }
+  
+ useEffect(() => {   
+    document.addEventListener('keydown', handleKeydown)
+    document.querySelector('.modal').focus()
+    return () => {
+      document.removeEventListener('keydown', handleKeydown)  // Detach listener when component unmounts
+      activeElement.focus()                                   // Return focus to the previously focused element
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
-    <MODAL theme={theme}>
-      <Content theme={theme}>       
-        <Close onClick={() => setModalIsOpen(false)}><img src={close} alt="Close button" /></Close>
+    <MODAL theme={theme} role="dialog" aria-modal="true" aria-labelledby="modal__title">
+      <Content theme={theme} >       
+        <Close className='modal' onClick={() => setModalIsOpen(false)}><img src={close} alt="Close button" /></Close>
           <ModalBody>
           <img src={logo} alt="Wealth Health"/>
-              <h1>Success !</h1>
+              <h1 id="modal__title">Success !</h1>
               <p>A new employee record has been created</p>
           </ModalBody>
       </Content>
@@ -85,7 +116,7 @@ export default Modal
 
 // Prototypes
 Modal.propTypes = {
-  props: PropTypes.func.isRequired,
+  props: PropTypes.func,
 }
 
 
