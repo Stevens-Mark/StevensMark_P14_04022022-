@@ -10,7 +10,9 @@ import PropTypes from 'prop-types'
  const Pagination = ( { pageSize, setPageSize } ) => {
   return (
     <span>
-      <select
+      <label htmlFor='pageSize' className='sr-only'>Page SiZe</label>
+      <select name='pageSize'
+        id='pageSize'
         value={pageSize}
         onChange={e => {setPageSize(Number(e.target.value))}}>
         {[10, 25, 50, 100].map(pageSize => (

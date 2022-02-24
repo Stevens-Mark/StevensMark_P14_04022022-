@@ -36,7 +36,7 @@ const Table = styled.table`
   background: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightNavy}`)};
   border-collapse: collapse;
   border: solid 1px ${({ theme }) => (theme === 'light' ? `${colors.secondary}` : `${colors.gray}`)};
-  color: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.lightGreen}`)};
+  color: ${({ theme }) => (theme === 'light' ? `${colors.darkBrown}` : `${colors.lightGreen}`)};
   margin: 0.625rem;
   padding: 0.625rem;
 
@@ -194,15 +194,16 @@ const EmployeesTable = () => {
           }
         <div>
             <span>
-            Go to page:{' '}
-            <input
-              type="number"
-              value={pageIndex + 1}
-              min={1}
-              max={pageCount}
-              onChange={e => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0
-                gotoPage(page)}}/> {globalFilter && pageCount>1? `of ${pageCount} ` : ''}
+              <label htmlFor='goToPage'>Go to page:{' '}</label>
+              <input
+                id='goToPage'
+                type="number"
+                value={pageIndex + 1}
+                min={1}
+                max={pageCount}
+                onChange={e => {
+                  const page = e.target.value ? Number(e.target.value) - 1 : 0
+                  gotoPage(page)}}/> {globalFilter && pageCount>1? `of ${pageCount} ` : ''}
             </span>    
             <span>
               <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'⏪'}</button>{' '}

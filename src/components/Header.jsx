@@ -56,10 +56,10 @@ const LINK = styled(NavLink)`
   font-weight: bold;
 
   &.${(props) => props.activeClassName} {
-    color: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.chromeBlue}`)};
+    color: ${({ theme }) => (theme === 'light' ? `${colors.darkBrown}` : `${colors.chromeBlue}`)};
   }
   &:hover {
-    color: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.chromeBlue}`)};
+    color: ${({ theme }) => (theme === 'light' ? `${colors.darkBrown}` : `${colors.chromeBlue}`)};
     text-decoration: underline;
   }
 `;

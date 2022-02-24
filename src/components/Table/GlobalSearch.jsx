@@ -13,8 +13,10 @@ import PropTypes from 'prop-types'
 
   return (
     <span>
+      <label htmlFor="search" className='sr-only'>Search</label>
       <input
         type="text"
+        id="search"
         placeholder={`Search ${count} records...`}
         value={globalFilter || ""}
         onChange={e => setGlobalFilter((e.target.value.replace(/[^0-9a-zA-ZÀ-ÿ-.\s]/g, '').trimStart()))} /> 

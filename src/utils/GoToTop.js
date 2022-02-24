@@ -10,24 +10,17 @@ import upArrow from '../assets/icons/circleUpArrow.svg'
 /**
  * CSS for component using styled.components
  */
-const ToTopButton = styled.img`
-  border-radius: 50%;
-  border: 2px solid ${colors.secondary};
-  bottom: 6.2rem;
+
+const TopButton = styled.button`
+  background: transparent;
+  border: none;
   cursor: pointer;
-  filter: ${({ theme }) => (theme === 'light' ? '' : 'invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)')};
-  padding: 3px;
   position: fixed;
   right: 1.25rem;
   top:auto;
+  bottom: 6.2rem;
   transition: 0.4s;
-  width: clamp(1.5rem, 2.2vw, 2rem);
   z-index: 9999;
- 
-  &:hover {
-    background: ${colors.primaryInverted};
-    filter: invert(100%);
-  }
 
   @media screen and (min-width: 329px) {
     bottom: 5rem; 
@@ -36,6 +29,19 @@ const ToTopButton = styled.img`
     bottom: 5rem;
     left: 50%;
     transform: translate(-50%, 0); 
+  }
+`;
+
+const ButtonImg = styled.img`
+  border-radius: 50%;
+  border: 2px solid ${colors.secondary};
+  filter: ${({ theme }) => (theme === 'light' ? '' : 'invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)')}; 
+  padding: 3px;
+  width: clamp(1.5rem, 2.2vw, 2rem);
+
+  &:hover {
+    background: ${colors.primaryInverted};
+    filter: invert(100%);
   }
 `;
 
@@ -70,7 +76,7 @@ const GoToTop = () => {
   return (
     <>       
       {showButton && (
-        <ToTopButton theme={theme} onClick={scrollToTop} src={upArrow} alt="Back to top arrow" title="Back To Top"/>
+        <TopButton onClick={scrollToTop}><ButtonImg theme={theme} src={upArrow} alt="Back to top arrow" title="Back To Top"/></TopButton>
       )}
   </>
   )

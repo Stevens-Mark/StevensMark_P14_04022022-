@@ -52,6 +52,10 @@ const ModalBody = styled.div`
   margin: 0.938rem auto;
   padding: 0.938rem 8%;
   text-align: center;
+  p {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
   img {
     width: clamp(5rem, 6vw, 6rem);
   }
@@ -105,7 +109,7 @@ const ModalBody = styled.div`
           <ModalBody>
           <img src={logo} alt="Wealth Health"/>
               <h1 id="modal__title">Success !</h1>
-              <p>A new employee record has been created</p>
+              <p>New employee record created</p>
           </ModalBody>
       </Content>
     </MODAL>
