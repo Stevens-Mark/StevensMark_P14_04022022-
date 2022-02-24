@@ -118,7 +118,7 @@ const EmployeeForm = ( props ) => {
 
   /**
    * Simple validation check
-   * But there is some control using attributes maxLength, required
+   * But there is some user input control using attributes maxLength, required
    * and the handleText, SetBirthDateLimit & SetBirthDateLimit functions
    * @function ValidateForm
    * @returns {boolean}

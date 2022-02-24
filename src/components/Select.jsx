@@ -8,7 +8,7 @@ import { capitalize } from '../utils/functions/helpers'
 const Selected =styled.select`
   width: 100%;
   >option {
-    font-family: 'Montserrat', arial;
+    font-family: 'Montserrat', arial; // set arial as fallback font for Firefox
   }
 `;
 
@@ -30,8 +30,7 @@ const Selected =styled.select`
         required={true}
         onChange={onChange}
         key={'DEFAULT'}
-        defaultValue={'DEFAULT'} 
-        >
+        defaultValue={'DEFAULT'}>
           <option value="DEFAULT" disabled hidden>Select a {id}</option>
 
           {[...listItems]

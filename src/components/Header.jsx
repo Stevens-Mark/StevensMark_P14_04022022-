@@ -91,7 +91,7 @@ const Header = () => {
      <HEADER theme={theme} position={visible ? '0' : '-140px' }>
       <MainNav>
         <LogoWrapper>
-          <LINK to="/"><img src={logo} alt="Wealth Health"/></LINK> 
+          <LINK to="/"><img src={logo} alt="Go to Home Page"/></LINK> 
           <div>
             <h1>Wealth Health</h1>
             <span>HRNet</span>

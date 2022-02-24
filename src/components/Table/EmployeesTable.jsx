@@ -51,6 +51,11 @@ const Table = styled.table`
     border-bottom: solid 3px ${({ theme }) => (theme === 'light' ? `${colors.darkBrown}` : `${colors.slate}`)};
     color: ${({ theme }) => (theme === 'light' ? `${colors.secondary}` : `${colors.lightGreen}`)};
     padding: 0.313rem;
+
+    button {
+      border: none;
+      margin-left: 10px;
+    }
    }
  
   tr:nth-child(2n+1) {
@@ -81,9 +86,11 @@ const Controls = styled.span`
       width: 2.5rem;
     }
   }
+
   div span:nth-child(2) {
     white-space: nowrap;
   }
+  
   button {
     margin: 0.3rem 0rem;
   }
@@ -150,9 +157,9 @@ const EmployeesTable = () => {
                 <span>
                   {column.isSorted
                     ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
-                    : ' 🔃'}
+                        ? <button aria-label="Sort Down">{'🔽'}</button>
+                        : <button aria-label="Sort Up">{'🔼'}</button>
+                    : <button aria-label="Original Order">{'🔃'}</button>}
                 </span>
               </th>
             ))}
@@ -206,10 +213,10 @@ const EmployeesTable = () => {
                   gotoPage(page)}}/> {globalFilter && pageCount>1? `of ${pageCount} ` : ''}
             </span>    
             <span>
-              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'⏪'}</button>{' '}
-              <button onClick={() => previousPage()} disabled={!canPreviousPage}>{'◀️'}</button>{' '}
-              <button onClick={() => nextPage()} disabled={!canNextPage}>{'▶️'}</button>{' '}
-              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'⏩'}</button>   
+              <button aria-label="First Page" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'⏪'}</button>{' '}
+              <button aria-label="Previous Page" onClick={() => previousPage()} disabled={!canPreviousPage}>{'◀️'}</button>{' '}
+              <button aria-label="Next Page" onClick={() => nextPage()} disabled={!canNextPage}>{'▶️'}</button>{' '}
+              <button aria-label="Last Page" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'⏩'}</button>   
             </span>   
           </div>
         </> }

@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
  const Pagination = ( { pageSize, setPageSize } ) => {
   return (
     <span>
-      <label htmlFor='pageSize' className='sr-only'>Page SiZe</label>
+      <label htmlFor='pageSize' className='sr-only'>Page Size</label>
       <select name='pageSize'
         id='pageSize'
         value={pageSize}
@@ -18,7 +18,7 @@ import PropTypes from 'prop-types'
         {[10, 25, 50, 100].map(pageSize => (
           <option key={pageSize} value={pageSize}>Show {pageSize}</option>))}
       </select>
-  </span>
+    </span>
   )
 }
 
