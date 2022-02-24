@@ -22,16 +22,16 @@ const TopButton = styled.button`
   transition: 0.4s;
   z-index: 9999;
 
-
   @media screen and (min-width: 329px) {
     bottom: 5rem; 
   }
   @media screen and (min-width: 1950px) {
     bottom: 5rem;
-    left: 50%;
-    transform: translate(-50%, 0); 
-    height: 2.5rem;
-    width: 2.5rem;
+    left: 48.5%;
+    right: 48.5%;
+    // transform: translate(-50%, 0); 
+    // height: 2rem;
+    // width: 2rem;
   }
 `;
 

@@ -40,7 +40,7 @@ const Table = styled.table`
   margin: 0.625rem;
   padding: 0.625rem;
 
-  @media (max-width: 1216px) {
+  @media (max-width: 1269px) {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
@@ -54,7 +54,7 @@ const Table = styled.table`
 
     button {
       border: none;
-      margin-left: 10px;
+      margin: 5px 0px 5px 5px;
     }
    }
  
@@ -62,7 +62,7 @@ const Table = styled.table`
     background: ${({ theme }) => (theme === 'light' ? `${colors.zircon}` : `${colors.lightestNavy}`)};
   }
 
-  tr:hover{
+  tr:hover, tr:focus{
     color: ${colors.tertiary};
     background: ${({ theme }) => (theme === 'light' ? `${colors.darkBrown}` : `${colors.slate}`)};
   }
@@ -170,7 +170,7 @@ const EmployeesTable = () => {
         {page.map((row, i) => { 
           prepareRow(row)
           return (
-              <tr {...row.getRowProps() }>
+              <tr tabindex="0" {...row.getRowProps() }>
                 {row.cells.map(cell => {
                   return (
                       <td 
