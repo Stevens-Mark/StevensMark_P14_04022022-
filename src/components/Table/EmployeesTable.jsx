@@ -170,7 +170,7 @@ const EmployeesTable = () => {
         {page.map((row, i) => { 
           prepareRow(row)
           return (
-              <tr tabindex="0" {...row.getRowProps() }>
+              <tr tabIndex="0" {...row.getRowProps() }>
                 {row.cells.map(cell => {
                   return (
                       <td 

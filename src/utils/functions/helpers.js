@@ -21,7 +21,7 @@ export const SetBirthDateLimit = ( age ) => {
 * @returns date limit: format 2022-02-12
 * */
 export const SetDateLimit = ( days ) => {
-  const priorDate = new Date(new Date().setDate(new Date().getDate() - days))
+  const priorDate = new Date(new Date().setDate(new Date().getDate() + days))
   const date = priorDate.getDate()
   const month = priorDate.getMonth() + 1
   const year = priorDate.getFullYear()
@@ -29,11 +29,32 @@ export const SetDateLimit = ( days ) => {
   }
 
 /**
- * Capitalizes the first letter of a given string
+ * Capitalizes the first letter of each word of a given string
  * @function capitalize
- * @param {string} string 
- * @returns {string} string 
+ * @param {string} unformatted string 
+ * @returns {string} capitalised string 
  */
- export const capitalize = (string) => {
-  return string && string[0].toUpperCase() + string.slice(1);
+export const capitalize = (string) => {
+  // return string && string[0].toUpperCase() + string.slice(1)
+  return string.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')
 }
+
+
+
+/**
+ * Check that a date is within a given valid range
+ * @function ValidateDate
+ * @param {string} dateToTest: the date to test
+ * @param {number} maxYears: no of years limit
+ * @returns {boolean} 
+ */
+// export const ValidateDate = ( dateToTest, maxYears ) => {
+// 	const formatTestDate = new Date(dateToTest.replace(/-/g, "/"))   //set date based on dateToTest at 01:00:00 hours GMT+0100 (CET)
+// 	const currentDate = new Date().toJSON().split('T')[0]   	// set current day on 01:00:00 hours GMT+0100 (CET)
+// 	const noOfYears = ~~((Date.now(currentDate) - formatTestDate) / (31557600000))    	// calculate nos of years comparing current date and formatted dateToTest
+//   return noOfYears < maxYears ? false : true
+// } 
+// console.log(ValidateDate('1999-02-21', 18))
+
+
+

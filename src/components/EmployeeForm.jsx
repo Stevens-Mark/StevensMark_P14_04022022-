@@ -196,7 +196,7 @@ const EmployeeForm = ( props ) => {
             id="dateOfBirth" 
             value={input.dateOfBirth}
             required={true}
-            max={SetBirthDateLimit(18)}
+            max={SetBirthDateLimit(18)}   // age limit between 18-70 years
             min={SetBirthDateLimit(70)}
             onChange={(e) => setInput({...input, dateOfBirth: e.target.value})}/>   
         
@@ -205,8 +205,8 @@ const EmployeeForm = ( props ) => {
             id="startDate" 
             value={input.startDate}
             required={true}
-            min={SetDateLimit(30)}
-            max={SetDateLimit(-120)}
+            min={SetDateLimit(-30)}   // 30 days BEFORE so minus number
+            max={SetDateLimit(120)}   // 120 days AFTER so positive number
             onChange={(e) => setInput({...input, startDate: e.target.value})}/>   
 
         <FieldSet>
