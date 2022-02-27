@@ -18,5 +18,4 @@ describe('Theme reducer', () => {
     it('should return state on invalid action', () => {
         expect(reducer('light', { type: 'INVALID' })).toEqual('light')
     })
-
 })

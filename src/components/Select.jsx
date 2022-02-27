@@ -36,7 +36,7 @@ const Selected =styled.select`
           {[...listItems]
             .sort((a, b) => (a.name < b.name ? -1 : 1))
             .map((item, index) => 
-              ( <option key={`${item}-${index}`} value={item.value}>{item.name}</option> ))}
+              ( <option data-testid="select-option" key={`${item}-${index}`} value={item.value}>{item.name}</option> ))}
       </Selected>
     </>
   )

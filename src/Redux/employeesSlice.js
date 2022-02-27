@@ -18,16 +18,18 @@ import mockData from '../assets/data/MOCK_DATA.json'
   },
   reducers: {     // reducers allows to define the actions and the reducer
     addEmployee: (draft, action) => {
-        draft.employees.push(action.payload)
-        
-        // this used for DEMO only to allow store to persist in localStorage
-        const employeesList = JSON.parse(localStorage.getItem('employees')) || []
-        employeesList.push(action.payload)
-        localStorage.setItem('employees', JSON.stringify(employeesList))
+      draft.employees.push(action.payload)
+      
+      // this used for DEMO only to allow store to persist in localStorage
+      const employeesList = JSON.parse(localStorage.getItem('employees')) || []
+      employeesList.push(action.payload)
+      localStorage.setItem('employees', JSON.stringify(employeesList))
     },
 
-    // this action used for DEMO only to allow store to persist in localStorage
     fetchEmployees: (draft) => {
+      draft.employees = mockData
+        
+      // this action used for DEMO only to allow store to persist in localStorage
       const employeesList = JSON.parse(localStorage.getItem('employees')) || []
       if (employeesList.length<1) {
         localStorage.setItem('employees', JSON.stringify(mockData)) }
