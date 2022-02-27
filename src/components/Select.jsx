@@ -25,18 +25,21 @@ const Selected =styled.select`
   return (
     <>
       <label htmlFor={id}>{capitalize(id)}</label>
-      <Selected name={id}
+      <Selected role="combobox"
+        name={id}
         id={id}
         required={true}
         onChange={onChange}
-        key={'DEFAULT'}
-        defaultValue={'DEFAULT'}>
-          <option value="DEFAULT" disabled hidden>Select a {id}</option>
+         >
 
-          {[...listItems]
-            .sort((a, b) => (a.name < b.name ? -1 : 1))
-            .map((item, index) => 
-              ( <option data-testid="select-option" key={`${item}-${index}`} value={item.value}>{item.name}</option> ))}
+        <option value="default" >Select a {id}</option>
+        {[...listItems].sort((a, b) => (a.name < b.name ? -1 : 1)).map((item, index) => {
+          return (
+            <option key={`${item}-${index}`}value={item.value}>
+              {item.name}
+            </option>
+          );
+        })}
       </Selected>
     </>
   )
