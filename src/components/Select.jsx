@@ -7,8 +7,9 @@ import { capitalize } from '../utils/functions/helpers'
  */
 const Selected =styled.select`
   width: 100%;
+ 
   >option {
-    font-family: 'Montserrat', arial; // set arial as fallback font for Firefox
+    font-family: 'Montserrat', arial; 
   }
 `;
 

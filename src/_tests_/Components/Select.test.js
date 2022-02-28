@@ -1,9 +1,10 @@
 
-import { render } from '../../utils/test/render'
 import { screen } from '@testing-library/react'
-import Select from '../../components/Select'
 import userEvent from '@testing-library/user-event'
-
+// import custom render to connect component to redux
+import { render } from '../../utils/test/render'
+// import component
+import Select from '../../components/Select'
 
 // test setup data
 
@@ -33,6 +34,8 @@ const listItems = [
       "value": "Legal"
   }
 ]
+
+// tests
 
 describe('Select', () => {
   it('Should render a select dropdown', async () => {

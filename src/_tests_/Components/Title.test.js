@@ -1,5 +1,6 @@
 // import { render } from '../../utils/test/render'
 import { screen, render } from '@testing-library/react'
+// import component
 import Title from '../../components/Title'
 
 describe('Title', () => {

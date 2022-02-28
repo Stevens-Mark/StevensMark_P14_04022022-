@@ -1,5 +1,7 @@
-import { render } from '../../utils/test/render'
 import { screen } from '@testing-library/react'
+// import custom render to connect component to redux
+import { render } from '../../utils/test/render'
+// import component
 import Header from '../../components/Header'
 
 describe('Header', () => {
@@ -7,7 +9,7 @@ describe('Header', () => {
     render(<Header />)
   })
 
-  it('should render a title', () => {
+  it('should render a title', async () => {
     render(<Header />)
     expect(
       screen.getByRole('heading', {

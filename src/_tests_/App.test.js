@@ -1,18 +1,10 @@
-import { BrowserRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event' // import userEvent library (npm package)
-import { render } from '../utils/test/render'
 import { screen } from '@testing-library/react'
+// import custom renders to connect component to redux
+import { render } from '../utils/test/render'
+import { renderWithRouter } from '../utils/test/renderWithRouter'
 import App from '../../src/App'
 
-// a helper function that wraps around render for testing router components
-// see page https://testing-library.com/docs/example-react-router
-
-const renderWithRouter = (ui, {route = '/'} = {}) => {
-  window.history.pushState({}, 'Test page', route)
-  return render(ui, {wrapper: BrowserRouter})
-}
-
-// the tests
 
 describe('full APP rendering/navigating', () => {
     
