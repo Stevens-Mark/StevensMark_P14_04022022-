@@ -9,7 +9,7 @@ import userEvent from '@testing-library/user-event'
 
 const onChange = jest.fn()
 
-const correctOptionsOrder = ["Select a department", "Engineering", "Human Resources", "Legal", "Marketing", "Sales"]
+const correctOptionsOrder = ["Engineering", "Human Resources", "Legal", "Marketing", "Sales"]
 
 const listItems = [
   {
@@ -35,7 +35,7 @@ const listItems = [
 ]
 
 describe('Select', () => {
-  test('Should render a select dropdown', async () => {
+  it('Should render a select dropdown', async () => {
     render(
       <Select
       id={"department"}
@@ -44,7 +44,7 @@ describe('Select', () => {
     )
   })
 
-  it('should correctly set default option', () => {
+  it('should correctly set default option', async () => {
     render(
       <Select
       id={"department"}
@@ -54,7 +54,7 @@ describe('Select', () => {
     expect(screen.getByRole('option', {name: 'Select a department'}).selected).toBe(true)
   })
 
-  it('should display the correct number of options', () => {
+  it('should display the correct number of options', async () => {
     render(
       <Select
       id={"department"}
@@ -64,20 +64,20 @@ describe('Select', () => {
     expect(screen.getAllByRole('option').length).toBe(listItems.length+1)  //add 1 for the default option
   })
 
-  it('should display the options in alphabetic order (but with the default in first position)', () => {
+  it('should display the options in alphabetic order (but with the default in first position)', async () => {
     render(
       <Select
       id={"department"}
       listItems={listItems}
       onChange={onChange} />
-      )
-      const renderedNames = screen.getAllByRole('option')
+      )                         // slice() to remove the default "Select a ..." in order to check sort correctly
+      const renderedNames = screen.getAllByRole('option').slice(1)  
       renderedNames.forEach((nameNode, index) => {
         expect(nameNode.textContent).toBe(correctOptionsOrder[index])
       })
   })
 
-  it('should allow user to change the option', () => {
+  it('should allow user to change the option', async () => {
     render(
       <Select
       id={"department"}
