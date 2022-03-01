@@ -70,15 +70,14 @@ const ModalBody = styled.div`
  * @param {function} props: set state for isModalOpen
  * @returns {JSX}
  */
- const Modal = ( {setModalIsOpen} ) => {
+ const Modal = ( { setModalIsOpen } ) => {
 
-  // const { setModalIsOpen } = props
   const theme = useSelector(selectTheme)  // retrieve Redux state
 
   const activeElement = document.activeElement
 
   const handleEscape = () => { setModalIsOpen(false) }
-  const handlekeys = (e) => { e.preventDefault() }    // prevent keys to effectively trap focus in modal
+  const handlekeys = (e) => { e.preventDefault() }   // prevent keys: effectively traps focus in modal
   
   const keyListenersMap = new Map([   // map of keyboard listeners
     [27, handleEscape],
@@ -123,7 +122,7 @@ export default Modal
 
 // Prototypes
 Modal.propTypes = {
-  props: PropTypes.func,
+  setModalIsOpen: PropTypes.func,
 }
 
 

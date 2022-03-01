@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 import { render } from '../../utils/test/render'
 // import component
 import EmployeeForm from '../../components/EmployeeForm'
-import Select from '../../components/Select'
+// import Select from '../../components/Select'
 
 // references used for tests: 
 // https://testing-library.com/docs/example-input-event/
@@ -62,19 +62,19 @@ describe('EmployeeForm', () => {
     expect(input).toHaveValue('Fake City')
   })
 
-   it('should allow user to select a state', () => {
-    const onChange = jest.fn()
-     render(
-      <Select
-      id={"state"}
-      listItems={[ { "name": "Connecticut", "value": "CT" } ]}
-      onChange={onChange} />)
-    userEvent.selectOptions(
-      screen.getByRole('combobox'),                         
-      screen.getByRole('option', {name: 'Connecticut'}),    
-    )
-    expect(screen.getByRole('option', {name: 'Connecticut'}).selected).toBe(true)
-  })
+  //  it('should allow user to select a state', () => {
+  //   const onChange = jest.fn()
+  //    render(
+  //     <Select
+  //     id={"state"}
+  //     listItems={[ { "name": "Connecticut", "value": "CT" } ]}
+  //     onChange={onChange} />)
+  //   userEvent.selectOptions(
+  //     screen.getByRole('combobox'),                         
+  //     screen.getByRole('option', {name: 'Connecticut'}),    
+  //   )
+  //   expect(screen.getByRole('option', {name: 'Connecticut'}).selected).toBe(true)
+  // })
   // full funtionality already checked in select component
  
   it('should allow user to enter a zip code', () => {
@@ -83,19 +83,19 @@ describe('EmployeeForm', () => {
     expect(input.value).toBe('12345')
   })
 
-  it('should allow user to select a department', () => {
-    const onChange = jest.fn()
-     render(
-      <Select
-      id={"department"}
-      listItems={[ { "name": "Engineering", "value": "Engineering" } ]}
-      onChange={onChange} />)
-    userEvent.selectOptions(
-      screen.getByRole('combobox'),                         
-      screen.getByRole('option', {name: 'Engineering'}),    
-    )
-    expect(screen.getByRole('option', {name: 'Engineering'}).selected).toBe(true)
-  })
+  // it('should allow user to select a department', () => {
+  //   const onChange = jest.fn()
+  //    render(
+  //     <Select
+  //     id={"department"}
+  //     listItems={[ { "name": "Engineering", "value": "Engineering" } ]}
+  //     onChange={onChange} />)
+  //   userEvent.selectOptions(
+  //     screen.getByRole('combobox'),                         
+  //     screen.getByRole('option', {name: 'Engineering'}),    
+  //   )
+  //   expect(screen.getByRole('option', {name: 'Engineering'}).selected).toBe(true)
+  // })
   // full select funtionality already checked in select component
 
  it('Should display an error message if first name is left empty', async () => {
@@ -147,13 +147,4 @@ describe('EmployeeForm', () => {
     expect(screen.getByText('Please recheck the information entered.')).toBeTruthy()
   })
 
-
-  // it("submits", async () => {
-    
-  //   render(<EmployeeForm />);
-  //   const handleSubmit = jest.fn();
-  //   fireEvent.submit(screen.getByTestId("form"));
-  //   fireEvent.click(screen.getByText('Save'));
-  //   expect(handleSubmit).toHaveBeenCalled();
-  // });
 })

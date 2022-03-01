@@ -88,9 +88,41 @@ describe('Select', () => {
       onChange={onChange} />)
 
     userEvent.selectOptions(
-      screen.getByRole('combobox'),                         // Find the select element, like a real user would.
+      screen.getByLabelText(/Department/i),                  // Find the select element, like a real user would.
       screen.getByRole('option', {name: 'Engineering'}),    // Find and select the Engineering option, like a real user would.
     )
     expect(screen.getByRole('option', {name: 'Engineering'}).selected).toBe(true)
+    expect(screen.getByRole('combobox').value).toBe('Engineering')
+  })
+
+  it('should allow user to change the state option & return correct country code', async () => {
+
+    const states = [
+      {
+          "name": "American Samoa",
+          "value": "AS"
+      },
+      {
+          "name": "Arizona",
+          "value": "AZ"
+      },
+      {
+          "name": "California",
+          "value": "CA"
+      }
+    ]
+
+    render(
+      <Select
+      id={"state"}
+      listItems={states}
+      onChange={onChange} />)
+
+    userEvent.selectOptions(
+      screen.getByLabelText(/State/i),                        
+      screen.getByRole('option', {name: 'Arizona'}),    
+    )
+    expect(screen.getByRole('option', {name: 'Arizona'}).selected).toBe(true)
+    expect(screen.getByRole('combobox').value).toBe('AZ')
   })
 })
