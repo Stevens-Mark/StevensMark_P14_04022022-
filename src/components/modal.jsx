@@ -70,9 +70,9 @@ const ModalBody = styled.div`
  * @param {function} props: set state for isModalOpen
  * @returns {JSX}
  */
- const Modal = ( props ) => {
+ const Modal = ( {setModalIsOpen} ) => {
 
-  const { setModalIsOpen } = props
+  // const { setModalIsOpen } = props
   const theme = useSelector(selectTheme)  // retrieve Redux state
 
   const activeElement = document.activeElement

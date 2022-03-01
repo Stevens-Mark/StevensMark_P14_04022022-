@@ -249,7 +249,7 @@ const EmployeeForm = ( props ) => {
             
             {error && <IsError theme={theme}>Please recheck the information entered.</IsError>}
 
-        <Save theme={theme} type="submit" disabled={isLoading ? true : false}>Save</Save>
+        <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading ? true : false}>Save</Save>
       </Form>  
     </Container>
   )

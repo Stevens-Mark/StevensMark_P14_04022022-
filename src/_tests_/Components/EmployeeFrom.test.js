@@ -1,5 +1,5 @@
 
-import { screen, fireEvent } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/test/render'
@@ -62,7 +62,7 @@ describe('EmployeeForm', () => {
     expect(input).toHaveValue('Fake City')
   })
 
-  it('should allow user to select a state', () => {
+   it('should allow user to select a state', () => {
     const onChange = jest.fn()
      render(
       <Select

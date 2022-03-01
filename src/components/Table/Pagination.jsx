@@ -11,7 +11,8 @@ import PropTypes from 'prop-types'
   return (
     <span>
       <label htmlFor='pageSize' className='sr-only'>Page Size</label>
-      <select name='pageSize'
+      <select role="combobox"
+        name='pageSize'
         id='pageSize'
         value={pageSize}
         onChange={e => {setPageSize(Number(e.target.value))}}>
