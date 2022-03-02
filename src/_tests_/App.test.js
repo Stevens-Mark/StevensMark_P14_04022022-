@@ -8,11 +8,11 @@ import App from '../../src/App'
 
 describe('full APP rendering/navigating', () => {
     
-    it('Should render without crashing', () => {
+    it('Should render without crashing', async () => {
       render(<App />)
     })
 
-    it('should navigate to the create employee page', () => {
+    it('should navigate to the create employee page', async () => {
       renderWithRouter(<App />)
       expect(screen.getByText(/HRNet/i)).toBeInTheDocument()
       const leftClick = {button: 0}
@@ -20,7 +20,7 @@ describe('full APP rendering/navigating', () => {
       expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
     })
 
-    it('should navigate to the current employees page', () => {
+    it('should navigate to the current employees page', async () => {
       renderWithRouter(<App />)
       expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
       const leftClick = {button: 0}
@@ -28,7 +28,7 @@ describe('full APP rendering/navigating', () => {
       expect(screen.getByText(/Current Employees/i)).toBeInTheDocument()
     })
 
-    it('should show an error page for a bad route', () => {
+    it('should show an error page for a bad route', async () => {
       renderWithRouter(<App />, {route: '/something-that-does-not-match'})
       expect(screen.getByText(/Oops, the page you requested does not exist./i)).toBeInTheDocument()
     })

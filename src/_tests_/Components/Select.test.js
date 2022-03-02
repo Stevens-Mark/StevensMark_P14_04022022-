@@ -38,7 +38,7 @@ const listItems = [
 // tests
 
 describe('Select', () => {
-  it('Should render a select dropdown', () => {
+  it('Should render a select dropdown', async () => {
     render(
       <Select
       id={"department"}
@@ -47,7 +47,7 @@ describe('Select', () => {
     )
   })
 
-  it('should correctly set default option', () => {
+  it('should correctly set default option', async () => {
     render(
       <Select
       id={"department"}
@@ -57,7 +57,7 @@ describe('Select', () => {
     expect(screen.getByRole('option', {name: 'Select a department'}).selected).toBe(true)
   })
 
-  it('should display the correct number of options', () => {
+  it('should display the correct number of options', async () => {
     render(
       <Select
       id={"department"}
@@ -67,7 +67,7 @@ describe('Select', () => {
     expect(screen.getAllByRole('option').length).toBe(listItems.length+1)  //add 1 for the default option
   })
 
-  it('should display the options in alphabetic order (but with the default in first position)', () => {
+  it('should display the options in alphabetic order (but with the default in first position)', async () => {
     render(
       <Select
       id={"department"}
@@ -80,7 +80,7 @@ describe('Select', () => {
       })
   })
 
-  it('should allow user to change the option', () => {
+  it('should allow user to change the option', async () => {
     render(
       <Select
       id={"department"}
@@ -95,7 +95,7 @@ describe('Select', () => {
     expect(screen.getByRole('combobox').value).toBe('Engineering')
   })
 
-  it('should allow user to change the state option & return correct country code', () => {
+  it('should allow user to change the state option & return correct country code', async () => {
 
     const states = [
       {

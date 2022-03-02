@@ -29,9 +29,6 @@ const TopButton = styled.button`
     bottom: 5rem;
     left: 48.5%;
     right: 48.5%;
-    // transform: translate(-50%, 0); 
-    // height: 2rem;
-    // width: 2rem;
   }
 `;
 

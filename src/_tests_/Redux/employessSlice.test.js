@@ -1,6 +1,8 @@
 import reducer, { addEmployee, fetchEmployees } from '../../Redux/employeesSlice'
 import mockData from '../../assets/data/MOCK_DATA_FOR_TESTING.json'
  
+// tests (the mockData in MOCK_DATA_FOR_TESTING.json is need for the tests, if removed the test "add mocked employee" will fail)
+
 describe('Employees reducer', () => {
 
   const dataToAdd = 

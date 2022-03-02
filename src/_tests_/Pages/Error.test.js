@@ -12,7 +12,7 @@ describe('Error page', () => {
     render(<Error />)
   })
 
-  it('should render a 404 message', () => {
+  it('should render a 404 message', async () => {
     render(<Error />)
     expect(
       screen.getByRole('heading', {
@@ -22,7 +22,7 @@ describe('Error page', () => {
     ).toBeTruthy()
   })
 
-  it('should navigate back to the create employee page', () => {
+  it('should navigate back to the create employee page', async () => {
     renderWithRouter(<Error />)
     expect(screen.getByText(/404/i)).toBeInTheDocument()
     const leftClick = {button: 0}

@@ -85,4 +85,4 @@ describe('CreateEmployees', () => {
   })
 })
 
-// tests to check if modal opens on valid input & close on click checked in createEmployees.test.js
+// tests to check if modal opens after valid data entry & closes wher close button is clicked is checked in createEmployees.test.js

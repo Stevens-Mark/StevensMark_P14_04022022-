@@ -192,8 +192,8 @@ const EmployeesTable = () => {
           </span> :
         <>       
           {!globalFilter?
-            <span>
-              Showing Page{' '}<strong>{pageIndex + 1} of {pageCount}</strong>
+            <span data-testid="showPage">
+              Showing Page <strong>{pageIndex + 1} of {pageCount}</strong>
               {pageCount===1? ' page ' : ' pages '}
             </span>
             :    
@@ -210,13 +210,13 @@ const EmployeesTable = () => {
                 max={pageCount}
                 onChange={e => {
                   const page = e.target.value ? Number(e.target.value) - 1 : 0
-                  gotoPage(page)}}/> {globalFilter && pageCount>1? `of ${pageCount} ` : ''}
+                  gotoPage(page)} }/> {globalFilter && pageCount>1? `of ${pageCount} ` : ''}
             </span>    
             <span>
-              <button aria-label="First Page" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'⏪'}</button>{' '}
-              <button aria-label="Previous Page" onClick={() => previousPage()} disabled={!canPreviousPage}>{'◀️'}</button>{' '}
-              <button aria-label="Next Page" onClick={() => nextPage()} disabled={!canNextPage}>{'▶️'}</button>{' '}
-              <button aria-label="Last Page" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'⏩'}</button>   
+              <button data-testid="first" aria-label="First Page" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'⏪'}</button>{' '}
+              <button data-testid="previous" aria-label="Previous Page" onClick={() => previousPage()} disabled={!canPreviousPage}>{'◀️'}</button>{' '}
+              <button data-testid="next" aria-label="Next Page" onClick={() => nextPage()} disabled={!canNextPage}>{'▶️'}</button>{' '}
+              <button data-testid="last" aria-label="Last Page" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'⏩'}</button>   
             </span>   
           </div>
         </> }

@@ -5,11 +5,11 @@ import { render } from '../../utils/test/render'
 import Header from '../../components/Header'
 
 describe('Header', () => {
-  it('Should render without crashing', () => {
+  it('Should render without crashing', async () => {
     render(<Header />)
   })
 
-  it('should render a title', () => {
+  it('should render a title', async () => {
     render(<Header />)
     expect(
       screen.getByRole('heading', {
