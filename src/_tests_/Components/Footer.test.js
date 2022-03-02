@@ -6,11 +6,11 @@ import Footer from '../../components/Footer'
 
 
 describe('Footer', () => {
-  it('Should render without crashing', async () => {
+  it('Should render without crashing', () => {
     render(<Footer />)
   })
 
-  it('Should change theme', async () => {
+  it('Should change theme', () => {
     render(<Footer />)
     const nightModeButton = screen.getByRole('button')
     expect(nightModeButton.textContent).toBe('Change mode : ☀️')

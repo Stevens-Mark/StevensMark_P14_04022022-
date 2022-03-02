@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/test/render'
@@ -57,28 +57,32 @@ return {
     }
 }
 
-
 // tests 
 
 describe('CreateEmployees', () => {
 
-  it('Should render without crashing', async () => {
+  it('Should render without crashing', () => {
     render(<CreateEmployee />)
   })
 
-  it('should open the modal when user input ( new employee record) is validated', async () => {
+  it('should open the modal when user input (new employee record) is validated', () => {
     setup()
-    expect(screen.getByText('Success !')).toBeTruthy()
+    expect(screen.getByText(/Success !/i)).toBeTruthy()
   })
 
+  it('should NOT show an error message if valid input (new employee record) entered', () => {
+    setup()
+    expect(screen.queryByText(/Please recheck the information entered./i)).not.toBeInTheDocument()
+  })
+
+  it('should close the modal when user clicks on the close button', async () => {
+    setup()
+    const close = screen.getByAltText(/close button/i)
+    userEvent.click(close)
+    await waitFor(() => {
+      expect(screen.queryByText(/Success !/i)).not.toBeInTheDocument()
+    })
+  })
 })
 
-
-
-// it.only('state', () => {
-//   render(<CreateEmployee />)
-//   const department = screen.getByLabelText(/department/i)
-//   userEvent.selectOptions(department, screen.getByRole('option', {name: 'Engineering'}),)
-//   expect(screen.getByRole('option', {name: 'Engineering'}).selected).toBe(true)
-//   expect(department.value).toBe('Engineering')
-// })
+// tests to check if modal opens on valid input & close on click checked in createEmployees.test.js

@@ -7,7 +7,7 @@ import { render } from '../../utils/test/render'
 import Modal from '../../components/modal'
 
 describe('Modal', () => {
-  it('Should render without crashing & render a title', async () => {
+  it('Should render without crashing & render a title', () => {
     const handleClose = jest.fn()
     render(<Modal setModalIsOpen={handleClose}/>)
     expect(
@@ -18,7 +18,7 @@ describe('Modal', () => {
     ).toBeTruthy()
   })
 
-  it('should call the set state function to close the modal on click', async () => {
+  it('should call the set state function to close the modal on click', () => {
     const handleClose = jest.fn()
     render(<Modal setModalIsOpen={handleClose}/>)
     expect(screen.getByText(/success/i)).toBeTruthy()
@@ -26,7 +26,7 @@ describe('Modal', () => {
     expect(handleClose).toHaveBeenCalledTimes(1)
   })
 
-  it('should call the set state function to close the modal on Escape key', async () => {
+  it('should call the set state function to close the modal on Escape key', () => {
     const handleClose = jest.fn()
     render(<Modal setModalIsOpen={handleClose}/>)
     expect(screen.getByText(/success/i)).toBeTruthy()

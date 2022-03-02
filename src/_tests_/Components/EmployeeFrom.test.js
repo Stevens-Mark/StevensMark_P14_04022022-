@@ -30,6 +30,7 @@ describe('EmployeeForm', () => {
     const {input} = setup(/First Name/i)
     userEvent.type(input, 'John')
     expect(input).toHaveValue('John')
+    expect(screen.getByDisplayValue('John')).toBeInTheDocument();
   })
 
   it('should allow user to enter a last name', () => {
@@ -62,20 +63,7 @@ describe('EmployeeForm', () => {
     expect(input).toHaveValue('Fake City')
   })
 
-  //  it('should allow user to select a state', () => {
-  //   const onChange = jest.fn()
-  //    render(
-  //     <Select
-  //     id={"state"}
-  //     listItems={[ { "name": "Connecticut", "value": "CT" } ]}
-  //     onChange={onChange} />)
-  //   userEvent.selectOptions(
-  //     screen.getByRole('combobox'),                         
-  //     screen.getByRole('option', {name: 'Connecticut'}),    
-  //   )
-  //   expect(screen.getByRole('option', {name: 'Connecticut'}).selected).toBe(true)
-  // })
-  // full funtionality already checked in select component
+  // state input: full funtionality already checked in select component
  
   it('should allow user to enter a zip code', () => {
     const {input} = setup(/Zip Code/i)
@@ -83,64 +71,53 @@ describe('EmployeeForm', () => {
     expect(input.value).toBe('12345')
   })
 
-  // it('should allow user to select a department', () => {
-  //   const onChange = jest.fn()
-  //    render(
-  //     <Select
-  //     id={"department"}
-  //     listItems={[ { "name": "Engineering", "value": "Engineering" } ]}
-  //     onChange={onChange} />)
-  //   userEvent.selectOptions(
-  //     screen.getByRole('combobox'),                         
-  //     screen.getByRole('option', {name: 'Engineering'}),    
-  //   )
-  //   expect(screen.getByRole('option', {name: 'Engineering'}).selected).toBe(true)
-  // })
-  // full select funtionality already checked in select component
+  // department input: full select funtionality already checked in select component
 
- it('Should display an error message if first name is left empty', async () => {
+ it('Should display an error message if first name is left empty', () => {
     const { input } = setup(/First Name/i)
     userEvent.type(input, ' ')
     userEvent.click(screen.getByText(/save/i))
     expect(screen.getByText('Please recheck the information entered.')).toBeTruthy()
   })
 
-  it('Should display an error message if last name is left empty', async () => {
+
+  // doesn't work ???
+  it('Should display an error message if last name is left empty', () => {
     const { input } = setup(/Last Name/i)
     userEvent.type(input, ' ')
     userEvent.click(screen.getByText(/save/i))
     expect(screen.getByText('Please recheck the information entered.')).toBeTruthy()
   })
 
-  it('Should display an error message if street is left empty', async () => {
+  it('Should display an error message if street is left empty', () => {
     const { input } = setup(/Street/i)
     userEvent.type(input, ' ')
     userEvent.click(screen.getByText(/save/i))
     expect(screen.getByText('Please recheck the information entered.')).toBeTruthy()
   })
 
-  it('Should display an error message if city is left empty', async () => {
+  it('Should display an error message if city is left empty', () => {
     const { input } = setup(/City/i)
     userEvent.type(input, ' ')
     userEvent.click(screen.getByText(/save/i))
     expect(screen.getByText('Please recheck the information entered.')).toBeTruthy()
   })
 
-  it('Should display an error message if State is left empty', async () => {
+  it('Should display an error message if State is left empty', () => {
     const { input } = setup(/State/i)
     userEvent.type(input, ' ')
     userEvent.click(screen.getByText(/save/i))
     expect(screen.getByText('Please recheck the information entered.')).toBeTruthy()
   })
 
-  it('Should display an error message if Zip Code is left empty', async () => {
+  it('Should display an error message if Zip Code is left empty', () => {
     const { input } = setup(/Zip Code/i)
     userEvent.type(input, ' ')
     userEvent.click(screen.getByText(/save/i))
     expect(screen.getByText('Please recheck the information entered.')).toBeTruthy()
   })
 
-  it('Should display an error message if Departments is left empty', async () => {
+  it('Should display an error message if Departments is left empty', () => {
     const { input } = setup(/Department/i)
     userEvent.type(input, ' ')
     userEvent.click(screen.getByText(/save/i))

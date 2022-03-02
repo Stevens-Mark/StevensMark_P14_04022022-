@@ -1,5 +1,5 @@
 import reducer, { addEmployee, fetchEmployees } from '../../Redux/employeesSlice'
-import mockData from '../../assets/data/MOCK_DATA.json'
+import mockData from '../../assets/data/MOCK_DATA_FOR_TESTING.json'
  
 describe('Employees reducer', () => {
 

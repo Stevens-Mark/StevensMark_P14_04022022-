@@ -4,7 +4,7 @@ import { render } from '../../utils/test/render'
 import CurrentEmployees from '../../pages/CurrentEmployees'
 
 describe('CreateEmployees', () => {
-  it('should render without crashing', async () => {
+  it('should render without crashing', () => {
     render(<CurrentEmployees />)
   })
 })

@@ -1,6 +1,6 @@
 // redux tool kit function
 import { createSlice } from '@reduxjs/toolkit'
-import mockData from '../assets/data/MOCK_DATA.json'
+import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
 
 /**
  * Unify actions and reducers with Redux-Toolkit slices

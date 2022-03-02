@@ -96,7 +96,7 @@ const ModalBody = styled.div`
   
  useEffect(() => {   
     document.addEventListener('keydown', handleKeydown)
-    document.querySelector('.modal').focus()
+    document.querySelector('.modalButton').focus()
     return () => {
       document.removeEventListener('keydown', handleKeydown)  // Detach listener when component unmounts
       activeElement.focus()                                   // Return focus to the previously focused element
@@ -107,7 +107,7 @@ const ModalBody = styled.div`
   return (
     <MODAL theme={theme} role="dialog" aria-modal="true" aria-labelledby="modal__title">
       <Content theme={theme} >       
-        <Close className='modal' onClick={() => setModalIsOpen(false)}><img src={close} alt="Close button" /></Close>
+        <Close className='modalButton' onClick={() => setModalIsOpen(false)}><img src={close} alt="Close button" /></Close>
           <ModalBody>
           <img src={logo} alt=""/>
               <h1 id="modal__title">Success !</h1>

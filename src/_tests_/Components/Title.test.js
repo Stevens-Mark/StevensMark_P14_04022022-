@@ -5,7 +5,7 @@ import Title from '../../components/Title'
 
 describe('Title', () => {
 
-  it('should render a title passed as a parameter', async () => {
+  it('should render a title passed as a parameter', () => {
 
     const value = "Create Employee"
 
