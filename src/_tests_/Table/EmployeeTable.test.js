@@ -1,11 +1,11 @@
-import { screen, waitFor } from '@testing-library/react'
+import { screen, waitFor, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/test/render'
 // imort component
 import EmployeesTable from '../../components/Table/EmployeesTable'
 
-// test setup
+// tests setup
 
 const setupForPagination = () => {    // set up used to check pagination
 const utils = render(<EmployeesTable />)
@@ -27,7 +27,7 @@ const setupForGlobalSearch = () => {    // set up used to check global search
       }
   }
 
-// tests (the mockData in MOCK_DATA_FOR_TESTING.json & tableHeader.js are need for the tests, if removed/altered the tests will fail)
+// tests (the mockData in MOCK_DATA_FOR_TESTING.json & tableHeader.js are need for the tests, if removed/altered the tests will/may fail)
 
 describe('EmployeesTable', () => {
 
@@ -45,6 +45,17 @@ describe('EmployeesTable', () => {
     expect(row.length).toBe(11)
     expect(screen.getByTestId('showPage').textContent).toEqual('Showing Page 1 of 5 pages ')
     expect(screen.getByText(/Go to Page/i)).toBeTruthy()
+  })
+
+  it('should be able to sort columns in ascending & descending order', async () => {
+    render(<EmployeesTable />)
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Lori/i) // original order
+    userEvent.click(screen.getByText(/First Name/i))
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Amelia/i) // ascending
+    userEvent.click(screen.getByText(/First Name/i))
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Yvonne/i)  // descending
+    userEvent.click(screen.getByText(/First Name/i))
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Lori/i) // original order
   })
 
   it('should render 25 rows if the user chooses "Show 25" (ie. pagination functions)', async () => {
@@ -104,19 +115,17 @@ describe('EmployeesTable', () => {
     })
   }) 
 
- 
+  it('should navigate to page number entered by user in goto page input', async () => {
+    render(<EmployeesTable />)
+    const input =screen.getByLabelText(/Go to page:/i)
+    fireEvent.change(input, { target: { value: 3 }});
+    expect(input.value).toBe('3')
+    await waitFor(() => {
+      expect(screen.getByTestId('showPage').textContent).toEqual('Showing Page 3 of 5 pages ')
+    })
+  })
 
-    // it.only('test', async () => {
-    //   render(<EmployeesTable />)
-    //   const input =screen.getByLabelText(/Go to page:/i)
-    //   userEvent.type(input, '2')
-    //   expect(input.value).toBe('2')
-    //   await waitFor(() => {
-    //     expect(screen.getByTestId('showPage').textContent).toEqual('Showing Page 2 of 5 pages ')
-    //   })
 
-    // })
 })
 
 
-// Go to page input  tested manually

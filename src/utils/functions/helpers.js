@@ -18,14 +18,14 @@ export const SetBirthDateLimit = ( age ) => {
 /**
 * Returns the date 'x' days before/after today's date
 * @function SetDateLimit (currently set between 30 days in the past & 120 days in the future)
-* @returns date limit: format 2022-02-12
+* @returns date limit: format 2022-02-01
 * */
 export const SetDateLimit = ( days ) => {
   const priorDate = new Date(new Date().setDate(new Date().getDate() + days))
   const date = priorDate.getDate()
   const month = priorDate.getMonth() + 1
   const year = priorDate.getFullYear()
-  return `${year}-${month<10?`0${month}`:`${month}`}-${date}`
+  return `${year}-${month<10?`0${month}`:`${month}`}-0${date}`
   }
 
 /**

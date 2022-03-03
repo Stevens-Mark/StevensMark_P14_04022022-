@@ -12,8 +12,6 @@ import Modal from "../components/modal"
 const CreateEmployee = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  // const closeModal = () => setModalIsOpen(false)
-
   useEffect(() => {
     document.title = 'HRNet | Create'
   }, [])
