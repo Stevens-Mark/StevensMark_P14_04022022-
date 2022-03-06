@@ -52,6 +52,7 @@ const Form = styled.form`
     font-size: 1rem;
     margin: 0.5rem 0rem 1rem;
     padding: 0.375rem;
+  }
 `;
 
 const FieldSet = styled.fieldset`
@@ -116,6 +117,7 @@ const EmployeeForm = ( props ) => {
   const theme = useSelector(selectTheme) // retrieve Redux state
   const dispatch = useDispatch()
 
+  console.log(input)
   /**
    * Simple validation check
    * But there is some user input control using attributes maxLength, required
@@ -171,6 +173,7 @@ const EmployeeForm = ( props ) => {
           })
         }
     }
+
 
   return (
     <Container>
