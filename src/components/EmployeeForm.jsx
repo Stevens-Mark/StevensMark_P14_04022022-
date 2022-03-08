@@ -11,7 +11,7 @@ import { states } from '../assets/data/states'
 // import components
 import Select from './Select'
 // import functions, actions & constants
-import { capitalize } from '../utils/functions/helpers'
+import { capitalize, ConvertDate } from '../utils/functions/helpers'
 import { addEmployee } from '../Redux/employeesSlice'
 import { 
     usZipCodes,
@@ -113,11 +113,57 @@ const EmployeeForm = ( props ) => {
   }
   const [error, setError] = useState(false)
   const [input, setInput] = useState(initialState)
+  const [displayDOB, setDisplayDOB] = useState("")
+  const [displayStart, setDisplayStart] = useState("")
 
   const theme = useSelector(selectTheme) // retrieve Redux state
   const dispatch = useDispatch()
 
   console.log(input)
+  /**
+ * Restricts what the user can enter in the TEXT input fields & saves to state
+ * @function handleText
+ * @param {object} the targeted input 
+ */
+    const handleText = (e) => {
+    if (e.target.id !=='street') {    // permits letters only
+      setInput({
+        ...input,
+        [e.target.id]: capitalize(e.target.value.replace(/[^a-zA-ZÀ-ÿ-.\s]/g, '')).trimStart(),
+      })
+    }
+      else {
+        setInput({                    // permits alphanumeric
+          ...input,
+          [e.target.id]: capitalize(e.target.value.replace(/[^0-9a-zA-ZÀ-ÿ-.\s]/g, '')).trimStart(),
+        })
+      }
+  }
+
+  /**
+  *Takes selected DOB from date picker, sends for formatting,
+  * then displays it in the input & puts in state
+  * @function handleDOB
+  */
+  const handleDOB = ( selectedDate ) => {
+    setDisplayDOB(selectedDate)
+    if (selectedDate === null) setInput({...input, dateOfBirth: "" })
+    else
+    setInput({...input, dateOfBirth: ConvertDate(selectedDate)})
+  }
+
+    /**
+   * Takes selected Start date from date picker, sends for formatting,
+   * then displays it in the input & puts in state
+   * @function handleStartDate
+   */
+    const handleStartDate = ( selectedDate ) => {
+      setDisplayStart(selectedDate)
+      if (selectedDate === null) setInput({...input, startDate: "" })
+      else
+      setInput({...input, startDate: ConvertDate(selectedDate) })
+    }
+
   /**
    * Simple validation check
    * But there is some user input control using attributes maxLength, required
@@ -148,31 +194,14 @@ const EmployeeForm = ( props ) => {
         dispatch(addEmployee(input))  // dispatch input data/add employee to store
         setModalIsOpen(true)          // launch success modal
         setInput(initialState)        // reset state & inputs
+        setDisplayDOB('')
+        setDisplayStart('')
         event.target.reset()
       } else {
           setError(true)
         } 
   }
 
-    /**
-     * Restricts what the user can enter in the TEXT input fields & saves to state
-     * @function handleText
-     * @param {object} the targeted input 
-     */
-    const handleText = (e) => {
-      if (e.target.id !=='street') {    // permits letters only
-        setInput({
-          ...input,
-          [e.target.id]: capitalize(e.target.value.replace(/[^a-zA-ZÀ-ÿ-.\s]/g, '')).trimStart(),
-        })
-      }
-        else {
-          setInput({                    // permits alphanumeric
-            ...input,
-            [e.target.id]: capitalize(e.target.value.replace(/[^0-9a-zA-ZÀ-ÿ-.\s]/g, '')).trimStart(),
-          })
-        }
-    }
 
 
   return (
@@ -197,20 +226,20 @@ const EmployeeForm = ( props ) => {
         <label htmlFor="dateOfBirth">Date Of Birth</label>
           <input type="date"
             id="dateOfBirth" 
-            value={input.dateOfBirth}
+            value={displayDOB}
             required={true}
             max={SetBirthDateLimit(18)}   // age limit between 18-70 years
             min={SetBirthDateLimit(70)}
-            onChange={(e) => setInput({...input, dateOfBirth: e.target.value})}/>   
+            onChange={(e) => handleDOB(e.target.value)}/>   
         
         <label htmlFor="startDate">Start Date</label>
           <input type="date"
             id="startDate" 
-            value={input.startDate}
+            value={displayStart}
             required={true}
             min={SetDateLimit(-30)}   // 30 days BEFORE so minus number
             max={SetDateLimit(120)}   // 120 days AFTER so positive number
-            onChange={(e) => setInput({...input, startDate: e.target.value})}/>   
+            onChange={(e) => handleStartDate(e.target.value)}/>   
 
         <FieldSet>
           <legend>Address</legend>

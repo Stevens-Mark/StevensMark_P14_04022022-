@@ -1,8 +1,23 @@
 // Regex's used for form validation
 export const usZipCodes = /(^\d{5}$)|(^\d{5}-\d{4}$)/
-// export const textRegex = /^[a-zA-ZÀ-ÿ- ]+$/
-// export const addressRegex = /^[0-9a-zA-ZÀ-ÿ- ]+$/g
-// export const dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
+
+/**
+/*Formats a date correctly, example:
+* from Fri Jun 03 2022 02:00:00 GMT+0200 (Central European Summer Time) to 03/06/2022 (instead of 3/6/2022)
+* @function convertDate
+* @returns {string} formatted date
+*/
+// export const ConvertDate = (str) => {
+//   const date = new Date(str),
+//     mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+//     day = ("0" + date.getDate()).slice(-2)
+//   return [mnth, day, date.getFullYear()].join("/")
+//   }
+
+  export const ConvertDate = ( input ) => {
+    const [year, month, day] =  input.split('-')
+    return `${month}/${day}/${year}`
+    }
 
 /**
 * Returns today's date 'x' amount of years ago based on the age supplied
@@ -41,20 +56,6 @@ export const capitalize = (string) => {
 
 
 
-/**
- * Check that a date is within a given valid range
- * @function ValidateDate
- * @param {string} dateToTest: the date to test
- * @param {number} maxYears: no of years limit
- * @returns {boolean} 
- */
-// export const ValidateDate = ( dateToTest, maxYears ) => {
-// 	const formatTestDate = new Date(dateToTest.replace(/-/g, "/"))   //set date based on dateToTest at 01:00:00 hours GMT+0100 (CET)
-// 	const currentDate = new Date().toJSON().split('T')[0]   	// set current day on 01:00:00 hours GMT+0100 (CET)
-// 	const noOfYears = ~~((Date.now(currentDate) - formatTestDate) / (31557600000))    	// calculate nos of years comparing current date and formatted dateToTest
-//   return noOfYears < maxYears ? false : true
-// } 
-// console.log(ValidateDate('1999-02-21', 18))
-
-
-
+// export const textRegex = /^[a-zA-ZÀ-ÿ- ]+$/
+// export const addressRegex = /^[0-9a-zA-ZÀ-ÿ- ]+$/g
+// export const dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/

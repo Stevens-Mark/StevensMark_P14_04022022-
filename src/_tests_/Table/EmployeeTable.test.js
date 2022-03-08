@@ -47,15 +47,26 @@ describe('EmployeesTable', () => {
     expect(screen.getByText(/Go to Page/i)).toBeTruthy()
   })
 
-  it('should be able to sort columns in ascending & descending order', async () => {
+  it('should be able to sort columns alphabetically in ascending & descending order', async () => {
     render(<EmployeesTable />)
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Lori/i) // original order
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Frederik/i) // original order
     userEvent.click(screen.getByText(/First Name/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Amelia/i) // ascending
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Alasdair/i) // ascending
     userEvent.click(screen.getByText(/First Name/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Yvonne/i)  // descending
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/York/i)  // descending
     userEvent.click(screen.getByText(/First Name/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Lori/i) // original order
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Frederik/i) // original order
+  })
+
+  it('should be able to sort column dates in ascending & descending order', async () => {
+    render(<EmployeesTable />)
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/21/1983") // original order
+    userEvent.click(screen.getByText(/Date Of Birth/i))
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("09/17/2003") // ascending
+    userEvent.click(screen.getByText(/Date Of Birth/i))
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/14/1970")  // descending
+    userEvent.click(screen.getByText(/Date Of Birth/i))
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/21/1983") // original order
   })
 
   it('should render 25 rows if the user chooses "Show 25" (ie. pagination functions)', async () => {

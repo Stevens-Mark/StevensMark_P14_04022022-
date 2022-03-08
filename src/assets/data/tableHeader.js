@@ -12,15 +12,23 @@ export const headerList =
     },
     {
       Header: 'Start Date',
-      accessor: 'startDate', 
+      accessor: 'startDate',
+        sortType: (a, b) => {
+          return new Date(b.values.startDate) - new Date(a.values.startDate)
+        },
+        Cell: row => <div style={{ textAlign: "left" }}>{row.value}</div>
     },
     {
       Header: 'Department',
       accessor: 'department', 
     },
     {
-    Header: 'Date Of Birth',
-    accessor: 'dateOfBirth', 
+      Header: 'Date Of Birth',
+      accessor: 'dateOfBirth',
+        sortType: (a, b) => {
+          return new Date(b.values.dateOfBirth) - new Date(a.values.dateOfBirth)
+        },
+        Cell: row => <div style={{ textAlign: "left" }}>{row.value}</div>
     },
     {
       Header: 'Street',

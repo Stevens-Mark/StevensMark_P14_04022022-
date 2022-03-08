@@ -30,7 +30,7 @@ describe('EmployeeForm', () => {
     const {input} = setup(/First Name/i)
     userEvent.type(input, 'John')
     expect(input).toHaveValue('John')
-    expect(screen.getByDisplayValue('John')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('John')).toBeInTheDocument()
   })
 
   it('should allow user to enter a last name', async () => {
@@ -43,12 +43,14 @@ describe('EmployeeForm', () => {
     const {input} = setup(/Date Of Birth/i)
     userEvent.type(input, '1969-12-17')
     expect(input).toHaveValue('1969-12-17')
+    // expect(screen.getByDisplayValue('17/12/1969')).toBeInTheDocument()
   })
 
   it('should allow user to enter a start date', async () => {
     const {input} = setup(/Start Date/i)
     userEvent.type(input, '2022-02-28')
     expect(input).toHaveValue('2022-02-28')
+    // expect(screen.getByDisplayValue('28/02/2022')).toBeInTheDocument()
   })
 
   it('should allow user to enter a street', async () => {

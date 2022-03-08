@@ -19,10 +19,10 @@ const lastName = screen.getByLabelText(/Last Name/i)
 userEvent.type(lastName, 'Doe')
 
 const dateOfBirth = screen.getByLabelText(/Date Of Birth/i)
-userEvent.type(dateOfBirth , '1969-12-17')
+userEvent.type(dateOfBirth , '17/12/1969')
 
 const startDate = screen.getByLabelText(/Start Date/i)
-userEvent.type(startDate, '2022-02-28')
+userEvent.type(startDate, '28/02/2022')
 
 const street = screen.getByLabelText(/Street/i)
 userEvent.type(street, '123 Fake Street')
