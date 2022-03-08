@@ -9,8 +9,8 @@ describe('Employees reducer', () => {
     { 
       firstName: "John",
       lastName :"Doe",
-      dateOfBirth: "3/1/2004",
-      startDate: "3/15/2022",
+      dateOfBirth: "03/01/2004",
+      startDate: "03/02/2022",
       street: "123 Fake Street",
       city: "Fake City",
       state: "KY",

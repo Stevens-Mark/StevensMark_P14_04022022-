@@ -49,24 +49,24 @@ describe('EmployeesTable', () => {
 
   it('should be able to sort columns alphabetically in ascending & descending order', async () => {
     render(<EmployeesTable />)
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Frederik/i) // original order
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Kerrill/i) // original order
     userEvent.click(screen.getByText(/First Name/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Alasdair/i) // ascending
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Agace/i) // ascending
     userEvent.click(screen.getByText(/First Name/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/York/i)  // descending
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Westley/i)  // descending
     userEvent.click(screen.getByText(/First Name/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Frederik/i) // original order
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Kerrill/i) // original order
   })
 
   it('should be able to sort column dates in ascending & descending order', async () => {
     render(<EmployeesTable />)
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/21/1983") // original order
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("06/07/1986") // original order
     userEvent.click(screen.getByText(/Date Of Birth/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent("09/17/2003") // ascending
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/08/1953") // ascending
     userEvent.click(screen.getByText(/Date Of Birth/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/14/1970")  // descending
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("20/12/2021")  // descending
     userEvent.click(screen.getByText(/Date Of Birth/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/21/1983") // original order
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("06/07/1986") // original order
   })
 
   it('should render 25 rows if the user chooses "Show 25" (ie. pagination functions)', async () => {

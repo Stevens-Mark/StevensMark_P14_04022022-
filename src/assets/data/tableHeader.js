@@ -14,7 +14,10 @@ export const headerList =
       Header: 'Start Date',
       accessor: 'startDate',
         sortType: (a, b) => {
-          return new Date(b.values.startDate) - new Date(a.values.startDate)
+          a = a.values.startDate.split('/');
+          b = b.values.startDate.split('/');
+          return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
+
         },
         Cell: row => <div style={{ textAlign: "left" }}>{row.value}</div>
     },
@@ -26,7 +29,9 @@ export const headerList =
       Header: 'Date Of Birth',
       accessor: 'dateOfBirth',
         sortType: (a, b) => {
-          return new Date(b.values.dateOfBirth) - new Date(a.values.dateOfBirth)
+          a = a.values.dateOfBirth.split('/');
+          b = b.values.dateOfBirth.split('/');
+          return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
         },
         Cell: row => <div style={{ textAlign: "left" }}>{row.value}</div>
     },

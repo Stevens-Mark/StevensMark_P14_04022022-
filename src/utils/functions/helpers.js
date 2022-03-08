@@ -14,10 +14,14 @@ export const usZipCodes = /(^\d{5}$)|(^\d{5}-\d{4}$)/
 //   return [mnth, day, date.getFullYear()].join("/")
 //   }
 
-  export const ConvertDate = ( input ) => {
-    const [year, month, day] =  input.split('-')
-    return `${month}/${day}/${year}`
-    }
+/*Formats a date correctlyfrom yyyy-mm-dd to dd/mm/yyyy
+* @function convertDate
+* @returns {string} formatted date
+*/
+export const ConvertDate = ( input ) => {
+  const [year, month, day] =  input.split('-')
+  return `${day}/${month}/${year}`
+  }
 
 /**
 * Returns today's date 'x' amount of years ago based on the age supplied

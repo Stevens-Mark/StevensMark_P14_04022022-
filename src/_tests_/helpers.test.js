@@ -3,8 +3,8 @@ import {ConvertDate, SetBirthDateLimit, SetDateLimit, capitalize } from "../util
 
 describe('ConvertDate function', () => {
   
-  it('should covert the date to format yyyy-mm-dd not mm/dd/yyyy', async () => {
-    expect(ConvertDate('2022-02-01')).toEqual('02/01/2022')
+  it('should covert the date to format yyyy-mm-dd not dd/mm/yyyy', async () => {
+    expect(ConvertDate('2022-12-01')).toEqual('01/12/2022')
   })
 })
 
