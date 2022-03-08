@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event' // import userEvent library (npm package)
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 // import custom renders to connect component to redux
 import { render } from '../utils/test/render'
 import { renderWithRouter } from '../utils/test/renderWithRouter'
@@ -25,12 +25,16 @@ describe('full APP rendering/navigating', () => {
       expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
       const leftClick = {button: 0}
       userEvent.click(screen.getByText(/View/i), leftClick)
-      expect(screen.getByText(/Current Employees/i)).toBeInTheDocument()
+      await waitFor(() => {
+        expect(screen.getByText(/Current Employees/i)).toBeInTheDocument()
+      })
     })
 
     it('should show an error page for a bad route', async () => {
       renderWithRouter(<App />, {route: '/something-that-does-not-match'})
-      expect(screen.getByText(/Oops, the page you requested does not exist./i)).toBeInTheDocument()
+      await waitFor(() => {
+        expect(screen.getByText(/Oops, the page you requested does not exist./i)).toBeInTheDocument()
+      })
     })
-
+  
 })

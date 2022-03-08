@@ -1,5 +1,7 @@
 // import { render } from '../../utils/test/render'
-import { screen, render } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+// import custom render to connect component to redux
+import { render } from '../../utils/test/render'
 // import component
 import Title from '../../components/Title'
 

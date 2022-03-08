@@ -92,7 +92,7 @@ describe('Select', () => {
       screen.getByRole('option', {name: 'Engineering'}),    // Find and select the Engineering option, like a real user would.
     )
     expect(screen.getByRole('option', {name: 'Engineering'}).selected).toBe(true)
-    expect(screen.getByRole('combobox').value).toBe('Engineering')
+    expect(screen.getByRole('listbox').value).toBe('Engineering')
   })
 
   it('should allow user to change the state option & return correct country code', async () => {
@@ -123,6 +123,6 @@ describe('Select', () => {
       screen.getByRole('option', {name: 'Arizona'}),    
     )
     expect(screen.getByRole('option', {name: 'Arizona'}).selected).toBe(true)
-    expect(screen.getByRole('combobox').value).toBe('AZ')
+    expect(screen.getByRole('listbox').value).toBe('AZ')
   })
 })

@@ -9,7 +9,7 @@ const Selected =styled.select`
   width: 100%;
  
   >option {
-    font-family: 'Montserrat', arial; 
+    font-family: Arial; 
   }
 `;
 
@@ -26,7 +26,7 @@ const Selected =styled.select`
   return (
     <>
       <label htmlFor={id}>{capitalize(id)}</label>
-      <Selected role="combobox"
+      <Selected role="listbox"
         name={id}
         id={id}
         required={true}

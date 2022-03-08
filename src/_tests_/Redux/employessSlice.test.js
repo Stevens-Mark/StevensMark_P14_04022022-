@@ -1,7 +1,7 @@
 import reducer, { addEmployee, fetchEmployees } from '../../Redux/employeesSlice'
 import mockData from '../../assets/data/MOCK_DATA_FOR_TESTING.json'
  
-// tests (the mockData in MOCK_DATA_FOR_TESTING.json is need for the tests, if removed the test "add mocked employee" will fail)
+// tests (the mockData in MOCK_DATA_FOR_TESTING.json is need for the tests, if removed some tests will fail)
 
 describe('Employees reducer', () => {
 
@@ -9,8 +9,8 @@ describe('Employees reducer', () => {
     { 
       firstName: "John",
       lastName :"Doe",
-      dateOfBirth: "2004-02-10",
-      startDate: "2022-02-16",
+      dateOfBirth: "3/1/2004",
+      startDate: "3/15/2022",
       street: "123 Fake Street",
       city: "Fake City",
       state: "KY",
@@ -31,7 +31,7 @@ describe('Employees reducer', () => {
   })
 
     it('should add an employee', () => {
-        expect(reducer( { employees: [] }, addEmployee( { dataToAdd } ))).toEqual( { employees: [ { dataToAdd } ] })
+        expect(reducer( { employees: [] }, addEmployee( { dataToAdd } ))).toEqual( { employees: [ ...mockData, { dataToAdd } ] })
     })
 
     it('should return state on invalid action', () => {

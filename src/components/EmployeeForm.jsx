@@ -33,7 +33,7 @@ const Form = styled.form`
   border: 1px solid ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightGreen}`)};
   display: flex;
   flex-direction: column;
-  font-family: 'Montserrat';
+  // font-family: Arial;
   padding: 1.2rem;
   width: 17rem;
   @media (min-width: 445px) {
@@ -48,7 +48,7 @@ const Form = styled.form`
     background: ${colors.zircon};
     border-radius: 0.2rem;
     border: 1px solid ${colors.secondary};
-    font-family: 'Montserrat';
+    font-family: Arial;
     font-size: 1rem;
     margin: 0.5rem 0rem 1rem;
     padding: 0.375rem;

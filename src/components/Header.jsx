@@ -41,9 +41,16 @@ const MainNav = styled.nav`
 const LogoWrapper = styled.span`
   align-items: center;
   display: flex;
+
   img {
-    width: clamp(4rem, 7vw, 7rem);
+    width: 65px;
+    height: 59px;
+    @media (min-width: 900px) {
+      width: 101px;
+      height: 93px;
+    }
   }
+  
   div {
     margin-right: 1rem;
   }

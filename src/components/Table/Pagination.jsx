@@ -11,7 +11,8 @@ import PropTypes from 'prop-types'
   return (
     <span>
       <label htmlFor='pageSize' className='sr-only'>Page Size</label>
-      <select role="combobox"
+      {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
+      <select role="listbox"
         name='pageSize'
         id='pageSize'
         value={pageSize}
