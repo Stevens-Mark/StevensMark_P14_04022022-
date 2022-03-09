@@ -113,10 +113,10 @@ const EmployeeForm = ( props ) => {
   }
   const [error, setError] = useState(false)
   const [input, setInput] = useState(initialState)
-  const [displayDOB, setDisplayDOB] = useState("")
-  const [displayStart, setDisplayStart] = useState("")
-
-  const theme = useSelector(selectTheme) // retrieve Redux state
+  const [displayDOB, setDisplayDOB] = useState("")      // hold original yyyy-mm-dd date (before formatting) 
+  const [displayStart, setDisplayStart] = useState("") // to display in date input fields
+  // retrieve Redux state
+  const theme = useSelector(selectTheme) 
   const dispatch = useDispatch()
 
   console.log(input)
@@ -141,28 +141,24 @@ const EmployeeForm = ( props ) => {
   }
 
   /**
-  *Takes selected DOB from date picker, sends for formatting,
-  * then displays it in the input & puts in state
+  *Takes selected DOB from date picker, displays original format 
+  * in the input, sends for formatting dd/mm/yyyy & then puts in state
   * @function handleDOB
   */
   const handleDOB = ( selectedDate ) => {
     setDisplayDOB(selectedDate)
-    if (selectedDate === null) setInput({...input, dateOfBirth: "" })
-    else
     setInput({...input, dateOfBirth: ConvertDate(selectedDate)})
   }
 
-    /**
-   * Takes selected Start date from date picker, sends for formatting,
-   * then displays it in the input & puts in state
-   * @function handleStartDate
-   */
-    const handleStartDate = ( selectedDate ) => {
-      setDisplayStart(selectedDate)
-      if (selectedDate === null) setInput({...input, startDate: "" })
-      else
-      setInput({...input, startDate: ConvertDate(selectedDate) })
-    }
+  /**
+  *Takes selected DOB from date picker, displays original format 
+  * in the input, sends for formatting dd/mm/yyyy & then puts in state
+  * @function handleStartDate
+  */
+  const handleStartDate = ( selectedDate ) => {
+    setDisplayStart(selectedDate)
+    setInput({...input, startDate: ConvertDate(selectedDate) })
+  }
 
   /**
    * Simple validation check
@@ -194,15 +190,13 @@ const EmployeeForm = ( props ) => {
         dispatch(addEmployee(input))  // dispatch input data/add employee to store
         setModalIsOpen(true)          // launch success modal
         setInput(initialState)        // reset state & inputs
-        setDisplayDOB('')
+        setDisplayDOB('')           // reset states for displaying value in date inputs
         setDisplayStart('')
         event.target.reset()
       } else {
           setError(true)
         } 
   }
-
-
 
   return (
     <Container>

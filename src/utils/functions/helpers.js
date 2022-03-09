@@ -14,7 +14,7 @@ export const usZipCodes = /(^\d{5}$)|(^\d{5}-\d{4}$)/
 //   return [mnth, day, date.getFullYear()].join("/")
 //   }
 
-/*Formats a date correctlyfrom yyyy-mm-dd to dd/mm/yyyy
+/*Formats a date correctly from yyyy-mm-dd to dd/mm/yyyy
 * @function convertDate
 * @returns {string} formatted date
 */

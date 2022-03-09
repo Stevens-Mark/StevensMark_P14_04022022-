@@ -11,7 +11,7 @@ import GlobalSearch from './GlobalSearch'
 import Pagination from './Pagination'
 import SearchResult from './SearchResult'
 // import header data needed for table
-import { headerList } from '../../assets/data/tableHeader'
+import { headerList } from '../../assets/data/tableHeader'    // (includes function for sorting dates in format dd/mm/yyy)
 // styling
 import styled from 'styled-components'
 import colors from '../../styles/colors'
@@ -103,8 +103,7 @@ const Controls = styled.span`
  */
 const EmployeesTable = () => {
 
-  // retrieve Redux state
-  const employees = useSelector(selectEmployees).employees
+  const employees = useSelector(selectEmployees).employees    // retrieve Redux state
   const theme = useSelector(selectTheme) 
 
   const dispatch = useDispatch()
@@ -138,15 +137,15 @@ const EmployeesTable = () => {
         useSortBy,
         usePagination,
       )
-
+    
   return (
     <Container>
-      <Controls>
+      <Controls>                                                  {/* Pagination & search controls */}
         <Pagination pageSize={pageSize} setPageSize={setPageSize}/>
         <GlobalSearch globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} preGlobalFilteredRows={preGlobalFilteredRows}/>
       </Controls>
-      
-      <Table theme={theme} {...getTableProps()}>
+                                                 
+      <Table theme={theme} {...getTableProps()}>              {/* Build table heading with sort funtionality */}    
         <thead>
         {headerGroups.map(headerGroup => (
           <tr  {...headerGroup.getHeaderGroupProps()}>
@@ -166,7 +165,7 @@ const EmployeesTable = () => {
           </tr>
         ))}
         </thead>
-        <tbody {...getTableBodyProps()}>
+        <tbody {...getTableBodyProps()}>              {/* map data into rows in the table */}
         {page.map((row, i) => { 
           prepareRow(row)
           return (
@@ -184,7 +183,7 @@ const EmployeesTable = () => {
         })}
         </tbody>
       </Table>
-
+                            {/* Display message "no records", number of pages or search results at footer of table */}
       <Controls>
         {rows.length<1 && !globalFilter?
           <span>
@@ -198,10 +197,10 @@ const EmployeesTable = () => {
             </span>
             :    
             <SearchResult pageIndex={pageIndex} pageSize={pageSize} pageCount={pageCount} rows={rows} noOfEntries={data.length}/>
-          }
-        <div>
+          }                
+          <div>                                                   {/* Go to page input option */}
             <span>
-              <label htmlFor='goToPage'>Go to page:{' '}</label>
+              <label htmlFor='goToPage'>Go to page:{' '}</label>    
               <input
                 id='goToPage'
                 type="number"
@@ -212,6 +211,7 @@ const EmployeesTable = () => {
                   const page = e.target.value ? Number(e.target.value) - 1 : 0
                   gotoPage(page)} }/> {globalFilter && pageCount>1? `of ${pageCount} ` : ''}
             </span>    
+                                                                      {/* Page Navigation buttons  */}
             <span>
               <button data-testid="first" aria-label="First Page" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'⏪'}</button>{' '}
               <button data-testid="previous" aria-label="Previous Page" onClick={() => previousPage()} disabled={!canPreviousPage}>{'◀️'}</button>{' '}
