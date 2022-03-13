@@ -44,7 +44,7 @@ export const SetDateLimit = ( days ) => {
   const date = priorDate.getDate()
   const month = priorDate.getMonth() + 1
   const year = priorDate.getFullYear()
-  return `${year}-${month<10?`0${month}`:`${month}`}-0${date}`
+  return `${year}-${month<10?`0${month}`:`${month}`}-${date<10?`0${date}`:`${date}`}`
   }
 
 /**
