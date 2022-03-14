@@ -8,8 +8,8 @@ import Modal from '../../components/modal'
 
 describe('Modal', () => {
   it('Should render without crashing & render a title', async () => {
-    const handleClose = jest.fn()
-    render(<Modal setModalIsOpen={handleClose}/>)
+    const closeModal = jest.fn()
+    render(<Modal closeModal={closeModal} modalTheme={{}} heading="Success !"/>)
     expect(
       screen.getByRole('heading', {
         level: 1,
@@ -19,19 +19,19 @@ describe('Modal', () => {
   })
 
   it('should call the set state function to close the modal on click', async  () => {
-    const handleClose = jest.fn()
-    render(<Modal setModalIsOpen={handleClose}/>)
+    const closeModal = jest.fn()
+    render(<Modal closeModal={closeModal} modalTheme={{}} heading="Success !"/>)
     expect(screen.getByText(/success/i)).toBeTruthy()
     userEvent.click(screen.getByRole('button'))
-    expect(handleClose).toHaveBeenCalledTimes(1)
+    expect(closeModal).toHaveBeenCalledTimes(1)
   })
 
   it('should call the set state function to close the modal on Escape key', async () => {
-    const handleClose = jest.fn()
-    render(<Modal setModalIsOpen={handleClose}/>)
+    const closeModal = jest.fn()
+    render(<Modal closeModal={closeModal} modalTheme={{}} heading="Success !"/>)
     expect(screen.getByText(/success/i)).toBeTruthy()
     userEvent.keyboard('{esc}') 
-    expect(handleClose).toHaveBeenCalledTimes(1)
+    expect(closeModal).toHaveBeenCalledTimes(1)
   })
 })
 

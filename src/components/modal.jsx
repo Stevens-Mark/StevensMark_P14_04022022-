@@ -1,82 +1,93 @@
 import PropTypes from 'prop-types'
 import { useEffect } from "react"
-import { useSelector } from 'react-redux'
+// svg icon as react component
+import { ReactComponent as CloseButton } from '../assets/icons/close-x.svg'
 // styling
-import styled from 'styled-components'
-import colors from '../styles/colors'
-import { selectTheme } from '../Redux/selectors'
-// logo icons
-import close from '../assets/icons/close.svg'
-import logo from '../assets/logos/wealthLogo.webp'
+import styled, { ThemeProvider , keyframes, css } from "styled-components"
 
 /**
- * CSS for the component using styled.components
+ * fade in keyframes
  */
-const MODAL = styled.div`
-  align-items: center;
-  background-color: ${({ theme }) => (theme === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(168, 178, 209, 0.9)')};
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1;
+ const modalopen = keyframes`
+ from { opacity: 0; transform: translateY(-200px); }
+ to { opacity: 1; }
 `;
 
-const Content = styled.div`
-  background-color: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.lightNavy}`)};
-  border-radius: 10px;
-  color: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightGreen}`)};
-  max-width:  25rem;
-  position: relative;
-  width: 100%;
-`;
-
-const Close = styled.button`
-  background: transparent;
-  border: none;
-  position: absolute;
-  right: 0.938rem;
-  top: 0.938rem;
-
-  img {
-    cursor: pointer;
-    height: 0.938rem;
-    width: 0.938rem;
-  }
-`;
-
-const ModalBody = styled.div`
-  margin: 0.938rem auto;
-  padding: 0.938rem 8%;
-  text-align: center;
-
-  p {
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-
-  img {
-    width: clamp(5rem, 6vw, 6rem);
-  }
+const fadeIn = keyframes`
+ from { opacity: 0; }
+ to   { opacity: 1; }
 `;
 
 /**
- * Renders the confirmation modal
+* CSS for the component using styled.components
+*/
+export const ModalWrapper = styled.div`
+ align-items: center;
+ animation: ${(props) => props.animation && css` ${fadeIn} 0.5s ease-out forwards`}}
+ background-color: ${(props) => props.theme.pageBg? props.theme.pageBg : 'rgba(237, 240, 241, 0.8)'};
+ bottom: 0;
+ display: flex;
+ height 100vh;
+ height: 100vh;
+ justify-content: center;
+ left: 0;
+ position: fixed;
+ right: 0;
+ top: 0;
+ width: 100%;
+ z-index: 1;
+`;
+
+export const ModalBody = styled.div`
+ animation: ${(props) => props.animation && css` ${modalopen} 0.5s ease-out forwards`}}
+ background-color: ${(props) => props.theme.modalBg? props.theme.modalBg : '#fff'};
+ border-radius: ${(props) => props.theme.modalRadius==='false'? '0px' : '20px'};
+ border: ${(props) => props.theme.modalBorder? props.theme.modalBorder : 'none'};
+ box-shadow: ${(props) => props.theme.modalShadow? props.theme.modalShadow : 'rgba(0, 0, 0, 0.35) 0px 5px 15px'};
+ color: ${(props) => props.theme.modalTxt? props.theme.modalTxt : '#000'};
+ max-width: 25rem;
+ position: relative;
+ width: 100%;
+`;
+
+export const Close = styled.button`
+ background: transparent;
+ border: none;
+ cursor: pointer;
+ position: absolute;
+ right: 1rem;
+ top: 1rem;
+`;
+
+export const Content = styled.div`
+ padding: 0.625rem 8%;
+ text-align: center;
+
+ p {
+   font-weight: bold;
+   font-size: 1.2rem;
+ }
+
+ img {
+   width: clamp(5rem, 6vw, 7rem);
+ }
+`;
+/**
+ * Renders a confirmation modal
  * @function Modal
- * @param {function} props: set state for isModalOpen
+ * @param {function} closeModal: 
+ * @param {object} modalTheme: colour theme for modal
+ * @param {string} logo: optional logo
+ * @param {string} heading: main heading
+ * @param {string} message: optional shorter message
+ * @param {boolean} animation: optionally animate modal or not
  * @returns {JSX}
  */
- const Modal = ( { setModalIsOpen } ) => {
-
-  const theme = useSelector(selectTheme)  // retrieve Redux state
+ const Modal = ( { closeModal, modalTheme, logo, heading, message, animation } ) => {
 
   const activeElement = document.activeElement
 
-  const handleEscape = () => { setModalIsOpen(false) }
+  const handleEscape = () => { closeModal()}
   const handlekeys = (e) => { e.preventDefault() }   // prevent keys: effectively traps focus in modal
   
   const keyListenersMap = new Map([   // map of keyboard listeners
@@ -101,20 +112,24 @@ const ModalBody = styled.div`
       document.removeEventListener('keydown', handleKeydown)  // Detach listener when component unmounts
       activeElement.focus()                                   // Return focus to the previously focused element
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  
+  }, )
 
   return (
-    <MODAL theme={theme} role="dialog" aria-modal="true" aria-labelledby="modal__title">
-      <Content theme={theme} >       
-        <Close className='modalButton' onClick={() => setModalIsOpen(false)}><img src={close} alt="Close button" /></Close>
-          <ModalBody>
-          <img src={logo} alt=""/>
-              <h1 id="modal__title">Success !</h1>
-              <p>New employee record created</p>
-          </ModalBody>
-      </Content>
-    </MODAL>
+    <ThemeProvider theme={modalTheme}>
+      <ModalWrapper animation={animation} role="dialog" aria-modal="true" aria-labelledby="modal__title">
+        <ModalBody animation={animation}>   
+          <Close data-testid="close" aria-label="Close" className='modalButton' onClick={() => closeModal()}>
+            <CloseButton fill={modalTheme.modalBtnColor} stroke={modalTheme.modalBtnColor}/>
+          </Close>
+            <Content>
+                {logo && <img src={logo} alt=""/> }
+                <h1 id="modal__title">{heading}</h1>
+                {message && <p>{message}</p> }
+            </Content>
+        </ModalBody>
+      </ModalWrapper>
+    </ThemeProvider>
   )
 }
 
@@ -122,7 +137,11 @@ export default Modal
 
 // Prototypes
 Modal.propTypes = {
-  setModalIsOpen: PropTypes.func,
+  closeModal: PropTypes.func.isRequired,
+  modalTheme: PropTypes.object.isRequired,
+  logo: PropTypes.string,
+  heading: PropTypes.string.isRequired,
+  message : PropTypes.string,
 }
 
 

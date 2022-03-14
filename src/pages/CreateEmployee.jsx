@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react"
+import { useSelector } from 'react-redux'
+import { selectTheme } from '../Redux/selectors'
+// for styling
+import { lightTheme, darkTheme } from "../styles/themes"
 // import components
 import Title from '../components/Title'
 import EmployeeForm from "../components/EmployeeForm"
 import Modal from "../components/modal"
+import logo from '../assets/logos/wealthLogo.webp'
 
 /**
  * Renders the 'CreateEmployee' page
@@ -10,7 +15,10 @@ import Modal from "../components/modal"
  * @returns {JSX}
  */
 const CreateEmployee = () => {
+
+  const mode = useSelector(selectTheme)  // retrieve Redux state
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const  closeModal = () => { setModalIsOpen(false) }
 
   useEffect(() => {
     document.title = 'HRNet | Create'
@@ -21,7 +29,14 @@ const CreateEmployee = () => {
       <Title heading="Create Employee" />
       <EmployeeForm setModalIsOpen={setModalIsOpen}/>
       {modalIsOpen && 
-      <Modal setModalIsOpen={setModalIsOpen} />
+      <Modal 
+        closeModal={closeModal} 
+        modalTheme={mode ==='dark'? darkTheme : lightTheme} 
+        heading="Success !"
+        message="New employee record created"
+        logo={logo}
+        animation={true}
+    />
       }
     </main>
   )
