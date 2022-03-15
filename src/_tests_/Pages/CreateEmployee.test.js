@@ -77,7 +77,7 @@ describe('CreateEmployees', () => {
 
   it('should close the modal when user clicks on the close button', async () => {
     setup()
-    const close = screen.getByTestId(/close/i)
+    const close = screen.getByRole('button', {name: 'Close'})
     userEvent.click(close)
     await waitFor(() => {
       expect(screen.queryByText(/Success !/i)).not.toBeInTheDocument()
