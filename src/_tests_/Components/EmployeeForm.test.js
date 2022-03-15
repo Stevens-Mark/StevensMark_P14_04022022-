@@ -43,14 +43,12 @@ describe('EmployeeForm', () => {
     const {input} = setup(/Date Of Birth/i)
     userEvent.type(input, '1969-12-17')
     expect(input).toHaveValue('1969-12-17')
-    // expect(screen.getByDisplayValue('17/12/1969')).toBeInTheDocument()
   })
 
   it('should allow user to enter a start date', async () => {
     const {input} = setup(/Start Date/i)
     userEvent.type(input, '2022-02-28')
     expect(input).toHaveValue('2022-02-28')
-    // expect(screen.getByDisplayValue('28/02/2022')).toBeInTheDocument()
   })
 
   it('should allow user to enter a street', async () => {
@@ -65,7 +63,7 @@ describe('EmployeeForm', () => {
     expect(input).toHaveValue('Fake City')
   })
 
-  // state input: full funtionality already checked in select component
+  // state input: full functionality already checked in select component
  
   it('should allow user to enter a zip code', async () => {
     const {input} = setup(/Zip Code/i)
@@ -73,6 +71,6 @@ describe('EmployeeForm', () => {
     expect(input.value).toBe('12345')
   })
 
-  // department input: full select funtionality already checked in select component
+  // department input: full select functionality already checked in select component
 
 })

@@ -7,12 +7,6 @@ export const usZipCodes = /(^\d{5}$)|(^\d{5}-\d{4}$)/
 * @function convertDate
 * @returns {string} formatted date
 */
-// export const ConvertDate = (str) => {
-//   const date = new Date(str),
-//     mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-//     day = ("0" + date.getDate()).slice(-2)
-//   return [mnth, day, date.getFullYear()].join("/")
-//   }
 
 /*Formats a date correctly from yyyy-mm-dd to dd/mm/yyyy
 * @function convertDate
@@ -63,3 +57,10 @@ export const capitalize = (string) => {
 // export const textRegex = /^[a-zA-ZÀ-ÿ- ]+$/
 // export const addressRegex = /^[0-9a-zA-ZÀ-ÿ- ]+$/g
 // export const dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
+
+// export const ConvertDate = (str) => {
+//   const date = new Date(str),
+//     mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+//     day = ("0" + date.getDate()).slice(-2)
+//   return [mnth, day, date.getFullYear()].join("/")
+//   }

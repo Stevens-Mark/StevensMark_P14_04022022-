@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/helpersForTesting/render'
-// import component
+// import component (from my custom npm package)
 import{ Modal } from 'react-custom-modal-by-msparkystevens'
 
 describe('Modal', () => {

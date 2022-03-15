@@ -135,8 +135,6 @@ describe('EmployeesTable', () => {
       expect(screen.getByTestId('showPage').textContent).toEqual('Showing Page 3 of 5 pages ')
     })
   })
-
-
 })
 
 
