@@ -140,12 +140,12 @@ const EmployeesTable = () => {
     
   return (
     <Container>
-      <Controls>                                                  {/* Pagination & search controls */}
+      <Controls>{/* Pagination & search controls */}
         <Pagination pageSize={pageSize} setPageSize={setPageSize}/>
         <GlobalSearch globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} preGlobalFilteredRows={preGlobalFilteredRows}/>
       </Controls>
-                                                 
-      <Table theme={theme} {...getTableProps()}>              {/* Build table heading with sort funtionality */}    
+
+      <Table theme={theme} {...getTableProps()}>{/* Build table heading with sort funtionality */}
         <thead>
         {headerGroups.map(headerGroup => (
           <tr  {...headerGroup.getHeaderGroupProps()}>
@@ -165,14 +165,14 @@ const EmployeesTable = () => {
           </tr>
         ))}
         </thead>
-        <tbody {...getTableBodyProps()}>              {/* map data into rows in the table */}
-        {page.map((row, i) => { 
+        <tbody {...getTableBodyProps()}>{/* map data into rows in the table */}
+        {page.map((row, i) => {
           prepareRow(row)
           return (
               <tr tabIndex="0" {...row.getRowProps() }>
                 {row.cells.map(cell => {
                   return (
-                      <td 
+                      <td
                           {...cell.getCellProps()}>
                         {cell.render('Cell')}
                       </td>
@@ -182,25 +182,24 @@ const EmployeesTable = () => {
           )
         })}
         </tbody>
-      </Table>
-                            {/* Display message "no records", number of pages or search results at footer of table */}
+      </Table>{/* Display message "no records", number of pages or search results at footer of table */}
       <Controls>
         {rows.length<1 && !globalFilter?
           <span>
             <strong>There are No records available...</strong>
           </span> :
-        <>       
+        <>
           {!globalFilter?
             <span data-testid="showPage">
               Showing Page <strong>{pageIndex + 1} of {pageCount}</strong>
               {pageCount===1? ' page ' : ' pages '}
             </span>
-            :    
+            :
             <SearchResult pageIndex={pageIndex} pageSize={pageSize} pageCount={pageCount} rows={rows} noOfEntries={data.length}/>
-          }                
-          <div>                                                   {/* Go to page input option */}
+          }
+          <div>{/* Go to page input option */}
             <span>
-              <label htmlFor='goToPage'>Go to page:{' '}</label>    
+              <label htmlFor='goToPage'>Go to page:{' '}</label>
               <input
                 id='goToPage'
                 type="number"
@@ -210,14 +209,13 @@ const EmployeesTable = () => {
                 onChange={e => {
                   const page = e.target.value ? Number(e.target.value) - 1 : 0
                   gotoPage(page)} }/> {globalFilter && pageCount>1? `of ${pageCount} ` : ''}
-            </span>    
-                                                                      {/* Page Navigation buttons  */}
-            <span>
+            </span>
+            <span>{/* Page Navigation buttons  */}
               <button data-testid="first" aria-label="First Page" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{'⏪'}</button>{' '}
               <button data-testid="previous" aria-label="Previous Page" onClick={() => previousPage()} disabled={!canPreviousPage}>{'◀️'}</button>{' '}
               <button data-testid="next" aria-label="Next Page" onClick={() => nextPage()} disabled={!canNextPage}>{'▶️'}</button>{' '}
-              <button data-testid="last" aria-label="Last Page" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'⏩'}</button>   
-            </span>   
+              <button data-testid="last" aria-label="Last Page" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{'⏩'}</button>
+            </span>
           </div>
         </> }
       </Controls>

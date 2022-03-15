@@ -2,7 +2,7 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
-import { render } from '../../utils/test/render'
+import { render } from '../../utils/helpersForTesting/render'
 // import component
 import EmployeeForm from '../../components/EmployeeForm'
 // import Select from '../../components/Select'

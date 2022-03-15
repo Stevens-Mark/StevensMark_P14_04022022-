@@ -29,5 +29,5 @@ export const darkTheme = {
 // modalTxt: sets text color of the modal    
 // modalBorder: sets border of the modal
 // modalBtnColor: sets the color of the "X" close button on the modal
-// modalShadow: sets the box shadow of the modal (defalt: 'none')
+// modalShadow: sets the box shadow of the modal (default: 'none')
 // modalRadius: 'false' removes default border-radius of 20px

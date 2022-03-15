@@ -6,8 +6,9 @@ import { lightTheme, darkTheme } from "../styles/themes"
 // import components
 import Title from '../components/Title'
 import EmployeeForm from "../components/EmployeeForm"
-import { Modal } from "react-custom-modal-by-msparkystevens"
 import logo from '../assets/logos/wealthLogo.webp'
+// import my custom npm package
+import { Modal } from "react-custom-modal-by-msparkystevens"
 
 /**
  * Renders the 'CreateEmployee' page

@@ -119,7 +119,6 @@ const EmployeeForm = ( props ) => {
   const theme = useSelector(selectTheme) 
   const dispatch = useDispatch()
 
-  console.log(input)
   /**
  * Restricts what the user can enter in the TEXT input fields & saves to state
  * @function handleText

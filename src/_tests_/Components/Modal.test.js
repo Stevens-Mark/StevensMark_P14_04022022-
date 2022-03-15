@@ -2,9 +2,9 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
-import { render } from '../../utils/test/render'
+import { render } from '../../utils/helpersForTesting/render'
 // import component
-import Modal from '../../components/modal'
+import{ Modal } from 'react-custom-modal-by-msparkystevens'
 
 describe('Modal', () => {
   it('Should render without crashing & render a title', async () => {
