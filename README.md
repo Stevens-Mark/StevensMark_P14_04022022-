@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+![WealthHealth](/src/assets/logos/wealthhealth.webp)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# OPENCLASSROOMS PROJECT 14 *(English)*
 
-## Available Scripts
+# Wealth Health
 
-In the project directory, you can run:
+Open website at [Wealth Health](……..)
 
-### `npm start`
+## Faites passer une librairie jQuery vers React
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Scenario
+Wealth Health is a large financial company who uses an internal web application, called HRnet that manages employee records. The application is old and uses jQuery on the front end, which leads to considerable bugs and increased internal complaints. 
+The biggest issues for HRnet users are date pickers, modal windows, drop down menus, and tables. Several complaints that the jQuery plugins are very slow have been received.
+The company wants to create their own React components instead of these third-party jQuery plugins that are used in the user interface and hope that converting these jQuery plugins into React components will improve the performance and stability.  
+As Management doesn't want this first part of the conversion process to take too long, pick ONE of the four jQuery plugins and convert it to a React component.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Objective
 
-### `npm test`
+### HRNet project conversion
+•	The whole HRNet application has to be converted to React.
+•	Make a new version of the "Create Employee" and "Employee List" pages with React.
+•	Add a state management system (the current version uses local storage).
+•	Make sure that everything is consistent in style. No need to redesign the application, but if so, change the style to something more modern.  
+•	If time, test the React code with a unit test suite. Otherwise, only manual tests are needed. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Plugin conversion
+Here is the list of currently used jQuery plugins that need to be converted: 
+•	Date picker plugin
+•	Modal window plugin - jQuery.modal.js
+•	Drop down menus
+•	Plugin for data tables
 
-### `npm run build`
+### Performance testing
+•	The company wants to measure quantifiable data (e.g. page load times, network calls) to ensure that converting the app to React actually improves performance. To do this, do Lighthouse performance audits. To compare, do one for the current jQuery HRnet application, and then another once the application and the chosen jQuery plugin are converted to React.
+•	Once the HRnet app in React is working, publish the React component to npm as a package and share the link it can used later if needed.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technical constraints
+•	Follow a functional programming paradigm when writing these libraries in React.
+•	Avoid using classes when you convert the old application. 
+•	Write smaller, modular pieces of code and standalone functions for optimal modularity and maintainability. 
+•	When converting a jQuery plugin to a React component, keep in mind to convert only the code that deals with the actual functionality of the plugin's user interface. For example, if you convert a jQuery plugin for a modal window, focus on creating a React component that works as a modal window, and nothing else.
+•	Document the converted React component with a general description of what the component does and comments explaining what each accessory is for and how it is used.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Skills
+- [x] Redesign an application to reduce technical debt
+- [x] Analyze the performance of a web application
+- [x] Deploy a front-end application
+- [x] Programming in JavaScript with functional programming
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Installation *(English)*
 
-### `npm run eject`
+## Prerequisites
+- [NodeJS](https://nodejs.org/en/)  Version 16.13.0 
+- [NPM](https://www.npmjs.com/package/npm) Version 7.6.0
+- [Visual Studio Code](https://code.visualstudio.com/) or another IDE of your choice
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Dependencies
+- [React](https://reactjs.org/) Version 17.0.2
+- [React-router-dom] (https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
+- [React-scripts] (https://www.npmjs.com/package/react-scripts) Version 5.0.0
+- [React-table](https://react-table.tanstack.com/) Version 7.7.0
+- [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
+- [Redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) Version 1.7.2
+- [React-redux] (https://www.npmjs.com/package/react-redux) Version 7.2.6
+- [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
+- [Styled-components](https://styled-components.com/) Version 5.3.3
+- [Testing-library/user-event]https://testing-library.com/docs/ecosystem-user-event/) Version 13.5.0
+- [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installing and running the project
+- Clone the repository onto your computer :
+  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022-`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Inside this repository, install the packages/dependencies :
+ `npm install`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Run the Api:
+ `npm start`
 
-## Learn More
+The App runs on http://localhost:3000/
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Plugin conversion
+The convert plugin can be found here:
+[react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
