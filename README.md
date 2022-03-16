@@ -1,5 +1,7 @@
 ![WealthHealth](/src/assets/logos/WealthHealth.webp)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2c239b13-33af-467e-a295-18351c7bc670/deploy-status)](https://app.netlify.com/sites/wealthhealth/deploys)
+
 # OPENCLASSROOMS PROJECT 14 *(English)*
 
 # Wealth Health
