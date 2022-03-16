@@ -39,6 +39,11 @@ Here is the list of currently used jQuery plugins that need to be converted:
 -	When converting a jQuery plugin to a React component, keep in mind to convert only the code that deals with the actual functionality of the plugin's user interface. For example, if you convert a jQuery plugin for a modal window, focus on creating a React component that works as a modal window, and nothing else.
 -	Document the converted React component with a general description of what the component does and comments explaining what each accessory is for and how it is used.
 
+## Here is a summary of the main tasks: 
+- Convert the entire HRNet project to React. 
+- Convert one of the four current jQuery plugins to React. Replace the 3 remaining jQuery plugins with React components. 
+- Perform Lighthouse performance tests comparing the old and new application. 
+
 ## Skills
 - [x] Redesign an application to reduce technical debt
 - [x] Analyze the performance of a web application
@@ -104,7 +109,7 @@ Comme la direction ne veut pas que cette première partie du processus de conver
 
 ## Objectif
 
-### HRNet conversion du projet
+### Conversion du projet HRNet 
 - L'ensemble de l'application HRNet doit être converti en React.
 - Faire une nouvelle version des pages "Créer un employé" et "Liste des employés" avec React.
 - Ajouter un système de gestion des états (la version actuelle utilise le stockage local).
@@ -112,12 +117,12 @@ Comme la direction ne veut pas que cette première partie du processus de conver
 - Si le temps le permet, testez le code React avec une suite de tests unitaires. Sinon, seuls des tests manuels sont nécessaires. 
 
 
-### Conversion plugin
+### Conversion des plugins
 Voici la liste des plugins jQuery actuellement utilisés qui doivent être convertis : 
--	Date picker plugin
--	Modal window plugin - jQuery.modal.js
--	Drop down menus
--	Plugin for data tables
+- Plugin de sélection de date
+- Plugin de fenêtre modale - jQuery.modal.js
+- Menus déroulants
+- Plugin pour les tables de données
 
 ### Tests de performance
 - L'entreprise veut mesurer des données quantifiables (par exemple, les temps de chargement des pages, les appels réseau) pour s'assurer que la conversion de l'appli à React améliore réellement les performances. Pour ce faire, effectuez des audits de performance Lighthouse. Pour comparer, faites-en un pour l'application HRnet actuelle en jQuery, puis un autre une fois que l'application et le plugin jQuery choisi sont convertis en React.
@@ -131,11 +136,16 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 - Lorsque vous convertissez un plugin jQuery en composant React, gardez à l'esprit de ne convertir que le code qui traite de la fonctionnalité réelle de l'interface utilisateur du plugin. Par exemple, si vous convertissez un plugin jQuery pour une fenêtre modale, concentrez-vous sur la création d'un composant React qui fonctionne comme une fenêtre modale, et rien d'autre.
 - Documentez le composant React converti avec une description générale de ce que fait le composant et des commentaires expliquant à quoi sert chaque accessoire et comment il est utilisé.
 
+## Voici un récapitulatif des principales tâches : 
+- Convertir l'ensemble du projet HRNet en React. 
+- Convertir l'un des quatre plugins jQuery actuels en React. Remplacer les 3 plugins jQuery restants par des composants React. 
+- Effectuer des tests de performance Lighthouse en comparant l'ancienne et la nouvelle application. 
+
 ## Skills
-- [x] Redesign an application to reduce technical debt
-- [x] Analyze the performance of a web application
-- [x] Deploy a front-end application
-- [x] Programming in JavaScript with functional programming
+- [x] Refondre une application pour réduire la dette technique
+- [x] Analyser la performance d'une application web
+- [x] Déployer une application front-end
+- [x] Programmer en JavaScript avec la programmation fonctionnelle
 
 # Installation *(français)*
 
