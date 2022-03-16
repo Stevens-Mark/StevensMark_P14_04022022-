@@ -32,7 +32,7 @@ const Selected =styled.select`
         required={true}
         onChange={onChange} >
 
-        <option value="default" >Select a {id}</option>
+        <option value="" >Select a {id}</option>
         {[...listItems].sort((a, b) => (a.name < b.name ? -1 : 1)).map((item, index) => {
           return (
             <option key={`${item}-${index}`}value={item.value}>
