@@ -67,7 +67,7 @@ Here is the list of currently used jQuery plugins that need to be converted:
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
 - [Styled-components](https://styled-components.com/) Version 5.3.3
-- [Testing-library/user-event]https://testing-library.com/docs/ecosystem-user-event/) Version 13.5.0
+- [Testing-library/user-event](https://testing-library.com/docs/ecosystem-user-event/) Version 13.5.0
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
 
 ## Installing and running the project
@@ -164,11 +164,11 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
 - [Styled-components](https://styled-components.com/) Version 5.3.3
-- [Testing-library/user-event]https://testing-library.com/docs/ecosystem-user-event/) Version 13.5.0
+- [Testing-library/user-event](https://testing-library.com/docs/ecosystem-user-event/) Version 13.5.0
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
 
 ## Installer et exécuter le projet
-- Clonez le référentiel sur votre ordinateur :
+- Clonez le repo sur votre ordinateur :
   `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022-`
 
 - Dans ce dépôt, installez les paquets/dépendances :
