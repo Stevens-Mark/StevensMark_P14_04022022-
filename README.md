@@ -6,6 +6,9 @@
 
 # Wealth Health
 
+- open the site at: [Wealth-Health]https://wealthhealth.netlify.app/
+
+
 ## Switch a jQuery library to React
 
 ## Scenario
@@ -90,14 +93,18 @@ The App runs on http://localhost:3000/
 The converted plugin can be found here:
 [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens)
 
+**Plugin Demo**
+[Demo](https://reactcustommodal.netlify.app/)
 
-
-![WealthHealth](/src/assets/logos/WealthHealth.webp)
 
 
 # OPENCLASSROOMS PROJECT 14 *(Français)*
 
 # Wealth Health
+
+
+- ouvrir le site à : [Wealth-Health]https://wealthhealth.netlify.app/
+
 
 ## Faites passer une librairie jQuery vers React
 
@@ -186,3 +193,6 @@ The App runs on http://localhost:3000/
 
 Le plugin converti peut être trouvé ici :
 [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens)
+
+**Plugin Demo**
+[Demo](https://reactcustommodal.netlify.app/)
