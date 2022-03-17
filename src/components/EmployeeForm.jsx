@@ -180,17 +180,17 @@ const EmployeeForm = ( props ) => {
 
     let firstName, lastName, street, city, zipCode
 
-    if (input.firstName.length<2) {
+    if (input.firstName.trim().length<2) {
       firstName = true
     }
-    if (input.lastName.length<2) {
+    if (input.lastName.trim().length<2) {
       lastName = true
       }
  
-    if (input.street.length<2) {
+    if (input.street.trim().length<2) {
       street = true
       }
-    if (input.city.length<2) {
+    if (input.city.trim().length<2) {
       city = true
       }
      if (input.zipCode.length!==5) {
