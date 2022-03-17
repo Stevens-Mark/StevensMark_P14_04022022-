@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/helpersForTesting/render'
-// imort component
+// import component
 import CreateEmployee from '../../pages/CreateEmployee'
 
 // test setup
