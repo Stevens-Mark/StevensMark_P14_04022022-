@@ -40,7 +40,7 @@ const Table = styled.table`
   margin: 0.625rem;
   padding: 0.625rem;
 
-  @media (max-width: 1269px) {
+  @media (max-width: 1199px) {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
