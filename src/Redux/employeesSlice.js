@@ -18,21 +18,24 @@ import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
   },
   reducers: { 
     addEmployee: (draft, action) => {
-      // draft.employees.push(action.payload)  // add new employee to redux store
-      
+      // draft.employees.push(action.payload)  
+
+      // allow data/store to persist in localStorage 
       const employeesList = JSON.parse(localStorage.getItem('employees')) || [] 
       employeesList.push(action.payload)
-      localStorage.setItem('employees', JSON.stringify(employeesList))      // allow store to persist in localStorage 
-      draft.employees = JSON.parse(localStorage.getItem('employees')) || []
+      localStorage.setItem('employees', JSON.stringify(employeesList))    
+      draft.employees = JSON.parse(localStorage.getItem('employees'))
     },
 
-    fetchEmployees: (draft) => {
+    fetchEmployees: (draft) => { 
+      // draft.employees = mockData
+
       const employeesList = JSON.parse(localStorage.getItem('employees')) || []
-     
-      if (employeesList.length<1) {           // if no real employees already held in local storage then load with mocked data 
-        localStorage.setItem('employees', JSON.stringify(mockData))                     // (mocked data also used for testing)
+      // if no 'REAL' employee records already held in local storage then load with mocked data 
+      if (employeesList.length<1) {           
+        localStorage.setItem('employees', JSON.stringify(mockData))                   
        }
-        draft.employees = JSON.parse(localStorage.getItem('employees')) || []   // draft.employees = mockData
+        draft.employees = JSON.parse(localStorage.getItem('employees')) || []   
     },
 
   },

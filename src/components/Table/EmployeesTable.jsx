@@ -1,17 +1,17 @@
 
 import React, { useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-// import selector & action
-import { selectEmployees } from '../../Redux/selectors'
+import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
+// import selector
 import { selectTheme } from '../../Redux/selectors'
-import { fetchEmployees } from '../../Redux/employeesSlice'
 // imports for table
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table'
 import GlobalSearch from './GlobalSearch'
 import Pagination from './Pagination'
 import SearchResult from './SearchResult'
-// import header data needed for table
-import { headerList } from '../../assets/data/tableHeader'    // (includes function for sorting dates in format dd/mm/yyy)
+// import header data needed for table 
+// (includes function for sorting dates in format dd/mm/yyy)
+import { headerList } from '../../assets/data/tableHeader'
 // styling
 import styled from 'styled-components'
 import colors from '../../styles/colors'
@@ -99,16 +99,13 @@ const Controls = styled.span`
 /**
  * Renders the 'EmployeesTable on current employees Page' 
  * @function EmployeesTable
+ * @param {array} employees: data
  * @returns {JSX}
  */
-const EmployeesTable = () => {
+const EmployeesTable = ( { employees } ) => {
 
-  const employees = useSelector(selectEmployees).employees    // retrieve Redux state
   const theme = useSelector(selectTheme) 
 
-  const dispatch = useDispatch()
-  if(employees.length<1) dispatch(fetchEmployees()) // dispatch action to fetch mockData if no data in table (DEMO ONLY: TO BE REMOVED LATER...?)
-                  
   const columns = useMemo(() => headerList, [] )
   const data = useMemo(() => employees, [employees] )
 
@@ -224,3 +221,8 @@ const EmployeesTable = () => {
 }
 
 export default EmployeesTable
+
+// Prototypes
+EmployeesTable.propTypes = {
+  employees: PropTypes.array.isRequired
+}

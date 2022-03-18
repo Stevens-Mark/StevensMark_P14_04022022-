@@ -108,6 +108,7 @@ return {
       ...utils,
     }
 }
+
 // tests 
 
 describe('CreateEmployees', () => {
@@ -129,41 +130,78 @@ describe('CreateEmployees', () => {
       expect(screen.queryByText(/Success !/i)).not.toBeInTheDocument()
     })
   })
-  
-  it('should display error if first name NOT valid', async () => {
+
+  // this test timed out so adjusted jest.Timeout to 10000
+  it('should display the relevant error message if the corresponding input is NOT valid', async () => {
     badInput()
     await waitFor(() => {
       expect(screen.getByText("⚠️ First Name: 2 letters min.")).toBeTruthy()
     })
-  })
-
-  it('should display error if last name NOT valid', async () => {
-    badInput()
     await waitFor(() => {
       expect(screen.getByText("⚠️ Last Name: 2 letters min.")).toBeTruthy()
     })
-  })
-
-  it('should display error if address NOT valid', async () => {
-    badInput()
     await waitFor(() => {
       expect(screen.getByText("⚠️ Please check address")).toBeTruthy()
     })
-  })
-
-  it('should display error if city NOT valid', async () => {
-    badInput()
     await waitFor(() => {
       expect(screen.getByText("⚠️ Please check city name")).toBeTruthy()
     })
-  })
-
-  it('should display error if zip code NOT valid', async () => {
-    badInput()
     await waitFor(() => {
       expect(screen.getByText("⚠️ Should be 5 digits")).toBeTruthy()
     })
-  })
+  }, 10000)
+    
   
+  // it('should display error if first name NOT valid', async () => {
+  //   badInput()
+  //   await waitFor(() => {
+  //     expect(screen.getByText("⚠️ First Name: 2 letters min.")).toBeTruthy()
+  //   })
+  // })
+
+  // it('should display error if last name NOT valid', async () => {
+  //   badInput()
+  //   await waitFor(() => {
+  //     expect(screen.getByText("⚠️ Last Name: 2 letters min.")).toBeTruthy()
+  //   })
+  // })
+
+  // it('should display error if address NOT valid', async () => {
+  //   badInput()
+  //   await waitFor(() => {
+  //     expect(screen.getByText("⚠️ Please check address")).toBeTruthy()
+  //   })
+  // })
+
+  // it('should display error if city NOT valid', async () => {
+  //   badInput()
+  //   await waitFor(() => {
+  //     expect(screen.getByText("⚠️ Please check city name")).toBeTruthy()
+  //   })
+  // })
+
+  // it('should display error if zip code NOT valid', async () => {
+  //   badInput()
+  //   await waitFor(() => {
+  //     expect(screen.getByText("⚠️ Should be 5 digits")).toBeTruthy()
+  //   })
+  // })
+   
+  // below test passes but throws error: (test above correct implementatinon)
+  // Warning: An update to Popper inside a test was not wrapped in act(...).   
+  // When testing, code that causes React state updates should be wrapped into act(...):
+  // act(() => {
+  //  /* fire events that update state */
+  // });
+  //   /* assert on the output */
+  
+    // it('should display a valid error message', async () => {
+    //   badInput()
+    //     expect(screen.getByText("⚠️ First Name: 2 letters min.")).toBeTruthy()
+    //     expect(screen.getByText("⚠️ Last Name: 2 letters min.")).toBeTruthy()
+    //     expect(screen.getByText("⚠️ Please check address")).toBeTruthy()
+    //     expect(screen.getByText("⚠️ Please check city name")).toBeTruthy()
+    //     expect(screen.getByText("⚠️ Should be 5 digits")).toBeTruthy()
+    // })
 })
 

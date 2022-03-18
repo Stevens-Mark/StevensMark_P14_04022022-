@@ -19,23 +19,24 @@ describe('Employees reducer', () => {
     }
   
     it('should return the initial state when state is undefined', () => {
-        expect(reducer(undefined, {})).toEqual( { employees: [] } )
+        expect(reducer(undefined, {})).toEqual({ employees: [] })
     })
  
     it('should return the state initial  when state is undefined', () => {
-        expect(reducer(undefined, { type: '@INIT' })).toEqual( { employees: [] } )
+        expect(reducer(undefined, { type: '@INIT' })).toEqual({ employees: [] })
     })
 
-    it('should add mocked employee', () => {
-      expect(reducer( { employees: [] }, fetchEmployees())).toEqual( { employees: mockData })
+    it('should add mocked employees', () => {
+      expect(reducer( { employees: [] }, fetchEmployees())).toEqual({ employees: mockData })
   })
 
     it('should add an employee', () => {
-        expect(reducer( { employees: [] }, addEmployee( { dataToAdd } ))).toEqual( { employees: [ ...mockData, { dataToAdd } ] })
+      const previousState = { employees: mockData }
+        expect(reducer( previousState, addEmployee( { dataToAdd } ))).toEqual({ employees: [...mockData, { dataToAdd }] })
     })
 
     it('should return state on invalid action', () => {
-        expect(reducer( { employees: [] }, { type: 'INVALID' })).toEqual( { employees: [] } )
+        expect(reducer( { employees: [] }, { type: 'INVALID' })).toEqual({ employees: [] })
     })
 
 })

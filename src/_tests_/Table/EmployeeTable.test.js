@@ -2,13 +2,15 @@ import { screen, waitFor, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/helpersForTesting/render'
-// imort component
+// import component
 import EmployeesTable from '../../components/Table/EmployeesTable'
+// import mock data
+import mockEmployees from '../../assets/data/MOCK_DATA_FOR_TESTING.json'
 
 // tests setup
 
 const setupForPagination = () => {    // set up used to check pagination
-const utils = render(<EmployeesTable />)
+const utils = render(<EmployeesTable employees={mockEmployees}/>)
 const pagination = screen.getByLabelText(/Page Size/i)
 userEvent.selectOptions(pagination, screen.getByRole('option', {name: 'Show 25'}),)
 return {
@@ -18,7 +20,7 @@ return {
 }
 
 const setupForGlobalSearch = () => {    // set up used to check global search
-  const utils = render(<EmployeesTable />)
+  const utils = render(<EmployeesTable employees={mockEmployees} />)
   const globalSearch = screen.getByLabelText(/Search/i)
   userEvent.type(globalSearch, 'test word')
   return {
@@ -32,7 +34,7 @@ const setupForGlobalSearch = () => {    // set up used to check global search
 describe('EmployeesTable', () => {
 
   it('should render the headings/table footer correctly and 10 rows as default', async () => {
-    render(<EmployeesTable />)
+    render(<EmployeesTable employees={mockEmployees} />)
     const row = screen.getAllByRole('row')
     expect(screen.getAllByRole('row')[0]).toHaveTextContent(/First Name/i)
     expect(screen.getAllByRole('row')[0]).toHaveTextContent(/Last Name/i)
@@ -48,7 +50,7 @@ describe('EmployeesTable', () => {
   })
 
   it('should be able to sort columns alphabetically in ascending & descending order', async () => {
-    render(<EmployeesTable />)
+    render(<EmployeesTable employees={mockEmployees}/>)
     expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Kerrill/i) // original order
     userEvent.click(screen.getByText(/First Name/i))
     expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Agace/i) // ascending
@@ -59,7 +61,7 @@ describe('EmployeesTable', () => {
   })
 
   it('should be able to sort column dates in ascending & descending order', async () => {
-    render(<EmployeesTable />)
+    render(<EmployeesTable employees={mockEmployees}/>)
     expect(screen.getAllByRole('row')[1]).toHaveTextContent("06/07/1986") // original order
     userEvent.click(screen.getByText(/Date Of Birth/i))
     expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/08/1953") // ascending
@@ -97,7 +99,7 @@ describe('EmployeesTable', () => {
   }) 
 
   it('should navigate to next & previous page', async () => {
-    render(<EmployeesTable />)
+    render(<EmployeesTable employees={mockEmployees}/>)
     expect(screen.getByTestId('showPage').textContent).toEqual('Showing Page 1 of 5 pages ')
 
     userEvent.click(screen.getByTestId('next'))
@@ -112,7 +114,7 @@ describe('EmployeesTable', () => {
   }) 
 
   it('should navigate to last & first page', async () => {
-    render(<EmployeesTable />)
+    render(<EmployeesTable employees={mockEmployees}/>)
     expect(screen.getByTestId('showPage').textContent).toEqual('Showing Page 1 of 5 pages ')
 
     userEvent.click(screen.getByTestId('last'))
@@ -127,7 +129,7 @@ describe('EmployeesTable', () => {
   }) 
 
   it('should navigate to page number entered by user in goto page input', async () => {
-    render(<EmployeesTable />)
+    render(<EmployeesTable employees={mockEmployees}/>)
     const input =screen.getByLabelText(/Go to page:/i)
     fireEvent.change(input, { target: { value: 3 }});
     expect(input.value).toBe('3')
