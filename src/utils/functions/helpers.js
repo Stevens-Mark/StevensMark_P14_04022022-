@@ -1,6 +1,3 @@
-// Regex's used for form validation
-export const usZipCodes = /(^\d{5}$)|(^\d{5}-\d{4}$)/
-
 /**
 /*Formats a date correctly, example:
 * from Fri Jun 03 2022 02:00:00 GMT+0200 (Central European Summer Time) to 03/06/2022 (instead of 3/6/2022)
@@ -53,7 +50,8 @@ export const capitalize = (string) => {
 }
 
 
-
+// Regex's used for form validation
+// export const usZipCodes = /(^\d{5}$)|(^\d{5}-\d{4}$)/
 // export const textRegex = /^[a-zA-ZÀ-ÿ- ]+$/
 // export const addressRegex = /^[0-9a-zA-ZÀ-ÿ- ]+$/g
 // export const dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/

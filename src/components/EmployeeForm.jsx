@@ -14,7 +14,6 @@ import Select from './Select'
 import { capitalize, ConvertDate } from '../utils/functions/helpers'
 import { addEmployee } from '../Redux/employeesSlice'
 import { 
-    // usZipCodes,
     SetBirthDateLimit,
     SetDateLimit
  } from '../utils/functions/helpers'
