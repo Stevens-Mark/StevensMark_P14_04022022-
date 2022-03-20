@@ -1,8 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import React, {  lazy, Suspense } from 'react'
+import React, {  lazy, Suspense, useState } from 'react'
+import { useEffect } from 'react'
+
 // component imports
 import Header from './components/Header'
 import Footer from './components/Footer'
+import { db } from './FireBase/firebase'
+import { collection, onSnapshot } from 'firebase/firestore'
 
 const CreateEmployee = lazy(() => import('./pages/CreateEmployee'))
 const CurrentEmployees = lazy(() => import('./pages/CurrentEmployees'))
@@ -17,6 +21,15 @@ const renderLoader = () => <div>Loading</div>
  * @returns {JSX}
  */
 export default function App() {
+  const [data, setData] = useState([])
+  console.log(data)
+
+  useEffect(() => 
+   onSnapshot(collection(db, 'employees'),(snapshot) => 
+      setData(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id })))
+    ), []
+ )
+
   return (  
     <>
     <Suspense fallback={renderLoader()}>
