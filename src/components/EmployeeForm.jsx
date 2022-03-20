@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useStore} from 'react-redux'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
@@ -12,7 +12,7 @@ import { states } from '../assets/data/states'
 import Select from './Select'
 // import functions, actions & constants
 import { capitalize, ConvertDate } from '../utils/functions/helpers'
-import { addEmployee } from '../Redux/employeesSlice'
+import { addAnEmployee } from '../Redux/employeesSlice'
 import { 
     SetBirthDateLimit,
     SetDateLimit
@@ -126,7 +126,7 @@ const EmployeeForm = ( props ) => {
   const [displayStart, setDisplayStart] = useState("") // to display in date input fields
   // retrieve Redux state
   const theme = useSelector(selectTheme) 
-  const dispatch = useDispatch()
+  const store = useStore()
 
   /**
  * Restricts what the user can enter in the TEXT input fields & saves to state
@@ -218,7 +218,7 @@ const EmployeeForm = ( props ) => {
     
     if (validateForm())
       {
-        dispatch(addEmployee(input))  // dispatch input data/add employee to store
+        addAnEmployee(store, input)  // dispatch input data/add employee to store
         setModalIsOpen(true)          // launch success modal
         setInput(initialState)        // reset states
         setError(errorState)
