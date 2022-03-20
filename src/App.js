@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { db } from './FireBase/firebase'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, getDocs, onSnapshot } from 'firebase/firestore'
 
 const CreateEmployee = lazy(() => import('./pages/CreateEmployee'))
 const CurrentEmployees = lazy(() => import('./pages/CurrentEmployees'))
@@ -29,6 +29,16 @@ export default function App() {
       setData(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id })))
     ), []
  )
+
+useEffect (() => {
+  async function fetchData() {
+    const collectionRef = collection(db, 'employees')
+    const snapshot = await getDocs(collectionRef)
+    const datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
+    console.log(datas)
+  }
+  fetchData()
+}, [])
 
   return (  
     <>
