@@ -21,7 +21,7 @@ import { addDoc, collection, getDocs } from 'firebase/firestore'
     const datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
     store.dispatch(resolved(datas))      // request resolved: save employees to store
   } catch (error) {  
-    store.dispatch(rejected(error.response.data.message)) // request rejected: error mesage
+    store.dispatch(rejected(error.message)) // request rejected: error mesage
   }
 }
 
@@ -42,8 +42,8 @@ import { addDoc, collection, getDocs } from 'firebase/firestore'
     const snapshot = await getDocs(collectionRef)
     const datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
     store.dispatch(resolved(datas))      // request resolved: save employee to store
-  } catch (error) {  
-    store.dispatch(rejected(error.response.data.message)) // request rejected: error mesage
+   } catch (error) {  
+    store.dispatch(rejected(error.message)) // request rejected: error mesage
   }
 }
 
