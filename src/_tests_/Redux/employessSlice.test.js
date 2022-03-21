@@ -8,7 +8,20 @@ describe('Employees reducer', () => {
       employees: [],
       isError: '',
     }
-  
+    
+  const dataToAdd = 
+    { 
+      firstName: "John",
+      lastName :"Doe",
+      dateOfBirth: "03/01/2004",
+      startDate: "03/02/2022",
+      street: "123 Fake Street",
+      city: "Fake City",
+      state: "KY",
+      zipCode: "12345",
+      department: "Engineering"
+    }
+    
     it('should return the initial state when state is undefined', () => {
         expect(reducer(undefined, {})).toEqual
         ({
@@ -34,19 +47,22 @@ describe('Employees reducer', () => {
       })
 
     it('should return updated employee state when data has loaded', () => {
-      expect(reducer(initialState, { type: 'employee/resolved' })).toEqual
-      ({
-        isLoading: false,
-        employees: undefined,
-        isError: '', }) 
-      })
+      expect(reducer(initialState, { 
+        type: 'employee/resolved', 
+        payload: dataToAdd , })).toEqual
+        ({
+          isLoading: false,
+          employees: dataToAdd,
+          isError: '', }) 
+        })
 
     it('should return error state if request rejected', () => {
-      expect(reducer(initialState, { type: 'employee/rejected' })).toEqual
+      expect(reducer(initialState, { type: 'employee/rejected',
+      payload: "error message" ,  })).toEqual
       ({
         isLoading: false,
         employees: [],
-        isError: undefined, }) 
+        isError: "error message", }) 
       })
 
     it('should return state on invalid action', () => {
