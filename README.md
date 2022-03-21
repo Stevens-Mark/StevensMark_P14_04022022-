@@ -1,13 +1,33 @@
 ![WealthHealth](/src/assets/logos/WealthHealth.webp)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2c239b13-33af-467e-a295-18351c7bc670/deploy-status)](https://app.netlify.com/sites/wealthhealth/deploys)
 
 # OPENCLASSROOMS PROJECT 14 *(English)*
 
 # Wealth Health
 
-- open the site at: [Wealth-Health]https://wealthhealth.netlify.app/
+- THIS VERSION USES FIREBASE AS THE BACKEND SO YOU NEED TO SET UP FIRBASE FIRST.
+- FOLLOW THE INSTRUCTIONS ON THEIR SITE.
+- Add you details to an .env file at the root of the project:
 
+- REACT_APP_FIREBASE_API_KEY = "XXXXXXXXXXXXXXXXXXXXXXX"
+
+- REACT_APP_FIREBASE_AUTH_DOMAIN = "XXXXX.firebaseapp.com"
+
+- REACT_APP_FIREBASE_PROJECT_ID = "XXXXXXX"
+
+- REACT_APP_FIREBASE_STORAGE_BUCKET = "XXXXXXX.appspot.com"
+
+- REACT_APP_FIREBASE_MESSAGING_SENDER_ID = "XXXXX"
+
+- REACT_APP_FIREBASE_APP_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+- MAKE A COLLECTION CALLED "employees" WITH FIELDS: firstName, lastName, dateOfBith, startDate, street, city, zipCode, state, department. 
+
+- Also be aware that mockdata will automatically be added to the store (for demo) unless you remove the code at lines 23-25 in the file "employeesSlice.js
+
+-   if (datas.length <2) {datas = mockData.forEach(element => {
+      addAnEmployee(store, element)
+    });}
 
 ## Switch a jQuery library to React
 
@@ -76,7 +96,7 @@ Here is the list of currently used jQuery plugins that need to be converted:
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
 
 ## Installing and running the project
-- Clone the repository onto your computer :
+- Clone the repository onto your computer : branch "fire"
   `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022-`
 
 - Inside this repository, install the packages/dependencies :
@@ -96,18 +116,34 @@ The converted plugin can be found here:
 **Plugin Demo**
 [Demo](https://reactcustommodal.netlify.app/)
 
-## Notes
-- If you DIRECTLY create new employee records from the home page, then ONLY these records will be displayed in the table. BUT if you pass to the VIEW of the current employee records FIRST, then mock data will be loaded into the table to demonstrate the site functionality (this data will be put into your local storage, so you may want to remove it afterwards).
-- The site uses REDUX as a state management system, but local storage has also been used so state persists between site reloads.
-
 
 # OPENCLASSROOMS PROJECT 14 *(Français)*
 
 # Wealth Health
 
+- CETTE VERSION UTILISE FIREBASE COMME BACKEND, VOUS DEVEZ DONC D'ABORD CONFIGURER FIRBASE.
+- SUIVEZ LES INSTRUCTIONS SUR LEUR SITE.
+- Ajoutez vos coordonnées dans un fichier .env à la racine du projet :
 
-- ouvrir le site à : [Wealth-Health]https://wealthhealth.netlify.app/
+- REACT_APP_FIREBASE_API_KEY = "XXXXXXXXXXXXXXXXXXXXXXX"
 
+- REACT_APP_FIREBASE_AUTH_DOMAIN = "XXXXX.firebaseapp.com
+
+- REACT_APP_FIREBASE_PROJECT_ID = "XXXXXXX"
+
+- REACT_APP_FIREBASE_STORAGE_BUCKET = "XXXXXXX.appspot.com"
+
+- REACT_APP_FIREBASE_MESSAGING_SENDER_ID = "XXXXX"
+
+- REACT_APP_FIREBASE_APP_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+- FAITES UNE COLLECTION APPELÉE "employees" AVEC DES CHAMPS : firstName, lastName, dateOfBith, startDate, street, city, zipCode, state, department. 
+
+- Sachez également que les mockdata seront automatiquement ajoutées au magasin (pour la démo) à moins que vous ne supprimiez le code aux lignes 23-25 dans le fichier "employeesSlice.js".
+
+- if (datas.length <2) {datas = mockData.forEach(element => {
+      addAnEmployee(store, element)
+    });}
 
 ## Faites passer une librairie jQuery vers React
 
@@ -200,6 +236,3 @@ Le plugin converti peut être trouvé ici :
 **Plugin Demo**
 [Demo](https://reactcustommodal.netlify.app/)
 
-## Notes
-- Si vous créez directement de nouveaux enregistrements d'employés à partir de la page d'accueil, SEULS ces enregistrements seront affichés dans la table. MAIS si vous passez d'abord à la VUE des enregistrements actuels des employés, alors des données factices seront chargées dans le tableau pour démontrer la fonctionnalité du site (ces données seront placées dans votre stockage local, donc vous voudrez peut-être les supprimer par la suite).
-- Le site utilise REDUX comme système de gestion d'état, mais le stockage local a également été utilisé pour que l'état persiste entre les rechargements du site.

@@ -7,6 +7,7 @@ import { fetchEmployees } from './Redux/employeesSlice'
 // component imports
 import Header from './components/Header'
 import Footer from './components/Footer'
+
 // use lazy loading to import components just when needed
 const CreateEmployee = lazy(() => import('./pages/CreateEmployee'))
 const CurrentEmployees = lazy(() => import('./pages/CurrentEmployees'))
@@ -25,6 +26,7 @@ export default function App() {
   const store = useStore()
   useEffect(() => {
     fetchEmployees(store)
+    
   }, [store])
 
   return (  

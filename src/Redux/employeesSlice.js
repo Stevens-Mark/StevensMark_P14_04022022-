@@ -1,10 +1,9 @@
 // redux tool kit function
 import { createSlice } from '@reduxjs/toolkit'
 // import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
-
 import { db } from '../FireBase/firebase'
 import { addDoc, collection, getDocs } from 'firebase/firestore'
-
+import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
 /**
  * API call
  * the function retrieves the employees records from store/firebase
@@ -16,10 +15,15 @@ import { addDoc, collection, getDocs } from 'firebase/firestore'
 
   store.dispatch(requesting())   // start the request
   try {
-    const collectionRef = collection(db, 'employees')
+    const collectionRef = collection(db, 'TEST')
+    // const collectionRef = collection(db, 'employees')
     const snapshot = await getDocs(collectionRef)
-    const datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
-    store.dispatch(resolved(datas))      // request resolved: save employees to store
+    let datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
+    // IF ONLY ONE RECORD IN FIRESTORE (IE FOR FIRESTORE SETUP) THEN ADD MOCKDATA FOR DEMO: THIS MUST BE REMOVED FOR PRODUCTION!!
+    if (datas.length <2) {datas = mockData.forEach(element => {
+      addAnEmployee(store, element)
+    });}
+     store.dispatch(resolved(datas))      // request resolved: save employees to store
   } catch (error) {  
     console.log(error)
     store.dispatch(rejected(error.message)) // request rejected: error mesage
@@ -37,14 +41,15 @@ import { addDoc, collection, getDocs } from 'firebase/firestore'
 
   store.dispatch(requesting())   // start the request
   try {
-    const collectionRef = collection(db, 'employees')
+    const collectionRef = collection(db, 'TEST')
+    // const collectionRef = collection(db, 'employees')
     const payload = input
     await addDoc(collectionRef, payload)
     const snapshot = await getDocs(collectionRef)
     const datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
     store.dispatch(resolved(datas))      // request resolved: save employee to store
    } catch (error) {  
-    console.log(error)
+     console.log(error)
     store.dispatch(rejected(error.message)) // request rejected: error mesage
   }
 }
