@@ -1,5 +1,4 @@
 // colors used on the website
-// colors used on the website
 
 const colors = {
   primary: '#669900',

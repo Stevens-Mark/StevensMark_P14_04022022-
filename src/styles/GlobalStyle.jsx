@@ -24,6 +24,7 @@ main {
   min-height: 85vh;
   background-color: ${({ isDarkMode }) => (isDarkMode ? `${colors.darkNavy}` : `${colors.primary}`)};
   padding-top: 125px;
+  width: 100%;
 }
 
 a {
