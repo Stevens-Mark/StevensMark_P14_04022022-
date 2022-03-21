@@ -3,12 +3,12 @@ import React, {  lazy, Suspense } from 'react'
 // component imports
 import Header from './components/Header'
 import Footer from './components/Footer'
-
+// import components when needed using lazy loading
 const CreateEmployee = lazy(() => import('./pages/CreateEmployee'))
 const CurrentEmployees = lazy(() => import('./pages/CurrentEmployees'))
 const Error = lazy(() => import('./pages/Error'))
 const GoToTop = lazy(() => import('./utils/GoToTop'))
-const renderLoader = () => <div>Loading</div>
+const renderLoader = () => <div>Loading...</div>
 
 
 /**

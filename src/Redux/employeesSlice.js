@@ -31,7 +31,7 @@ import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
       // draft.employees = mockData
 
       const employeesList = JSON.parse(localStorage.getItem('employees')) || []
-      // if no 'REAL' employee records already held in local storage then load with mocked data 
+      // if no 'REAL' employee records already held in local storage then load with mocked data (for demo)
       if (employeesList.length<1) {           
         localStorage.setItem('employees', JSON.stringify(mockData))                   
        }

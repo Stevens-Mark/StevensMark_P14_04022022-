@@ -97,7 +97,7 @@ const Save = styled.button`
 const EmployeeForm = ( props ) => {
 
   const { setModalIsOpen } = props
-  const isLoading = false
+
   
   // local states
   const initialState = {
@@ -311,7 +311,7 @@ const EmployeeForm = ( props ) => {
             listItems={departments}
             onChange={(e) => setInput({...input, department: e.target.value})} /> 
 
-        <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading ? true : false}>Save</Save>
+        <Save data-testid="submitButton" theme={theme} type="submit">Save</Save>
       </Form>  
     </Container>
   )

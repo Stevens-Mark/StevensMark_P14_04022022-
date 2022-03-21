@@ -82,7 +82,9 @@ const Header = () => {
   // local states
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-
+  
+  // not need to cover this by tests
+   /* istanbul ignore next */
    useEffect(() => {
     const handleScroll = () => {
     const currentScrollPos = window.pageYOffset        // find current scroll position
