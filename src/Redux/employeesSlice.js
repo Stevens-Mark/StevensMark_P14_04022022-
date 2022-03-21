@@ -1,9 +1,9 @@
 // redux tool kit function
 import { createSlice } from '@reduxjs/toolkit'
-// import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
 import { db } from '../FireBase/firebase'
 import { addDoc, collection, getDocs } from 'firebase/firestore'
 import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
+
 /**
  * API call
  * the function retrieves the employees records from store/firebase
@@ -20,13 +20,13 @@ import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
     const snapshot = await getDocs(collectionRef)
     let datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
     // IF ONLY ONE RECORD IN FIRESTORE (IE FOR FIRESTORE SETUP) THEN ADD MOCKDATA FOR DEMO: THIS MUST BE REMOVED FOR PRODUCTION!!
-    if (datas.length <2) {datas = mockData.forEach(element => {
+    if (datas.length <2) {datas =  mockData.forEach(element => {
       addAnEmployee(store, element)
     });}
      store.dispatch(resolved(datas))      // request resolved: save employees to store
   } catch (error) {  
     console.log(error)
-    store.dispatch(rejected(error.message)) // request rejected: error mesage
+    store.dispatch(rejected('Oops, something went wrong...')) // request rejected: error mesage
   }
 }
 
@@ -50,7 +50,7 @@ import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
     store.dispatch(resolved(datas))      // request resolved: save employee to store
    } catch (error) {  
      console.log(error)
-    store.dispatch(rejected(error.message)) // request rejected: error mesage
+    store.dispatch(rejected('Oops, something went wrong...')) // request rejected: error mesage
   }
 }
 
