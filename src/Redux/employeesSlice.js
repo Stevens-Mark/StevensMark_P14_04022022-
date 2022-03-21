@@ -2,7 +2,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { db } from '../FireBase/firebase'
 import { addDoc, collection, getDocs } from 'firebase/firestore'
-import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
+
+// import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
 
 /**
  * API call
@@ -15,14 +16,14 @@ import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
 
   store.dispatch(requesting())   // start the request
   try {
-    const collectionRef = collection(db, 'TEST')
-    // const collectionRef = collection(db, 'employees')
+    // const collectionRef = collection(db, 'TEST')
+    const collectionRef = collection(db, 'employees')
     const snapshot = await getDocs(collectionRef)
     let datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
     // IF ONLY ONE RECORD IN FIRESTORE (IE FOR FIRESTORE SETUP) THEN ADD MOCKDATA FOR DEMO: THIS MUST BE REMOVED FOR PRODUCTION!!
-    if (datas.length <2) {datas =  mockData.forEach(element => {
-      addAnEmployee(store, element)
-    });}
+    // if (datas.length <2) {datas =  mockData.forEach(element => {
+    //   addAnEmployee(store, element)
+    // });}
      store.dispatch(resolved(datas))      // request resolved: save employees to store
   } catch (error) {  
     console.log(error)
@@ -41,8 +42,8 @@ import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
 
   store.dispatch(requesting())   // start the request
   try {
-    const collectionRef = collection(db, 'TEST')
-    // const collectionRef = collection(db, 'employees')
+    // const collectionRef = collection(db, 'TEST')
+    const collectionRef = collection(db, 'employees')
     const payload = input
     await addDoc(collectionRef, payload)
     const snapshot = await getDocs(collectionRef)
