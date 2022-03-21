@@ -4,12 +4,14 @@ import { useSelector, useStore} from 'react-redux'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
-import { selectTheme } from '../Redux/selectors'
+// import selectors
+import { selectTheme, selectEmployees } from '../Redux/selectors'
 // import data for dropdown menus
 import { departments } from '../assets/data/departments'
 import { states } from '../assets/data/states'
 // import components
 import Select from './Select'
+import LoadingIcon from '../utils/loader/loadingIcon'
 // import functions, actions & constants
 import { capitalize, ConvertDate } from '../utils/functions/helpers'
 import { addAnEmployee } from '../Redux/employeesSlice'
@@ -97,8 +99,12 @@ const Save = styled.button`
 const EmployeeForm = ( props ) => {
 
   const { setModalIsOpen } = props
-  const isLoading = false
-  
+  const store = useStore()
+
+  // retrieve Redux state
+  const theme = useSelector(selectTheme) 
+  const { isLoading, isError } = useSelector(selectEmployees)
+
   // local states
   const initialState = {
     firstName: "",
@@ -124,9 +130,6 @@ const EmployeeForm = ( props ) => {
   const [input, setInput] = useState(initialState)
   const [displayDOB, setDisplayDOB] = useState("")      // holds original yyyy-mm-dd date (before formatting) 
   const [displayStart, setDisplayStart] = useState("") // to display in date input fields
-  // retrieve Redux state
-  const theme = useSelector(selectTheme) 
-  const store = useStore()
 
   /**
  * Restricts what the user can enter in the TEXT input fields & saves to state
@@ -310,6 +313,11 @@ const EmployeeForm = ( props ) => {
             id={"department"}
             listItems={departments}
             onChange={(e) => setInput({...input, department: e.target.value})} /> 
+
+            {/* Show loading spinner whilst sending data */}
+            {isLoading && <LoadingIcon />}
+            {/* Display error message if needed */}
+            <IsError theme={theme}>{isError}</IsError>
 
         <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading ? true : false}>Save</Save>
       </Form>  

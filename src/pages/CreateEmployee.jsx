@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from 'react-redux'
-import { selectTheme } from '../Redux/selectors'
+import { selectTheme, selectEmployees } from '../Redux/selectors'
 // for styling
 import { lightTheme, darkTheme } from "../styles/themes"
 // import components
@@ -18,6 +18,8 @@ import { Modal } from "react-custom-modal-by-msparkystevens"
 const CreateEmployee = () => {
 
   const mode = useSelector(selectTheme)  // retrieve Redux state
+  const { isLoading } = useSelector(selectEmployees)
+
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const  closeModal = () => { setModalIsOpen(false) }
 
@@ -29,7 +31,7 @@ const CreateEmployee = () => {
     <main>
       <Title heading="Create Employee" />
       <EmployeeForm setModalIsOpen={setModalIsOpen}/>
-      {modalIsOpen && 
+      {modalIsOpen && !isLoading &&
       <Modal 
         closeModal={closeModal} 
         modalTheme={mode ==='dark'? darkTheme : lightTheme} 
