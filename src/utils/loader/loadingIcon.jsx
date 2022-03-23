@@ -46,7 +46,7 @@ const LoadingIcon = () => {
   const theme = useSelector(selectTheme) 
 
     return (
-      <Wrapper>
+      <Wrapper data-testid="loader">
           <Loader theme={theme} /> 
       </Wrapper>
     )
