@@ -5,7 +5,7 @@ import { render } from '../../utils/helpersForTesting/render'
 import Loader from '../../utils/loader/loadingIcon'
 
 describe('Loader', () => {
-  it('Should render a loading icon', () => {
+  it('Should render a loading icon', async () => {
     render(<Loader />)
     expect(screen.getByTestId('loader')).toBeTruthy()
   })

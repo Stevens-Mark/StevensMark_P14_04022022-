@@ -17,7 +17,9 @@ describe('full APP rendering/navigating', () => {
       expect(screen.getByText(/HRNet/i)).toBeInTheDocument()
       const leftClick = {button: 0}
       userEvent.click((screen.getAllByText(/Create/i)[0]), leftClick)
-      expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
+      await waitFor(() => {
+        expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
+      })
     })
 
     it('should navigate to the current employees page', async () => {

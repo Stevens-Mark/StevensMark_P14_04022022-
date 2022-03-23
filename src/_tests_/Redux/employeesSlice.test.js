@@ -22,7 +22,7 @@ describe('Employees reducer', () => {
       department: "Engineering"
     }
     
-    it('should return the initial state when state is undefined', () => {
+    it('should return the initial state when state is undefined', async () => {
         expect(reducer(undefined, {})).toEqual
         ({
           isLoading: false,
@@ -30,7 +30,7 @@ describe('Employees reducer', () => {
           isError: '', })
         })
  
-    it('should return the state initial  when state is undefined', () => {
+    it('should return the state initial  when state is undefined', async () => {
         expect(reducer(undefined, { type: '@INIT' })).toEqual
         ({
           isLoading: false,
@@ -38,7 +38,7 @@ describe('Employees reducer', () => {
           isError: '', }) 
         })
   
-    it('should return state isLoading true when data is loading', () => {
+    it('should return state isLoading true when data is loading', async () => {
       expect(reducer(initialState, { type: 'employee/requesting' })).toEqual
       ({
         isLoading: true,
@@ -46,7 +46,7 @@ describe('Employees reducer', () => {
         isError: '', }) 
       })
 
-    it('should return updated employee state when data has loaded', () => {
+    it('should return updated employee state when data has loaded', async () => {
       expect(reducer(initialState, { 
         type: 'employee/resolved', 
         payload: dataToAdd , })).toEqual
@@ -56,7 +56,7 @@ describe('Employees reducer', () => {
           isError: '', }) 
         })
 
-    it('should return error state if request rejected', () => {
+    it('should return error state if request rejected', async () => {
       expect(reducer(initialState, { type: 'employee/rejected',
       payload: "error message" ,  })).toEqual
       ({
@@ -65,7 +65,7 @@ describe('Employees reducer', () => {
         isError: "error message", }) 
       })
 
-    it('should return state on invalid action', () => {
+    it('should return state on invalid action', async () => {
         expect(reducer(initialState, { type: 'INVALID' })).toEqual
         ({
           isLoading: false,
