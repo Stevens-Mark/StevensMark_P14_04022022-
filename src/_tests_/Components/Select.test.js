@@ -1,5 +1,5 @@
 
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/helpersForTesting/render'
@@ -91,8 +91,10 @@ describe('Select', () => {
       screen.getByLabelText(/Department/i),                  // Find the select element, like a real user would.
       screen.getByRole('option', {name: 'Engineering'}),    // Find and select the Engineering option, like a real user would.
     )
-    expect(screen.getByRole('option', {name: 'Engineering'}).selected).toBe(true)
-    expect(screen.getByRole('listbox').value).toBe('Engineering')
+    await waitFor(() => {
+      expect(screen.getByRole('listbox').value).toBe('Engineering')
+      // expect(screen.getByRole('option', {name: 'Engineering'}).selected).toBe(true)
+    })
   })
 
   it('should allow user to change the state option & return correct country code', async () => {
@@ -122,7 +124,9 @@ describe('Select', () => {
       screen.getByLabelText(/State/i),                        
       screen.getByRole('option', {name: 'Arizona'}),    
     )
-    expect(screen.getByRole('option', {name: 'Arizona'}).selected).toBe(true)
-    expect(screen.getByRole('listbox').value).toBe('AZ')
+    await waitFor(() => {
+      expect(screen.getByRole('listbox').value).toBe('AZ')
+          // expect(screen.getByRole('option', {name: 'Arizona'}).selected).toBe(true)
+    })
   })
 })

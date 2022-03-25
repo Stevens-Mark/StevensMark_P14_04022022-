@@ -1,4 +1,4 @@
-import { screen, fireEvent } from '@testing-library/react'
+import { screen, fireEvent, waitFor } from '@testing-library/react'
 // import custom render to connect component to redux
 import { render } from '../../utils/helpersForTesting/render'
 // import component
@@ -15,6 +15,8 @@ describe('Footer', () => {
     const nightModeButton = screen.getByRole('button')
     expect(nightModeButton.textContent).toBe('Change mode : ☀️')
     fireEvent.click(nightModeButton)
-    expect(nightModeButton.textContent).toBe('Change mode : 🌙')
+    await waitFor(() => {
+      expect(nightModeButton.textContent).toBe('Change mode : 🌙')
+    })
   })
 })
