@@ -16,7 +16,7 @@ import axios from 'axios'
 export async function fetchEmployees(store) {
   store.dispatch(requesting())   // start the request
 	try {
-		const response = await axios.get("http://localhost:3000/api/stuff");
+		const response = await axios.get("http://localhost:3000/api/v1/employees");
 		console.log(response);
     const datas = await response.data
     console.log(datas)
@@ -38,7 +38,7 @@ export async function fetchEmployees(store) {
 export async function addAnEmployee(store, input) {
   store.dispatch(requesting())  // start the update request
   try {
-    const response = await axios.post('http://localhost:3000/api/stuff', input)
+    const response = await axios.post('http://localhost:3000/api/v1/employees', input)
     const responseData = await response.data
     const datas = [responseData]
     console.log(datas)
