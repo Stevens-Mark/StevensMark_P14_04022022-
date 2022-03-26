@@ -12,8 +12,8 @@ import EmployeesTable from '../components/Table/EmployeesTable'
  */
 const CurrentEmployees = () => {
   
-  let employees = useSelector(selectEmployees).employees    // retrieve Redux state
-
+  const employees = useSelector(selectEmployees).employees    // retrieve Redux state
+console.log(employees)
   useEffect(() => {
     document.title = 'HRNet | Current Employees'
   }, [])

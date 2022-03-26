@@ -107,7 +107,7 @@ const EmployeesTable = ( { employees } ) => {
   const theme = useSelector(selectTheme) 
 
   const columns = useMemo(() => headerList, [] )
-  const data = useMemo(() => employees, [employees] )
+  const data = useMemo(() => employees, [ employees] )
 
   const {
     getTableProps,
