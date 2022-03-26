@@ -21,7 +21,6 @@ describe('SetBirthDateLimit function', () => {
   })
 })
 
-
 describe('SetDateLimit function', () => {
   it('should return a start date 30 days before today', async () => {
     const days = -30
