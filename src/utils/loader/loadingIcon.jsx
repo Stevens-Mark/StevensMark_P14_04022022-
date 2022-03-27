@@ -28,7 +28,7 @@ const rotate = keyframes`
 
 const Loader = styled.div`
   animation: ${rotate} 1s infinite linear;
-  border: 0.5rem solid  ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.chromeBlue}`)};
+  border: 0.5rem solid  ${({ theme }) => (theme === 'light' ? `${colors.warning}` : `${colors.chromeBlue}`)};
   border-bottom-color: transparent;
   border-radius: 2rem;   
   padding: 1px;

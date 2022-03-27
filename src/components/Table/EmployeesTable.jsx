@@ -105,7 +105,6 @@ const Controls = styled.span`
 const EmployeesTable = ( { employees } ) => {
 
   const theme = useSelector(selectTheme) 
-
   const columns = useMemo(() => headerList, [] )
   const data = useMemo(() => employees, [ employees] )
 

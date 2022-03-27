@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
+import { useStore } from 'react-redux'
+// import for function to fetch data
+import { fetchEmployees } from './Redux/employeesSlice'
 // component imports
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -17,6 +20,12 @@ const renderLoader = () => <div>Loading, Please wait a moment...</div>
  * @returns {JSX}
  */
 export default function App() {
+
+  // import employee data from db
+  const store = useStore()
+  useEffect(() => {
+    fetchEmployees(store)
+  }, [store])
 
   return (  
     <>

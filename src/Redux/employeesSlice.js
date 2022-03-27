@@ -1,7 +1,5 @@
 // redux tool kit function
 import { createSlice } from '@reduxjs/toolkit'
-// import { db } from '../FireBase/firebase'
-// import { addDoc, collection, getDocs } from 'firebase/firestore'
 import axios from 'axios'
 
 // import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
@@ -17,13 +15,10 @@ export async function fetchEmployees(store) {
   store.dispatch(requesting())   // start the request
 	try {
 		const response = await axios.get("http://localhost:3000/api/v1/employees");
-		console.log(response);
     const datas = await response.data
-    console.log(datas)
     store.dispatch(resolved(datas))
 	}
 	catch (error) {
-		console.log(error);
     store.dispatch(rejected('Oops, something went wrong...')) // request rejected: error mesage
 	}
 }
@@ -36,15 +31,13 @@ export async function fetchEmployees(store) {
  * @returns {object|string} updated employees information or error message to store
  */
 export async function addAnEmployee(store, input) {
-  store.dispatch(requesting())  // start the update request
+  store.dispatch(addRequesting())  // start the update request
   try {
     const response = await axios.post('http://localhost:3000/api/v1/employees', input)
     const responseData = await response.data
-    const datas = [responseData]
-    console.log(datas)
-    store.dispatch(resolved(datas))     // request resolved: save new name to store
+    store.dispatch(addResolved(responseData))     // request resolved: save new employee to store
   } catch (error) {
-    store.dispatch(rejected('Oops, something went wrong...')) // request rejected: error mesage
+    store.dispatch(addRejected('Error: New Employee not created !')) // request rejected: error mesage
   }
 }
 
@@ -78,9 +71,19 @@ export async function addAnEmployee(store, input) {
         draft.employees = []
         draft.isError = action.payload
     },
-
+    addRequesting: (draft) => {
+      draft.isLoading = true
+    },
+    addResolved: (draft, action) => {
+        draft.isLoading = false
+        draft.employees.push(action.payload)
+    },
+    addRejected: (draft, action) => {
+        draft.isLoading = false
+        draft.isError = action.payload
+    },
   },
 })
 
-export const { requesting, resolved, rejected, } = employeesSlice.actions
+export const { requesting, resolved, rejected, addRequesting, addResolved, addRejected } = employeesSlice.actions
 export default employeesSlice.reducer  // export each action & reducer
