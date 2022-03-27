@@ -5,29 +5,8 @@
 
 # Wealth Health
 
-- THIS VERSION USES FIREBASE AS THE BACKEND SO YOU NEED TO SET UP FIRBASE FIRST.
-- FOLLOW THE INSTRUCTIONS ON THEIR SITE.
-- Add you details to an .env file at the root of the project:
-
-- REACT_APP_FIREBASE_API_KEY = "XXXXXXXXXXXXXXXXXXXXXXX"
-
-- REACT_APP_FIREBASE_AUTH_DOMAIN = "XXXXX.firebaseapp.com"
-
-- REACT_APP_FIREBASE_PROJECT_ID = "XXXXXXX"
-
-- REACT_APP_FIREBASE_STORAGE_BUCKET = "XXXXXXX.appspot.com"
-
-- REACT_APP_FIREBASE_MESSAGING_SENDER_ID = "XXXXX"
-
-- REACT_APP_FIREBASE_APP_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-
-- MAKE A COLLECTION CALLED "employees" WITH FIELDS: firstName, lastName, dateOfBith, startDate, street, city, zipCode, state, department. 
-
-- Also be aware that mockdata will automatically be added to the store (for demo) unless you remove the code at lines 23-25 in the file "employeesSlice.js
-
--   if (datas.length <2) {datas = mockData.forEach(element => {
-      addAnEmployee(store, element)
-    });}
+- THIS VERSION USES A MONGODB ATLAS DATABASE AS THE BACKEND (NoSQL database)
+- USES NODE SERVER & EXPRESS FRAMEWORK
 
 ## Switch a jQuery library to React
 
@@ -90,13 +69,24 @@ Here is the list of currently used jQuery plugins that need to be converted:
 - [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
 - [Redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) Version 1.7.2
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
+- [Axios](https://axios-http.com/docs/intro) Version 0.26.1
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
 - [Styled-components](https://styled-components.com/) Version 5.3.3
 - [Testing-library/user-event](https://testing-library.com/docs/ecosystem-user-event/) Version 13.5.0
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
 
 ## Installing and running the project
-- Clone the repository onto your computer : branch "fire"
+
+### BackEnd
+
+- Clone the repository P14_Backend onto your computer : 
+  `git clone https://github.com/Stevens-Mark/P14_Backend.git`
+
+- Follow the instructions in the ReadMe.md file.
+- Make sure the backend is running before you start the FrontEnd
+
+### FrontEnd
+- Clone the repository onto your computer : branch "db"
   `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022-`
 
 - Inside this repository, install the packages/dependencies :
@@ -105,7 +95,7 @@ Here is the list of currently used jQuery plugins that need to be converted:
 - Run the Api:
  `npm start`
 
-The App runs on http://localhost:3000/
+The App runs on http://localhost:3001/
 
 
 ## My coverted Plugin (npm package)
@@ -121,29 +111,8 @@ The converted plugin can be found here:
 
 # Wealth Health
 
-- CETTE VERSION UTILISE FIREBASE COMME BACKEND, VOUS DEVEZ DONC D'ABORD CONFIGURER FIRBASE.
-- SUIVEZ LES INSTRUCTIONS SUR LEUR SITE.
-- Ajoutez vos coordonnées dans un fichier .env à la racine du projet :
-
-- REACT_APP_FIREBASE_API_KEY = "XXXXXXXXXXXXXXXXXXXXXXX"
-
-- REACT_APP_FIREBASE_AUTH_DOMAIN = "XXXXX.firebaseapp.com
-
-- REACT_APP_FIREBASE_PROJECT_ID = "XXXXXXX"
-
-- REACT_APP_FIREBASE_STORAGE_BUCKET = "XXXXXXX.appspot.com"
-
-- REACT_APP_FIREBASE_MESSAGING_SENDER_ID = "XXXXX"
-
-- REACT_APP_FIREBASE_APP_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-
-- FAITES UNE COLLECTION APPELÉE "employees" AVEC DES CHAMPS : firstName, lastName, dateOfBith, startDate, street, city, zipCode, state, department. 
-
-- Sachez également que les mockdata seront automatiquement ajoutées au magasin (pour la démo) à moins que vous ne supprimiez le code aux lignes 23-25 dans le fichier "employeesSlice.js".
-
-- if (datas.length <2) {datas = mockData.forEach(element => {
-      addAnEmployee(store, element)
-    });}
+- CETTE VERSION UTILISE UNE BASE DE DONNEES MONGODB ATLAS COMME BACKEND (base de données NoSQL)
+- UTILISE LE SERVEUR NODE ET LE CADRE EXPRESS
 
 ## Faites passer une librairie jQuery vers React
 
@@ -210,22 +179,33 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 - [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
 - [Redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) Version 1.7.2
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
+- [Axios](https://axios-http.com/docs/intro) Version 0.26.1
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
 - [Styled-components](https://styled-components.com/) Version 5.3.3
 - [Testing-library/user-event](https://testing-library.com/docs/ecosystem-user-event/) Version 13.5.0
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
 
 ## Installer et exécuter le projet
-- Clonez le repo sur votre ordinateur :
+
+### BackEnd
+
+- Clonez le dépôt P14_Backend sur votre ordinateur : 
+  `git clone https://github.com/Stevens-Mark/P14_Backend.git`
+
+- Suivez les instructions dans le fichier ReadMe.md.
+- Assurez-vous que le backend fonctionne avant de lancer le FrontEnd.
+
+### FrontEnd
+- Clonez le repo sur votre ordinateur : branche "db"
   `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022-`
 
 - Dans ce dépôt, installez les paquets/dépendances :
  `npm install`
 
-- Run the Api:
+- Exécutez l'Api :
  `npm start`
 
-The App runs on http://localhost:3000/
+L'application fonctionne sur http://localhost:3001/
 
 
 ## Mon plugin (npm package)

@@ -78,11 +78,12 @@ const LINK = styled(NavLink)`
  */
 const Header = () => {
 
-  const theme = useSelector(selectTheme) // retrieve Redux state
-  // local states
+  const theme = useSelector(selectTheme) // Redux state & local states
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 
+  // not need to cover this by tests
+   /* istanbul ignore next */
    useEffect(() => {
     const handleScroll = () => {
     const currentScrollPos = window.pageYOffset        // find current scroll position

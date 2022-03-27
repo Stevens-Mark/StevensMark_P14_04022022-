@@ -11,7 +11,7 @@ export const ConvertDate = ( input ) => {
 /**
 * Returns today's date 'x' amount of years ago based on the age supplied
 * @function SetBirthDateLimit
-* @param {number} age (currently set between 18-70 yrs)
+* @param {number} age (currently set between 18-70 yrs: see: EmployeeForm.jsx)
 * @returns Date Limit: format 2022-02-12
 * */
 export const SetBirthDateLimit = ( age ) => {
@@ -21,7 +21,8 @@ export const SetBirthDateLimit = ( age ) => {
 
 /**
 * Returns the date 'x' days before/after today's date
-* @function SetDateLimit (currently set between 30 days in the past & 120 days in the future)
+* @function SetDateLimit (currently set between 30 days in the past & 120 days in the future:
+* see: EmployeeForm.jsx)
 * @returns date limit: format 2022-02-01
 * */
 export const SetDateLimit = ( days ) => {
@@ -39,7 +40,6 @@ export const SetDateLimit = ( days ) => {
  * @returns {string} capitalised string 
  */
 export const capitalize = (string) => {
-  // return string && string[0].toUpperCase() + string.slice(1)
   return string.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')
 }
 

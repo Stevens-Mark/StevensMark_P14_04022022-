@@ -6,7 +6,7 @@ import axios from 'axios'
 
 /**
  * API call
- * the function retrieves the employees records from db
+ * the function retrieves the employees records from the database
  * @function fetchEmployees
  * @param {object} store 
  * @returns {object|string} employees information or error message to store
@@ -19,25 +19,25 @@ export async function fetchEmployees(store) {
     store.dispatch(resolved(datas))
 	}
 	catch (error) {
-    store.dispatch(rejected('Oops, something went wrong...')) // request rejected: error mesage
+    store.dispatch(rejected('Oops, something went wrong... Please try again')) // rejected: error mesage
 	}
 }
 
 /**
  * API call
- * the function adds a new employee record to db
+ * the function adds a new employee record to database
  * @function addAnEmployee
  * @param {object} store 
- * @returns {object|string} updated employees information or error message to store
+ * @returns {object|string} new employee information or error message to store
  */
 export async function addAnEmployee(store, input) {
   store.dispatch(addRequesting())  // start the update request
   try {
     const response = await axios.post('http://localhost:3000/api/v1/employees', input)
     const responseData = await response.data
-    store.dispatch(addResolved(responseData))     // request resolved: save new employee to store
+    store.dispatch(addResolved(responseData))     // resolved: save new employee to store
   } catch (error) {
-    store.dispatch(addRejected('Error: New Employee not created !')) // request rejected: error mesage
+    store.dispatch(addRejected('Oops, something went wrong... record not created !')) // rejected: error mesage
   }
 }
 
@@ -58,7 +58,7 @@ export async function addAnEmployee(store, input) {
     isError: '',
   },
   reducers: { 
-    requesting: (draft) => {
+    requesting: (draft) => {    // fetch data
       draft.isLoading = true
     },
     resolved: (draft, action) => {
@@ -70,13 +70,14 @@ export async function addAnEmployee(store, input) {
         draft.isLoading = false
         draft.employees = []
         draft.isError = action.payload
-    },
-    addRequesting: (draft) => {
+    }, 
+    addRequesting: (draft) => {     // add new employee
       draft.isLoading = true
     },
     addResolved: (draft, action) => {
         draft.isLoading = false
         draft.employees.push(action.payload)
+        draft.isError = ''
     },
     addRejected: (draft, action) => {
         draft.isLoading = false
