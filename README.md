@@ -6,8 +6,12 @@
 
 # Wealth Health
 
-- open the site at: [Wealth-Health]https://wealthhealth.netlify.app/
+- open the site at: [Wealth-Health](https://wealthhealth.netlify.app/)
 
+- I have written THREE version:
+- i using localstorage - branch main
+- ii using Firebase - branch fire
+- iii using MongoDB - branch db
 
 ## Switch a jQuery library to React
 
@@ -64,10 +68,10 @@ Here is the list of currently used jQuery plugins that need to be converted:
 
 ## Dependencies
 - [React](https://reactjs.org/) Version 17.0.2
-- [React-router-dom] https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
+- [React-router-dom](https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
 - [React-scripts](https://www.npmjs.com/package/react-scripts) Version 5.0.0
 - [React-table](https://react-table.tanstack.com/) Version 7.7.0
-- [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
+- [Redux](https://www.npmjs.com/package/redux) Version 4.1.2
 - [Redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) Version 1.7.2
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
@@ -106,7 +110,12 @@ The converted plugin can be found here:
 # Wealth Health
 
 
-- ouvrir le site à : [Wealth-Health]https://wealthhealth.netlify.app/
+- ouvrir le site à : [Wealth-Health](https://wealthhealth.netlify.app/)
+
+- J'ai écrit TROIS versions :
+- i utilisant localstorage - branche main
+- ii utilisant Firebase - branche fire
+- iii utilisant MongoDB - branche db
 
 
 ## Faites passer une librairie jQuery vers React
@@ -168,10 +177,10 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ## Dépendances
 - [React](https://reactjs.org/) Version 17.0.2
-- [React-router-dom] https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
+- [React-router-dom](https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
 - [React-scripts](https://www.npmjs.com/package/react-scripts) Version 5.0.0
 - [React-table](https://react-table.tanstack.com/) Version 7.7.0
-- [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
+- [Redux](https://www.npmjs.com/package/redux) Version 4.1.2
 - [Redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) Version 1.7.2
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
