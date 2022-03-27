@@ -5,12 +5,14 @@ import { render } from '../../utils/helpersForTesting/render'
 // import component
 import CreateEmployee from '../../pages/CreateEmployee'
 
-// test setup
 
-  // ONLY ADD THIS CODE WHEN USING TEST COLLECTION
-  // OTHERWISE IT WILL WRITE TO REAL FIREBASE DATABASE
+
+// ONLY ADD THIS CODE & TEST WHEN USING A TEST COLLECTION / DATABASE
+// OTHERWISE IT WILL WRITE TO THE REAL MONGODB DATABASE
   
- // mimic user adding GOOD/VALID employee data for a new record
+// mimic user adding GOOD/VALID employee data for a new record
+
+// test setup
 
 // const setup = () => {
 //   // render employee page (with form)
@@ -61,7 +63,17 @@ import CreateEmployee from '../../pages/CreateEmployee'
 //     }
 // }
 
- // mimic user adding BAD INVALID employee data for a new record
+// // AND ASSOCIATED TEST WITH ABOVE SETUP
+// it('should open the modal when user input (new employee record) is validated', async () => {
+//   setup()
+//   await waitFor(() => {
+//     expect(screen.getByText(/Success !/i)).toBeTruthy()
+//   })
+// })
+
+
+// mimic user adding BAD INVALID employee data for a new record
+// test setup
 
 const badInput = () => {
   // render employee page (with form)
@@ -119,23 +131,6 @@ describe('CreateEmployees', () => {
   it('Should render without crashing', async () => {
     render(<CreateEmployee />)
   })
-
-  // it('should open the modal when user input (new employee record) is validated', async () => {
-  //   setup()
-
-  //   await waitFor(() => {
-  //     expect(screen.getByText(/Success !/i)).toBeTruthy()
-  //   })
-  // })
-
-  // it('should close the modal when user clicks on the close button', async () => {
-  //   setup()
-  //   const close = screen.getByRole('button', {name: 'Close'})
-  //   userEvent.click(close)
-  //   await waitFor(() => {
-  //     expect(screen.queryByText(/Success !/i)).not.toBeInTheDocument()
-  //   })
-  // })
 
   // this test timed out so adjusted jest.Timeout to 10000
   it('should display the relevant error message if the corresponding input is NOT valid', async () => {
