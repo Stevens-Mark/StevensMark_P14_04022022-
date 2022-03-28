@@ -22,15 +22,15 @@ describe('full APP rendering/navigating', () => {
       })
     })
 
-    it('should navigate to the current employees page', async () => {
-      renderWithRouter(<App />)
-      expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
-      const leftClick = {button: 0}
-      userEvent.click(screen.getByText(/View/i), leftClick)
-      await waitFor(() => {
-        expect(screen.getByText(/Current Employees/i)).toBeInTheDocument()
-      })
-    })
+    // it('should navigate to the current employees page', async () => {
+    //   renderWithRouter(<App />)
+    //   expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
+    //   const leftClick = {button: 0}
+    //   userEvent.click(screen.getByText(/View/i), leftClick)
+    //   await waitFor(() => {
+    //     expect(screen.getByText(/Current Employees/i)).toBeInTheDocument()
+    //   })
+    // })
 
     it('should show an error page for a bad route', async () => {
       renderWithRouter(<App />, {route: '/something-that-does-not-match'})

@@ -1,43 +1,54 @@
 // redux tool kit function
 import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
-
+import { db } from '../FireBase/firebase'
+import { addDoc, collection, getDocs } from 'firebase/firestore'
 // import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
 
 /**
  * API call
- * the function retrieves the employees records from the database
+ * the function retrieves the employees records from store/firebase
  * @function fetchEmployees
  * @param {object} store 
  * @returns {object|string} employees information or error message to store
  */
-export async function fetchEmployees(store) {
+ export async function fetchEmployees(store) {
+
   store.dispatch(requesting())   // start the request
-	try {
-		const response = await axios.get("http://localhost:3000/api/v1/employees");
-    const datas = await response.data
-    store.dispatch(resolved(datas))
-	}
-	catch (error) {
-    store.dispatch(rejected('Oops, something went wrong... Please try again')) // rejected: error mesage
-	}
+  try {
+    const collectionRef = collection(db, 'TEST')
+    // const collectionRef = collection(db, 'employees')
+    const snapshot = await getDocs(collectionRef)
+    let datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
+    // if (datas.length <2) {datas =  mockData.forEach(element => {   // add mockdata if only 'setup' record in firebase
+    //   addAnEmployee(store, element)                                // FOR DEMO: MUST REMOVE FOR PRODUCTION!!
+    // });}
+     store.dispatch(resolved(datas))      // request resolved: save employees to store
+  } catch (error) {  
+    console.log(error)
+    store.dispatch(rejected('Oops, something went wrong...')) // request rejected: error mesage
+  }
 }
 
 /**
  * API call
- * the function adds a new employee record to database
+ * the function adds a new employee record to store/firebase
  * @function addAnEmployee
  * @param {object} store 
- * @returns {object|string} new employee information or error message to store
+ * @returns {object|string} updated employees information or error message to store
  */
-export async function addAnEmployee(store, input) {
-  store.dispatch(addRequesting())  // start the update request
+ export async function addAnEmployee(store, input) {
+
+  store.dispatch(addRequesting())   // start the request
   try {
-    const response = await axios.post('http://localhost:3000/api/v1/employees', input)
-    const responseData = await response.data
-    store.dispatch(addResolved(responseData))     // resolved: save new employee to store
-  } catch (error) {
-    store.dispatch(addRejected('Oops, something went wrong... record not created !')) // rejected: error mesage
+    const collectionRef = collection(db, 'TEST')
+    // const collectionRef = collection(db, 'employees')
+    await addDoc(collectionRef, input)
+    // const snapshot = await getDocs(collectionRef)
+    // const datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
+    store.dispatch(addResolved(input))      // request resolved: save employee to store
+   } catch (error) {  
+     console.log(error)
+    store.dispatch(addRejected('Oops, something went wrong...')) // request rejected: error mesage
   }
 }
 
