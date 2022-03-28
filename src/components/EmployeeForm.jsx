@@ -9,6 +9,8 @@ import { selectTheme, selectEmployees } from '../Redux/selectors'
 // import data for dropdown menus
 import { departments } from '../assets/data/departments'
 import { states } from '../assets/data/states'
+// import plugin for detecting network connection
+import { Detector } from "react-detect-offline"
 // import components
 import Select from './Select'
 import LoadingIcon from '../utils/loader/loadingIcon'
@@ -314,12 +316,13 @@ const EmployeeForm = ( props ) => {
             listItems={departments}
             onChange={(e) => setInput({...input, department: e.target.value})} /> 
 
-            {/* Show loading spinner whilst sending data */}
             {isLoading && <LoadingIcon />}
-            {/* Display error message if needed */}
             <IsError theme={theme}>{isError}</IsError>
-
-        <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading ? true : false}>Save</Save>
+            {/* Display error message & disable save button if NOT online (workaround as firebase doesn't throw error on NO internet)*/}
+            <Detector render={({ online }) => (
+                <IsError theme={theme}>{online ? "" : "You are offline... Please check your connection !"}
+                  <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading || !online? true : false}>Save</Save>
+                </IsError> )} />
       </Form>  
     </Container>
   )

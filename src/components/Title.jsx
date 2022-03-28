@@ -3,6 +3,9 @@ import { useSelector } from 'react-redux'
 // for styling
 import styled from 'styled-components'
 import { selectTheme } from '../Redux/selectors'
+import colors from '../styles/colors'
+// import plugin for detecting network connection
+import { Detector} from "react-detect-offline"
 // import user logo
 import user from '../assets/icons/user-circle-solid.svg'
 
@@ -25,6 +28,13 @@ import user from '../assets/icons/user-circle-solid.svg'
   }
 `;
 
+const IsError = styled.p`
+  color: ${({ theme }) => (theme === 'light' ? `${colors.warning}` : `${colors.chromeBlue}`)};
+  font-weight: bold;
+  text-align: center;
+  margin-top: -5px;
+`;
+
 /**
  * Renders a Title on a page
  * @function Title
@@ -39,6 +49,8 @@ import user from '../assets/icons/user-circle-solid.svg'
     <Wrapper theme={theme}>
       <img src={user} alt=""/>
       <h2>{heading}</h2>
+      <Detector render={({ online }) => (
+        <IsError theme={theme}>Status : {online ? "Online" : "You are offline... Please check your connection !"} </IsError> )} />
     </Wrapper> 
   )
 }
