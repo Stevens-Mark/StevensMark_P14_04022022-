@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react'
+import { screen, waitFor, cleanup } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/helpersForTesting/render'
@@ -127,6 +127,7 @@ return {
 // tests 
 
 describe('CreateEmployees', () => {
+  afterEach(() => { cleanup() })
 
   it('Should render without crashing', async () => {
     render(<CreateEmployee />)

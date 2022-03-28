@@ -1,4 +1,4 @@
-import { screen, waitFor, fireEvent } from '@testing-library/react'
+import { screen, waitFor, fireEvent, cleanup } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/helpersForTesting/render'
@@ -32,7 +32,8 @@ const setupForGlobalSearch = () => {    // set up used to check global search
 // tests (the mockData in MOCK_DATA_FOR_TESTING.json & tableHeader.js are need for the tests, if removed/altered the tests will/may fail)
 
 describe('EmployeesTable', () => {
-
+  afterEach(() => { cleanup() })
+  
   it('should render the headings/table footer correctly and 10 rows as default', async () => {
     render(<EmployeesTable employees={mockEmployees} />)
     const row = screen.getAllByRole('row')
