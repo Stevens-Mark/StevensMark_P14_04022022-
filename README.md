@@ -71,6 +71,7 @@ Here is the list of currently used jQuery plugins that need to be converted:
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
 - [Axios](https://axios-http.com/docs/intro) Version 0.26.1
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
+- [React-detect-offline](https://www.npmjs.com/package/react-detect-offline) Version 2.4.5
 - [Styled-components](https://styled-components.com/) Version 5.3.3
 - [Testing-library/user-event](https://testing-library.com/docs/ecosystem-user-event/) Version 13.5.0
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
@@ -181,6 +182,7 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
 - [Axios](https://axios-http.com/docs/intro) Version 0.26.1
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
+- [React-detect-offline](https://www.npmjs.com/package/react-detect-offline) Version 2.4.5
 - [Styled-components](https://styled-components.com/) Version 5.3.3
 - [Testing-library/user-event](https://testing-library.com/docs/ecosystem-user-event/) Version 13.5.0
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
