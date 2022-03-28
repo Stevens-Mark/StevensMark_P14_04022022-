@@ -22,6 +22,7 @@ describe('full APP rendering/navigating', () => {
       })
     })
 
+    // this test does not always pass for some reason (even when code not changed??)
     it('should navigate to the current employees page', async () => {
       renderWithRouter(<App />)
       expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()

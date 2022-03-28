@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
-import { useSelector,
-  //  useStore 
-  } from 'react-redux'
+import { useSelector } from 'react-redux'
 // for styling
 import styled from 'styled-components'
 import colors from '../styles/colors'
@@ -10,8 +8,6 @@ import { selectEmployees, selectTheme } from '../Redux/selectors'
 // import components
 import Title from '../components/Title'
 import EmployeesTable from '../components/Table/EmployeesTable'
-// import for function to fetch data
-// import { fetchEmployees } from '../Redux/employeesSlice'
 import LoadingIcon from '../utils/loader/loadingIcon'
 
 /**
@@ -38,12 +34,6 @@ const IsError = styled.p`
  * @returns {JSX}
  */
 const CurrentEmployees = () => {
-
-  // import employee data from db
-  // const store = useStore()
-  // useEffect(() => {
-  //   fetchEmployees(store)
-  // }, [store])
   
   useEffect(() => {
     document.title = 'HRNet | Current Employees'
