@@ -10,7 +10,7 @@
 
 - I have written THREE version:
 - i using localstorage - branch main
-- ii using Firebase - branch fire
+- ii using Firebase - branch firebase
 - iii using MongoDB - branch db
 
 ## Switch a jQuery library to React
@@ -114,7 +114,7 @@ The converted plugin can be found here:
 
 - J'ai écrit TROIS versions :
 - i utilisant localstorage - branche main
-- ii utilisant Firebase - branche fire
+- ii utilisant Firebase - branche firebase
 - iii utilisant MongoDB - branche db
 
 
