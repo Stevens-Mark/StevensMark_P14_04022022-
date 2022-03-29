@@ -23,7 +23,7 @@
 
 - MAKE A COLLECTION CALLED "employees" WITH FIELDS: firstName, lastName, dateOfBith, startDate, street, city, zipCode, state, department. 
 
-- Also be aware that mockdata will automatically be added to the store (for demo) unless you remove the code at lines 23-25 in the file "employeesSlice.js
+- Also be aware that mockdata will automatically be added to the store (for demo) unless you remove the code at line 23 in the file "employeesSlice.js
 
 -   if (datas.length <2) {datas = mockData.forEach(element => {
       addAnEmployee(store, element)
@@ -140,7 +140,7 @@ The converted plugin can be found here:
 
 - FAITES UNE COLLECTION APPELÉE "employees" AVEC DES CHAMPS : firstName, lastName, dateOfBith, startDate, street, city, zipCode, state, department. 
 
-- Sachez également que les mockdata seront automatiquement ajoutées au magasin (pour la démo) à moins que vous ne supprimiez le code aux lignes 23-25 dans le fichier "employeesSlice.js".
+- Sachez également que les mockdata seront automatiquement ajoutées au magasin (pour la démo) à moins que vous ne supprimiez le code au ligne 23 dans le fichier "employeesSlice.js".
 
 - if (datas.length <2) {datas = mockData.forEach(element => {
       addAnEmployee(store, element)
