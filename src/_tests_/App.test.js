@@ -22,6 +22,7 @@ describe('full APP rendering/navigating', () => {
       })
     })
 
+    //  THIS TEST FAILING, BUT PASSES ON OTHER 2 BRANCHES (MAIN & DB): CANNOT FIND SOLUTION??
     // it('should navigate to the current employees page', async () => {
     //   renderWithRouter(<App />)
     //   expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()

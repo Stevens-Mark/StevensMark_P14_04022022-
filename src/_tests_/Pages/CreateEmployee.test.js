@@ -62,6 +62,8 @@ import CreateEmployee from '../../pages/CreateEmployee'
 //     }
 // }
 
+//  THIS TEST FAILING, BUT PASSES ON OTHER 2 BRANCHES (MAIN & DB): CANNOT FIND SOLUTION??
+
 // // AND ASSOCIATED TEST WITH ABOVE SETUP
 // it('should open the modal when user input (new employee record) is validated', async () => {
 //   setup()
