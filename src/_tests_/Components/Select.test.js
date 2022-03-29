@@ -126,7 +126,7 @@ describe('Select', () => {
     )
     await waitFor(() => {
       expect(screen.getByRole('listbox').value).toBe('AZ')
-          // expect(screen.getByRole('option', {name: 'Arizona'}).selected).toBe(true)
+      // expect(screen.getByRole('option', {name: 'Arizona'}).selected).toBe(true)
     })
   })
 })

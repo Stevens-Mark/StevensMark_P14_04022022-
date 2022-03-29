@@ -22,7 +22,7 @@ describe('full APP rendering/navigating', () => {
       })
     })
 
-    //  THIS TEST FAILING, BUT PASSES ON OTHER 2 BRANCHES (MAIN & DB): CANNOT FIND SOLUTION??
+    //  THIS TEST FAILING, BUT PASSES ON OTHER 2 BRANCHES (MAIN & DB): CANNOT FIND SOLUTION ??
     // it('should navigate to the current employees page', async () => {
     //   renderWithRouter(<App />)
     //   expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
@@ -39,11 +39,8 @@ describe('full APP rendering/navigating', () => {
         expect(screen.getByText(/Oops, the page you requested does not exist./i)).toBeInTheDocument()
       })
     })
-
-
-
   
 })
 
-// A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles 
-//to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+// Receiving the message below when above 'bad route' test included: (no error message when test suites run individually): CANNOT PINPOINT PROBLEM ?
+// A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.

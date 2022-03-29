@@ -14,8 +14,8 @@ import { addDoc, collection, getDocs } from 'firebase/firestore'
  export async function fetchEmployees(store) {
   store.dispatch(requesting()) 
   try {
-    const collectionRef = collection(db, 'TEST')
-    // const collectionRef = collection(db, 'employees')
+    const collectionRef = collection(db, 'TEST')           // firestore for testing 
+    // const collectionRef = collection(db, 'employees')  // REAL firestore
     const snapshot = await getDocs(collectionRef)
     let datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
     // add mockdata if only 'setup' record in firebase. FOR DEMO ONLY: REMOVE FOR PRODUCTION
@@ -37,8 +37,8 @@ import { addDoc, collection, getDocs } from 'firebase/firestore'
  export async function addAnEmployee(store, input) {
   store.dispatch(addRequesting())
   try {
-    const collectionRef = collection(db, 'TEST')
-    // const collectionRef = collection(db, 'employees')
+    const collectionRef = collection(db, 'TEST')             // firestore for testing 
+    // const collectionRef = collection(db, 'employees')    // REAL firestore
     await addDoc(collectionRef, input)
     // const snapshot = await getDocs(collectionRef)
     // const datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
