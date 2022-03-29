@@ -90,6 +90,7 @@ Here is the list of currently used jQuery plugins that need to be converted:
 - [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
 - [Redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) Version 1.7.2
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
+- [React-detect-offline](https://www.npmjs.com/package/react-detect-offline) Version 2.4.5
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
 - [Styled-components](https://styled-components.com/) Version 5.3.3
 - [Testing-library/user-event](https://testing-library.com/docs/ecosystem-user-event/) Version 13.5.0

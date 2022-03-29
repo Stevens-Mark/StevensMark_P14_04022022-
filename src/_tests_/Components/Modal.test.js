@@ -7,6 +7,7 @@ import { render } from '../../utils/helpersForTesting/render'
 import{ Modal } from 'react-custom-modal-by-msparkystevens'
 
 describe('Modal', () => {
+
   it('Should render without crashing & render a title', async () => {
     const closeModal = jest.fn()
     render(<Modal closeModal={closeModal} modalTheme={{}} heading="Success !"/>)

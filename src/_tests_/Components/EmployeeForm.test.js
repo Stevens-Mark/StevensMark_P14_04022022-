@@ -30,7 +30,6 @@ describe('EmployeeForm', () => {
     const {input} = setup(/First Name/i)
     userEvent.type(input, 'John')
     await waitFor(() => {
-      // expect(input).toHaveValue('John')
       expect(screen.getByDisplayValue('John')).toBeInTheDocument()
     })
   })

@@ -12,20 +12,18 @@ import { addDoc, collection, getDocs } from 'firebase/firestore'
  * @returns {object|string} employees information or error message to store
  */
  export async function fetchEmployees(store) {
-
-  store.dispatch(requesting())   // start the request
+  store.dispatch(requesting()) 
   try {
     const collectionRef = collection(db, 'TEST')
     // const collectionRef = collection(db, 'employees')
     const snapshot = await getDocs(collectionRef)
     let datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
-    // if (datas.length <2) {datas =  mockData.forEach(element => {   // add mockdata if only 'setup' record in firebase
-    //   addAnEmployee(store, element)                                // FOR DEMO: MUST REMOVE FOR PRODUCTION!!
-    // });}
-     store.dispatch(resolved(datas))      // request resolved: save employees to store
+    // add mockdata if only 'setup' record in firebase. FOR DEMO ONLY: REMOVE FOR PRODUCTION
+    // if (datas.length <2) {datas = mockData.forEach(element => { addAnEmployee(store, element)  });}  
+    store.dispatch(resolved(datas)) 
   } catch (error) {  
     console.log(error)
-    store.dispatch(rejected('Oops, something went wrong...')) // request rejected: error mesage
+    store.dispatch(rejected('Oops, something went wrong...')) 
   }
 }
 
@@ -37,18 +35,17 @@ import { addDoc, collection, getDocs } from 'firebase/firestore'
  * @returns {object|string} updated employees information or error message to store
  */
  export async function addAnEmployee(store, input) {
-
-  store.dispatch(addRequesting())   // start the request
+  store.dispatch(addRequesting())
   try {
     const collectionRef = collection(db, 'TEST')
     // const collectionRef = collection(db, 'employees')
     await addDoc(collectionRef, input)
     // const snapshot = await getDocs(collectionRef)
     // const datas = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id }))
-    store.dispatch(addResolved(input))      // request resolved: save employee to store
+    store.dispatch(addResolved(input))
    } catch (error) {  
      console.log(error)
-    store.dispatch(addRejected('Oops, something went wrong...')) // request rejected: error mesage
+    store.dispatch(addRejected('Oops, something went wrong...'))
   }
 }
 

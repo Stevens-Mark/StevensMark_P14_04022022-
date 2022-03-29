@@ -1,10 +1,9 @@
-import { screen, waitFor, cleanup } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/helpersForTesting/render'
 // import component
 import CreateEmployee from '../../pages/CreateEmployee'
-
 
 
 // ONLY ADD THIS CODE WHEN USING TEST COLLECTION
@@ -66,6 +65,7 @@ import CreateEmployee from '../../pages/CreateEmployee'
 // // AND ASSOCIATED TEST WITH ABOVE SETUP
 // it('should open the modal when user input (new employee record) is validated', async () => {
 //   setup()
+
 //   await waitFor(() => {
 //     expect(screen.getByText(/Success !/i)).toBeTruthy()
 //   })
@@ -127,7 +127,6 @@ return {
 // tests 
 
 describe('CreateEmployees', () => {
-  afterEach(() => { cleanup() })
 
   it('Should render without crashing', async () => {
     render(<CreateEmployee />)

@@ -21,7 +21,7 @@ const renderLoader = () => <div>Loading, Please wait a moment...</div>
  */
 export default function App() {
 
-  // import employee data from db
+  // import employee data from Firebase
   const store = useStore()
   useEffect(() => {
     fetchEmployees(store)

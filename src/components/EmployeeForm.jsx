@@ -190,7 +190,6 @@ const EmployeeForm = ( props ) => {
     if (input.lastName.trim().length<2) {
       lastName = true
       }
- 
     if (input.street.trim().length<2) {
       street = true
       }
