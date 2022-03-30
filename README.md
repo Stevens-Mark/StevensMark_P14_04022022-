@@ -81,7 +81,7 @@ Here is the list of currently used jQuery plugins that need to be converted:
 
 ## Installing and running the project
 - Clone the repository onto your computer :
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022-`
+  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Inside this repository, install the packages/dependencies :
  `npm install`
@@ -190,7 +190,7 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ## Installer et exécuter le projet
 - Clonez le repo sur votre ordinateur :
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022-`
+  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Dans ce dépôt, installez les paquets/dépendances :
  `npm install`
