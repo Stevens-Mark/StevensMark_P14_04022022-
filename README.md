@@ -97,8 +97,8 @@ Here is the list of currently used jQuery plugins that need to be converted:
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
 
 ## Installing and running the project
-- Clone the repository onto your computer : branch "fire"
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022-`
+- Clone the repository onto your computer : branch "firebase"
+  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Inside this repository, install the packages/dependencies :
  `npm install`
@@ -218,16 +218,16 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
 
 ## Installer et exécuter le projet
-- Clonez le repo sur votre ordinateur :
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022-`
+- Clonez le repo sur votre ordinateur : branche firebase
+  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Dans ce dépôt, installez les paquets/dépendances :
  `npm install`
 
-- Run the Api:
+- Exécuter l'Api:
  `npm start`
 
-The App runs on http://localhost:3000/
+L'application fonctionne sur http://localhost:3000/
 
 
 ## Mon plugin (npm package)
