@@ -10,13 +10,13 @@ import { departments } from '../assets/data/departments'
 import { states } from '../assets/data/states'
 // import components
 import Select from './Select'
+import PickDate from './PickDate'
 // import functions, actions & constants
-import { capitalize, ConvertDate } from '../utils/functions/helpers'
+import addMonths from 'date-fns/addMonths'
+import subMonths from 'date-fns/subMonths'
+import { capitalize } from '../utils/functions/helpers'
 import { addEmployee } from '../Redux/employeesSlice'
-import { 
-    SetBirthDateLimit,
-    SetDateLimit
- } from '../utils/functions/helpers'
+import { ConvertDate, SetBirthDateLimit, } from '../utils/functions/helpers'
 
 /**
  * CSS for the component using styled.components
@@ -32,7 +32,6 @@ const Form = styled.form`
   border: 1px solid ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightGreen}`)};
   display: flex;
   flex-direction: column;
-  // font-family: Arial;
   padding: 1.2rem;
   width: 17rem;
   @media (min-width: 445px) {
@@ -47,7 +46,6 @@ const Form = styled.form`
     background: ${colors.zircon};
     border-radius: 0.2rem;
     border: 1px solid ${colors.secondary};
-    font-family: Arial;
     font-size: 1rem;
     margin: 0.5rem 0rem 1rem;
     padding: 0.375rem;
@@ -63,7 +61,6 @@ const FieldSet = styled.fieldset`
 const IsError = styled.p`
   color: ${({ theme }) => (theme === 'light' ? `${colors.warning}` : `${colors.chromeBlue}`)};
   font-weight: bold;
-  // text-align: center;
   margin-top: -10px;
 `;
 
@@ -97,14 +94,13 @@ const Save = styled.button`
 const EmployeeForm = ( props ) => {
 
   const { setModalIsOpen } = props
-
   
   // local states
   const initialState = {
     firstName: "",
     lastName: "",
-    dateOfBirth: "",
-    startDate: "",
+    dateOfBirth: null,
+    startDate: null,
     street: "",
     city: "",
     state: "",
@@ -120,14 +116,14 @@ const EmployeeForm = ( props ) => {
     zipCode: false
   }
 
-  const [error, setError] = useState(errorState)
+  const [error, setError] = useState(false)
   const [input, setInput] = useState(initialState)
-  const [displayDOB, setDisplayDOB] = useState("")      // holds original yyyy-mm-dd date (before formatting) 
-  const [displayStart, setDisplayStart] = useState("") // to display in date input fields
-  // retrieve Redux state
-  const theme = useSelector(selectTheme) 
-  const dispatch = useDispatch()
+  const [displayDOB, setDisplayDOB] = useState(null)
+  const [displayStart, setDisplayStart] = useState(null)
 
+  const theme = useSelector(selectTheme) // retrieve Redux state
+  const dispatch = useDispatch()
+   
   /**
  * Restricts what the user can enter in the TEXT input fields & saves to state
  * @function handleText
@@ -149,29 +145,33 @@ const EmployeeForm = ( props ) => {
   }
 
   /**
-  *Takes selected DOB from date picker, displays original format 
-  * in the input, sends for formatting dd/mm/yyyy & then puts in state
+  *Takes selected DOB from date picker, sends for formatting,
+  * then displays it in the input & puts in state
   * @function handleDOB
   */
   const handleDOB = ( selectedDate ) => {
     setDisplayDOB(selectedDate)
+    if (selectedDate === null) setInput({...input, dateOfBirth: "" })
+    else
     setInput({...input, dateOfBirth: ConvertDate(selectedDate)})
   }
 
   /**
-  *Takes selected DOB from date picker, displays original format 
-  * in the input, sends for formatting dd/mm/yyyy & then puts in state
-  * @function handleStartDate
-  */
+   * Takes selected Start date from date picker, sends for formatting,
+   * then displays it in the input & puts in state
+   * @function handleStartDate
+   */
   const handleStartDate = ( selectedDate ) => {
     setDisplayStart(selectedDate)
+    if (selectedDate === null) setInput({...input, startDate: "" })
+    else
     setInput({...input, startDate: ConvertDate(selectedDate) })
   }
 
   /**
    * Simple validation check
    * But there is some user input control using attributes maxLength, required
-   * and the handleText, SetBirthDateLimit & SetBirthDateLimit functions
+   * and the handleText & SetBirthDateLimit functions
    * @function ValidateForm
    * @returns {boolean}
    */
@@ -213,7 +213,7 @@ const EmployeeForm = ( props ) => {
   /**
    * @function handleSubmit
    */
-  const handleSubmit = (event) => {
+   const handleSubmit = (event) => {
     event.preventDefault()
     
     if (validateForm())
@@ -230,7 +230,6 @@ const EmployeeForm = ( props ) => {
         return
         } 
   }
-
   return (
     <Container>
       <Form data-testid="form" theme={theme} onSubmit={handleSubmit}>  
@@ -240,8 +239,8 @@ const EmployeeForm = ( props ) => {
             value={input.firstName}
             required={true}
             maxLength={30}
-            onChange={(e) => handleText(e)}/>
-            {error.firstName && <IsError theme={theme}>⚠️ First Name: 2 letters min.</IsError>}    
+            onChange={(e) => handleText(e)}/> 
+            {error.firstName && <IsError theme={theme}>⚠️ First Name: 2 letters min.</IsError>}        
 
         <label htmlFor="lastName">Last Name</label>
           <input type="text"
@@ -249,26 +248,24 @@ const EmployeeForm = ( props ) => {
             value={input.lastName}
             required={true}
             maxLength={30}
-            onChange={(e) => handleText(e)}/>   
+            onChange={(e) => handleText(e)}/>
             {error.lastName && <IsError theme={theme}>⚠️ Last Name: 2 letters min.</IsError>}       
 
-        <label htmlFor="dateOfBirth">Date Of Birth</label>
-          <input type="date"
-            id="dateOfBirth" 
-            value={displayDOB}
-            required={true}
-            max={SetBirthDateLimit(18)}   // age limit between 18-70 years
-            min={SetBirthDateLimit(70)}
-            onChange={(e) => handleDOB(e.target.value)}/>   
- 
-        <label htmlFor="startDate">Start Date</label>
-          <input type="date"
-            id="startDate" 
-            value={displayStart}
-            required={true}
-            min={SetDateLimit(-30)}   // 30 days BEFORE so minus number
-            max={SetDateLimit(120)}   // 120 days AFTER so positive number
-            onChange={(e) => handleStartDate(e.target.value)}/> 
+        <PickDate 
+          id='Date Of Birth' 
+          selected={displayDOB} 
+          onChange={(date) => handleDOB(date)}
+          maxDate={new Date(SetBirthDateLimit(18))} // min age 18
+          minDate={new Date(SetBirthDateLimit(70))} // max age 70
+          />
+
+        <PickDate 
+          id='Start Date'
+          selected={displayStart} 
+          onChange={(date) =>handleStartDate(date)}
+          maxDate={addMonths(new Date(), 3)}    // 120 days AFTER so positive number
+          minDate={subMonths(new Date(), 1)}    // 30 days BEFORE so minus number
+          />
 
         <FieldSet>
           <legend>Address</legend>
@@ -278,7 +275,7 @@ const EmployeeForm = ( props ) => {
             value={input.street}
             required={true}
             maxLength={60}
-            onChange={(e) => handleText(e)}/> 
+            onChange={(e) => handleText(e)}/>
             {error.street && <IsError theme={theme}>⚠️ Please check address</IsError>} 
 
           <label htmlFor="city">City</label>
@@ -287,8 +284,8 @@ const EmployeeForm = ( props ) => {
             value={input.city}
             required={true}
             maxLength={30}
-            onChange={(e) => handleText(e)}/> 
-            {error.city && <IsError theme={theme}>⚠️ Please check city name</IsError>}
+            onChange={(e) => handleText(e)}/>
+            {error.city && <IsError theme={theme}>⚠️ Please check city name</IsError>} 
 
           <Select 
             id={"state"}
@@ -303,15 +300,15 @@ const EmployeeForm = ( props ) => {
             min={0}
             required={true}
             onChange={(e) => setInput({...input, zipCode: e.target.value})}/>
-            {error.zipCode && <IsError theme={theme}>⚠️ Should be 5 digits</IsError>} 
+            {error.zipCode && <IsError theme={theme}>⚠️ Should be 5 digits</IsError>}  
         </FieldSet>
         
           <Select
             id={"department"}
             listItems={departments}
             onChange={(e) => setInput({...input, department: e.target.value})} /> 
-
-        <Save data-testid="submitButton" theme={theme} type="submit">Save</Save>
+            
+        <Save data-testid="submitButton" theme={theme} type="submit" >Save</Save>
       </Form>  
     </Container>
   )

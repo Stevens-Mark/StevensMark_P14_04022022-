@@ -8,7 +8,8 @@ import Error from '../../pages/Error'
 
 
 describe('Error page', () => {
-  it('Should render without crashing', () => {
+  
+  it('Should render without crashing', async () => {
     render(<Error />)
   })
 

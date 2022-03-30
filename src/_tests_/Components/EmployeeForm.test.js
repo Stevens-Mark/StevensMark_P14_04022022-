@@ -5,7 +5,6 @@ import userEvent from '@testing-library/user-event'
 import { render } from '../../utils/helpersForTesting/render'
 // import component
 import EmployeeForm from '../../components/EmployeeForm'
-// import Select from '../../components/Select'
 
 // references used for tests: 
 // https://testing-library.com/docs/example-input-event/
@@ -30,7 +29,7 @@ describe('EmployeeForm', () => {
     const {input} = setup(/First Name/i)
     userEvent.type(input, 'John')
     expect(input).toHaveValue('John')
-    expect(screen.getByDisplayValue('John')).toBeInTheDocument()
+    expect(screen.getByDisplayValue('John')).toBeInTheDocument();
   })
 
   it('should allow user to enter a last name', async () => {
@@ -39,17 +38,9 @@ describe('EmployeeForm', () => {
     expect(input).toHaveValue('Doe')
   })
 
-  it('should allow user to enter a date of birth', async () => {
-    const {input} = setup(/Date Of Birth/i)
-    userEvent.type(input, '1969-12-17')
-    expect(input).toHaveValue('1969-12-17')
-  })
+  // date of birth: date picker input: full functionality already checked in pickDate component
 
-  it('should allow user to enter a start date', async () => {
-    const {input} = setup(/Start Date/i)
-    userEvent.type(input, '2022-02-28')
-    expect(input).toHaveValue('2022-02-28')
-  })
+  // start date: date picker input: full functionality already checked in pickDate component
 
   it('should allow user to enter a street', async () => {
     const {input} = setup(/Street/i)
@@ -63,7 +54,7 @@ describe('EmployeeForm', () => {
     expect(input).toHaveValue('Fake City')
   })
 
-  // state input: full functionality already checked in select component
+  // state select input: full functionality already checked in select component
  
   it('should allow user to enter a zip code', async () => {
     const {input} = setup(/Zip Code/i)
@@ -71,6 +62,6 @@ describe('EmployeeForm', () => {
     expect(input.value).toBe('12345')
   })
 
-  // department input: full select functionality already checked in select component
+  // department select input: full select functionality already checked in select component
 
 })

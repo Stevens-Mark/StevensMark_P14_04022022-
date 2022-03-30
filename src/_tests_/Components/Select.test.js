@@ -35,58 +35,43 @@ const listItems = [
   }
 ]
 
+const renderSelect = () => {
+  render(
+    <Select
+    id={"department"}
+    listItems={listItems}
+    onChange={onChange} /> 
+  )
+}
+
 // tests
 
 describe('Select', () => {
+  
   it('Should render a select dropdown', async () => {
-    render(
-      <Select
-      id={"department"}
-      listItems={listItems}
-      onChange={onChange} /> 
-    )
+    renderSelect()
   })
 
   it('should correctly set default option', async () => {
-    render(
-      <Select
-      id={"department"}
-      listItems={listItems}
-      onChange={onChange} /> 
-      )
+    renderSelect()
     expect(screen.getByRole('option', {name: 'Select a department'}).selected).toBe(true)
   })
 
   it('should display the correct number of options', async () => {
-    render(
-      <Select
-      id={"department"}
-      listItems={listItems}
-      onChange={onChange} />
-      )
+    renderSelect()
     expect(screen.getAllByRole('option').length).toBe(listItems.length+1)  //add 1 for the default option
   })
 
   it('should display the options in alphabetic order (but with the default in first position)', async () => {
-    render(
-      <Select
-      id={"department"}
-      listItems={listItems}
-      onChange={onChange} />
-      )                         // slice() to remove the default "Select a ..." in order to check sort correctly
-      const renderedNames = screen.getAllByRole('option').slice(1)  
-      renderedNames.forEach((nameNode, index) => {
-        expect(nameNode.textContent).toBe(correctOptionsOrder[index])
-      })
+    renderSelect()                       
+    const renderedNames = screen.getAllByRole('option').slice(1)    // slice() to remove the default "Select a ..." 
+    renderedNames.forEach((nameNode, index) => {                    // in order to check sort correctly
+      expect(nameNode.textContent).toBe(correctOptionsOrder[index])
+    })
   })
 
   it('should allow user to change the option', async () => {
-    render(
-      <Select
-      id={"department"}
-      listItems={listItems}
-      onChange={onChange} />)
-
+    renderSelect()
     userEvent.selectOptions(
       screen.getByLabelText(/Department/i),                  // Find the select element, like a real user would.
       screen.getByRole('option', {name: 'Engineering'}),    // Find and select the Engineering option, like a real user would.

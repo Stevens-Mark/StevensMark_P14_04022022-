@@ -1,17 +1,11 @@
 ![WealthHealth](/src/assets/logos/WealthHealth.webp)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2c239b13-33af-467e-a295-18351c7bc670/deploy-status)](https://app.netlify.com/sites/wealthhealth/deploys)
 
 # OPENCLASSROOMS PROJECT 14 *(English)*
 
-# Wealth Health
+# Wealth Health (US version mm/dd/yyyy)
 
-- open the site at: [Wealth-Health](https://wealthhealth.netlify.app/)
-
-- I have written THREE version:
-- i using localstorage - branch main
-- ii using Firebase - branch firebase
-- iii using MongoDB - branch db
+This version uses the US date format of mm/dd/yyyy (instead of dd/mm/yyyy) and includes a custom "date picker" instead of the native "date picker" of React.
 
 ## Switch a jQuery library to React
 
@@ -68,10 +62,11 @@ Here is the list of currently used jQuery plugins that need to be converted:
 
 ## Dependencies
 - [React](https://reactjs.org/) Version 17.0.2
-- [React-router-dom](https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
+- [React-router-dom] https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
 - [React-scripts](https://www.npmjs.com/package/react-scripts) Version 5.0.0
 - [React-table](https://react-table.tanstack.com/) Version 7.7.0
-- [Redux](https://www.npmjs.com/package/redux) Version 4.1.2
+- [React-DatePicker](https://www.npmjs.com/package/react-datepicker) Version 4.7.0
+- [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
 - [Redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) Version 1.7.2
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
@@ -80,7 +75,7 @@ Here is the list of currently used jQuery plugins that need to be converted:
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
 
 ## Installing and running the project
-- Clone the repository onto your computer :
+- Clone the repository onto your computer : branch usversion
   `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Inside this repository, install the packages/dependencies :
@@ -97,6 +92,7 @@ The App runs on http://localhost:3000/
 The converted plugin can be found here:
 [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens)
 
+
 **Plugin Demo**
 [Demo](https://reactcustommodal.netlify.app/)
 
@@ -107,16 +103,9 @@ The converted plugin can be found here:
 
 # OPENCLASSROOMS PROJECT 14 *(Français)*
 
-# Wealth Health
+# Wealth Health (version US mm/dd/yyyy)
 
-
-- ouvrir le site à : [Wealth-Health](https://wealthhealth.netlify.app/)
-
-- J'ai écrit TROIS versions :
-- i utilisant localstorage - branche main
-- ii utilisant Firebase - branche firebase
-- iii utilisant MongoDB - branche db
-
+Cette version utilise le format de date américain mm/dd/yyyy (au lieu de dd/mm/yyyy) et inclut un "date picker" personnalisé au lieu du "date picker" natif de React.
 
 ## Faites passer une librairie jQuery vers React
 
@@ -177,10 +166,10 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ## Dépendances
 - [React](https://reactjs.org/) Version 17.0.2
-- [React-router-dom](https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
+- [React-router-dom] https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
 - [React-scripts](https://www.npmjs.com/package/react-scripts) Version 5.0.0
 - [React-table](https://react-table.tanstack.com/) Version 7.7.0
-- [Redux](https://www.npmjs.com/package/redux) Version 4.1.2
+- [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
 - [Redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) Version 1.7.2
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
@@ -189,7 +178,7 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 - [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens) Version 0.1.1
 
 ## Installer et exécuter le projet
-- Clonez le repo sur votre ordinateur :
+- Clonez le repo sur votre ordinateur : branche usversion
   `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Dans ce dépôt, installez les paquets/dépendances :
@@ -205,6 +194,7 @@ The App runs on http://localhost:3000/
 
 Le plugin converti peut être trouvé ici :
 [react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens)
+
 
 **Plugin Demo**
 [Demo](https://reactcustommodal.netlify.app/)

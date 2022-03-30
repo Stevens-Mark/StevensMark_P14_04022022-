@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import PropTypes from 'prop-types'
 
 /**
@@ -11,7 +12,6 @@ import PropTypes from 'prop-types'
   return (
     <span>
       <label htmlFor='pageSize' className='sr-only'>Page Size</label>
-      {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
       <select role="listbox"
         name='pageSize'
         id='pageSize'

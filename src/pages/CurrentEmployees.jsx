@@ -26,7 +26,7 @@ const CurrentEmployees = () => {
   return (
       <main>     
         <Title heading="Current Employees" />
-        <EmployeesTable employees={employees}/>
+        <EmployeesTable employees={employees} />
       </main>
   )
 }

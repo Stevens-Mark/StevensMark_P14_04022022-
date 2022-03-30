@@ -1,5 +1,4 @@
 // colors used on the website
-// colors used on the website
 
 const colors = {
   primary: '#669900',
@@ -28,6 +27,5 @@ const colors = {
 }
 
 export default colors
-
 
 

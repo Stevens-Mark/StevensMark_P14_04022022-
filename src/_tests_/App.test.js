@@ -28,6 +28,7 @@ describe('full APP rendering/navigating', () => {
       await waitFor(() => {
         expect(screen.getByText(/Current Employees/i)).toBeInTheDocument()
       })
+      
     })
 
     it('should show an error page for a bad route', async () => {
@@ -36,5 +37,5 @@ describe('full APP rendering/navigating', () => {
         expect(screen.getByText(/Oops, the page you requested does not exist./i)).toBeInTheDocument()
       })
     })
-  
+
 })

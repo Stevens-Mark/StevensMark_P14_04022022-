@@ -50,8 +50,6 @@ const ButtonImg = styled.img`
  * @function GoToTop
  * @returns {JSX} back to top button
  */
-  // not need to cover this function by tests
-  /* istanbul ignore next */
 const GoToTop = () => {
 
   const theme = useSelector(selectTheme) // retrieve Redux state
@@ -67,9 +65,7 @@ const GoToTop = () => {
     })
     return () => setShowButton(false)
   }, [])
-
-    // not need to cover this function by tests
-   /* istanbul ignore next */
+    
   const scrollToTop = () => {   // This function will scroll the window to the top 
     window.scrollTo({
       top: 0,

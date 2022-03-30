@@ -11,7 +11,7 @@ import Pagination from './Pagination'
 import SearchResult from './SearchResult'
 // import header data needed for table 
 // (includes function for sorting dates in format dd/mm/yyy)
-import { headerList } from '../../assets/data/tableHeader'
+import { headerList } from '../../assets/data/tableHeader'    
 // styling
 import styled from 'styled-components'
 import colors from '../../styles/colors'
@@ -40,7 +40,7 @@ const Table = styled.table`
   margin: 0.625rem;
   padding: 0.625rem;
 
-  @media (max-width: 1199px) {
+  @media (max-width: 1164px) {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
@@ -105,7 +105,7 @@ const Controls = styled.span`
 const EmployeesTable = ( { employees } ) => {
 
   const theme = useSelector(selectTheme) 
-
+                
   const columns = useMemo(() => headerList, [] )
   const data = useMemo(() => employees, [employees] )
 
@@ -179,8 +179,8 @@ const EmployeesTable = ( { employees } ) => {
           )
         })}
         </tbody>
-      </Table>{/* Display message "no records", number of pages or search results at footer of table */}
-      <Controls>
+      </Table>
+      <Controls>{/* Display message "no records", number of pages or search results at footer of table */}
         {rows.length<1 && !globalFilter?
           <span>
             <strong>There are No records available...</strong>
@@ -219,7 +219,6 @@ const EmployeesTable = ( { employees } ) => {
     </Container>
   )
 }
-
 export default EmployeesTable
 
 // Prototypes

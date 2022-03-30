@@ -41,7 +41,6 @@ const MainNav = styled.nav`
 const LogoWrapper = styled.span`
   align-items: center;
   display: flex;
-
   img {
     width: 65px;
     height: 59px;
@@ -50,7 +49,6 @@ const LogoWrapper = styled.span`
       height: 93px;
     }
   }
-  
   div {
     margin-right: 1rem;
   }
@@ -82,9 +80,7 @@ const Header = () => {
   // local states
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-  
-  // not need to cover this by tests
-   /* istanbul ignore next */
+
    useEffect(() => {
     const handleScroll = () => {
     const currentScrollPos = window.pageYOffset        // find current scroll position

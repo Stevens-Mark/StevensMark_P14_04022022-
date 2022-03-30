@@ -1,11 +1,14 @@
-
-/*Formats a date correctly from yyyy-mm-dd to dd/mm/yyyy
+/**
+/*Formats a date correctly, example:
+* from Fri Jun 03 2022 02:00:00 GMT+0200 (Central European Summer Time) to 03/06/2022 (instead of 3/6/2022)
 * @function convertDate
 * @returns {string} formatted date
 */
-export const ConvertDate = ( input ) => {
-  const [year, month, day] =  input.split('-')
-  return `${day}/${month}/${year}`
+export const ConvertDate = (str) => {
+  const date = new Date(str),
+    mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+    day = ("0" + date.getDate()).slice(-2)
+  return [mnth, day, date.getFullYear()].join("/")
   }
 
 /**
@@ -20,28 +23,22 @@ export const SetBirthDateLimit = ( age ) => {
   }
 
 /**
-* Returns the date 'x' days before/after today's date
-* @function SetDateLimit (currently set between 30 days in the past & 120 days in the future)
-* @returns date limit: format 2022-02-01
-* */
-export const SetDateLimit = ( days ) => {
-  const priorDate = new Date(new Date().setDate(new Date().getDate() + days))
-  const date = priorDate.getDate()
-  const month = priorDate.getMonth() + 1
-  const year = priorDate.getFullYear()
-  return `${year}-${month<10?`0${month}`:`${month}`}-${date<10?`0${date}`:`${date}`}`
-  }
-
-/**
  * Capitalizes the first letter of each word of a given string
  * @function capitalize
  * @param {string} unformatted string 
  * @returns {string} capitalised string 
  */
 export const capitalize = (string) => {
-  // return string && string[0].toUpperCase() + string.slice(1)
   return string.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -52,14 +49,14 @@ export const capitalize = (string) => {
 // export const dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
 
 /**
-/*Formats a date correctly, example:
-* from Fri Jun 03 2022 02:00:00 GMT+0200 (Central European Summer Time) to 03/06/2022 (instead of 3/6/2022)
-* @function convertDate
-* @returns {string} formatted date
-*/
-// export const ConvertDate = (str) => {
-//   const date = new Date(str),
-//     mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-//     day = ("0" + date.getDate()).slice(-2)
-//   return [mnth, day, date.getFullYear()].join("/")
+* Returns the date 'x' days before/after today's date
+* @function SetDateLimit (currently set between 30 days in the past & 120 days in the future)
+* @returns date limit: format 2022-02-01
+* */
+// export const SetDateLimit = ( days ) => {
+//   const priorDate = new Date(new Date().setDate(new Date().getDate() + days))
+//   const date = priorDate.getDate()
+//   const month = priorDate.getMonth() + 1
+//   const year = priorDate.getFullYear()
+//   return `${year}-${month<10?`0${month}`:`${month}`}-0${date}`
 //   }

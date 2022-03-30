@@ -20,7 +20,7 @@ return {
 }
 
 const setupForGlobalSearch = () => {    // set up used to check global search
-  const utils = render(<EmployeesTable employees={mockEmployees} />)
+  const utils = render(<EmployeesTable employees={mockEmployees}/>)
   const globalSearch = screen.getByLabelText(/Search/i)
   userEvent.type(globalSearch, 'test word')
   return {
@@ -34,7 +34,7 @@ const setupForGlobalSearch = () => {    // set up used to check global search
 describe('EmployeesTable', () => {
 
   it('should render the headings/table footer correctly and 10 rows as default', async () => {
-    render(<EmployeesTable employees={mockEmployees} />)
+    render(<EmployeesTable employees={mockEmployees}/>)
     const row = screen.getAllByRole('row')
     expect(screen.getAllByRole('row')[0]).toHaveTextContent(/First Name/i)
     expect(screen.getAllByRole('row')[0]).toHaveTextContent(/Last Name/i)
@@ -50,25 +50,25 @@ describe('EmployeesTable', () => {
   })
 
   it('should be able to sort columns alphabetically in ascending & descending order', async () => {
-    render(<EmployeesTable employees={mockEmployees}/>)
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Kerrill/i) // original order
+    render(<EmployeesTable employees={mockEmployees} />)
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Frederik/i) // original order
     userEvent.click(screen.getByText(/First Name/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Agace/i) // ascending
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Alasdair/i) // ascending
     userEvent.click(screen.getByText(/First Name/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Westley/i)  // descending
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/York/i)  // descending
     userEvent.click(screen.getByText(/First Name/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Kerrill/i) // original order
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent(/Frederik/i) // original order
   })
 
   it('should be able to sort column dates in ascending & descending order', async () => {
     render(<EmployeesTable employees={mockEmployees}/>)
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent("06/07/1986") // original order
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/21/1983") // original order
     userEvent.click(screen.getByText(/Date Of Birth/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/08/1953") // ascending
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("09/17/2003") // ascending
     userEvent.click(screen.getByText(/Date Of Birth/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent("20/12/2021")  // descending
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/14/1970")  // descending
     userEvent.click(screen.getByText(/Date Of Birth/i))
-    expect(screen.getAllByRole('row')[1]).toHaveTextContent("06/07/1986") // original order
+    expect(screen.getAllByRole('row')[1]).toHaveTextContent("03/21/1983") // original order
   })
 
   it('should render 25 rows if the user chooses "Show 25" (ie. pagination functions)', async () => {
@@ -114,7 +114,7 @@ describe('EmployeesTable', () => {
   }) 
 
   it('should navigate to last & first page', async () => {
-    render(<EmployeesTable employees={mockEmployees}/>)
+    render(<EmployeesTable employees={mockEmployees} />)
     expect(screen.getByTestId('showPage').textContent).toEqual('Showing Page 1 of 5 pages ')
 
     userEvent.click(screen.getByTestId('last'))

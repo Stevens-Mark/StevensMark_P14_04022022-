@@ -18,7 +18,7 @@ import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
   },
   reducers: { 
     addEmployee: (draft, action) => {
-      // draft.employees.push(action.payload)  
+      // draft.employees.push(action.payload)  // add new employee to redux store
 
       // allow data/store to persist in localStorage 
       const employeesList = JSON.parse(localStorage.getItem('employees')) || [] 
@@ -27,7 +27,7 @@ import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
       draft.employees = JSON.parse(localStorage.getItem('employees'))
     },
 
-    fetchEmployees: (draft) => { 
+    fetchEmployees: (draft) => {
       // draft.employees = mockData
 
       const employeesList = JSON.parse(localStorage.getItem('employees')) || []

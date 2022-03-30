@@ -13,26 +13,22 @@ export const headerList =
     {
       Header: 'Start Date',
       accessor: 'startDate',
-        sortType: (a, b) => {                 // func: sort dates (format dd/mm/yyyy) when called in react table   
-          a = a.values.startDate.split('/');
-          b = b.values.startDate.split('/');
-          return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
+        sortType: (a, b) => {
+          return new Date(b.values.startDate) - new Date(a.values.startDate)
         },
         Cell: row => <div style={{ textAlign: "left" }}>{row.value}</div>
-    },
+      },
     {
       Header: 'Department',
       accessor: 'department', 
     },
     {
-      Header: 'Date Of Birth',
-      accessor: 'dateOfBirth',
-        sortType: (a, b) => {
-          a = a.values.dateOfBirth.split('/');    // func: sort dates (format dd/mm/yyyy) when called in react table
-          b = b.values.dateOfBirth.split('/');
-          return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
-        },
-        Cell: row => <div style={{ textAlign: "left" }}>{row.value}</div>
+    Header: 'Date Of Birth',
+    accessor: 'dateOfBirth',
+      sortType: (a, b) => {
+        return new Date(b.values.dateOfBirth) - new Date(a.values.dateOfBirth)
+      },
+      Cell: row => <div style={{ textAlign: "left" }}>{row.value}</div>
     },
     {
       Header: 'Street',

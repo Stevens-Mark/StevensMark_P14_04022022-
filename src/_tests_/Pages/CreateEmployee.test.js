@@ -20,10 +20,10 @@ const lastName = screen.getByLabelText(/Last Name/i)
 userEvent.type(lastName, 'Doe')
 
 const dateOfBirth = screen.getByLabelText(/Date Of Birth/i)
-userEvent.type(dateOfBirth , '1969-12-17')    // date picker format yyyy-mm-dd
+userEvent.type(dateOfBirth , '10/06/1978')
 
 const startDate = screen.getByLabelText(/Start Date/i)
-userEvent.type(startDate, '2022-02-28')   // date picker format yyyy-mm-dd
+userEvent.type(startDate, '03/15/2022')
 
 const street = screen.getByLabelText(/Street/i)
 userEvent.type(street, '123 Fake Street')
@@ -71,10 +71,10 @@ const lastName = screen.getByLabelText(/Last Name/i)
 userEvent.type(lastName, 'D')
 
 const dateOfBirth = screen.getByLabelText(/Date Of Birth/i)
-userEvent.type(dateOfBirth , '1969-12-17')    // date picker format yyyy-mm-dd
+userEvent.type(dateOfBirth , '10/06/1978')
 
 const startDate = screen.getByLabelText(/Start Date/i)
-userEvent.type(startDate, '2022-02-28')   // date picker format yyyy-mm-dd
+userEvent.type(startDate, '03/15/2022')
 
 const street = screen.getByLabelText(/Street/i)
 userEvent.type(street, '1')
@@ -119,15 +119,8 @@ describe('CreateEmployees', () => {
 
   it('should open the modal when user input (new employee record) is validated', async () => {
     setup()
-    expect(screen.getByText(/Success !/i)).toBeTruthy()
-  })
-
-  it('should close the modal when user clicks on the close button', async () => {
-    setup()
-    const close = screen.getByRole('button', {name: 'Close'})
-    userEvent.click(close)
     await waitFor(() => {
-      expect(screen.queryByText(/Success !/i)).not.toBeInTheDocument()
+      expect(screen.getByText(/Success !/i)).toBeTruthy()
     })
   })
 
@@ -150,58 +143,27 @@ describe('CreateEmployees', () => {
       expect(screen.getByText("⚠️ Should be 5 digits")).toBeTruthy()
     })
   }, 10000)
-    
-  
-  // it('should display error if first name NOT valid', async () => {
+
+
+// below test passes but throws error: (test above correct implementatinon)
+// Warning: An update to Popper inside a test was not wrapped in act(...).   
+// When testing, code that causes React state updates should be wrapped into act(...):
+// act(() => {
+//  /* fire events that update state */
+// });
+//   /* assert on the output */
+
+  // it('should display a valid error message', async () => {
   //   badInput()
-  //   await waitFor(() => {
   //     expect(screen.getByText("⚠️ First Name: 2 letters min.")).toBeTruthy()
-  //   })
-  // })
-
-  // it('should display error if last name NOT valid', async () => {
-  //   badInput()
-  //   await waitFor(() => {
   //     expect(screen.getByText("⚠️ Last Name: 2 letters min.")).toBeTruthy()
-  //   })
-  // })
-
-  // it('should display error if address NOT valid', async () => {
-  //   badInput()
-  //   await waitFor(() => {
   //     expect(screen.getByText("⚠️ Please check address")).toBeTruthy()
-  //   })
-  // })
-
-  // it('should display error if city NOT valid', async () => {
-  //   badInput()
-  //   await waitFor(() => {
   //     expect(screen.getByText("⚠️ Please check city name")).toBeTruthy()
-  //   })
+  //     expect(screen.getByText("⚠️ Should be 5 digits")).toBeTruthy()
   // })
 
-  // it('should display error if zip code NOT valid', async () => {
-  //   badInput()
-  //   await waitFor(() => {
-  //     expect(screen.getByText("⚠️ Should be 5 digits")).toBeTruthy()
-  //   })
-  // })
-   
-  // below test passes but throws error: (test above correct implementatinon)
-  // Warning: An update to Popper inside a test was not wrapped in act(...).   
-  // When testing, code that causes React state updates should be wrapped into act(...):
-  // act(() => {
-  //  /* fire events that update state */
-  // });
-  //   /* assert on the output */
-  
-    // it('should display a valid error message', async () => {
-    //   badInput()
-    //     expect(screen.getByText("⚠️ First Name: 2 letters min.")).toBeTruthy()
-    //     expect(screen.getByText("⚠️ Last Name: 2 letters min.")).toBeTruthy()
-    //     expect(screen.getByText("⚠️ Please check address")).toBeTruthy()
-    //     expect(screen.getByText("⚠️ Please check city name")).toBeTruthy()
-    //     expect(screen.getByText("⚠️ Should be 5 digits")).toBeTruthy()
-    // })
 })
+
+
+
 

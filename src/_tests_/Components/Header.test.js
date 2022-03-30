@@ -5,6 +5,7 @@ import { render } from '../../utils/helpersForTesting/render'
 import Header from '../../components/Header'
 
 describe('Header', () => {
+  
   it('Should render without crashing', async () => {
     render(<Header />)
   })

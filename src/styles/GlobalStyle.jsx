@@ -11,7 +11,7 @@ import colors from './colors'
   background-color:${colors.tertiary};
   box-sizing: border-box;
   color: ${({ isDarkMode }) => (isDarkMode ? `${colors.lightGreen}` : `${colors.secondary}`)};
-  font-family: Arial, sans-serif; 
+  font-family: Arial, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
   margin: auto;
   max-width: 1920px;
 } 

@@ -6,6 +6,7 @@ import Footer from '../../components/Footer'
 
 
 describe('Footer', () => {
+  
   it('Should render without crashing', async () => {
     render(<Footer />)
   })

@@ -8,7 +8,7 @@ import Title from '../components/Title'
 import EmployeeForm from "../components/EmployeeForm"
 import logo from '../assets/logos/wealthLogo.webp'
 // import my custom npm package
-import { Modal } from "react-custom-modal-by-msparkystevens"
+import { Modal } from 'react-custom-modal-by-msparkystevens'
 
 /**
  * Renders the 'CreateEmployee' page
@@ -18,6 +18,7 @@ import { Modal } from "react-custom-modal-by-msparkystevens"
 const CreateEmployee = () => {
 
   const mode = useSelector(selectTheme)  // retrieve Redux state
+
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const  closeModal = () => { setModalIsOpen(false) }
 
@@ -37,7 +38,7 @@ const CreateEmployee = () => {
         message="New employee record created"
         logo={logo}
         animation={true}
-    />
+      />
       }
     </main>
   )
