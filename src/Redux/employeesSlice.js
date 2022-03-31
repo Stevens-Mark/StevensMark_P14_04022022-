@@ -41,6 +41,17 @@ export async function addAnEmployee(store, input) {
   }
 }
 
+export async function deleteAnEmployee(store, id) {
+  store.dispatch(deleteRequesting())  // start the update request
+  try {
+    const response = await axios.delete(`http://localhost:3000/api/v1/employees/${id}`)
+    const responseData = await response.data
+    store.dispatch(deleteResolved(responseData))  // resolved: delete employee from store
+  } catch (error) {
+    store.dispatch(deleteRejected('Oops, something went wrong... record not deleted !')) // rejected: error mesage
+  }
+}
+
 /**
  * Unify actions and reducers with Redux-Toolkit slices
  * instead of createAction & createReducer
@@ -83,8 +94,21 @@ export async function addAnEmployee(store, input) {
         draft.isLoading = false
         draft.isError = action.payload
     },
+    deleteRequesting: (draft) => {     // delete employee
+      draft.isLoading = true
+    },
+    deleteResolved: (draft, action) => {
+        draft.isLoading = false
+        draft.employees = draft.employees.filter((arrow) => arrow._id !== action.payload);
+        draft.isError = ''
+    },
+    deleteRejected: (draft, action) => {
+        draft.isLoading = false
+        draft.isError = action.payload
+    },
   },
 })
 
-export const { requesting, resolved, rejected, addRequesting, addResolved, addRejected } = employeesSlice.actions
+export const { requesting, resolved, rejected, addRequesting, addResolved, addRejected,
+deleteRejected, deleteResolved, deleteRequesting } = employeesSlice.actions
 export default employeesSlice.reducer  // export each action & reducer

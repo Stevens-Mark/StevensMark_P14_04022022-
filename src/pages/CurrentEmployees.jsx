@@ -50,7 +50,7 @@ const CurrentEmployees = () => {
                     </Wrapper> : 
         <React.Fragment>
           {isError ? <Wrapper>        {/* Display error message if there is a problem fetcthing the  data*/}
-                        <IsError theme={theme}>Something went wrong, Please try again later...<br/></IsError>
+                        <IsError theme={theme}>{isError}<br/></IsError>
                       </Wrapper> : 
             <React.Fragment>
               <Title heading="Current Employees" />   {/* Otherwise display employees information */}

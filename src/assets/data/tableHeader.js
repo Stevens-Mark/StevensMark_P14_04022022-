@@ -1,3 +1,6 @@
+// import function for onclick event
+import { handleClick } from "../../components/Table/EmployeesTable"
+
 // data for 'header' in the table
 
 export const headerList =
@@ -18,7 +21,7 @@ export const headerList =
           b = b.values.startDate.split('/');
           return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
         },
-        Cell: row => <div style={{ textAlign: "left" }}>{row.value}</div>
+        Cell: row => <div>{row.value}</div>
     },
     {
       Header: 'Department',
@@ -32,7 +35,7 @@ export const headerList =
           b = b.values.dateOfBirth.split('/');
           return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
         },
-        Cell: row => <div style={{ textAlign: "left" }}>{row.value}</div>
+        Cell: row => <div>{row.value}</div>
     },
     {
       Header: 'Street',
@@ -49,5 +52,10 @@ export const headerList =
     {
       Header: 'Zip Code',
       accessor: 'zipCode', 
+    },
+    {
+      Header: 'Action',
+      accessor: 'actions',
+      Cell: props => <div  style={{ textAlign: "center" }}><button onClick={() => handleClick(props)}>Details</button></div>,
     },
   ]

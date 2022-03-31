@@ -1,9 +1,11 @@
 
 import React, { useMemo } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 import PropTypes from 'prop-types'
 // import selector
 import { selectTheme } from '../../Redux/selectors'
+// import action
+import { deleteAnEmployee } from '../../Redux/employeesSlice'
 // imports for table
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table'
 import GlobalSearch from './GlobalSearch'
@@ -11,7 +13,7 @@ import Pagination from './Pagination'
 import SearchResult from './SearchResult'
 // import header data needed for table 
 // (includes function for sorting dates in format dd/mm/yyy)
-import { headerList } from '../../assets/data/tableHeader'
+// import { headerList } from '../../assets/data/tableHeader'
 // styling
 import styled from 'styled-components'
 import colors from '../../styles/colors'
@@ -96,6 +98,9 @@ const Controls = styled.span`
   }
 `;
 
+
+
+
 /**
  * Renders the 'EmployeesTable on current employees Page' 
  * @function EmployeesTable
@@ -105,8 +110,76 @@ const Controls = styled.span`
 const EmployeesTable = ( { employees } ) => {
 
   const theme = useSelector(selectTheme) 
-  const columns = useMemo(() => headerList, [] )
+  // const columns = useMemo(() => headerList, [] )
   const data = useMemo(() => employees, [ employees] )
+  const store = useStore()
+
+  const handleClick = (cell) => {
+    // console.log(cell?.row?.original._id);
+    deleteAnEmployee(store, cell?.row?.original._id);
+   }
+
+  const columns = useMemo(
+    () =>   [     
+    {
+    Header: 'First Name',
+    accessor: 'firstName', // accessor is the "key" in the data
+    },
+    {
+    Header: 'Last Name',
+    accessor: 'lastName',
+    },
+    {
+      Header: 'Start Date',
+      accessor: 'startDate',
+        sortType: (a, b) => {                 // func: sort dates (format dd/mm/yyyy) when called in react table   
+          a = a.values.startDate.split('/');
+          b = b.values.startDate.split('/');
+          return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
+        },
+        Cell: row => <div>{row.value}</div>
+    },
+    {
+      Header: 'Department',
+      accessor: 'department', 
+    },
+    {
+      Header: 'Date Of Birth',
+      accessor: 'dateOfBirth',
+        sortType: (a, b) => {
+          a = a.values.dateOfBirth.split('/');    // func: sort dates (format dd/mm/yyyy) when called in react table
+          b = b.values.dateOfBirth.split('/');
+          return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
+        },
+        Cell: row => <div>{row.value}</div>
+    },
+    {
+      Header: 'Street',
+      accessor: 'street', 
+    },
+    {
+      Header: 'City',
+      accessor: 'city', 
+    },
+    {
+      Header: 'State',
+      accessor: 'state', 
+    },
+    {
+      Header: 'Zip Code',
+      accessor: 'zipCode', 
+    },
+    {
+      Header: 'Action',
+      accessor: 'actions',
+      Cell: props => <div  style={{ textAlign: "center" }}><button onClick={() => handleClick(props)}>Details</button></div>,
+    },
+  ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  )
+
+
 
   const {
     getTableProps,
