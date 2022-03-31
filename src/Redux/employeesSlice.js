@@ -16,7 +16,7 @@ export async function fetchEmployees(store) {
 	try {
 		const response = await axios.get("http://localhost:3000/api/v1/employees");
     const datas = await response.data
-    store.dispatch(resolved(datas))
+    store.dispatch(resolved(datas)) // resolved: fetched all employees to store
 	}
 	catch (error) {
     store.dispatch(rejected('Oops, something went wrong... Please try again')) // rejected: error mesage
@@ -27,7 +27,8 @@ export async function fetchEmployees(store) {
  * API call
  * the function adds a new employee record to database
  * @function addAnEmployee
- * @param {object} store 
+ * @param {object} store
+ * @param {object} new employee record 
  * @returns {object|string} new employee information or error message to store
  */
 export async function addAnEmployee(store, input) {
@@ -37,10 +38,18 @@ export async function addAnEmployee(store, input) {
     const responseData = await response.data
     store.dispatch(addResolved(responseData))     // resolved: save new employee to store
   } catch (error) {
-    store.dispatch(addRejected('Oops, something went wrong... record not created !')) // rejected: error mesage
+    store.dispatch(addRejected('Oops, something went wrong... record not created !')) 
   }
 }
 
+/**
+ * API call
+ * the function deletes an employee record from database
+ * @function deleteAnEmployee
+ * @param {object} store
+ * @param {number} id: of selected employee record
+ * @returns {object|string} updated employee information or error message to store
+ */
 export async function deleteAnEmployee(store, id) {
   store.dispatch(deleteRequesting())  // start the update request
   try {
@@ -48,7 +57,7 @@ export async function deleteAnEmployee(store, id) {
     const responseData = await response.data
     store.dispatch(deleteResolved(responseData))  // resolved: delete employee from store
   } catch (error) {
-    store.dispatch(deleteRejected('Oops, something went wrong... record not deleted !')) // rejected: error mesage
+    store.dispatch(deleteRejected('Oops, something went wrong... record not deleted !')) 
   }
 }
 
@@ -69,7 +78,7 @@ export async function deleteAnEmployee(store, id) {
     isError: '',
   },
   reducers: { 
-    requesting: (draft) => {    // fetch data
+    requesting: (draft) => {    // fetch all employees data
       draft.isLoading = true
     },
     resolved: (draft, action) => {
@@ -99,7 +108,7 @@ export async function deleteAnEmployee(store, id) {
     },
     deleteResolved: (draft, action) => {
         draft.isLoading = false
-        draft.employees = draft.employees.filter((arrow) => arrow._id !== action.payload);
+        draft.employees = draft.employees.filter((employee) => employee._id !== action.payload);
         draft.isError = ''
     },
     deleteRejected: (draft, action) => {

@@ -98,9 +98,6 @@ const Controls = styled.span`
   }
 `;
 
-
-
-
 /**
  * Renders the 'EmployeesTable on current employees Page' 
  * @function EmployeesTable
@@ -114,10 +111,16 @@ const EmployeesTable = ( { employees } ) => {
   const data = useMemo(() => employees, [ employees] )
   const store = useStore()
 
+  /**
+ * Deletes the selected employee record 
+ * @function handleClick
+ * @param {object} cell: data of selected row
+ * @returns {dispatch} to remove the record
+ */
   const handleClick = (cell) => {
-    // console.log(cell?.row?.original._id);
-    deleteAnEmployee(store, cell?.row?.original._id);
+    deleteAnEmployee(store, cell?.row?.original._id)
    }
+
 
   const columns = useMemo(
     () =>   [     
@@ -132,7 +135,8 @@ const EmployeesTable = ( { employees } ) => {
     {
       Header: 'Start Date',
       accessor: 'startDate',
-        sortType: (a, b) => {                 // func: sort dates (format dd/mm/yyyy) when called in react table   
+      // func: sort dates (format dd/mm/yyyy) when called in react table   
+        sortType: (a, b) => { 
           a = a.values.startDate.split('/');
           b = b.values.startDate.split('/');
           return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
@@ -147,7 +151,7 @@ const EmployeesTable = ( { employees } ) => {
       Header: 'Date Of Birth',
       accessor: 'dateOfBirth',
         sortType: (a, b) => {
-          a = a.values.dateOfBirth.split('/');    // func: sort dates (format dd/mm/yyyy) when called in react table
+          a = a.values.dateOfBirth.split('/'); 
           b = b.values.dateOfBirth.split('/');
           return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
         },
@@ -172,14 +176,13 @@ const EmployeesTable = ( { employees } ) => {
     {
       Header: 'Action',
       accessor: 'actions',
-      Cell: props => <div  style={{ textAlign: "center" }}><button onClick={() => handleClick(props)}>Details</button></div>,
+      Cell: props => <div style={{ textAlign: "center" }}>
+            <button onClick={() => handleClick(props)}>Delete</button></div>,    
     },
   ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
-
-
 
   const {
     getTableProps,
