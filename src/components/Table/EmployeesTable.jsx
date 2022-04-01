@@ -17,6 +17,7 @@ import SearchResult from './SearchResult'
 // styling
 import styled from 'styled-components'
 import colors from '../../styles/colors'
+import { useHistory } from 'react-router-dom'
 
 /**
  * CSS for the component using styled.components
@@ -60,6 +61,9 @@ const Table = styled.table`
     }
    }
  
+  tr {
+    cursor: pointer;
+  }
   tr:nth-child(2n+1) {
     background: ${({ theme }) => (theme === 'light' ? `${colors.zircon}` : `${colors.lightestNavy}`)};
   }
@@ -110,6 +114,7 @@ const EmployeesTable = ( { employees } ) => {
   // const columns = useMemo(() => headerList, [] )
   const data = useMemo(() => employees, [ employees] )
   const store = useStore()
+  const history = useHistory()
 
   /**
  * Deletes the selected employee record 
@@ -121,6 +126,16 @@ const EmployeesTable = ( { employees } ) => {
     deleteAnEmployee(store, cell?.row?.original._id)
    }
 
+
+  const handleRowClick = (row) => {
+    history.push(`/employees/edit/${row.original._id}`)
+   }  
+
+  const handleRowKeypress = (event, row) => {
+    if(event.key === 'Enter'){
+      history.push(`/employees/edit/${row.original._id}`)
+    }
+  }
 
   const columns = useMemo(
     () =>   [     
@@ -173,15 +188,16 @@ const EmployeesTable = ( { employees } ) => {
       Header: 'Zip Code',
       accessor: 'zipCode', 
     },
-    {
-      Header: 'Action',
-      accessor: 'actions',
-      Cell: props => <div style={{ textAlign: "center" }}>
-            <button onClick={() => handleClick(props)}>Delete</button></div>,    
-    },
+    // {
+    //   Header: 'Action',
+    //   accessor: 'actions',
+    //   Cell: props => <div style={{ textAlign: "center" }}>
+    //         <button onClick={() => handleClick(props)}>Delete</button></div>,    
+    // },
   ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
+
   )
 
   const {
@@ -241,16 +257,18 @@ const EmployeesTable = ( { employees } ) => {
         {page.map((row, i) => {
           prepareRow(row)
           return (
-              <tr tabIndex="0" {...row.getRowProps() }>
-                {row.cells.map(cell => {
-                  return (
-                      <td
-                          {...cell.getCellProps()}>
-                        {cell.render('Cell')}
-                      </td>
-                  )
-                })}
-              </tr>
+            <tr tabIndex="0" onClick={()=> handleRowClick(row)} 
+                  onKeyPress={(e)=> handleRowKeypress(e, row)} 
+                {...row.getRowProps() }>
+                  {row.cells.map(cell => {
+                    return (
+                        <td
+                            {...cell.getCellProps()}>
+                          {cell.render('Cell')}
+                        </td>
+                    )
+                  })}
+            </tr>
           )
         })}
         </tbody>

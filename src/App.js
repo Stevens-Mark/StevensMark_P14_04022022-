@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 // use lazy loading to import components just when needed
 const CreateEmployee = lazy(() => import('./pages/CreateEmployee'))
 const CurrentEmployees = lazy(() => import('./pages/CurrentEmployees'))
+const EditDeleteEmployee = lazy(() => import('./pages/EditDeleteEmployee'))
 const Error = lazy(() => import('./pages/Error'))
 const GoToTop = lazy(() => import('./utils/GoToTop'))
 const renderLoader = () => <div>Loading, Please wait a moment...</div>
@@ -35,6 +36,7 @@ export default function App() {
           <Switch>
             <Route exact path="/" component={CreateEmployee}/>
             <Route exact path="/employees" component={CurrentEmployees}/>
+            <Route exact path="/employees/edit/:id" component={EditDeleteEmployee}/>
             <Route path='*' component={Error}/>
           </Switch> 
         <Footer />
