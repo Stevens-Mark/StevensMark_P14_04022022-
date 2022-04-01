@@ -128,7 +128,12 @@ const EmployeesTable = ( { employees } ) => {
   //   deleteAnEmployee(store, cell?.row?.original._id)
   //  }
 
-
+  /**
+ * Redirects to edit employee form when record chosen from
+ * @function handleRowClick/handleRowKeypress
+ * @param {object} row: chosen record data 
+ * @returns {JSX} edit employee form
+ */
   const handleRowClick = (row) => {
     history.push(`/employees/edit/${row.original._id}`)
    }  

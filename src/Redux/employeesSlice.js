@@ -47,7 +47,7 @@ export async function addAnEmployee(store, input) {
  * the function updates an employee record in database
  * @function editAnEmployee
  * @param {object} store
- * @param {object} id: updated employee record
+ * @param {object} input: updated employee record
  * @returns {object|string} updated employee information or error message to store
  */
  export async function editAnEmployee(store, input) {
@@ -132,11 +132,9 @@ export async function deleteAnEmployee(store, id) {
         draft.isLoading = false
         draft.isModifyError = ''
         draft.employees = draft.employees.map((item) => {
-          // editing one item
           if (item._id === action.payload._id) {
             return Object.assign({}, item, action.payload )
           }
-          // return all the ones we're not changing
           return item
         })
     },

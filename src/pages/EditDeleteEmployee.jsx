@@ -29,7 +29,7 @@ const EditDeleteEmployee = () => {
 
   return (
     <main>
-      <Title heading="Edit Employee" />
+      <Title heading="Modify Employee" />
       <EmployeeEditForm setModalIsOpen={setModalIsOpen}/>
       {modalIsOpen && !isLoading && !isModifyError &&
       <Modal 

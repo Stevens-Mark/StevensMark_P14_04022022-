@@ -123,8 +123,6 @@ const EmployeeEditForm = ( props ) => {
 
   const [error, setError] = useState(errorState)
   const [input, setInput] = useState(initialState)
-  // const [displayDOB, setDisplayDOB] = useState("")      // holds original yyyy-mm-dd date (before formatting) 
-  // const [displayStart, setDisplayStart] = useState("") // to display in date input fields
   
   /**
  * Restricts what the user can enter in the TEXT input fields & saves to state
@@ -147,22 +145,20 @@ const EmployeeEditForm = ( props ) => {
   }
 
   /**
-  *Takes selected DOB from date picker, displays original format 
-  * in the input, sends for formatting dd/mm/yyyy & then puts in state
+  *Takes selected DOB from date picker &
+  * sends for formatting dd/mm/yyyy & then puts in state
   * @function handleDOB
   */
   const handleDOB = ( selectedDate ) => {
-    // setDisplayDOB(selectedDate)
     setInput({...input, dateOfBirth: ConvertDate(selectedDate)})
   }
 
   /**
-  *Takes selected DOB from date picker, displays original format 
-  * in the input, sends for formatting dd/mm/yyyy & then puts in state
+  *Takes selected DOB from date picker &
+  * sends for formatting dd/mm/yyyy & then puts in state
   * @function handleStartDate
   */
   const handleStartDate = ( selectedDate ) => {
-    // setDisplayStart(selectedDate)
     setInput({...input, startDate: ConvertDate(selectedDate) })
   }
 
@@ -216,12 +212,9 @@ const EmployeeEditForm = ( props ) => {
     
     if (validateForm())
       {
-        editAnEmployee(store, input)  // dispatch input data/add employee to store
+        editAnEmployee(store, input)  // dispatch edited input data to store
         setModalIsOpen(true)          // launch success modal
-        setInput(initialState)        // reset states
         setError(errorState)
-        // setDisplayDOB('')             // reset states for displaying values in date inputs
-        // setDisplayStart('')
         event.target.reset()          // reset form inputs
       }
       else {
@@ -313,7 +306,7 @@ const EmployeeEditForm = ( props ) => {
 
             {isLoading && <LoadingIcon />}
             <IsError theme={theme}>{isModifyError}</IsError>
-            {/* Display error message & disable save button if NOT online */}
+            {/* Display error message & disable Modify button if NOT online */}
             <Detector render={({ online }) => (
               <IsError theme={theme}>{online ? "" : "Offline : Please check your connection !"}
                 <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading || !online? true : false}>Modify</Save>
