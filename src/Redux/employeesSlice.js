@@ -44,6 +44,26 @@ export async function addAnEmployee(store, input) {
 
 /**
  * API call
+ * the function updates an employee record in database
+ * @function editAnEmployee
+ * @param {object} store
+ * @param {object} id: updated employee record
+ * @returns {object|string} updated employee information or error message to store
+ */
+ export async function editAnEmployee(store, input) {
+   console.log(input)
+  store.dispatch(modifyRequesting())  // start the update request
+  try {
+    const response = await axios.put(`http://localhost:3000/api/v1/employees/${input._id}`, input)
+    const responseData = await response.data
+    store.dispatch(modifyResolved(responseData))  // resolved: updated employee to store
+  } catch (error) {
+    store.dispatch(modifyRejected('Oops, something went wrong... record not updated !')) 
+  }
+}
+
+/**
+ * API call
  * the function deletes an employee record from database
  * @function deleteAnEmployee
  * @param {object} store
@@ -76,6 +96,7 @@ export async function deleteAnEmployee(store, id) {
     isLoading: false,
     employees: [],
     isError: '',
+    isModifyError: ''
   },
   reducers: { 
     requesting: (draft) => {    // fetch all employees data
@@ -103,6 +124,18 @@ export async function deleteAnEmployee(store, id) {
         draft.isLoading = false
         draft.isError = action.payload
     },
+    modifyRequesting: (draft) => {     // modify employee
+      draft.isLoading = true
+    },
+    modifyResolved: (draft, action) => {
+        draft.isLoading = false
+        draft.employees.push(action.payload)
+        draft.isModifyError = ''
+    },
+    modifyRejected: (draft, action) => {
+        draft.isLoading = false
+        draft.isModifyError = action.payload
+    },
     deleteRequesting: (draft) => {     // delete employee
       draft.isLoading = true
     },
@@ -118,6 +151,7 @@ export async function deleteAnEmployee(store, id) {
   },
 })
 
-export const { requesting, resolved, rejected, addRequesting, addResolved, addRejected,
-deleteRejected, deleteResolved, deleteRequesting } = employeesSlice.actions
+export const { requesting, resolved, rejected, addRequesting, addResolved, addRejected, 
+  modifyRequesting, modifyResolved, modifyRejected,deleteRejected, deleteResolved, 
+  deleteRequesting } = employeesSlice.actions
 export default employeesSlice.reducer  // export each action & reducer

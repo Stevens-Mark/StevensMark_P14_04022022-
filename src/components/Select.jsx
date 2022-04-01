@@ -21,7 +21,7 @@ const Selected =styled.select`
  */
  const Select = ( props ) => {
 
-  const { id, listItems, onChange } = props
+  const { id, listItems, onChange, modify } = props
 
   return (
     <>
@@ -31,11 +31,13 @@ const Selected =styled.select`
         id={id}
         required={true}
         onChange={onChange} >
-
+        {modify? 
+        <option value={modify.value} >{modify.name}</option> :
         <option value="" >Select a {id}</option>
+        }
         {[...listItems].sort((a, b) => (a.name < b.name ? -1 : 1)).map((item, index) => {
           return (
-            <option key={`${item}-${index}`}value={item.value}>
+            <option key={`${item}-${index}`} value={item.value}>
               {item.name}
             </option>
           );

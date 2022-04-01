@@ -8,6 +8,15 @@ export const ConvertDate = ( input ) => {
   return `${day}/${month}/${year}`
   }
 
+/*Formats a date correctly from dd/mm/yyyy to yyyy-mm-dd
+* @function ReverseConvertDate
+* @returns {string} formatted date
+*/
+export const ReverseConvertDate = ( input ) => {
+  const [day, month, year] =  input.split('/')
+  return `${year}-${month}-${day}`
+  }
+
 /**
 * Returns today's date 'x' amount of years ago based on the age supplied
 * @function SetBirthDateLimit
@@ -42,8 +51,6 @@ export const SetDateLimit = ( days ) => {
 export const capitalize = (string) => {
   return string.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')
 }
-
-
 
 // Regex's used for form validation
 // export const usZipCodes = /(^\d{5}$)|(^\d{5}-\d{4}$)/

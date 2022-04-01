@@ -5,7 +5,7 @@ import { selectTheme, selectEmployees } from '../Redux/selectors'
 import { lightTheme, darkTheme } from "../styles/themes"
 // import components
 import Title from '../components/Title'
-import EmployeeForm from "../components/EmployeeForm"
+import EmployeeEditForm from "../components/EmployeeEditForm"
 import logo from '../assets/logos/wealthLogo.webp'
 // import my custom npm package
 import { Modal } from "react-custom-modal-by-msparkystevens"
@@ -18,7 +18,7 @@ import { Modal } from "react-custom-modal-by-msparkystevens"
 const EditDeleteEmployee = () => {
 
   const mode = useSelector(selectTheme)  // retrieve Redux state
-  const { isLoading, isError } = useSelector(selectEmployees)
+  const { isLoading, isModifyError } = useSelector(selectEmployees)
 
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const  closeModal = () => { setModalIsOpen(false) }
@@ -30,8 +30,8 @@ const EditDeleteEmployee = () => {
   return (
     <main>
       <Title heading="Edit Employee" />
-      <EmployeeForm setModalIsOpen={setModalIsOpen}/>
-      {modalIsOpen && !isLoading && !isError &&
+      <EmployeeEditForm setModalIsOpen={setModalIsOpen}/>
+      {modalIsOpen && !isLoading && !isModifyError &&
       <Modal 
         closeModal={closeModal} 
         modalTheme={mode ==='dark'? darkTheme : lightTheme} 

@@ -1,11 +1,13 @@
 
 import React, { useMemo } from 'react'
-import { useSelector, useStore } from 'react-redux'
+import { useSelector,
+  // useStore 
+} from 'react-redux'
 import PropTypes from 'prop-types'
 // import selector
 import { selectTheme } from '../../Redux/selectors'
 // import action
-import { deleteAnEmployee } from '../../Redux/employeesSlice'
+// import { deleteAnEmployee } from '../../Redux/employeesSlice'
 // imports for table
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table'
 import GlobalSearch from './GlobalSearch'
@@ -113,7 +115,7 @@ const EmployeesTable = ( { employees } ) => {
   const theme = useSelector(selectTheme) 
   // const columns = useMemo(() => headerList, [] )
   const data = useMemo(() => employees, [ employees] )
-  const store = useStore()
+  // const store = useStore()
   const history = useHistory()
 
   /**
@@ -122,9 +124,9 @@ const EmployeesTable = ( { employees } ) => {
  * @param {object} cell: data of selected row
  * @returns {dispatch} to remove the record
  */
-  const handleClick = (cell) => {
-    deleteAnEmployee(store, cell?.row?.original._id)
-   }
+  // const handleClick = (cell) => {
+  //   deleteAnEmployee(store, cell?.row?.original._id)
+  //  }
 
 
   const handleRowClick = (row) => {
