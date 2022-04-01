@@ -36,7 +36,7 @@ const EditDeleteEmployee = () => {
         closeModal={closeModal} 
         modalTheme={mode ==='dark'? darkTheme : lightTheme} 
         heading="Success !"
-        message="New employee record created"
+        message="Record Updated"
         logo={logo}
         animation={true}
     />

@@ -126,7 +126,6 @@ const EmployeeEditForm = ( props ) => {
   // const [displayDOB, setDisplayDOB] = useState("")      // holds original yyyy-mm-dd date (before formatting) 
   // const [displayStart, setDisplayStart] = useState("") // to display in date input fields
   
-  console.log(input)
   /**
  * Restricts what the user can enter in the TEXT input fields & saves to state
  * @function handleText

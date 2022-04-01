@@ -56,6 +56,7 @@ export async function addAnEmployee(store, input) {
   try {
     const response = await axios.put(`http://localhost:3000/api/v1/employees/${input._id}`, input)
     const responseData = await response.data
+    console.log(responseData)
     store.dispatch(modifyResolved(responseData))  // resolved: updated employee to store
   } catch (error) {
     store.dispatch(modifyRejected('Oops, something went wrong... record not updated !')) 
@@ -129,8 +130,15 @@ export async function deleteAnEmployee(store, id) {
     },
     modifyResolved: (draft, action) => {
         draft.isLoading = false
-        draft.employees.push(action.payload)
         draft.isModifyError = ''
+        draft.employees = draft.employees.map((item) => {
+          // editing one item
+          if (item._id === action.payload._id) {
+            return Object.assign({}, item, action.payload )
+          }
+          // return all the ones we're not changing
+          return item
+        })
     },
     modifyRejected: (draft, action) => {
         draft.isLoading = false
