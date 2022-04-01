@@ -7,6 +7,7 @@ describe('Employees reducer', () => {
       isLoading: false,
       employees: [],
       isError: '',
+      isModifyError: ''
     }
     
   const dataToAdd = 
@@ -27,7 +28,8 @@ describe('Employees reducer', () => {
         ({
           isLoading: false,
           employees: [],
-          isError: '', })
+          isError: '',
+          isModifyError: '' })
         })
  
     it('should return the state initial when state is undefined', async () => {
@@ -35,7 +37,8 @@ describe('Employees reducer', () => {
         ({
           isLoading: false,
           employees: [],
-          isError: '', }) 
+          isError: '', 
+          isModifyError: ''}) 
         })
   
     it('should return state isLoading true when data is loading', async () => {
@@ -43,7 +46,8 @@ describe('Employees reducer', () => {
       ({
         isLoading: true,
         employees: [],
-        isError: '', }) 
+        isError: '', 
+        isModifyError: ''}) 
       })
 
     it('should return updated employee state when data has loaded', async () => {
@@ -53,7 +57,8 @@ describe('Employees reducer', () => {
         ({
           isLoading: false,
           employees: dataToAdd,
-          isError: '', }) 
+          isError: '', 
+          isModifyError: ''}) 
         })
 
     it('should return error state if request rejected', async () => {
@@ -62,7 +67,8 @@ describe('Employees reducer', () => {
       ({
         isLoading: false,
         employees: [],
-        isError: "error message", }) 
+        isError: "error message", 
+        isModifyError: ''}) 
       })
 
     it('should return state isLoading true during add new employee request', async () => {
@@ -70,7 +76,8 @@ describe('Employees reducer', () => {
       ({
         isLoading: true,
         employees: [],
-        isError: '', }) 
+        isError: '', 
+        isModifyError: ''}) 
       })
   
     it('should return updated employee state when a new employee added', async () => {
@@ -80,7 +87,8 @@ describe('Employees reducer', () => {
         ({
           isLoading: false,
           employees: [ dataToAdd ],
-          isError: '', }) 
+          isError: '', 
+          isModifyError: ''}) 
         })
   
     it('should return error state if adding a new employee rejected', async () => {
@@ -89,7 +97,8 @@ describe('Employees reducer', () => {
       ({
         isLoading: false,
         employees: [],
-        isError: "error message", }) 
+        isError: "error message",
+        isModifyError: ''}) 
       })
 
     it('should return state on invalid action', async () => {
@@ -97,7 +106,8 @@ describe('Employees reducer', () => {
         ({
           isLoading: false,
           employees: [],
-          isError: '', })
+          isError: '', 
+          isModifyError: ''})
         })
 
 })
