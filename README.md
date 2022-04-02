@@ -56,13 +56,13 @@ Here is the list of currently used jQuery plugins that need to be converted:
 # Installation *(English)*
 
 ## Prerequisites
-- [NodeJS](https://nodejs.org/en/)  Version 16.13.0 
+- [NodeJS](https://nodejs.org/en/) Version 16.13.0 
 - [NPM](https://www.npmjs.com/package/npm) Version 7.6.0
 - [Visual Studio Code](https://code.visualstudio.com/) or another IDE of your choice
 
 ## Dependencies
 - [React](https://reactjs.org/) Version 17.0.2
-- [React-router-dom] https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
+- [React-router-dom](https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
 - [React-scripts](https://www.npmjs.com/package/react-scripts) Version 5.0.0
 - [React-table](https://react-table.tanstack.com/) Version 7.7.0
 - [React-DatePicker](https://www.npmjs.com/package/react-datepicker) Version 4.7.0
@@ -166,7 +166,7 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ## Dépendances
 - [React](https://reactjs.org/) Version 17.0.2
-- [React-router-dom] https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
+- [React-router-dom](https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
 - [React-scripts](https://www.npmjs.com/package/react-scripts) Version 5.0.0
 - [React-table](https://react-table.tanstack.com/) Version 7.7.0
 - [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
