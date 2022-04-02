@@ -83,6 +83,7 @@ const DeleteBtn = styled.button`
   border-radius: 10px;
   border: 1px solid ${colors.tertiary};
   color: ${colors.tertiary};
+  cursor: pointer;
   font-size: 1rem;
   padding: 0.2rem 0.5rem;
 `;
