@@ -8,11 +8,12 @@
 
 - open the site at: [Wealth-Health](https://wealthhealth.netlify.app/)
 
-- I have written FOUR versions:
+- I have written FIVE versions:
 - i using localstorage - branch main (date format dd/mm/yyyy)
 - ii using localstorage - branch usversion (date format mm/dd/yyyy)
 - iii using Firebase - branch firebase
 - iv using MongoDB - branch db
+- v using MongoDB full CRUD version - branch full
 
 ## Switch a jQuery library to React
 
@@ -113,11 +114,12 @@ The converted plugin can be found here:
 
 - ouvrir le site à : [Wealth-Health](https://wealthhealth.netlify.app/)
 
-- J'ai écrit QUATRE versions :
+- J'ai écrit CINQ versions :
 - i Utilisation de localstorage - branch main (format de date jj/mm/aaaa)
 - ii Utilisation de localstorage - branch usversion (format de date mm/jj/aaaa)
 - iii Utilisation de Firebase - branch firebase
 - iv Utilisation de MongoDB - branch db
+- v utiliser MongoDB (version CRUD)- branche full
 
 
 ## Faites passer une librairie jQuery vers React
