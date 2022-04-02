@@ -1,25 +1,22 @@
 
-import React, { useMemo } from 'react'
-import { useSelector,
-  // useStore 
-} from 'react-redux'
+import React, { useMemo, useState, useEffect } from 'react'
+import { useSelector, useStore } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import selector
-import { selectTheme } from '../../Redux/selectors'
+import { selectTheme, selectEmployees } from '../../Redux/selectors'
 // import action
-// import { deleteAnEmployee } from '../../Redux/employeesSlice'
+import { deleteAnEmployee } from '../../Redux/employeesSlice'
 // imports for table
+import { Notify } from '../../utils/functions/Notify'
+import LoadingIcon from '../../utils/loader/loadingIcon'
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table'
 import GlobalSearch from './GlobalSearch'
 import Pagination from './Pagination'
 import SearchResult from './SearchResult'
-// import header data needed for table 
-// (includes function for sorting dates in format dd/mm/yyy)
-// import { headerList } from '../../assets/data/tableHeader'
 // styling
 import styled from 'styled-components'
 import colors from '../../styles/colors'
-import { useHistory } from 'react-router-dom'
 
 /**
  * CSS for the component using styled.components
@@ -79,6 +76,7 @@ const Table = styled.table`
     border: solid 0.5px ${colors.gray};
     padding: 0.313rem;
   }
+
 `;
 
 const Controls = styled.span`
@@ -104,6 +102,12 @@ const Controls = styled.span`
   }
 `;
 
+const MsgContainer = styled.div`
+  height: 1.4rem;
+  text-align: center;
+  margin-bottom: 0.3rem;
+`;
+
 /**
  * Renders the 'EmployeesTable on current employees Page' 
  * @function EmployeesTable
@@ -112,11 +116,24 @@ const Controls = styled.span`
  */
 const EmployeesTable = ( { employees } ) => {
 
+  // retrieve Redux state
   const theme = useSelector(selectTheme) 
-  // const columns = useMemo(() => headerList, [] )
-  const data = useMemo(() => employees, [ employees] )
-  // const store = useStore()
+  const { isDeleting, isDeleteError } = useSelector(selectEmployees)
+  // local state
+  const [submitted, setSubmitted] = useState(false)
+
+  const data = useMemo(() => employees, [ employees ] )
+  const store = useStore()
   const history = useHistory()
+ 
+  useEffect(() => {
+    setTimeout(() => {
+      setSubmitted(false)
+    }, 8000)
+    return () => {
+      setSubmitted({})
+    }
+  }, [employees])
 
   /**
  * Deletes the selected employee record 
@@ -124,12 +141,14 @@ const EmployeesTable = ( { employees } ) => {
  * @param {object} cell: data of selected row
  * @returns {dispatch} to remove the record
  */
-  // const handleClick = (cell) => {
-  //   deleteAnEmployee(store, cell?.row?.original._id)
-  //  }
+  const handleClick = (e, cell) => {
+    e.stopPropagation()
+    setSubmitted(true)
+    deleteAnEmployee(store, cell?.row?.original._id)
+   }
 
   /**
- * Redirects to edit employee form when record chosen from
+ * Redirects to edit employee form when record chosen from table
  * @function handleRowClick/handleRowKeypress
  * @param {object} row: chosen record data 
  * @returns {JSX} edit employee form
@@ -195,16 +214,15 @@ const EmployeesTable = ( { employees } ) => {
       Header: 'Zip Code',
       accessor: 'zipCode', 
     },
-    // {
-    //   Header: 'Action',
-    //   accessor: 'actions',
-    //   Cell: props => <div style={{ textAlign: "center" }}>
-    //         <button onClick={() => handleClick(props)}>Delete</button></div>,    
-    // },
+    {
+      Header: 'Delete',
+      accessor: 'actions',
+      Cell: props => <div style={{ textAlign: "center" }}>
+            <button onClick={(e) => handleClick(e, props)}>Delete</button></div>,    
+    },
   ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
-
   )
 
   const {
@@ -232,14 +250,21 @@ const EmployeesTable = ( { employees } ) => {
         useSortBy,
         usePagination,
       )
-    
+
   return (
     <Container>
       <Controls>{/* Pagination & search controls */}
         <Pagination pageSize={pageSize} setPageSize={setPageSize}/>
         <GlobalSearch globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} preGlobalFilteredRows={preGlobalFilteredRows}/>
       </Controls>
-
+        <MsgContainer>
+        {isDeleting? <LoadingIcon /> :
+          <>
+            {submitted && isDeleteError && <Notify delay="8000">{isDeleteError}</Notify> }
+            {submitted && !isDeleteError && <Notify delay="8000">Record Deleted !</Notify> }
+          </>
+        } 
+        </MsgContainer>
       <Table theme={theme} {...getTableProps()}>{/* Build table heading with sort funtionality */}
         <thead>
         {headerGroups.map(headerGroup => (
@@ -264,7 +289,7 @@ const EmployeesTable = ( { employees } ) => {
         {page.map((row, i) => {
           prepareRow(row)
           return (
-            <tr tabIndex="0" onClick={()=> handleRowClick(row)} 
+            <tr tabIndex="0" onClick={(e)=> handleRowClick(row)} 
                   onKeyPress={(e)=> handleRowKeypress(e, row)} 
                 {...row.getRowProps() }>
                   {row.cells.map(cell => {
@@ -323,6 +348,7 @@ const EmployeesTable = ( { employees } ) => {
 export default EmployeesTable
 
 // Prototypes
+
 EmployeesTable.propTypes = {
   employees: PropTypes.array.isRequired
 }

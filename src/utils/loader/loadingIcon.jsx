@@ -22,7 +22,6 @@ const rotate = keyframes`
  const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 1.25rem;
   align-items: center;
 `;
 
@@ -32,8 +31,8 @@ const Loader = styled.div`
   border-bottom-color: transparent;
   border-radius: 2rem;   
   padding: 1px;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
 `;
 
 /**

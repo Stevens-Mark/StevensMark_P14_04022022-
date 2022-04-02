@@ -56,7 +56,6 @@ export async function addAnEmployee(store, input) {
   try {
     const response = await axios.put(`http://localhost:3000/api/v1/employees/${input._id}`, input)
     const responseData = await response.data
-    console.log(responseData)
     store.dispatch(modifyResolved(responseData))  // resolved: updated employee to store
   } catch (error) {
     store.dispatch(modifyRejected('Oops, something went wrong... record not updated !')) 
@@ -78,7 +77,7 @@ export async function deleteAnEmployee(store, id) {
     const responseData = await response.data
     store.dispatch(deleteResolved(responseData))  // resolved: delete employee from store
   } catch (error) {
-    store.dispatch(deleteRejected('Oops, something went wrong... record not deleted !')) 
+    store.dispatch(deleteRejected('Error : record not deleted !')) 
   }
 }
 
@@ -97,62 +96,64 @@ export async function deleteAnEmployee(store, id) {
     isLoading: false,
     employees: [],
     isError: '',
-    isModifyError: ''
+    isModifyError: '',
+    isDeleting: false,
+    isDeleteError: ''
   },
   reducers: { 
     requesting: (draft) => {    // fetch all employees data
       draft.isLoading = true
     },
     resolved: (draft, action) => {
-        draft.isLoading = false
-        draft.employees = action.payload
-        draft.isError = ''
+      draft.isLoading = false
+      draft.employees = action.payload
+      draft.isError = ''
     },
     rejected:  (draft, action) => {
-        draft.isLoading = false
-        draft.employees = []
-        draft.isError = action.payload
+      draft.isLoading = false
+      draft.employees = []
+      draft.isError = action.payload
     }, 
     addRequesting: (draft) => {     // add new employee
       draft.isLoading = true
     },
     addResolved: (draft, action) => {
-        draft.isLoading = false
-        draft.employees.push(action.payload)
-        draft.isError = ''
+      draft.isLoading = false
+      draft.employees.push(action.payload)
+      draft.isError = ''
     },
     addRejected: (draft, action) => {
-        draft.isLoading = false
-        draft.isError = action.payload
+      draft.isLoading = false
+      draft.isError = action.payload
     },
     modifyRequesting: (draft) => {     // modify employee
       draft.isLoading = true
     },
     modifyResolved: (draft, action) => {
-        draft.isLoading = false
-        draft.isModifyError = ''
-        draft.employees = draft.employees.map((item) => {
-          if (item._id === action.payload._id) {
-            return Object.assign({}, item, action.payload )
-          }
-          return item
-        })
+      draft.isLoading = false
+      draft.isModifyError = ''
+      draft.employees = draft.employees.map((item) => {
+        if (item._id === action.payload._id) {
+          return Object.assign({}, item, action.payload )
+        }
+        return item
+      })
     },
     modifyRejected: (draft, action) => {
-        draft.isLoading = false
-        draft.isModifyError = action.payload
+      draft.isLoading = false
+      draft.isModifyError = action.payload
     },
     deleteRequesting: (draft) => {     // delete employee
-      draft.isLoading = true
+      draft.isDeleting = true
     },
     deleteResolved: (draft, action) => {
-        draft.isLoading = false
-        draft.employees = draft.employees.filter((employee) => employee._id !== action.payload);
-        draft.isError = ''
+      draft.isDeleting = false
+      draft.employees = draft.employees.filter((employee) => employee._id !== action.payload);
+      draft.isDeleteError = ''
     },
     deleteRejected: (draft, action) => {
-        draft.isLoading = false
-        draft.isError = action.payload
+      draft.isDeleting = false
+      draft.isDeleteError = action.payload
     },
   },
 })

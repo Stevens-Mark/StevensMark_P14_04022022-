@@ -11,11 +11,11 @@ import logo from '../assets/logos/wealthLogo.webp'
 import { Modal } from "react-custom-modal-by-msparkystevens"
 
 /**
- * Renders the 'EditDeleteEmployee' page
- * @function EditDeleteEmployee
+ * Renders the 'EditEmployee' page
+ * @function EditEmployee
  * @returns {JSX}
  */
-const EditDeleteEmployee = () => {
+const EditEmployee = () => {
 
   const mode = useSelector(selectTheme)  // retrieve Redux state
   const { isLoading, isModifyError } = useSelector(selectEmployees)
@@ -45,5 +45,5 @@ const EditDeleteEmployee = () => {
   )
 }
 
-export default EditDeleteEmployee
+export default EditEmployee
 

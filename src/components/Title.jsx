@@ -13,7 +13,7 @@ import user from '../assets/icons/user-circle-solid.svg'
  * CSS for the component using styled.components
  */
  const Wrapper = styled.div`
-  padding-top: 1rem;
+  padding: 1rem;
   text-align: center;
 
   img {
@@ -28,11 +28,12 @@ import user from '../assets/icons/user-circle-solid.svg'
   }
 `;
 
-const IsError = styled.p`
+const IsError = styled.span`
   color: ${({ theme }) => (theme === 'light' ? `${colors.warning}` : `${colors.chromeBlue}`)};
   font-weight: bold;
-  text-align: center;
-  margin-top: -5px;
+  background: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightNavy}`)};
+  border-radius: 8px;
+  padding: 0rem 0.5rem;
 `;
 
 /**

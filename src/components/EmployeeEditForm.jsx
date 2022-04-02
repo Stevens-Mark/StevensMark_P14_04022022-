@@ -215,7 +215,7 @@ const EmployeeEditForm = ( props ) => {
         editAnEmployee(store, input)  // dispatch edited input data to store
         setModalIsOpen(true)          // launch success modal
         setError(errorState)
-        event.target.reset()          // reset form inputs
+        // event.target.reset()          // reset form inputs
       }
       else {
         return
