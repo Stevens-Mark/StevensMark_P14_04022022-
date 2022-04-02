@@ -226,7 +226,7 @@ const EmployeesTable = ( { employees } ) => {
       Header: 'Delete',
       accessor: 'actions',
       Cell: props => <div style={{ textAlign: "center" }}>
-            <DeleteBtn onClick={(e) => handleClick(e, props)}>Delete</DeleteBtn></div>,    
+            <DeleteBtn onClick={(e) => handleClick(e, props)} onKeyPress={(e)=> handleClick(e, props)}>Delete</DeleteBtn></div>,    
     },
   ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
