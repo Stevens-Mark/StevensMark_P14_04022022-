@@ -65,7 +65,7 @@ Here is the list of currently used jQuery plugins that need to be converted:
 
 ## Dependencies
 - [React](https://reactjs.org/) Version 17.0.2
-- [React-router-dom] https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
+- [React-router-dom](https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
 - [React-scripts](https://www.npmjs.com/package/react-scripts) Version 5.0.0
 - [React-table](https://react-table.tanstack.com/) Version 7.7.0
 - [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
@@ -178,7 +178,7 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ## Dépendances
 - [React](https://reactjs.org/) Version 17.0.2
-- [React-router-dom] https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
+- [React-router-dom](https://www.npmjs.com/package/react-router-dom/v/5.2.0) Version 5.2.0
 - [React-scripts](https://www.npmjs.com/package/react-scripts) Version 5.0.0
 - [React-table](https://react-table.tanstack.com/) Version 7.7.0
 - [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
@@ -203,7 +203,7 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ### FrontEnd
 - Clonez le repo sur votre ordinateur : branche "full"
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022-`
+  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Dans ce dépôt, installez les paquets/dépendances :
  `npm install`
