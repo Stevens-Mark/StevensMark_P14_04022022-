@@ -51,7 +51,6 @@ export async function addAnEmployee(store, input) {
  * @returns {object|string} updated employee information or error message to store
  */
  export async function editAnEmployee(store, input) {
-   console.log(input)
   store.dispatch(modifyRequesting())  // start the update request
   try {
     const response = await axios.put(`http://localhost:3000/api/v1/employees/${input._id}`, input)

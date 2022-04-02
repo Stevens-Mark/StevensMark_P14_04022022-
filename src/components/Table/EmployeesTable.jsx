@@ -225,6 +225,7 @@ const EmployeesTable = ( { employees } ) => {
     {
       Header: 'Delete',
       accessor: 'actions',
+      disableSortBy: true,
       Cell: props => <div style={{ textAlign: "center" }}>
             <DeleteBtn onClick={(e) => handleClick(e, props)} onKeyPress={(e)=> handleClick(e, props)}>Delete</DeleteBtn></div>,    
     },
