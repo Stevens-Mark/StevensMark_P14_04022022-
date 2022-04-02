@@ -76,7 +76,15 @@ const Table = styled.table`
     border: solid 0.5px ${colors.gray};
     padding: 0.313rem;
   }
+`;
 
+const DeleteBtn = styled.button`
+  background: ${colors.warning};
+  border-radius: 10px;
+  border: 1px solid ${colors.tertiary};
+  color: ${colors.tertiary};
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
 `;
 
 const Controls = styled.span`
@@ -218,7 +226,7 @@ const EmployeesTable = ( { employees } ) => {
       Header: 'Delete',
       accessor: 'actions',
       Cell: props => <div style={{ textAlign: "center" }}>
-            <button onClick={(e) => handleClick(e, props)}>Delete</button></div>,    
+            <DeleteBtn onClick={(e) => handleClick(e, props)}>Delete</DeleteBtn></div>,    
     },
   ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
