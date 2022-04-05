@@ -6,6 +6,7 @@ import { fetchEmployees } from './Redux/employeesSlice'
 // component imports
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Notification from './components/Notification'
 
 // use lazy loading to import components just when needed
 const CreateEmployee = lazy(() => import('./pages/CreateEmployee'))
@@ -39,6 +40,7 @@ export default function App() {
             <Route exact path="/employees/edit/:id" component={EditEmployee}/>
             <Route path='*' component={Error}/>
           </Switch> 
+          <Notification />
         <Footer />
         <GoToTop />
       </Router>  

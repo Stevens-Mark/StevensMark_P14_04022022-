@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 // for styling
 import styled, { ThemeProvider, css } from 'styled-components'
-import colors from '../../styles/colors'
+import colors from '../styles/colors'
 // import 'animation' for toast
-import { toastInRight, toastInLeft } from '../../styles/keyframes'
+import { toastInRight, toastInLeft } from '../styles/keyframes'
 
 /**
  * CSS
@@ -23,26 +23,26 @@ const Container = styled.div`
 const CloseBtn = styled.button`
   background: transparent;
   border: none;
-  color: ${colors.primary};
+  color: ${colors.tertiary};
   cursor: pointer;
   float: right;
   font-size: 1rem;
   font-weight: 700;
-  opacity: 0.8;
+  // opacity: 0.8;
   position: relative;
   right: -0.7em;
-  text-shadow: 0 1px 0 ${colors.primary};
+  // text-shadow: 0 1px 0 ${colors.tertiary};
   top: -0.4em;
 `;
 
 const ToastBody = styled.div`
-	color: ${colors.primary};
+	color: ${colors.tertiary};
 	padding: 1.25rem 0.938rem 0.625rem 0.625rem;
   animation: ${(props) => props.theme.enterInLeft? css` ${toastInLeft} .7s` : css` ${toastInRight} .7s`}}
   border-radius: 12px 3px 12px 3px;
   margin: 0 0 0.938rem;
   max-height: 6.25rem;
-  opacity: 0.9;
+  // opacity: 0.9;
   overflow: hidden;
   padding: 10px 15px;
   pointer-events: auto;
@@ -50,7 +50,7 @@ const ToastBody = styled.div`
   transition: 0.3s ease;
   width: 17.5rem;
   &:hover {
-    box-shadow: 0 0 5px ${colors.primary};
+    box-shadow: 0 0 5px ${colors.tertiary};
     opacity: 1;
   }
 `;

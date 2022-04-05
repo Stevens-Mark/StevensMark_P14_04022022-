@@ -1,5 +1,16 @@
 import colors from "./colors"
 
+// Define the toast notification parameters
+export const toastTheme = {
+  positionTop: '12px',
+  positionBottom: '',
+  positionLeft: '12px',
+  positonRight: '',
+  enterInLeft: true,
+  // autoDelete: true,
+  deleteDelay: 2000
+}
+
 // Define the theme colours for the modal
 
 // light mode (set your colours here or leave values empty '' for default theme)
