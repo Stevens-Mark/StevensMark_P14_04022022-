@@ -60,9 +60,6 @@ const Table = styled.table`
     }
    }
  
-  tr {
-    cursor: pointer;
-  }
   tr:nth-child(2n+1) {
     background: ${({ theme }) => (theme === 'light' ? `${colors.zircon}` : `${colors.lightestNavy}`)};
   }
@@ -85,7 +82,20 @@ const DeleteBtn = styled.button`
   color: ${colors.tertiary};
   cursor: pointer;
   font-size: 1rem;
+  margin-right: 15px;
   padding: 0.2rem 0.5rem;
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
+    opacity: 0.85;
+    transition: 0.4s;
+    background: ${colors.zircon};
+    color: ${colors.secondary};
+  }
+`;
+
+const ModifyBtn = styled(DeleteBtn)`
+  background: ${colors.primary};
+  margin: unset;
 `;
 
 const Controls = styled.span`
@@ -157,20 +167,29 @@ const EmployeesTable = ( { employees } ) => {
    }
 
   /**
- * Redirects to edit employee form when record chosen from table
- * @function handleRowClick/handleRowKeypress
- * @param {object} row: chosen record data 
+ * Redirects to edit employee form when record chosen from table (modify button)
+ * @function handleRowClick
+ * @param {object} cell: chosen record data 
  * @returns {JSX} edit employee form
  */
-  const handleRowClick = (row) => {
-    history.push(`/employees/edit/${row.original._id}`)
-   }  
+   const handleRowClick = (cell) => {
+    history.push(`/employees/edit/${cell?.row?.original._id}`)
+   } 
 
-  const handleRowKeypress = (event, row) => {
-    if(event.key === 'Enter'){
-      history.push(`/employees/edit/${row.original._id}`)
-    }
-  }
+  //  const handleRowKeypress = (event, cell) => {
+  //   if(event.key === 'Enter'){
+  //     history.push(`/employees/edit/${cell?.row?.original._id}`)
+  //   }
+  // }
+  // const handleRowClick = (row) => {
+  //   history.push(`/employees/edit/${row.original._id}`)
+  //  }  
+
+  // const handleRowKeypress = (event, row) => {
+  //   if(event.key === 'Enter'){
+  //     history.push(`/employees/edit/${row.original._id}`)
+  //   }
+  // }
 
   const columns = useMemo(
     () =>   [     
@@ -228,7 +247,9 @@ const EmployeesTable = ( { employees } ) => {
       accessor: 'actions',
       disableSortBy: true,
       Cell: props => <div style={{ textAlign: "center" }}>
-            <DeleteBtn onClick={(e) => handleClick(e, props)} onKeyPress={(e)=> handleClick(e, props)}>Delete</DeleteBtn></div>,    
+          <DeleteBtn onClick={(e) => handleClick(e, props)}>Delete</DeleteBtn>
+          <ModifyBtn onClick={()=> handleRowClick(props)}>Modify</ModifyBtn>
+            </div>,    
     },
   ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -299,8 +320,9 @@ const EmployeesTable = ( { employees } ) => {
         {page.map((row, i) => {
           prepareRow(row)
           return (
-            <tr tabIndex="0" onClick={(e)=> handleRowClick(row)} 
-                  onKeyPress={(e)=> handleRowKeypress(e, row)} 
+            <tr tabIndex="0" 
+                  // onClick={(e)=> handleRowClick(row)} 
+                  // onKeyPress={(e)=> handleRowKeypress(e, row)} 
                 {...row.getRowProps() }>
                   {row.cells.map(cell => {
                     return (

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import { useSelector, useStore} from 'react-redux'
 // styling
@@ -72,7 +73,7 @@ const IsError = styled.p`
   margin-top: -10px;
 `;
 
-const Save = styled.button`
+const Btn = styled.button`
   background-color: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.chromeBlue}`)};
   border-radius: 0.2rem;
   border: none;
@@ -88,9 +89,14 @@ const Save = styled.button`
 
   &:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
-    opacity: 0.85;
+    opacity: 0.8;
     transition: 0.4s;
   }
+`;
+
+const Cancel = styled(Btn)`
+background-color: ${colors.warning};
+color: ${colors.tertiary};
 `;
 
 /**
@@ -103,6 +109,7 @@ const EmployeeEditForm = ( props ) => {
 
   const { setModalIsOpen } = props
   const store = useStore()
+  const history = useHistory()
 
   // Get ID from URL param
   const { id } = useParams()
@@ -205,8 +212,8 @@ const EmployeeEditForm = ( props ) => {
   }
 
   /**
-   * @function handleSubmit
-   */
+  * @function handleSubmit
+  */
   const handleSubmit = (event) => {
     event.preventDefault()
     
@@ -220,6 +227,15 @@ const EmployeeEditForm = ( props ) => {
       else {
         return
         } 
+  }
+
+  /**
+   * Redirects back to current employees list when users cancels
+   * @function handleCancel
+   * @returns back to current employees list
+   */
+  const handleCancel = () => {
+    history.push(`/employees/`)
   }
 
   return (
@@ -306,10 +322,11 @@ const EmployeeEditForm = ( props ) => {
 
             {isLoading && <LoadingIcon />}
             <IsError theme={theme}>{isModifyError}</IsError>
-            {/* Display error message & disable Modify button if NOT online */}
+            {/* Display error message & disable Modify & Cancel button if NOT online */}
             <Detector render={({ online }) => (
               <IsError theme={theme}>{online ? "" : "Offline : Please check your connection !"}
-                <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading || !online? true : false}>Modify</Save>
+                <Btn data-testid="submitButton" theme={theme} type="submit" disabled={isLoading || !online? true : false}>Modify</Btn>
+                <Cancel onClick={()=> handleCancel()} disabled={isLoading || !online? true : false}>Cancel</Cancel>
               </IsError> )} />
       </Form>  
     </Container>
