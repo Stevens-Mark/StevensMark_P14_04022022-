@@ -1,31 +1,23 @@
+import { useSelector } from 'react-redux'
+import { selectNotifications } from '../Redux/selectors'
 import Toast from './Toast'
 import { toastTheme } from '../styles/themes'
-import checkIcon from '../assets/icons/check.svg'
-import errorIcon from '../assets/icons/error.svg'
 
+/**
+ * Renders Notifications with defined display parameters
+ * @function Notification
+ * @returns {JSX} toasts
+ */
 const Notification = () => {
-
-  const testList = [
-    {
-      id: 1,
-      title: 'Success',
-      description: 'This is a success toast component',
-      backgroundColor: '#5cb85c',
-      icon: checkIcon
-    },
-    {
-      id: 2,
-      title: 'Danger',
-      description: 'This is an error toast component',
-      backgroundColor: '#d9534f',
-      icon: errorIcon
-    },
-];
-
+  const notifications = useSelector(selectNotifications) // Redux notification state
   return (
-    <Toast 
-      theme={toastTheme} 
-      toastList={testList}/>
+    <>
+      {notifications &&
+      <Toast 
+        theme={toastTheme} 
+        toastList={notifications}/>
+      }
+    </>
     )
   }
 

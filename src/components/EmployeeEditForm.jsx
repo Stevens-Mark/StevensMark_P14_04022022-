@@ -95,8 +95,8 @@ const Btn = styled.button`
 `;
 
 const Cancel = styled(Btn)`
-background-color: ${colors.warning};
-color: ${colors.tertiary};
+  background-color: ${colors.warning};
+  color: ${colors.tertiary};
 `;
 
 /**
@@ -326,9 +326,10 @@ const EmployeeEditForm = ( props ) => {
             <Detector render={({ online }) => (
               <IsError theme={theme}>{online ? "" : "Offline : Please check your connection !"}
                 <Btn data-testid="submitButton" theme={theme} type="submit" disabled={isLoading || !online? true : false}>Modify</Btn>
-                <Cancel onClick={()=> handleCancel()} disabled={isLoading || !online? true : false}>Cancel</Cancel>
+                <Cancel type="button" onClick={()=> handleCancel()} disabled={isLoading || !online? true : false}>Cancel</Cancel>
               </IsError> )} />
       </Form>  
+      
     </Container>
   )
 }

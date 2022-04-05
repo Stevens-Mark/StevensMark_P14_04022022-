@@ -78,7 +78,7 @@ const LINK = styled(NavLink)`
  */
 const Header = () => {
 
-  const theme = useSelector(selectTheme) // Redux state & local states
+  const theme = useSelector(selectTheme) // Redux state 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 

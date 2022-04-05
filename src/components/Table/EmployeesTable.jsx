@@ -176,21 +176,6 @@ const EmployeesTable = ( { employees } ) => {
     history.push(`/employees/edit/${cell?.row?.original._id}`)
    } 
 
-  //  const handleRowKeypress = (event, cell) => {
-  //   if(event.key === 'Enter'){
-  //     history.push(`/employees/edit/${cell?.row?.original._id}`)
-  //   }
-  // }
-  // const handleRowClick = (row) => {
-  //   history.push(`/employees/edit/${row.original._id}`)
-  //  }  
-
-  // const handleRowKeypress = (event, row) => {
-  //   if(event.key === 'Enter'){
-  //     history.push(`/employees/edit/${row.original._id}`)
-  //   }
-  // }
-
   const columns = useMemo(
     () =>   [     
     {

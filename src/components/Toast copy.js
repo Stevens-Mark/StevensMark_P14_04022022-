@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react'
-import { useStore } from 'react-redux'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 // for styling
 import styled, { ThemeProvider, css } from 'styled-components'
 import colors from '../styles/colors'
 // import 'animation' for toast
 import { toastInRight, toastInLeft } from '../styles/keyframes'
-import { removeNotification } from '../Redux/notificationsSlice'
 
 /**
  * CSS
@@ -85,19 +83,25 @@ const Message =styled.p`
 `;
 
 /**
- * renders toast notifications with relevant message
  * @function Toast
  * @param {object} props 
- * @returns {JSX}
+ * @returns {jsx}
  */
 const Toast = ( props ) => {
 
   const { toastList, theme } = props
-  const store = useStore()
+
+  const [list, setList] = useState(toastList)
+
+  useEffect(() => {       // load toastlist into 'list' state
+    setList([...toastList])    // id,title,description,backgroundColor,icon (for each clicked)
+  }, [toastList])
+
+  // console.log(toastList, list)
   
-  useEffect(() => {                         // if autoDelete true & there's a notifcation, then delete
+  useEffect(() => {                         // if autoDelete true & there's a notifcation, then we'll delete
     const interval = setInterval(() => {   // the first one in the list (until all have been removed)
-      if (theme.autoDelete && toastList.length) {
+      if (theme.autoDelete && toastList.length && list.length) {
         deleteToast(toastList[0].id)
       }
     }, theme.deleteDelay)
@@ -105,21 +109,26 @@ const Toast = ( props ) => {
       clearInterval(interval)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [toastList, theme.autoDelete, theme.deleteDelay])
+  }, [toastList, list, theme.autoDelete, theme.deleteDelay])
 
   /**
-   * Remove chosen toast from the screen
+   * Remove chosen toast from list & toastlList thus from the screen
    * @function deleteToast
    * @param {number} id of toast selected by user
    */
   const deleteToast = ( id ) => {
-    store.dispatch(removeNotification(id))
+    const listItemIndex = list.findIndex(e => e.id === id)
+    const toastListItem = toastList.findIndex(e => e.id === id)
+    list.splice(listItemIndex, 1)
+    toastList.splice(toastListItem, 1)
+    console.log(toastList, list)
+    setList([...list])
   }
 
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        {toastList.map((toast, i) => 
+        {list.map((toast, i) => 
           <ToastBody key={i} 
             style={{ backgroundColor: toast.backgroundColor }}>
                
@@ -139,5 +148,6 @@ export default Toast
 // proptypes
 
 Toast.propTypes = {
-  props: PropTypes.object,
+  toastList: PropTypes.array.isRequired,
+  theme: PropTypes.object.isRequired,
 }

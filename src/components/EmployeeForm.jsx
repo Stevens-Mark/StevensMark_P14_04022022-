@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { useSelector, useStore} from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 // styling
 import styled from 'styled-components'
 import colors from '../styles/colors'

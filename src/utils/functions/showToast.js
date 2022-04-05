@@ -6,11 +6,12 @@ import infoIcon from '../../assets/icons/info.svg'
 import warningIcon from '../../assets/icons/warning.svg'
  
 /**
- * set the toast type to show based on the button clicked
+ * set the toast type to show with message
  * @function showToast
  * @param {string} type (warning, info etc..)
+ * @param {string} message 
  */
-export const showToast = ( type , toast, setToast ) => {
+export const showToast = ( type, message ) => {
 
   let toastProperties = null
   // randomly generates IDs for each toast notification used for delete functionality
@@ -21,7 +22,7 @@ export const showToast = ( type , toast, setToast ) => {
         toastProperties = {
             id,
             title: 'Success',
-            description: 'This is a success toast component',
+            description: message,
             backgroundColor: '#5cb85c',
             icon: checkIcon
         }
@@ -30,7 +31,7 @@ export const showToast = ( type , toast, setToast ) => {
         toastProperties = {
             id,
             title: 'Danger',
-            description: 'This is an error toast component',
+            description: message,
             backgroundColor: '#d9534f',
             icon: errorIcon
         }
@@ -39,7 +40,7 @@ export const showToast = ( type , toast, setToast ) => {
         toastProperties = {
             id,
             title: 'Info',
-            description: 'This is an info toast component',
+            description: message,
             backgroundColor: '#5bc0de',
             icon: infoIcon
         }
@@ -48,13 +49,13 @@ export const showToast = ( type , toast, setToast ) => {
         toastProperties = {
             id,
             title: 'Warning',
-            description: 'This is a warning toast component',
+            description: message,
             backgroundColor: '#f0ad4e',
             icon: warningIcon
         }
         break;
     default:
-      setToast([])
+        toastProperties = {}
   }
-  setToast([...toast, toastProperties])
+  return toastProperties
 }

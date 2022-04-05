@@ -1,6 +1,8 @@
 // redux tool kit function
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { addNotification } from './notificationsSlice'
+import { showToast } from '../utils/functions/showToast'
 
 // import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
 
@@ -17,9 +19,11 @@ export async function fetchEmployees(store) {
 		const response = await axios.get("http://localhost:3000/api/v1/employees");
     const datas = await response.data
     store.dispatch(resolved(datas)) // resolved: fetched all employees to store
+    store.dispatch(addNotification( showToast('info', 'Data Downloaded')))
 	}
 	catch (error) {
     store.dispatch(rejected('Oops, something went wrong... Please try again')) // rejected: error mesage
+    store.dispatch(addNotification( showToast('danger', 'Oops, something went wrong...')))
 	}
 }
 
@@ -37,8 +41,10 @@ export async function addAnEmployee(store, input) {
     const response = await axios.post('http://localhost:3000/api/v1/employees', input)
     const responseData = await response.data
     store.dispatch(addResolved(responseData))     // resolved: save new employee to store
+    store.dispatch(addNotification( showToast('success', 'Employee record Added')))
   } catch (error) {
-    store.dispatch(addRejected('Oops, something went wrong... record not created !')) 
+    store.dispatch(addRejected('Oops, something went wrong... record not created !'))
+    store.dispatch(addNotification( showToast('danger', 'Employee record NOT created !')))
   }
 }
 
@@ -56,8 +62,10 @@ export async function addAnEmployee(store, input) {
     const response = await axios.put(`http://localhost:3000/api/v1/employees/${input._id}`, input)
     const responseData = await response.data
     store.dispatch(modifyResolved(responseData))  // resolved: updated employee to store
+    store.dispatch(addNotification( showToast('success', 'Employee record Modified')))
   } catch (error) {
-    store.dispatch(modifyRejected('Oops, something went wrong... record not updated !')) 
+    store.dispatch(modifyRejected('Oops, something went wrong... record not updated !'))
+    store.dispatch(addNotification( showToast('danger', 'Employee record NOT modified')))
   }
 }
 
@@ -75,8 +83,10 @@ export async function deleteAnEmployee(store, id) {
     const response = await axios.delete(`http://localhost:3000/api/v1/employees/${id}`)
     const responseData = await response.data
     store.dispatch(deleteResolved(responseData))  // resolved: delete employee from store
+    store.dispatch(addNotification( showToast('success', 'Employee record Deleted')))
   } catch (error) {
-    store.dispatch(deleteRejected('Error : record not deleted !')) 
+    store.dispatch(deleteRejected('Error : record not deleted !'))
+    store.dispatch(addNotification( showToast('danger', 'Employee record NOT deleted !')))
   }
 }
 
