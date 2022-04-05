@@ -105,7 +105,7 @@ const EmployeeForm = ( props ) => {
 
   // retrieve Redux state
   const theme = useSelector(selectTheme) 
-  const { isLoading, isError } = useSelector(selectEmployees)
+  const { isLoading, isAddError } = useSelector(selectEmployees)
 
   // local states
   const initialState = {
@@ -317,7 +317,7 @@ const EmployeeForm = ( props ) => {
             onChange={(e) => setInput({...input, department: e.target.value})} /> 
 
             {isLoading && <LoadingIcon />}
-            <IsError theme={theme}>{isError}</IsError>
+            <IsError theme={theme}>{isAddError}</IsError>
             {/* Display error message & disable save button if NOT online */}
             <Detector render={({ online }) => (
               <IsError theme={theme}>{online ? "" : "Offline : Please check your connection !"}

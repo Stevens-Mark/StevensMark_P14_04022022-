@@ -82,7 +82,7 @@ const DeleteBtn = styled.button`
   color: ${colors.tertiary};
   cursor: pointer;
   font-size: 1rem;
-  margin-right: 15px;
+  margin: 1px 10px;
   padding: 0.2rem 0.5rem;
   &:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
@@ -95,7 +95,6 @@ const DeleteBtn = styled.button`
 
 const ModifyBtn = styled(DeleteBtn)`
   background: ${colors.primary};
-  margin: unset;
 `;
 
 const Controls = styled.span`
@@ -163,7 +162,7 @@ const EmployeesTable = ( { employees } ) => {
   const handleClick = (e, cell) => {
     e.stopPropagation()
     setSubmitted(true)
-    deleteAnEmployee(store, cell?.row?.original._id)
+    deleteAnEmployee(store, cell?.row?.original)
    }
 
   /**

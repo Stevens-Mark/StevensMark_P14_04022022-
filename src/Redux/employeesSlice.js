@@ -2,8 +2,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { addNotification } from './notificationsSlice'
+// import function to format the toast notification
 import { showToast } from '../utils/functions/showToast'
-
 // import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
 
 /**
@@ -17,9 +17,9 @@ export async function fetchEmployees(store) {
   store.dispatch(requesting())   // start the request
 	try {
 		const response = await axios.get("http://localhost:3000/api/v1/employees");
-    const datas = await response.data
-    store.dispatch(resolved(datas)) // resolved: fetched all employees to store
-    store.dispatch(addNotification( showToast('info', 'Data Downloaded')))
+    const datas = await response
+    store.dispatch(resolved(datas.data)) // resolved: fetched all employees to store
+    store.dispatch(addNotification( showToast('info', 'Employee Records Downloaded')))
 	}
 	catch (error) {
     store.dispatch(rejected('Oops, something went wrong... Please try again')) // rejected: error mesage
@@ -39,12 +39,13 @@ export async function addAnEmployee(store, input) {
   store.dispatch(addRequesting())  // start the update request
   try {
     const response = await axios.post('http://localhost:3000/api/v1/employees', input)
-    const responseData = await response.data
-    store.dispatch(addResolved(responseData))     // resolved: save new employee to store
-    store.dispatch(addNotification( showToast('success', 'Employee record Added')))
+    const responseData = await response
+    store.dispatch(addResolved(responseData.data))     // resolved: save new employee to store
+    store.dispatch(addNotification(showToast('success', 
+                  `ID: ${responseData.data.lastName}. Record Created`)))
   } catch (error) {
     store.dispatch(addRejected('Oops, something went wrong... record not created !'))
-    store.dispatch(addNotification( showToast('danger', 'Employee record NOT created !')))
+    store.dispatch(addNotification( showToast('danger', `ID: ${input.lastName}. Record Not Created !`)))
   }
 }
 
@@ -60,12 +61,13 @@ export async function addAnEmployee(store, input) {
   store.dispatch(modifyRequesting())  // start the update request
   try {
     const response = await axios.put(`http://localhost:3000/api/v1/employees/${input._id}`, input)
-    const responseData = await response.data
-    store.dispatch(modifyResolved(responseData))  // resolved: updated employee to store
-    store.dispatch(addNotification( showToast('success', 'Employee record Modified')))
+    const responseData = await response
+    store.dispatch(modifyResolved(responseData.data))  // resolved: updated employee to store
+    store.dispatch(addNotification( showToast('success', 
+                  `ID: ${responseData.data.lastName}. Record Updated`)))
   } catch (error) {
     store.dispatch(modifyRejected('Oops, something went wrong... record not updated !'))
-    store.dispatch(addNotification( showToast('danger', 'Employee record NOT modified')))
+    store.dispatch(addNotification( showToast('danger', `ID: ${input.lastName}. Record Not Updated !`)))
   }
 }
 
@@ -74,19 +76,20 @@ export async function addAnEmployee(store, input) {
  * the function deletes an employee record from database
  * @function deleteAnEmployee
  * @param {object} store
- * @param {number} id: of selected employee record
+ * @param {number} selected employee record to be deleted
  * @returns {object|string} updated employee information or error message to store
  */
-export async function deleteAnEmployee(store, id) {
+export async function deleteAnEmployee(store, input) {
+  console.log(input)
   store.dispatch(deleteRequesting())  // start the update request
   try {
-    const response = await axios.delete(`http://localhost:3000/api/v1/employees/${id}`)
-    const responseData = await response.data
-    store.dispatch(deleteResolved(responseData))  // resolved: delete employee from store
-    store.dispatch(addNotification( showToast('success', 'Employee record Deleted')))
+    const response = await axios.delete(`http://localhost:3000/api/v1/employees/${input._id}`)
+    const responseData = await response
+    store.dispatch(deleteResolved(responseData.data))  // resolved: delete employee from store
+    store.dispatch(addNotification( showToast('success', `ID: ${input.lastName}. Record Deleted`)))
   } catch (error) {
     store.dispatch(deleteRejected('Error : record not deleted !'))
-    store.dispatch(addNotification( showToast('danger', 'Employee record NOT deleted !')))
+    store.dispatch(addNotification( showToast('danger', `ID: ${input.lastName}. Record Not Deleted !`)))
   }
 }
 
@@ -105,6 +108,7 @@ export async function deleteAnEmployee(store, id) {
     isLoading: false,
     employees: [],
     isError: '',
+    isAddError: '',
     isModifyError: '',
     isDeleting: false,
     isDeleteError: ''
@@ -118,7 +122,7 @@ export async function deleteAnEmployee(store, id) {
       draft.employees = action.payload
       draft.isError = ''
     },
-    rejected:  (draft, action) => {
+    rejected: (draft, action) => {
       draft.isLoading = false
       draft.employees = []
       draft.isError = action.payload
@@ -129,11 +133,11 @@ export async function deleteAnEmployee(store, id) {
     addResolved: (draft, action) => {
       draft.isLoading = false
       draft.employees.push(action.payload)
-      draft.isError = ''
+      draft.isAddError = ''
     },
     addRejected: (draft, action) => {
       draft.isLoading = false
-      draft.isError = action.payload
+      draft.isAddError = action.payload
     },
     modifyRequesting: (draft) => {     // modify employee
       draft.isLoading = true

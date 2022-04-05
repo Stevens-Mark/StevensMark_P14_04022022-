@@ -41,17 +41,15 @@ const CurrentEmployees = () => {
 
   // retrieve Redux state
   const theme = useSelector(selectTheme) 
-  const { isLoading,  isError, employees } = useSelector(selectEmployees)
+  const { isLoading, isError, employees } = useSelector(selectEmployees)
 
   return (
-    <main>  
-      {isLoading ? <Wrapper>          {/* Show load spinner whilst waiting for data */}
-                      <LoadingIcon />
-                    </Wrapper> : 
-        <React.Fragment>
-          {isError ? <Wrapper>        {/* Display error message if there is a problem fetcthing the  data*/}
-                        <IsError theme={theme}>{isError}<br/></IsError>
-                      </Wrapper> : 
+    <main>  {/* Show load spinner whilst waiting for data */}
+      {isLoading ? <Wrapper><LoadingIcon /></Wrapper> : 
+
+        <React.Fragment> {/* Display error message if there is a problem fetcthing the data*/}
+          {isError ? <Wrapper><IsError theme={theme}>{isError}<br/></IsError></Wrapper> :
+          
             <React.Fragment>
               <Title heading="Current Employees" />   {/* Otherwise display employees information */}
               <EmployeesTable employees={employees}/>         

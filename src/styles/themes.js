@@ -7,7 +7,7 @@ export const toastTheme = {
   positionLeft: '',
   positonRight: '12px',
   // enterInLeft: true,
-  autoDelete: true,
+  // autoDelete: true,
   deleteDelay: 5000
 }
 

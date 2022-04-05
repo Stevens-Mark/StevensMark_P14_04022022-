@@ -7,15 +7,38 @@ describe('Employees reducer', () => {
       isLoading: false,
       employees: [],
       isError: '',
+      isAddError: '',
       isModifyError: '',
       isDeleting: false,
       isDeleteError: ''
     }
-    
+  
+  const previousState = 
+    { isLoading: false,
+      employees: [
+        { 
+          firstName: "John",
+          lastName :"Doe",
+          dateOfBirth: "03/01/2004",
+          startDate: "03/02/2022",
+          street: "123 Fake Street",
+          city: "Fake City",
+          state: "KY",
+          zipCode: "12345",
+          department: "Engineering"
+        }
+      ],
+      isError: '',
+      isAddError: '',
+      isModifyError: '',
+      isDeleting: false,
+      isDeleteError: ''
+    }
+
   const dataToAdd = 
     { 
-      firstName: "John",
-      lastName :"Doe",
+      firstName: "New",
+      lastName :"Name",
       dateOfBirth: "03/01/2004",
       startDate: "03/02/2022",
       street: "123 Fake Street",
@@ -31,6 +54,7 @@ describe('Employees reducer', () => {
           isLoading: false,
           employees: [],
           isError: '',
+          isAddError: '',
           isModifyError: '',
           isDeleting: false,
           isDeleteError: '' })
@@ -41,7 +65,8 @@ describe('Employees reducer', () => {
         ({
           isLoading: false,
           employees: [],
-          isError: '', 
+          isError: '',
+          isAddError: '',
           isModifyError: '',
           isDeleting: false,
           isDeleteError: '' }) 
@@ -52,7 +77,8 @@ describe('Employees reducer', () => {
       ({
         isLoading: true,
         employees: [],
-        isError: '', 
+        isError: '',
+        isAddError: '', 
         isModifyError: '',
         isDeleting: false,
         isDeleteError: '' }) 
@@ -65,7 +91,8 @@ describe('Employees reducer', () => {
         ({
           isLoading: false,
           employees: dataToAdd,
-          isError: '', 
+          isError: '',
+          isAddError: '',
           isModifyError: '',
           isDeleting: false,
           isDeleteError: '' }) 
@@ -77,7 +104,8 @@ describe('Employees reducer', () => {
       ({
         isLoading: false,
         employees: [],
-        isError: "error message", 
+        isError: "error message",
+        isAddError: '',
         isModifyError: '',
         isDeleting: false,
         isDeleteError: '' }) 
@@ -90,6 +118,7 @@ describe('Employees reducer', () => {
         employees: [],
         isError: '', 
         isModifyError: '',
+        isAddError: '',
         isDeleting: false,
         isDeleteError: '' }) 
       })
@@ -101,7 +130,8 @@ describe('Employees reducer', () => {
         ({
           isLoading: false,
           employees: [ dataToAdd ],
-          isError: '', 
+          isError: '',
+          isAddError: '',
           isModifyError: '',
           isDeleting: false,
           isDeleteError: '' }) 
@@ -113,8 +143,85 @@ describe('Employees reducer', () => {
       ({
         isLoading: false,
         employees: [],
-        isError: "error message",
+        isError: '',
+        isAddError: 'error message',
         isModifyError: '',
+        isDeleting: false,
+        isDeleteError: '' }) 
+    })
+
+    it('should return state isDeleting true when request to delete sent', async () => {
+      expect(reducer(initialState, { type: 'employee/deleteRequesting' })).toEqual
+      ({
+        isLoading: false,
+        employees: [],
+        isError: '',
+        isAddError: '', 
+        isModifyError: '',
+        isDeleting: true,
+        isDeleteError: '' }) 
+      })
+  
+    it('should remove record when request to delete is resolved', async () => {
+      expect(reducer(previousState, { type: 'employee/deleteResolved' })).toEqual
+      ({
+        isLoading: false,
+        employees: [],
+        isError: '',
+        isAddError: '', 
+        isModifyError: '',
+        isDeleting: false,
+        isDeleteError: '' }) 
+      })
+
+    it('should return error state if request delete rejected', async () => {
+      expect(reducer(initialState, { type: 'employee/deleteRejected',
+      payload: "error message" ,  })).toEqual
+      ({
+        isLoading: false,
+        employees: [],
+        isError: "",
+        isAddError: '',
+        isModifyError: '',
+        isDeleting: false,
+        isDeleteError: 'error message' }) 
+      })
+
+    it('should return state isLoading true when modify request sent', async () => {
+      expect(reducer(initialState, { type: 'employee/modifyRequesting' })).toEqual
+      ({
+        isLoading: true,
+        employees: [],
+        isError: '',
+        isAddError: '', 
+        isModifyError: '',
+        isDeleting: false,
+        isDeleteError: '' }) 
+      })
+
+    it('should return updated employee record state when data is modified', async () => {
+      expect(reducer(previousState, { 
+        type: 'employee/modifyResolved', 
+        payload: dataToAdd , })).toEqual
+        ({
+          isLoading: false,
+          employees: [ dataToAdd ],
+          isError: '',
+          isAddError: '',
+          isModifyError: '',
+          isDeleting: false,
+          isDeleteError: '' }) 
+        })
+
+        it('should return error state if request modify rejected', async () => {
+      expect(reducer(initialState, { type: 'employee/modifyRejected',
+      payload: "error message" ,  })).toEqual
+      ({
+        isLoading: false,
+        employees: [],
+        isError: "",
+        isAddError: '',
+        isModifyError: 'error message',
         isDeleting: false,
         isDeleteError: '' }) 
       })
@@ -124,7 +231,8 @@ describe('Employees reducer', () => {
         ({
           isLoading: false,
           employees: [],
-          isError: '', 
+          isError: '',
+          isAddError: '',
           isModifyError: '',
           isDeleting: false,
           isDeleteError: '' })
