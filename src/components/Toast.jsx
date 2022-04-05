@@ -123,7 +123,7 @@ const Toast = ( props ) => {
           <ToastBody key={i} 
             style={{ backgroundColor: toast.backgroundColor }}>
                
-            <CloseBtn onClick={() => deleteToast(toast.id)}> X </CloseBtn>          
+            <CloseBtn aria-label="Close Notification" onClick={() => deleteToast(toast.id)}> X </CloseBtn>          
             <ToastImg src={toast.icon} alt="" />
             <Title>{toast.title}</Title>
             <Message>{toast.description}</Message>

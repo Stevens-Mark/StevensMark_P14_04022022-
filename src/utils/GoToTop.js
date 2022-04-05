@@ -18,7 +18,7 @@ const TopButton = styled.button`
   position: fixed;
   right: 1.25rem;
   top:auto;
-  bottom: 6.2rem;
+  bottom: 5.2rem;
   transition: 0.4s;
   z-index: 9999;
 

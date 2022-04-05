@@ -67,8 +67,11 @@ const FieldSet = styled.fieldset`
 const IsError = styled.p`
   color: ${({ theme }) => (theme === 'light' ? `${colors.warning}` : `${colors.chromeBlue}`)};
   font-weight: bold;
-  // text-align: center;
   margin-top: -10px;
+`;
+
+const Alert = styled(IsError)`
+  text-align: center;
 `;
 
 const Save = styled.button`
@@ -105,7 +108,7 @@ const EmployeeForm = ( props ) => {
 
   // retrieve Redux state
   const theme = useSelector(selectTheme) 
-  const { isLoading, isAddError } = useSelector(selectEmployees)
+  const { isLoading, isError, isAddError } = useSelector(selectEmployees)
 
   // local states
   const initialState = {
@@ -317,7 +320,8 @@ const EmployeeForm = ( props ) => {
             onChange={(e) => setInput({...input, department: e.target.value})} /> 
 
             {isLoading && <LoadingIcon />}
-            <IsError theme={theme}>{isAddError}</IsError>
+            <Alert theme={theme}>{isError}</Alert>
+            <Alert theme={theme}>{isAddError}</Alert>
             {/* Display error message & disable save button if NOT online */}
             <Detector render={({ online }) => (
               <IsError theme={theme}>{online ? "" : "Offline : Please check your connection !"}

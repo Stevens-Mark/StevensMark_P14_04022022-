@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux'
 import { selectNotifications } from '../Redux/selectors'
+
+// import component & position paramters etc..
 import Toast from './Toast'
 import { toastTheme } from '../styles/themes'
 

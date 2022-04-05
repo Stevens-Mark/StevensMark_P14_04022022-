@@ -19,7 +19,7 @@ export async function fetchEmployees(store) {
 		const response = await axios.get("http://localhost:3000/api/v1/employees");
     const datas = await response
     store.dispatch(resolved(datas.data)) // resolved: fetched all employees to store
-    store.dispatch(addNotification( showToast('info', 'Employee Records Downloaded')))
+    store.dispatch(addNotification( showToast('info', 'Checked for Employee Records')))
 	}
 	catch (error) {
     store.dispatch(rejected('Oops, something went wrong... Please try again')) // rejected: error mesage
@@ -88,7 +88,7 @@ export async function deleteAnEmployee(store, input) {
     store.dispatch(deleteResolved(responseData.data))  // resolved: delete employee from store
     store.dispatch(addNotification( showToast('success', `ID: ${input.lastName}. Record Deleted`)))
   } catch (error) {
-    store.dispatch(deleteRejected('Error : record not deleted !'))
+    store.dispatch(deleteRejected(`${input.firstName} ${input.lastName} not deleted !`))
     store.dispatch(addNotification( showToast('danger', `ID: ${input.lastName}. Record Not Deleted !`)))
   }
 }

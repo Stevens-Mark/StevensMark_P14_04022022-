@@ -275,8 +275,8 @@ const EmployeesTable = ( { employees } ) => {
         <MsgContainer>
         {isDeleting? <LoadingIcon /> :
           <>
-            {submitted && isDeleteError && <Notify delay="8000">{isDeleteError}</Notify> }
-            {submitted && !isDeleteError && <Notify delay="8000">Record Deleted !</Notify> }
+            {submitted && isDeleteError && <Notify delay="5000">{isDeleteError}</Notify> }
+            {submitted && !isDeleteError && <Notify delay="5000">Record Deleted !</Notify> }
           </>
         } 
         </MsgContainer>

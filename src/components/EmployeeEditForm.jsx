@@ -69,8 +69,11 @@ const FieldSet = styled.fieldset`
 const IsError = styled.p`
   color: ${({ theme }) => (theme === 'light' ? `${colors.warning}` : `${colors.chromeBlue}`)};
   font-weight: bold;
-  // text-align: center;
   margin-top: -10px;
+`;
+
+const Alert = styled(IsError)`
+  text-align: center;
 `;
 
 const Btn = styled.button`
@@ -321,12 +324,12 @@ const EmployeeEditForm = ( props ) => {
             onChange={(e) => setInput({...input, department: e.target.value})} /> 
 
             {isLoading && <LoadingIcon />}
-            <IsError theme={theme}>{isModifyError}</IsError>
+            <Alert theme={theme}>{isModifyError}</Alert>
             {/* Display error message & disable Modify & Cancel button if NOT online */}
             <Detector render={({ online }) => (
               <IsError theme={theme}>{online ? "" : "Offline : Please check your connection !"}
-                <Btn data-testid="submitButton" theme={theme} type="submit" disabled={isLoading || !online? true : false}>Modify</Btn>
-                <Cancel type="button" onClick={()=> handleCancel()} disabled={isLoading || !online? true : false}>Cancel</Cancel>
+                <Btn data-testid="submitButton" aria-label="Modify" theme={theme} type="submit" disabled={isLoading || !online? true : false}>Modify</Btn>
+                <Cancel aria-label="Cancel" type="button" onClick={()=> handleCancel()} disabled={isLoading || !online? true : false}>Cancel</Cancel>
               </IsError> )} />
       </Form>  
       
