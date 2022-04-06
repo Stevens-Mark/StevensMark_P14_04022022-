@@ -39,7 +39,7 @@ const IsError = styled.span`
 `;
 
 /**
- * Renders a Title on a page
+ * Renders a Title on a page & online status notificaions
  * @function Title
  * @param {string} heading: to display
  * @returns {JSX}

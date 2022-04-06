@@ -326,7 +326,7 @@ const EmployeeForm = ( props ) => {
             {/* Display error message & disable save button if NOT online */}
             <Detector render={({ online }) => (
               <Alert theme={theme}>{online ? "" : "Offline : Please check your connection !"}
-                <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading || !online? true : false}>Save</Save>
+                <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading || isError || !online? true : false}>Save</Save>
               </Alert> )} />
       </Form>  
     </Container>

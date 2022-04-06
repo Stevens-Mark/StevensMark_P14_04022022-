@@ -57,11 +57,11 @@ const ToastBody = styled.div`
   }
 `;
 
-const ToastImg = styled.img`
+const ToastImg = styled.span`
   float: left;
   height: 1.875rem;
   margin-right: 0.938rem;
-  width: 1.875rem;
+  width: 0.875rem;
 `;
 
 const Title =styled.p`
@@ -124,7 +124,7 @@ const Toast = ( props ) => {
             style={{ backgroundColor: toast.backgroundColor }}>
                
             <CloseBtn aria-label="Close Notification" onClick={() => deleteToast(toast.id)}> X </CloseBtn>          
-            <ToastImg src={toast.icon} alt="" />
+            <ToastImg>{toast.icon}</ToastImg>
             <Title>{toast.title}</Title>
             <Message>{toast.description}</Message>
            </ToastBody>

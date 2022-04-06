@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit'
 * Unify actions and reducers with Redux-Toolkit slices
 * instead of createAction & createReducer
 * create actions & reducer logic regarding adding an employee
-* @function notifcation
+* @function notifcationSlice
 * @param {object} state
 * @param {string} action
 * @returns {object} new state

@@ -1,10 +1,5 @@
  
 import colors from '../../styles/colors'
-// import icons
-import checkIcon from '../../assets/icons/check.svg'
-import errorIcon from '../../assets/icons/error.svg'
-import infoIcon from '../../assets/icons/info.svg'
-import warningIcon from '../../assets/icons/warning.svg'
  
 /**
  * set the toast type to show with message
@@ -25,7 +20,7 @@ export const showToast = ( type, message ) => {
             title: 'Success',
             description: message,
             backgroundColor: `${colors.success}`,
-            icon: checkIcon
+            icon: '✅'
         }
         break;
     case 'danger':
@@ -34,7 +29,7 @@ export const showToast = ( type, message ) => {
             title: 'Danger',
             description: message,
             backgroundColor: `${colors.danger}`,
-            icon: errorIcon
+            icon: '⛔'
         }
         break;
     case 'info':
@@ -43,7 +38,7 @@ export const showToast = ( type, message ) => {
             title: 'Info',
             description: message,
             backgroundColor: `${colors.info}`,
-            icon: infoIcon
+            icon: '☑️'
         }
         break;
     case 'warning':
@@ -52,7 +47,7 @@ export const showToast = ( type, message ) => {
             title: 'Warning',
             description: message,
             backgroundColor: `${colors.warn}`,
-            icon: warningIcon
+            icon: '⚠️'
         }
         break;
     default:

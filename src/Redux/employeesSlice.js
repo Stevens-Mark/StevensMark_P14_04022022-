@@ -1,9 +1,9 @@
 // redux tool kit function
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { addNotification } from './notificationsSlice'
-// import function to format the toast notification
+// import function & action to format the toast notification
 import { showToast } from '../utils/functions/showToast'
+import { addNotification } from './notificationsSlice'
 // import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
 
 /**
@@ -18,11 +18,11 @@ export async function fetchEmployees(store) {
 	try {
 		const response = await axios.get("http://localhost:3000/api/v1/employees")
     store.dispatch(resolved(response.data)) // resolved: fetched all employees to store
-    store.dispatch(addNotification( showToast('info', 'Checked for Employee Records')))
+    store.dispatch(addNotification( showToast('info', 'Connected To Database')))
 	}
 	catch (error) {
-    store.dispatch(rejected('Oops, something went wrong... Please try again')) // rejected: error mesage
-    store.dispatch(addNotification( showToast('danger', 'Oops, something went wrong...')))
+    store.dispatch(rejected('No Connection To Database. Please try again')) // rejected: error mesage
+    store.dispatch(addNotification( showToast('danger', 'No Connection To Database')))
 	}
 }
 
