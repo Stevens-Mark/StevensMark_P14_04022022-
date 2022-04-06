@@ -39,8 +39,8 @@ export async function addAnEmployee(store, input) {
   try {
     const response = await axios.post('http://localhost:3000/api/v1/employees', input)
     store.dispatch(addResolved(response.data))     // resolved: save new employee to store
-    store.dispatch(addNotification(showToast('success', 
-                  `ID: ${response.data.lastName}. Record Created`)))
+    // store.dispatch(addNotification(showToast('success', 
+    //               `ID: ${response.data.lastName}. Record Created`)))
   } catch (error) {
     store.dispatch(addRejected('Oops, something went wrong. Record not created !'))
     store.dispatch(addNotification( showToast('danger', `ID: ${input.lastName}. Record Not Created !`)))
@@ -60,8 +60,8 @@ export async function addAnEmployee(store, input) {
   try {
     const response = await axios.put(`http://localhost:3000/api/v1/employees/${input._id}`, input)
     store.dispatch(modifyResolved(response.data))  // resolved: updated employee to store
-    store.dispatch(addNotification( showToast('success', 
-                  `ID: ${response.data.lastName}. Record Updated`)))
+    // store.dispatch(addNotification( showToast('success', 
+    //               `ID: ${response.data.lastName}. Record Updated`)))
   } catch (error) {
     store.dispatch(modifyRejected('Oops, something went wrong. Record not updated !'))
     store.dispatch(addNotification( showToast('danger', `ID: ${input.lastName}. Record Not Updated !`)))
@@ -77,7 +77,6 @@ export async function addAnEmployee(store, input) {
  * @returns {object|string} updated employee information or error message to store
  */
 export async function deleteAnEmployee(store, input) {
-  console.log(input)
   store.dispatch(deleteRequesting())  // start the update request
   try {
     const response = await axios.delete(`http://localhost:3000/api/v1/employees/${input._id}`)
