@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
 // for styling
 import styled from 'styled-components'
 import { selectTheme } from '../Redux/selectors'
 import colors from '../styles/colors'
-// import plugin for detecting network connection
-import { Detector } from "react-detect-offline"
+// import functions & actions for notifying state of network connection
+import { addNotification } from '../Redux/notificationsSlice'
+import { showToast } from '../utils/functions/showToast'
 // import user logo
 import user from '../assets/icons/user-circle-solid.svg'
 
@@ -44,14 +46,34 @@ const IsError = styled.span`
  */
  const Title = ( { heading } ) => {
 
-  const theme = useSelector(selectTheme) // retrieve Redux state
+  const theme = useSelector(selectTheme) // retrieve Redux state & local state
+  let [online, isOnline] = useState(navigator.onLine)
+  const dispatch = useDispatch()
 
+  const setOnline = () => {
+    isOnline(true)
+    dispatch(addNotification(showToast('info', 'You Are Back Online')))
+  }
+  const setOffline = () => {
+    isOnline(false)
+    dispatch(addNotification(showToast('warning', 'You Are Currently Offline !')))
+  }
+  // Register the event listeners
+  useEffect(() => {
+    window.addEventListener('offline', setOffline)
+    window.addEventListener('online', setOnline)
+    // cleanup if we unmount
+    return () => {
+      window.removeEventListener('offline', setOffline)
+      window.removeEventListener('online', setOnline)
+    }
+  })
+  
   return (
     <Wrapper theme={theme}>
       <img src={user} alt=""/>
       <h2>{heading}</h2>
-      <Detector render={({ online }) => (
-        <IsError theme={theme}>Status: {online ? "Online" : "Offline - Check connection !"} </IsError> )} />
+      {<IsError theme={theme}>Status: {online ? "Online" : "Offline - Check connection !"}</IsError>}
     </Wrapper> 
   )
 }

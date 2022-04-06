@@ -329,10 +329,10 @@ const EmployeeEditForm = ( props ) => {
             <Alert theme={theme}>{isModifyError}</Alert>
             {/* Display error message & disable Modify & Cancel button if NOT online */}
             <Detector render={({ online }) => (
-              <IsError theme={theme}>{online ? "" : "Offline : Please check your connection !"}
+              <Alert theme={theme}>{online ? "" : "Offline : Please check your connection !"}
                 <Btn data-testid="submitButton" aria-label="Modify" theme={theme} type="submit" disabled={isLoading || !online? true : false}>Modify</Btn>
                 <Cancel aria-label="Cancel" type="button" onClick={()=> handleCancel()} disabled={isLoading || !online? true : false}>Cancel</Cancel>
-              </IsError> )} />
+              </Alert> )} />
       </Form>  
       
     </Container>

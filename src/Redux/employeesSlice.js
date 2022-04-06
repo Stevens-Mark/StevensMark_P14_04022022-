@@ -16,7 +16,7 @@ import { showToast } from '../utils/functions/showToast'
 export async function fetchEmployees(store) {
   store.dispatch(requesting())   // start the request
 	try {
-		const response = await axios.get("http://localhost:3000/api/v1/employees");
+		const response = await axios.get("http://localhost:3000/api/v1/employees")
     store.dispatch(resolved(response.data)) // resolved: fetched all employees to store
     store.dispatch(addNotification( showToast('info', 'Checked for Employee Records')))
 	}
