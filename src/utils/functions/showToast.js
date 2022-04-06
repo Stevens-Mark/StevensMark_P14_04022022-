@@ -1,5 +1,6 @@
  
- // import icons
+import colors from '../../styles/colors'
+// import icons
 import checkIcon from '../../assets/icons/check.svg'
 import errorIcon from '../../assets/icons/error.svg'
 import infoIcon from '../../assets/icons/info.svg'
@@ -23,7 +24,7 @@ export const showToast = ( type, message ) => {
             id,
             title: 'Success',
             description: message,
-            backgroundColor: '#5cb85c',
+            backgroundColor: `${colors.success}`,
             icon: checkIcon
         }
         break;
@@ -32,7 +33,7 @@ export const showToast = ( type, message ) => {
             id,
             title: 'Danger',
             description: message,
-            backgroundColor: '#d9534f',
+            backgroundColor: `${colors.danger}`,
             icon: errorIcon
         }
         break;
@@ -41,7 +42,7 @@ export const showToast = ( type, message ) => {
             id,
             title: 'Info',
             description: message,
-            backgroundColor: '#5bc0de',
+            backgroundColor: `${colors.info}`,
             icon: infoIcon
         }
         break;
@@ -50,7 +51,7 @@ export const showToast = ( type, message ) => {
             id,
             title: 'Warning',
             description: message,
-            backgroundColor: '#f0ad4e',
+            backgroundColor: `${colors.warn}`,
             icon: warningIcon
         }
         break;

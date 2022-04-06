@@ -19,7 +19,7 @@ const EditEmployee = () => {
 
   const mode = useSelector(selectTheme)  // retrieve Redux state
   const { isLoading, isModifyError } = useSelector(selectEmployees)
-
+  
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const  closeModal = () => { setModalIsOpen(false) }
 

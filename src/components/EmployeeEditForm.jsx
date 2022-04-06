@@ -239,6 +239,7 @@ const EmployeeEditForm = ( props ) => {
    */
   const handleCancel = () => {
     history.push(`/employees/`)
+    // window.history.back()
   }
 
   return (
@@ -247,6 +248,7 @@ const EmployeeEditForm = ( props ) => {
         <label htmlFor="firstName">First Name</label>
           <input type="text"
             id="firstName"
+            autoFocus
             value={input.firstName}
             required={true}
             maxLength={30}

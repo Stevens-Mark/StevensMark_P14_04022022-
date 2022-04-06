@@ -16,6 +16,7 @@ import PropTypes from 'prop-types'
       <label htmlFor="search" className='sr-only'>Search</label>
       <input
         type="text"
+        autoFocus
         id="search"
         placeholder={`Search ${count} records...`}
         value={globalFilter || ""}

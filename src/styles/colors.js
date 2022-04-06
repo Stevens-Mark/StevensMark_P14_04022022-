@@ -24,6 +24,12 @@ const colors = {
   lightestSlate: '#ccd6f6',
   lightGreen: '#64ffda',
   chromeBlue: '#3297FD',
+
+  // toast
+  success: '#5cb85c',
+  danger: '#d9534f',
+  info: '#5bc0de',
+  warn: '#f0ad4e',
 }
 
 export default colors

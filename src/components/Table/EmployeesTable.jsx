@@ -94,7 +94,7 @@ const DeleteBtn = styled.button`
 `;
 
 const ModifyBtn = styled(DeleteBtn)`
-  background: ${colors.primary};
+  background: ${colors.darkSlate};
 `;
 
 const Controls = styled.span`
@@ -275,8 +275,8 @@ const EmployeesTable = ( { employees } ) => {
         <MsgContainer>
         {isDeleting? <LoadingIcon /> :
           <>
-            {submitted && isDeleteError && <Notify delay="5000">{isDeleteError}</Notify> }
-            {submitted && !isDeleteError && <Notify delay="5000">Record Deleted !</Notify> }
+            {submitted && isDeleteError && <Notify delay="3000">{isDeleteError}</Notify> }
+            {submitted && !isDeleteError && <Notify delay="3000">Record Deleted</Notify> }
           </>
         } 
         </MsgContainer>
