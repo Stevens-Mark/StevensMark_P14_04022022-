@@ -5,12 +5,16 @@ import { Provider } from 'react-redux'
 // import slices
 import employeesReducer from '../../Redux/employeesSlice'
 import themeReducer from '../../Redux/themeSlice'
- 
+import notificationsReducer from '../../Redux/notificationsSlice'
+import isOnlineReducer from '../../Redux/onlineStatusSlice'
+
 export function render(ui, options) {
     const store = configureStore({
         reducer: {
           employees: employeesReducer,
+          notifications: notificationsReducer,
           theme: themeReducer,
+          isOnline: isOnlineReducer,
         },
     })
  

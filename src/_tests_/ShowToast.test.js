@@ -5,6 +5,8 @@ describe('ShowToast function', () => {
 
   it('should return a success notification message with corresponding format color & icon', async () => {
     const result = showToast('success', 'test message')
+    expect(result.id).toBeGreaterThanOrEqual(1)
+    expect(result.id).toBeLessThanOrEqual(100)
     expect(result.title).toBe('Success')
     expect(result.description).toBe('test message')
     expect(result.backgroundColor).toBe(`${colors.success}`)
@@ -13,6 +15,8 @@ describe('ShowToast function', () => {
 
   it('should return a danger notification message with corresponding format color & icon', async () => {
     const result = showToast('danger', 'test message')
+    expect(result.id).toBeGreaterThanOrEqual(1)
+    expect(result.id).toBeLessThanOrEqual(100)
     expect(result.title).toBe('Danger')
     expect(result.description).toBe('test message')
     expect(result.backgroundColor).toBe(`${colors.danger}`)
@@ -21,6 +25,8 @@ describe('ShowToast function', () => {
 
   it('should return an info notification message with corresponding format color & icon', async () => {
     const result = showToast('info', 'test message')
+    expect(result.id).toBeGreaterThanOrEqual(1)
+    expect(result.id).toBeLessThanOrEqual(100)
     expect(result.title).toBe('Info')
     expect(result.description).toBe('test message')
     expect(result.backgroundColor).toBe(`${colors.info}`)
@@ -29,6 +35,8 @@ describe('ShowToast function', () => {
 
   it('should return a warning notification message with corresponding format color & icon', async () => {
     const result = showToast('warning', 'test message')
+    expect(result.id).toBeGreaterThanOrEqual(1)
+    expect(result.id).toBeLessThanOrEqual(100)
     expect(result.title).toBe('Warning')
     expect(result.description).toBe('test message')
     expect(result.backgroundColor).toBe(`${colors.warn}`)

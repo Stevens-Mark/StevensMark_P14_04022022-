@@ -33,11 +33,18 @@ describe('full APP rendering/navigating', () => {
       })
     })
 
+    it('should show current employees page', async () => {
+      renderWithRouter(<App />, {route: '/employees'})
+      await waitFor(() => {
+        expect(screen.getByText(/Current Employees/i)).toBeInTheDocument()
+      })
+    })
+
     it('should show an error page for a bad route', async () => {
       renderWithRouter(<App />, {route: '/something-that-does-not-match'})
       await waitFor(() => {
         expect(screen.getByText(/Oops, the page you requested does not exist./i)).toBeInTheDocument()
       })
     })
-  
+
 })

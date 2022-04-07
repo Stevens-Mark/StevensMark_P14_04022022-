@@ -10,6 +10,7 @@ import { addNotification } from '../Redux/notificationsSlice'
 import { showToast } from '../utils/functions/showToast'
 // import user logo
 import user from '../assets/icons/user-circle-solid.svg'
+import { onLine, offLine } from '../Redux/onlineStatusSlice'
 
 /**
  * CSS for the component using styled.components
@@ -52,10 +53,12 @@ const IsError = styled.span`
 
   const setOnline = () => {
     isOnline(true)
+    dispatch(onLine())
     dispatch(addNotification(showToast('info', 'You Are Back Online')))
   }
   const setOffline = () => {
     isOnline(false)
+    dispatch(offLine())
     dispatch(addNotification(showToast('warning', 'You Are Currently Offline !')))
   }
   // Register the event listeners
