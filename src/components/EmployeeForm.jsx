@@ -92,6 +92,7 @@ const Save = styled.button`
     box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
     opacity: 0.85;
     transition: 0.4s;
+    color: ${colors.tertiary};
   }
 `;
 

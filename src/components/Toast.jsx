@@ -95,8 +95,8 @@ const Toast = ( props ) => {
   const { toastList, theme } = props
   const store = useStore()
   
-  useEffect(() => {                         // if autoDelete true & there's a notifcation, then delete
-    const interval = setInterval(() => {   // the first one in the list (until all have been removed)
+  useEffect(() => {         // if autoDelete true & there's a notifcation, then delete
+    const interval = setInterval(() => {   // the first one in the list (until all removed)
       if (theme.autoDelete && toastList.length) {
         deleteToast(toastList[0].id)
       }

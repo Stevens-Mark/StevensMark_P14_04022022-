@@ -12,7 +12,8 @@ import PropTypes from 'prop-types'
     <span>
       <label htmlFor='pageSize' className='sr-only'>Page Size</label>
       {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
-      <select role="listbox"
+      <select
+        aria-label='pageSize'
         name='pageSize'
         id='pageSize'
         value={pageSize}

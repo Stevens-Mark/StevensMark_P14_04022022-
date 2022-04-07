@@ -33,7 +33,7 @@ import user from '../assets/icons/user-circle-solid.svg'
 const IsError = styled.span`
   color: ${({ theme }) => (theme === 'light' ? `${colors.warning}` : `${colors.chromeBlue}`)};
   font-weight: bold;
-  background: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightNavy}`)};
+  background: ${({ theme }) => (theme === 'light' ? `${colors.whiteAntique}` : `${colors.lightNavy}`)};
   border-radius: 8px;
   padding: 0rem 0.5rem;
 `;

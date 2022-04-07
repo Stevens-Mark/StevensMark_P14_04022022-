@@ -25,7 +25,8 @@ const Selected =styled.select`
   return (
     <>
       <label htmlFor={id}>{capitalize(id)}</label>
-      <Selected role="listbox"
+      <Selected
+        aria-label={id}
         name={id}
         id={id}
         required={true}
@@ -36,7 +37,7 @@ const Selected =styled.select`
         }
         {[...listItems].sort((a, b) => (a.name < b.name ? -1 : 1)).map((item, index) => {
           return (
-            <option key={`${item}-${index}`} value={item.value}>
+            <option key={`${index}-${item.name}`} value={item.value}>
               {item.name}
             </option>
           );

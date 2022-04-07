@@ -94,12 +94,16 @@ const Btn = styled.button`
     box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
     opacity: 0.8;
     transition: 0.4s;
+    color: ${colors.tertiary};
   }
 `;
 
 const Cancel = styled(Btn)`
   background-color: ${colors.warning};
   color: ${colors.tertiary};
+  &:hover {
+    color: ${colors.secondary};
+  }
 `;
 
 /**

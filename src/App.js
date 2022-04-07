@@ -14,7 +14,7 @@ const CurrentEmployees = lazy(() => import('./pages/CurrentEmployees'))
 const EditEmployee = lazy(() => import('./pages/EditEmployee'))
 const Error = lazy(() => import('./pages/Error'))
 const GoToTop = lazy(() => import('./utils/GoToTop'))
-const renderLoader = () => <div>Loading, Please wait a moment...</div>
+const renderLoader = () => <div>Loading...</div>
 
 /**
  * Manages routes & renders pages

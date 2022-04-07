@@ -73,28 +73,34 @@ const Table = styled.table`
     border: solid 0.5px ${colors.gray};
     padding: 0.313rem;
   }
+
+  .modify {
+    background: ${({ theme }) => (theme === 'light' ? `${colors.primary}` : `${colors.chromeBlue}`)};
+  }
 `;
 
 const DeleteBtn = styled.button`
   background: ${colors.warning};
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid ${colors.tertiary};
   color: ${colors.tertiary};
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin: 1px 10px;
   padding: 0.2rem 0.5rem;
   &:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
-    opacity: 0.85;
+    opacity: 0.8;
     transition: 0.4s;
-    background: ${colors.zircon};
     color: ${colors.secondary};
   }
 `;
 
 const ModifyBtn = styled(DeleteBtn)`
-  background: ${colors.darkSlate};
+  color: ${colors.secondary};
+  &:hover {
+    color: ${colors.tertiary};
+  }
 `;
 
 const Controls = styled.span`
@@ -231,9 +237,9 @@ const EmployeesTable = ( { employees } ) => {
       accessor: 'actions',
       disableSortBy: true,
       Cell: props => <div style={{ textAlign: "center" }}>
-          <DeleteBtn onClick={(e) => handleClick(e, props)}>Delete</DeleteBtn>
-          <ModifyBtn onClick={()=> handleRowClick(props)}>Modify</ModifyBtn>
-            </div>,    
+            <DeleteBtn aria-label="Delete" onClick={(e) => handleClick(e, props)}>Delete</DeleteBtn>
+            <ModifyBtn theme={theme} className='modify' aria-label="Modify" onClick={()=> handleRowClick(props)}>Modify</ModifyBtn>
+          </div>,    
     },
   ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
