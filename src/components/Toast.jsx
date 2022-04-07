@@ -64,7 +64,7 @@ const ToastImg = styled.span`
   width: 0.875rem;
 `;
 
-const Title =styled.p`
+const Title =styled.h1`
   // height: 1.125rem;
   // width: 18.75rem;
   font-size: 1rem;
