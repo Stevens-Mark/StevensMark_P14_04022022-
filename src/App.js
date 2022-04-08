@@ -24,6 +24,7 @@ const renderLoader = () => <div>Loading...</div>
  */
 export default function App() {
 
+
   // import employee data from db
   const store = useStore()
   useEffect(() => {
