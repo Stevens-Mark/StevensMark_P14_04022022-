@@ -111,7 +111,7 @@ const EmployeeForm = ( props ) => {
   const theme = useSelector(selectTheme)
   const { isLoading, isError, isAddError } = useSelector(selectEmployees)
 
-  // local states
+    // local states
   const initialState = {
     firstName: "",
     lastName: "",
@@ -228,17 +228,18 @@ const EmployeeForm = ( props ) => {
     if (validateForm())
       {
         addAnEmployee(store, input)  // dispatch input data/add employee to store
-        setModalIsOpen(true)          // launch success modal
+        setModalIsOpen(true)          // launch success modal   
         setInput(initialState)        // reset states
         setError(errorState)
         setDisplayDOB('')             // reset states for displaying values in date inputs
         setDisplayStart('')
-        event.target.reset()          // reset form inputs
+        event.target.reset()        // reset form inputs
       }
       else {
         return
         } 
   }
+
 
   return (
     <Container>

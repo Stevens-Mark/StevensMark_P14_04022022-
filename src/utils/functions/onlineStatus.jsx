@@ -5,16 +5,44 @@ import { addNotification } from '../../Redux/notificationsSlice'
 import { showToast } from './showToast'
 
 /**
- * Periodically checks the status of the internet connection
+ * checks the status of the internet connection
  * @function OnlineStatus
- * @returns toast notification & boolean to redux store
+ * @returns toast notification 
  */
 const OnlineStatus = () => {
 
   const dispatch = useDispatch()
 
+  // fetch with possibility to control timeout. website: https://dmitripavlutin.com/timeout-fetch-request/
+  const fetchWithTimeout = async (resource, options = {}) => {
+    const { timeout = 8000 } = options;
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    const response = await fetch(resource, {
+      ...options,
+      signal: controller.signal  
+    })
+    clearTimeout(id)
+    return response
+  }
+
+  // Check for internet connectivity
   const setOnline = () => {
-    dispatch(addNotification(showToast('info', 'You Are Back Online')))
+    const status = navigator.onLine ? 'online' : 'offline';
+    if (status === 'online') {
+      fetchWithTimeout('https://www.google.com/', { 
+            mode: 'no-cors',
+            timeout: 5000
+            })
+        .then(() => {
+          dispatch(addNotification(showToast('info', 'You Are Online')))
+        }).catch(() => {
+          dispatch(addNotification(showToast('warning', 'Internet Connectivity Issue')))
+        })
+  
+    } else {
+      dispatch(addNotification(showToast('warning', 'You Are Currently Offline !')))
+    }
   }
 
   const setOffline = () => {

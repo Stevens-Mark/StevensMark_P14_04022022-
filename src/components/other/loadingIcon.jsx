@@ -23,6 +23,7 @@ const rotate = keyframes`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1rem;
 `;
 
 const Loader = styled.div`

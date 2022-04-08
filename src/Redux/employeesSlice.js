@@ -16,12 +16,12 @@ import { addNotification } from './notificationsSlice'
 export async function fetchEmployees(store) {
   store.dispatch(requesting())   // start the request
 	try {
-		const response = await axios.get("http://localhost:3000/api/v1/employees")
+		const response = await axios.get("http://localhost:3000/api/v1/employees", {timeout: 6000})
     store.dispatch(resolved(response.data)) // resolved: fetched all employees to store
     store.dispatch(addNotification( showToast('info', 'Connected To Database')))
 	}
 	catch (error) {
-    store.dispatch(rejected('No Connection To Database. Please try again')) // rejected: error mesage
+    store.dispatch(rejected('No Connection To Database. Please reload page')) // rejected: error mesage
     store.dispatch(addNotification( showToast('danger', 'No Connection To Database')))
 	}
 }
@@ -37,12 +37,12 @@ export async function fetchEmployees(store) {
 export async function addAnEmployee(store, input) {
   store.dispatch(addRequesting())  // start the update request
   try {
-    const response = await axios.post('http://localhost:3000/api/v1/employees', input)
+    const response = await axios.post('http://localhost:3000/api/v1/employees', input, {timeout: 6000} )
     store.dispatch(addResolved(response.data))     // resolved: save new employee to store
     // store.dispatch(addNotification(showToast('success', 
     //               `ID: ${response.data.lastName}. Record Created`)))
   } catch (error) {
-    store.dispatch(addRejected('Oops, something went wrong. Record not created !'))
+    store.dispatch(addRejected('Record not created ! Please try again'))
     store.dispatch(addNotification( showToast('danger', `ID: ${input.lastName}. Record Not Created !`)))
   }
 }
@@ -58,12 +58,12 @@ export async function addAnEmployee(store, input) {
  export async function editAnEmployee(store, input) {
   store.dispatch(modifyRequesting())  // start the update request
   try {
-    const response = await axios.put(`http://localhost:3000/api/v1/employees/${input._id}`, input)
+    const response = await axios.put(`http://localhost:3000/api/v1/employees/${input._id}`, input, {timeout: 6000})
     store.dispatch(modifyResolved(response.data))  // resolved: updated employee to store
     // store.dispatch(addNotification( showToast('success', 
     //               `ID: ${response.data.lastName}. Record Updated`)))
   } catch (error) {
-    store.dispatch(modifyRejected('Oops, something went wrong. Record not updated !'))
+    store.dispatch(modifyRejected('Record not updated ! Please try again'))
     store.dispatch(addNotification( showToast('danger', `ID: ${input.lastName}. Record Not Updated !`)))
   }
 }
@@ -79,7 +79,7 @@ export async function addAnEmployee(store, input) {
 export async function deleteAnEmployee(store, input) {
   store.dispatch(deleteRequesting())  // start the update request
   try {
-    const response = await axios.delete(`http://localhost:3000/api/v1/employees/${input._id}`)
+    const response = await axios.delete(`http://localhost:3000/api/v1/employees/${input._id}`, {timeout: 6000})
     store.dispatch(deleteResolved(response.data))  // resolved: delete employee from store
     store.dispatch(addNotification( showToast('success', `ID: ${input.lastName}. Record Deleted`)))
   } catch (error) {
