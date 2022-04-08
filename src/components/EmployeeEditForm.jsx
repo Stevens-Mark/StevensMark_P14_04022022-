@@ -38,7 +38,6 @@ const Form = styled.form`
   border: 1px solid ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightGreen}`)};
   display: flex;
   flex-direction: column;
-  // font-family: Arial;
   padding: 1.2rem;
   width: 17rem;
   @media (min-width: 445px) {

@@ -30,10 +30,8 @@ const CloseBtn = styled.button`
   float: right;
   font-size: 1rem;
   font-weight: 700;
-  // opacity: 0.8;
   position: relative;
   right: -0.7em;
-  // text-shadow: 0 1px 0 ${colors.tertiary};
   top: -0.4em;
 `;
 
@@ -44,7 +42,6 @@ const ToastBody = styled.div`
   border-radius: 12px 3px 12px 3px;
   margin: 0 0 0.938rem;
   max-height: 6.25rem;
-  // opacity: 0.9;
   overflow: hidden;
   padding: 10px 15px;
   pointer-events: auto;
@@ -65,8 +62,6 @@ const ToastImg = styled.span`
 `;
 
 const Title =styled.h1`
-  // height: 1.125rem;
-  // width: 18.75rem;
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.375rem;
