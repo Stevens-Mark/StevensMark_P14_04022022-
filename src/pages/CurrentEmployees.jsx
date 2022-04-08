@@ -8,7 +8,7 @@ import { selectEmployees, selectTheme } from '../Redux/selectors'
 // import components
 import Title from '../components/Title'
 import EmployeesTable from '../components/Table/EmployeesTable'
-import LoadingIcon from '../utils/loader/loadingIcon'
+import LoadingIcon from '../components/other/loadingIcon'
 
 /**
  * CSS for the component using styled.components

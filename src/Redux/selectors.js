@@ -3,3 +3,4 @@
 export const selectTheme = (state) => state.theme
 export const selectEmployees = (state) => state.employees
 export const selectNotifications = (state) => state.notifications
+export const selectOnlineStatus = (state) => state.isOnline

@@ -16,10 +16,10 @@ const onlineSlice = createSlice({
    isOnline: navigator.onLine
  },
  reducers: { 
-   onLine: (draft) => {    
+   onLine: (draft, action) => {    
     draft.isOnline = true
    },
-   offLine: (draft) => {    
+   offLine: (draft, action) => {    
     draft.isOnline = false
    },
  },

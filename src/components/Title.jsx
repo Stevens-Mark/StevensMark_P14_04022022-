@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
+import {  useSelector } from 'react-redux'
 // for styling
 import styled from 'styled-components'
-import { selectTheme } from '../Redux/selectors'
+import { selectTheme, selectOnlineStatus } from '../Redux/selectors'
 import colors from '../styles/colors'
-// import functions & actions for notifying state of network connection
-import { addNotification } from '../Redux/notificationsSlice'
-import { showToast } from '../utils/functions/showToast'
 // import user logo
 import user from '../assets/icons/user-circle-solid.svg'
-import { onLine, offLine } from '../Redux/onlineStatusSlice'
 
 /**
  * CSS for the component using styled.components
@@ -40,37 +35,15 @@ const IsError = styled.span`
 `;
 
 /**
- * Renders a Title on a page & online status notificaions
+ * Renders a Title on a page
  * @function Title
  * @param {string} heading: to display
  * @returns {JSX}
  */
  const Title = ( { heading } ) => {
 
-  const theme = useSelector(selectTheme) // retrieve Redux state & local state
-  let [online, isOnline] = useState(navigator.onLine)
-  const dispatch = useDispatch()
-
-  const setOnline = () => {
-    isOnline(true)
-    dispatch(onLine())
-    dispatch(addNotification(showToast('info', 'You Are Back Online')))
-  }
-  const setOffline = () => {
-    isOnline(false)
-    dispatch(offLine())
-    dispatch(addNotification(showToast('warning', 'You Are Currently Offline !')))
-  }
-  // Register the event listeners
-  useEffect(() => {
-    window.addEventListener('offline', setOffline)
-    window.addEventListener('online', setOnline)
-    // cleanup if we unmount
-    return () => {
-      window.removeEventListener('offline', setOffline)
-      window.removeEventListener('online', setOnline)
-    }
-  })
+  const theme = useSelector(selectTheme) // retrieve Redux state
+  const online = useSelector(selectOnlineStatus).isOnline
   
   return (
     <Wrapper theme={theme}>

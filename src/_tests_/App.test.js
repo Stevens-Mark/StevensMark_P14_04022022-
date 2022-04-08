@@ -40,6 +40,13 @@ describe('full APP rendering/navigating', () => {
       })
     })
 
+    // it('should show an employee record to modify', async () => {
+    //   renderWithRouter(<App />, {route: '/employees/edit/624e5f6fdfb2b1d870dca1fc'})
+    //   await waitFor(() => {
+    //     expect(screen.getByText(/Modify Employee/i)).toBeInTheDocument()
+    //   })
+    // })
+
     it('should show an error page for a bad route', async () => {
       renderWithRouter(<App />, {route: '/something-that-does-not-match'})
       await waitFor(() => {

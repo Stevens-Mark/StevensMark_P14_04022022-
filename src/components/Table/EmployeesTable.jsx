@@ -4,12 +4,12 @@ import { useSelector, useStore } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import selector
-import { selectTheme, selectEmployees } from '../../Redux/selectors'
+import { selectTheme, selectEmployees, selectOnlineStatus } from '../../Redux/selectors'
 // import action
 import { deleteAnEmployee } from '../../Redux/employeesSlice'
 // imports for table
-import { Notify } from '../../utils/functions/Notify'
-import LoadingIcon from '../../utils/loader/loadingIcon'
+import { Notify } from '../other/Notify'
+import LoadingIcon from '../other/loadingIcon'
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table'
 import GlobalSearch from './GlobalSearch'
 import Pagination from './Pagination'
@@ -141,11 +141,12 @@ const MsgContainer = styled.div`
 const EmployeesTable = ( { employees } ) => {
 
   // retrieve Redux state
-  const theme = useSelector(selectTheme) 
+  const theme = useSelector(selectTheme)
+  const online = useSelector(selectOnlineStatus).isOnline
   const { isDeleting, isDeleteError } = useSelector(selectEmployees)
   // local state
   const [submitted, setSubmitted] = useState(false)
-
+  console.log(online)
   const data = useMemo(() => employees, [ employees ] )
   const store = useStore()
   const history = useHistory()
@@ -178,6 +179,7 @@ const EmployeesTable = ( { employees } ) => {
  * @returns {JSX} edit employee form
  */
    const handleRowClick = (cell) => {
+     console.log(cell)
     history.push(`/employees/edit/${cell?.row?.original._id}`)
    } 
 
@@ -238,8 +240,9 @@ const EmployeesTable = ( { employees } ) => {
       disableSortBy: true,
       Cell: props => <div style={{ textAlign: "center" }}>
             <DeleteBtn aria-label="Delete" onClick={(e) => handleClick(e, props)}>Delete</DeleteBtn>
-            <ModifyBtn theme={theme} className='modify' aria-label="Modify" onClick={()=> handleRowClick(props)}>Modify</ModifyBtn>
-          </div>,    
+            <ModifyBtn theme={theme} className='modify'aria-label="Modify" 
+                disabled={!online? true : false} onClick={()=> handleRowClick(props)}>Modify</ModifyBtn>
+          </div>, 
     },
   ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -279,6 +282,7 @@ const EmployeesTable = ( { employees } ) => {
         <GlobalSearch globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} preGlobalFilteredRows={preGlobalFilteredRows}/>
       </Controls>
         <MsgContainer>
+
         {isDeleting? <LoadingIcon /> :
           <>
             {submitted && isDeleteError && <Notify delay="3000">{isDeleteError}</Notify> }

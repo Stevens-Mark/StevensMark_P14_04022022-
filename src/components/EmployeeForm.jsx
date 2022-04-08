@@ -5,15 +5,13 @@ import { useSelector, useStore } from 'react-redux'
 import styled from 'styled-components'
 import colors from '../styles/colors'
 // import selectors
-import { selectTheme, selectEmployees } from '../Redux/selectors'
+import { selectTheme, selectEmployees, selectOnlineStatus } from '../Redux/selectors'
 // import data for dropdown menus
 import { departments } from '../assets/data/departments'
 import { states } from '../assets/data/states'
-// import plugin for detecting network connection
-import { Detector } from "react-detect-offline"
 // import components
 import Select from './Select'
-import LoadingIcon from '../utils/loader/loadingIcon'
+import LoadingIcon from './other/loadingIcon'
 // import functions, actions & constants
 import { capitalize, ConvertDate } from '../utils/functions/helpers'
 import { addAnEmployee } from '../Redux/employeesSlice'
@@ -108,7 +106,8 @@ const EmployeeForm = ( props ) => {
   const store = useStore()
 
   // retrieve Redux state
-  const theme = useSelector(selectTheme) 
+  const theme = useSelector(selectTheme)
+  const online = useSelector(selectOnlineStatus).isOnline
   const { isLoading, isError, isAddError } = useSelector(selectEmployees)
 
   // local states
@@ -325,10 +324,9 @@ const EmployeeForm = ( props ) => {
             <Alert theme={theme}>{isError}</Alert>
             <Alert theme={theme}>{isAddError}</Alert>
             {/* Display error message & disable save button if NOT online */}
-            <Detector render={({ online }) => (
-              <Alert theme={theme}>{online ? "" : "Offline : Please check your connection !"}
-                <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading || isError || !online? true : false}>Save</Save>
-              </Alert> )} />
+            <Alert theme={theme}>{online ? "" : "Offline : Please check your connection !"}
+              <Save data-testid="submitButton" theme={theme} type="submit" disabled={isLoading || isError || !online? true : false}>Save</Save>
+            </Alert>
       </Form>  
     </Container>
   )

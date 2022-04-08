@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 // for styling
 import styled from 'styled-components'
-import colors from '../styles/colors'
-import { selectTheme } from '../Redux/selectors'
+import colors from '../../styles/colors'
+import { selectTheme } from '../../Redux/selectors'
 // import up arrow for 'gototop' button
-import upArrow from '../assets/icons/circleUpArrow.svg'
+import upArrow from '../../assets/icons/circleUpArrow.svg'
 
 /**
  * CSS for component using styled.components
