@@ -35,6 +35,7 @@ export default function App() {
     <Suspense fallback={renderLoader()}>
       <Router>
         <OnlineStatus />
+
           <Header />
             <Switch>
               <Route exact path="/" component={CreateEmployee}/>
