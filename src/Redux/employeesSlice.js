@@ -83,7 +83,7 @@ export async function deleteAnEmployee(store, input) {
     store.dispatch(deleteResolved(response.data))  // resolved: delete employee from store
     store.dispatch(addNotification( showToast('success', `ID: ${input.lastName}. Record Deleted`)))
   } catch (error) {
-    store.dispatch(deleteRejected(`${input.firstName} ${input.lastName} NOT Deleted !`))
+    store.dispatch(deleteRejected(`Oops, something went wrong...`))
     store.dispatch(addNotification( showToast('danger', `ID: ${input.lastName}. Record Not Deleted !`)))
   }
 }

@@ -6,7 +6,6 @@
 
 export const checkOnlineStatus = async () => {
   try {
-
     const online = await fetch("/check.svg",{
       mode: 'no-cors',
       cache: 'no-cache'

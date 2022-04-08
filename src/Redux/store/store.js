@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit'
 import employeesReducer from '../employeesSlice'
 import themeReducer from '../themeSlice'
 import notificationsReducer from '../notificationsSlice'
-import isOnlineReducer from '../onlineStatusSlice'
 
 // create the store & put all reducers together
 export default configureStore({
@@ -10,6 +9,5 @@ export default configureStore({
       employees: employeesReducer,
       notifications: notificationsReducer,
       theme: themeReducer,
-      isOnline: isOnlineReducer,
     },
 })

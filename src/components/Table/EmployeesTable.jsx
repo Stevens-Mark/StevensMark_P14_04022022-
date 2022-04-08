@@ -4,9 +4,11 @@ import { useSelector, useStore } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import selector
-import { selectTheme, selectEmployees, selectOnlineStatus } from '../../Redux/selectors'
+import { selectTheme, selectEmployees } from '../../Redux/selectors'
 // import action
 import { deleteAnEmployee } from '../../Redux/employeesSlice'
+// import plugin for detecting network connection
+import { Detector } from "react-detect-offline"
 // imports for table
 import { Notify } from '../other/Notify'
 import LoadingIcon from '../other/loadingIcon'
@@ -142,11 +144,10 @@ const EmployeesTable = ( { employees } ) => {
 
   // retrieve Redux state
   const theme = useSelector(selectTheme)
-  const online = useSelector(selectOnlineStatus).isOnline
   const { isDeleting, isDeleteError } = useSelector(selectEmployees)
   // local state
   const [submitted, setSubmitted] = useState(false)
-  console.log(online)
+
   const data = useMemo(() => employees, [ employees ] )
   const store = useStore()
   const history = useHistory()
@@ -179,7 +180,6 @@ const EmployeesTable = ( { employees } ) => {
  * @returns {JSX} edit employee form
  */
    const handleRowClick = (cell) => {
-     console.log(cell)
     history.push(`/employees/edit/${cell?.row?.original._id}`)
    } 
 
@@ -238,12 +238,14 @@ const EmployeesTable = ( { employees } ) => {
       Header: 'Delete',
       accessor: 'actions',
       disableSortBy: true,
-      Cell: props => <div style={{ textAlign: "center" }}>
+      Cell: props =>  <Detector render={({ online }) => 
+        ( <div style={{ textAlign: "center" }}>
             <DeleteBtn aria-label="Delete" onClick={(e) => handleClick(e, props)}>Delete</DeleteBtn>
             <ModifyBtn theme={theme} className='modify'aria-label="Modify" 
                 disabled={!online? true : false} onClick={()=> handleRowClick(props)}>Modify</ModifyBtn>
-          </div>, 
+          </div> )} />, 
     },
+
   ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []

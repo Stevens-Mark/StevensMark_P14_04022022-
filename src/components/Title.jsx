@@ -2,8 +2,10 @@ import PropTypes from 'prop-types'
 import {  useSelector } from 'react-redux'
 // for styling
 import styled from 'styled-components'
-import { selectTheme, selectOnlineStatus } from '../Redux/selectors'
+import { selectTheme } from '../Redux/selectors'
 import colors from '../styles/colors'
+// import plugin for detecting network connection
+import { Detector } from "react-detect-offline"
 // import user logo
 import user from '../assets/icons/user-circle-solid.svg'
 
@@ -43,13 +45,13 @@ const IsError = styled.span`
  const Title = ( { heading } ) => {
 
   const theme = useSelector(selectTheme) // retrieve Redux state
-  const online = useSelector(selectOnlineStatus).isOnline
-  
+
   return (
     <Wrapper theme={theme}>
       <img src={user} alt=""/>
       <h2>{heading}</h2>
-      {<IsError theme={theme}>Status: {online ? "Online" : "Offline - Check connection !"}</IsError>}
+      <Detector render={({ online }) => (
+        <IsError theme={theme}>Status: {online ? "Online" : "Offline - Check connection !"} </IsError> )} />
     </Wrapper> 
   )
 }

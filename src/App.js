@@ -4,10 +4,10 @@ import { useStore } from 'react-redux'
 // import for function to fetch data
 import { fetchEmployees } from './Redux/employeesSlice'
 // component imports
+import OnlineStatus from './utils/functions/onlineStatus'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Notification from './components/Notification'
-import OnlineStatus from './utils/functions/onlineStatus'
 
 // use lazy loading to import components just when needed
 const CreateEmployee = lazy(() => import('./pages/CreateEmployee'))
@@ -24,7 +24,6 @@ const renderLoader = () => <div>Loading...</div>
  */
 export default function App() {
 
-
   // import employee data from db
   const store = useStore()
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function App() {
     <>
     <Suspense fallback={renderLoader()}>
       <Router>
-          <OnlineStatus />
+        <OnlineStatus />
           <Header />
             <Switch>
               <Route exact path="/" component={CreateEmployee}/>
