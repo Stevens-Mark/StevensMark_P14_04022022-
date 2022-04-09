@@ -47,4 +47,12 @@ describe('full APP rendering/navigating', () => {
       })
     })
 
+
+    it('Should test', async () => {
+      render(<App />, {route: '/employees'} )
+      await waitFor(() => {
+        expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
+      })
+    })
+
 })
