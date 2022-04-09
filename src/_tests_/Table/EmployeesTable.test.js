@@ -2,6 +2,7 @@ import { screen, waitFor, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 // import custom render to connect component to redux
 import { render } from '../../utils/helpersForTesting/render'
+
 // import component
 import EmployeesTable from '../../components/Table/EmployeesTable'
 // import mock data

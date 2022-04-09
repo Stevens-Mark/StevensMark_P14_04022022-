@@ -31,7 +31,7 @@ describe('full APP rendering/navigating', () => {
       await waitFor(() => {
         expect(screen.getByText(/Current Employees/i)).toBeInTheDocument()
       })
-    })
+     })
 
     it('should show current employees page', async () => {
       renderWithRouter(<App />, {route: '/employees'})
@@ -40,6 +40,7 @@ describe('full APP rendering/navigating', () => {
       })
     })
 
+
     it('should show an error page for a bad route', async () => {
       renderWithRouter(<App />, {route: '/something-that-does-not-match'})
       await waitFor(() => {
@@ -47,12 +48,30 @@ describe('full APP rendering/navigating', () => {
       })
     })
 
-
-    it('Should test', async () => {
-      render(<App />, {route: '/employees'} )
+    // this test uses real data from MongoDB to pass (if record deleted then tests will fails)
+  
+    it('should navigate to the modify employee page & display prefilled information', async () => {
+      renderWithRouter(<App />)
+      expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
+      const leftClick = {button: 0}
+      userEvent.click(screen.getByText(/View/i), leftClick)
+            
       await waitFor(() => {
-        expect(screen.getByText(/Create Employee/i)).toBeInTheDocument()
+        expect(screen.getByText(/Current Employees/i)).toBeInTheDocument()
       })
+      userEvent.click(screen.getAllByText(/Modify/i)[0], leftClick)
+      await waitFor(() => {
+        expect(screen.getByText(/Modify Employee/i)).toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.getByDisplayValue('Testname')).toBeInTheDocument()
+      })
+      expect(screen.getByDisplayValue('Testsurname')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('2004-04-01')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('2022-04-01')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('Test Street')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('Test City')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('12343')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('Engineering')).toBeInTheDocument()
     })
-
 })

@@ -3,7 +3,7 @@ import { render } from '../../utils/helpersForTesting/render'
 // imort component
 import CurrentEmployees from '../../pages/CurrentEmployees'
 
-describe('CreateEmployees', () => {
+describe('CurrentEmployees', () => {
   it('should render without crashing', async () => {
     render(<CurrentEmployees />)
   })
