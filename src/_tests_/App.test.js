@@ -40,7 +40,6 @@ describe('full APP rendering/navigating', () => {
       })
     })
 
-
     it('should show an error page for a bad route', async () => {
       renderWithRouter(<App />, {route: '/something-that-does-not-match'})
       await waitFor(() => {
@@ -64,14 +63,14 @@ describe('full APP rendering/navigating', () => {
         expect(screen.getByText(/Modify Employee/i)).toBeInTheDocument()
       })
       await waitFor(() => {
-        expect(screen.getByDisplayValue('Testname')).toBeInTheDocument()
+        expect(screen.getByDisplayValue('John')).toBeInTheDocument()
       })
-      expect(screen.getByDisplayValue('Testsurname')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('Doe')).toBeInTheDocument()
       expect(screen.getByDisplayValue('2004-04-01')).toBeInTheDocument()
       expect(screen.getByDisplayValue('2022-04-01')).toBeInTheDocument()
-      expect(screen.getByDisplayValue('Test Street')).toBeInTheDocument()
-      expect(screen.getByDisplayValue('Test City')).toBeInTheDocument()
-      expect(screen.getByDisplayValue('12343')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('123 Fake Street')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('Fake City')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('12345')).toBeInTheDocument()
       expect(screen.getByDisplayValue('Engineering')).toBeInTheDocument()
     })
 })

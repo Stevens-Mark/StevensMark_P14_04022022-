@@ -25,10 +25,10 @@ import CreateEmployee from '../../pages/CreateEmployee'
 // userEvent.type(lastName, 'Doe')
 
 // const dateOfBirth = screen.getByLabelText(/Date Of Birth/i)
-// userEvent.type(dateOfBirth , '1969-12-17')    // date picker format yyyy-mm-dd
+// userEvent.type(dateOfBirth , '2004-04-01')    // date picker format yyyy-mm-dd
 
 // const startDate = screen.getByLabelText(/Start Date/i)
-// userEvent.type(startDate, '2022-02-28')   // date picker format yyyy-mm-dd
+// userEvent.type(startDate, '2022-04-01')   // date picker format yyyy-mm-dd
 
 // const street = screen.getByLabelText(/Street/i)
 // userEvent.type(street, '123 Fake Street')
@@ -86,10 +86,10 @@ const lastName = screen.getByLabelText(/Last Name/i)
 userEvent.type(lastName, 'D')
 
 const dateOfBirth = screen.getByLabelText(/Date Of Birth/i)
-userEvent.type(dateOfBirth , '1969-12-17')    // date picker format yyyy-mm-dd
+userEvent.type(dateOfBirth , '2004-04-01')    // date picker format yyyy-mm-dd
 
 const startDate = screen.getByLabelText(/Start Date/i)
-userEvent.type(startDate, '2022-02-28')   // date picker format yyyy-mm-dd
+userEvent.type(startDate, '2022-04-01')   // date picker format yyyy-mm-dd
 
 const street = screen.getByLabelText(/Street/i)
 userEvent.type(street, '1')
