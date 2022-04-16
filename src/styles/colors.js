@@ -5,6 +5,7 @@ const colors = {
   primaryInverted: '#9966ff',
   secondary: '#000',
   tertiary: '#fff',
+  whiteAntique: '#FAEBD7',
   darkBrown: '#666600',
   zircon: '#EDF0F1',
   gray: '#808080',
