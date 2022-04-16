@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
   return (
     <span>
       <label htmlFor='pageSize' className='sr-only'>Page Size</label>
-      <select role="listbox"
+      <select
         name='pageSize'
         id='pageSize'
         value={pageSize}

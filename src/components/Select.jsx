@@ -26,7 +26,7 @@ const Selected =styled.select`
   return (
     <>
       <label htmlFor={id}>{capitalize(id)}</label>
-      <Selected role="listbox"
+      <Selected
         name={id}
         id={id}
         required={true}
