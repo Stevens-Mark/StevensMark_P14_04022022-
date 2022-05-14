@@ -6,10 +6,11 @@ import colors from "./colors"
 export const lightTheme = {
   pageBg: `${colors.lightOpacity}`,
   modalBg: `${colors.primary}`,
-  modalTxt: `${colors.tertiary}`,
+  modalTxt: `red`,
   modalBorder: `solid 2px ${colors.secondary}`,
   modalBtnColor: `${colors.tertiary}`,
   modalShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+  // modalRadius: "false"
 }
 
 // dark mode (set your colours here: if needed?)
