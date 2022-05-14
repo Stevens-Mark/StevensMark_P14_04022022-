@@ -34,9 +34,9 @@ const CreateEmployee = () => {
         closeModal={closeModal} 
         modalTheme={mode ==='dark'? darkTheme : lightTheme} 
         heading="Success !"
-        // message="New employee record created"
-        // logo={logo}
-        // animation={true}
+        message="New employee record created"
+        logo={logo}
+        animation={true}
     />
       }
     </main>
