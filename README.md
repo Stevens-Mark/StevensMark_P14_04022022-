@@ -1,9 +1,14 @@
 ![WealthHealth](/src/assets/logos/WealthHealth.webp)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0e1241af-783e-451c-80a2-2552d200ac15/deploy-status)](https://app.netlify.com/sites/wealthcrud/deploys)
 
 # OPENCLASSROOMS PROJECT 14 *(English)*
 
 # Wealth Health
+
+- open the site at: [Wealth-Health](https://wealthcrud.netlify.app/)
+
+- The backend is hosted using Railway
 
 - THIS VERSION USES A MONGODB ATLAS DATABASE AS THE BACKEND (NoSQL database) (full CRUD version)
 - USES NODE SERVER & EXPRESS FRAMEWORK
@@ -113,6 +118,10 @@ The converted plugin can be found here:
 # OPENCLASSROOMS PROJECT 14 *(Français)*
 
 # Wealth Health
+
+- ouvrir le site à : [Wealth-Health](https://wealthcrud.netlify.app/)
+
+- Le backend est hébergé par Railway
 
 - CETTE VERSION UTILISE UNE BASE DE DONNEES MONGODB ATLAS COMME BACKEND (base de données NoSQL) (full CRUD version)
 - UTILISE LE SERVEUR NODE ET LE CADRE EXPRESS
