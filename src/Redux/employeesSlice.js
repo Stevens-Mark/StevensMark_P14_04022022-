@@ -4,7 +4,11 @@ import axios from 'axios'
 // import function & action to format the toast notification
 import { showToast } from '../utils/functions/showToast'
 import { addNotification } from './notificationsSlice'
-// import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json'
+// host address deployed (online) with Railway
+const HOST = `https://${process.env.REACT_APP_SERVER_URL}/api/v1/employees`; 
+
+// import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json' // mock data for testing
+// const HOST = "http://localhost:3000/api/v1/employees" // host when running locally with local p14_backend server
 
 /**
  * API call
@@ -16,7 +20,7 @@ import { addNotification } from './notificationsSlice'
 export async function fetchEmployees(store) {
   store.dispatch(requesting())   // start the request
 	try {
-		const response = await axios.get("http://localhost:3000/api/v1/employees", {timeout: 6000})
+		const response = await axios.get(HOST, {timeout: 6000})
     store.dispatch(resolved(response.data)) // resolved: fetched all employees to store
     store.dispatch(addNotification( showToast('info', 'Connected To Database')))
 	}
@@ -37,7 +41,7 @@ export async function fetchEmployees(store) {
 export async function addAnEmployee(store, input) {
   store.dispatch(addRequesting())  // start the update request
   try {
-    const response = await axios.post('http://localhost:3000/api/v1/employees', input, {timeout: 6000} )
+    const response = await axios.post(HOST, input, {timeout: 6000} )
     store.dispatch(addResolved(response.data))     // resolved: save new employee to store
     // store.dispatch(addNotification(showToast('success', 
     //               `ID: ${response.data.lastName}. Record Created`)))
@@ -58,7 +62,7 @@ export async function addAnEmployee(store, input) {
  export async function editAnEmployee(store, input) {
   store.dispatch(modifyRequesting())  // start the update request
   try {
-    const response = await axios.put(`http://localhost:3000/api/v1/employees/${input._id}`, input, {timeout: 6000})
+    const response = await axios.put(`${HOST}/${input._id}`, input, {timeout: 6000})
     store.dispatch(modifyResolved(response.data))  // resolved: updated employee to store
     // store.dispatch(addNotification( showToast('success', 
     //               `ID: ${response.data.lastName}. Record Updated`)))
@@ -79,7 +83,7 @@ export async function addAnEmployee(store, input) {
 export async function deleteAnEmployee(store, input) {
   store.dispatch(deleteRequesting())  // start the update request
   try {
-    const response = await axios.delete(`http://localhost:3000/api/v1/employees/${input._id}`, {timeout: 6000})
+    const response = await axios.delete(`${HOST}/${input._id}`, {timeout: 6000})
     store.dispatch(deleteResolved(response.data))  // resolved: delete employee from store
     store.dispatch(addNotification( showToast('success', `ID: ${input.lastName}. Record Deleted`)))
   } catch (error) {

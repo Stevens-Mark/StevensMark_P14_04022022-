@@ -67,7 +67,7 @@ describe('full APP rendering/navigating', () => {
       })
       expect(screen.getByDisplayValue('Doe')).toBeInTheDocument()
       expect(screen.getByDisplayValue('2004-04-01')).toBeInTheDocument()
-      expect(screen.getByDisplayValue('2022-04-01')).toBeInTheDocument()
+      expect(screen.getByDisplayValue('2023-04-01')).toBeInTheDocument()
       expect(screen.getByDisplayValue('123 Fake Street')).toBeInTheDocument()
       expect(screen.getByDisplayValue('Fake City')).toBeInTheDocument()
       expect(screen.getByDisplayValue('12345')).toBeInTheDocument()
