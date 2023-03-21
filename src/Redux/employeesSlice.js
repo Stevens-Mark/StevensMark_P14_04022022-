@@ -5,7 +5,7 @@ import axios from 'axios'
 import { showToast } from '../utils/functions/showToast'
 import { addNotification } from './notificationsSlice'
 // host address deployed (online) with Railway
-const HOST = `https://${process.env.REACT_APP_SERVER_URL}/api/v1/employees`; 
+const HOST = `https://wealthhealthbackend.onrender.com/api/v1/employees`; 
 
 // import mockData from '../assets/data/MOCK_DATA_FOR_TESTING.json' // mock data for testing
 // const HOST = "http://localhost:3000/api/v1/employees" // host when running locally with local p14_backend server
