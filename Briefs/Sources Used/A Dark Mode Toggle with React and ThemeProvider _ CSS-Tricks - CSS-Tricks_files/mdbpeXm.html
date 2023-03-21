@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://cdpn.io/maximakymenko/fullembedgrid/mdbpeXm?animations=run&type=embed -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+
+
+  <title>CodePen - Day/night mode switch toggle with React and ThemeProvider</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  
+
+  
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+<style data-styled="" data-styled-version="4.3.2"></style></head>
+
+<body translate="no">
+  <div id="app"><div><button class="sc-bdVaJa dPrWrX"><img src="./1164954.svg" width="224" height="224" alt="Sun free icon" title="Sun free icon"><img src="./2033921.svg" width="224" height="224" alt="Moon free icon" title="Moon free icon"></button><h1>It's a light theme!</h1><footer><span>Credits:</span><small><b>Sun</b> icon made by <a href="https://www.flaticon.com/authors/smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a></small><small><b>Moon</b> icon made by <a href="https://www.freepik.com/home">Freepik</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a></small></footer></div></div>
+    <script src="./stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js.download"></script>
+
+  <script src="./react.production.min.js.download"></script>
+<script src="./react-dom.production.min.js.download"></script>
+<script src="./styled-components.min.js.download"></script>
+      <script id="rendered-js" type="module">
+const { createGlobalStyle, ThemeProvider } = styled;
+const { useState, useEffect } = React;
+
+const GlobalStyles = createGlobalStyle`
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.text};
+    padding: 0;
+    margin: 0;
+    font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    transition: all 0.25s linear;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  small {
+    display: block;
+  }
+
+  button {
+    display: block;
+  }
+
+  a {
+    color: ${({ theme }) => theme.text};
+  }
+`;
+
+const lightTheme = {
+  body: '#e2e2e2',
+  text: '#363537',
+  toggleBorder: '#fff',
+  gradient: 'linear-gradient(#39598A, #79D7ED)' };
+
+
+const darkTheme = {
+  body: '#363537',
+  text: '#FAFAFA',
+  toggleBorder: '#6B8096',
+  gradient: 'linear-gradient(#091236, #1E215D)' };
+
+
+const Toggle = ({ theme, toggleTheme }) => {
+  const isLight = theme === 'light';
+
+  return /*#__PURE__*/(
+    React.createElement(ToggleContainer, { lightTheme: isLight, onClick: toggleTheme }, /*#__PURE__*/
+    React.createElement("img", { src: "https://image.flaticon.com/icons/svg/1164/1164954.svg", width: "224", height: "224", alt: "Sun free icon", title: "Sun free icon" }), /*#__PURE__*/
+    React.createElement("img", { src: "https://image.flaticon.com/icons/svg/2033/2033921.svg", width: "224", height: "224", alt: "Moon free icon", title: "Moon free icon" })));
+
+
+};
+
+const ToggleContainer = styled.button`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background: ${({ theme }) => theme.gradient};
+  width: 8rem;
+  height: 3.5rem;
+  margin: 0 auto;
+  border-radius: 30px;
+  border: 2px solid ${({ theme }) => theme.toggleBorder};
+  font-size: 0.5rem;
+  padding: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+
+  img {
+    max-width: 2.5rem;
+    height: auto;
+    transition: all 0.3s linear;
+
+    &:first-child {
+      transform: ${({ lightTheme }) => lightTheme ? 'translateY(0)' : 'translateY(100px)'};
+    }
+
+    &:nth-child(2) {
+      transform: ${({ lightTheme }) => lightTheme ? 'translateY(-100px)' : 'translateY(0)'};
+    }
+  }
+`;
+
+const useDarkMode = () => {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+      window.localStorage.setItem('theme', 'dark');
+    } else {
+      setTheme('light');
+      window.localStorage.setItem('theme', 'light');
+    }
+  };
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme');
+
+    if (localTheme) {
+      setTheme(localTheme);
+    } else {
+      window.localStorage.setItem('theme', 'light');
+    }
+  });
+
+  return [theme, toggleTheme];
+};
+
+function App() {
+  const [theme, toggleTheme] = useDarkMode();
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
+  return /*#__PURE__*/(
+    React.createElement(ThemeProvider, { theme: themeMode }, /*#__PURE__*/
+    React.createElement("div", null, /*#__PURE__*/
+    React.createElement(GlobalStyles, null), /*#__PURE__*/
+    React.createElement(Toggle, { theme: theme, toggleTheme: toggleTheme }), /*#__PURE__*/
+    React.createElement("h1", null, "It's a ", theme === 'light' ? 'light theme' : 'dark theme', "!"), /*#__PURE__*/
+    React.createElement("footer", null, /*#__PURE__*/
+    React.createElement("span", null, "Credits:"), /*#__PURE__*/
+    React.createElement("small", null, /*#__PURE__*/React.createElement("b", null, "Sun"), " icon made by ", /*#__PURE__*/React.createElement("a", { href: "https://www.flaticon.com/authors/smalllikeart" }, "smalllikeart"), " from ", /*#__PURE__*/React.createElement("a", { href: "https://www.flaticon.com" }, "www.flaticon.com")), /*#__PURE__*/
+    React.createElement("small", null, /*#__PURE__*/React.createElement("b", null, "Moon"), " icon made by ", /*#__PURE__*/React.createElement("a", { href: "https://www.freepik.com/home" }, "Freepik"), " from ", /*#__PURE__*/React.createElement("a", { href: "https://www.flaticon.com" }, "www.flaticon.com"))))));
+
+
+
+
+};
+
+ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('app'));
+//# sourceURL=pen.js
+    </script>
+
+  
+
+  <script src="./iframeRefreshCSS-4793b73c6332f7f14a9b6bba5d5e62748e9d1bd0b5c52d7af6376f3d1c625d7e.js.download"></script>
+
+
+
+ 
+</body></html>
