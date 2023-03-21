@@ -7,8 +7,7 @@
 # Wealth Health
 
 - open the site at: [Wealth-Health](https://wealthcrud.netlify.app/)
-
-- The backend is hosted using Railway
+- The backend is hosted using [Render](https://render.com/)
 
 - THIS VERSION USES A MONGODB ATLAS DATABASE AS THE BACKEND (NoSQL database) (full CRUD version)
 - USES NODE SERVER & EXPRESS FRAMEWORK
@@ -120,8 +119,7 @@ The converted plugin can be found here:
 # Wealth Health
 
 - ouvrir le site à : [Wealth-Health](https://wealthcrud.netlify.app/)
-
-- Le backend est hébergé par Railway
+- Le backend est hébergé par [Render](https://render.com/)
 
 - CETTE VERSION UTILISE UNE BASE DE DONNEES MONGODB ATLAS COMME BACKEND (base de données NoSQL) (full CRUD version)
 - UTILISE LE SERVEUR NODE ET LE CADRE EXPRESS
