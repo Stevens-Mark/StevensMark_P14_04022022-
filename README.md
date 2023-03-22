@@ -98,7 +98,6 @@ The converted plugin can be found here:
 - The site uses REDUX as a state management system, but local storage has also been used so state persists between site reloads.
 
 
-
 # Wealth Health (version US mm/dd/yyyy)
 
 Cette version utilise le format de date américain mm/dd/yyyy (au lieu de dd/mm/yyyy) et inclut un "date picker" personnalisé au lieu du "date picker" natif de React.
