@@ -1,8 +1,6 @@
 ![WealthHealth](/src/assets/logos/WealthHealth.webp)
 
 
-# OPENCLASSROOMS PROJECT 14 *(English)*
-
 # Wealth Health
 
 - THIS VERSION USES FIREBASE AS THE BACKEND SO YOU NEED TO SET UP FIRBASE FIRST.
@@ -98,7 +96,6 @@ Here is the list of currently used jQuery plugins that need to be converted:
 
 ## Installing and running the project
 - Clone the repository onto your computer : branch "firebase"
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Inside this repository, install the packages/dependencies :
  `npm install`
@@ -117,8 +114,6 @@ The converted plugin can be found here:
 **Plugin Demo**
 [Demo](https://reactcustommodal.netlify.app/)
 
-
-# OPENCLASSROOMS PROJECT 14 *(Français)*
 
 # Wealth Health
 
@@ -219,7 +214,6 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ## Installer et exécuter le projet
 - Clonez le repo sur votre ordinateur : branche firebase
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Dans ce dépôt, installez les paquets/dépendances :
  `npm install`
