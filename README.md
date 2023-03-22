@@ -2,8 +2,6 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/0e1241af-783e-451c-80a2-2552d200ac15/deploy-status)](https://app.netlify.com/sites/wealthcrud/deploys)
 
-# OPENCLASSROOMS PROJECT 14 *(English)*
-
 # Wealth Health
 
 - open the site at: [Wealth-Health](https://wealthcrud.netlify.app/)
@@ -86,15 +84,15 @@ Here is the list of currently used jQuery plugins that need to be converted:
 
 ### BackEnd
 
-- Clone the repository P14_Backend onto your computer : branch "full"
-  `git clone https://github.com/Stevens-Mark/P14_Backend.git`
+- Clone the repository Backend onto your computer : branch "full"
+  `git clone https://github.com/Stevens-Mark/Backend-for-WealthHealth.git`
 
 - Follow the instructions in the ReadMe.md file.
 - Make sure the backend is running before you start the FrontEnd
 
 ### FrontEnd
 - Clone the repository onto your computer : branch "full"
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
+  `git clone https://github.com/Stevens-Mark/WealthHealth.git`
 
 - Inside this repository, install the packages/dependencies :
  `npm install`
@@ -108,13 +106,11 @@ The App runs on http://localhost:3001/
 ## My coverted Plugin (npm package)
 
 The converted plugin can be found here:
-[react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens)
+[react-custom-modal](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens)
 
 **Plugin Demo**
 [Demo](https://reactcustommodal.netlify.app/)
 
-
-# OPENCLASSROOMS PROJECT 14 *(Français)*
 
 # Wealth Health
 
@@ -202,15 +198,15 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ### BackEnd
 
-- Clonez le dépôt P14_Backend sur votre ordinateur : branche "full"
-  `git clone https://github.com/Stevens-Mark/P14_Backend.git`
+- Clonez le dépôt Backend sur votre ordinateur : branche "full"
+  `git clone https://github.com/Stevens-Mark/Backend-for-WealthHealth.git`
 
 - Suivez les instructions dans le fichier ReadMe.md.
 - Assurez-vous que le backend fonctionne avant de lancer le FrontEnd.
 
 ### FrontEnd
 - Clonez le repo sur votre ordinateur : branche "full"
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
+  `git clone https://github.com/Stevens-Mark/WealthHealth.git`
 
 - Dans ce dépôt, installez les paquets/dépendances :
  `npm install`
@@ -224,7 +220,7 @@ L'application fonctionne sur http://localhost:3001/
 ## Mon plugin (npm package)
 
 Le plugin converti peut être trouvé ici :
-[react-custom-modal-by-msparkystevens](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens)
+[react-custom-modal](https://www.npmjs.com/package/react-custom-modal-by-msparkystevens)
 
 **Plugin Demo**
 [Demo](https://reactcustommodal.netlify.app/)
