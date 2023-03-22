@@ -1,8 +1,6 @@
 ![WealthHealth](/src/assets/logos/WealthHealth.webp)
 
 
-# OPENCLASSROOMS PROJECT 14 *(English)*
-
 # Wealth Health (US version mm/dd/yyyy)
 
 This version uses the US date format of mm/dd/yyyy (instead of dd/mm/yyyy) and includes a custom "date picker" instead of the native "date picker" of React.
@@ -66,7 +64,7 @@ Here is the list of currently used jQuery plugins that need to be converted:
 - [React-scripts](https://www.npmjs.com/package/react-scripts) Version 5.0.0
 - [React-table](https://react-table.tanstack.com/) Version 7.7.0
 - [React-DatePicker](https://www.npmjs.com/package/react-datepicker) Version 4.7.0
-- [Redux]( https://www.npmjs.com/package/redux) Version 4.1.2
+- [Redux](https://www.npmjs.com/package/redux) Version 4.1.2
 - [Redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) Version 1.7.2
 - [React-redux](https://www.npmjs.com/package/react-redux) Version 7.2.6
 - [Prop-types](https://www.npmjs.com/package/prop-types) Version 15.8.1
@@ -76,7 +74,6 @@ Here is the list of currently used jQuery plugins that need to be converted:
 
 ## Installing and running the project
 - Clone the repository onto your computer : branch usversion
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Inside this repository, install the packages/dependencies :
  `npm install`
@@ -101,7 +98,6 @@ The converted plugin can be found here:
 - The site uses REDUX as a state management system, but local storage has also been used so state persists between site reloads.
 
 
-# OPENCLASSROOMS PROJECT 14 *(Français)*
 
 # Wealth Health (version US mm/dd/yyyy)
 
@@ -179,7 +175,6 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ## Installer et exécuter le projet
 - Clonez le repo sur votre ordinateur : branche usversion
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
 
 - Dans ce dépôt, installez les paquets/dépendances :
  `npm install`
