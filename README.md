@@ -2,7 +2,6 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2c239b13-33af-467e-a295-18351c7bc670/deploy-status)](https://app.netlify.com/sites/wealthhealth/deploys)
 
-# OPENCLASSROOMS PROJECT 14 *(English)*
 
 # Wealth Health
 
@@ -83,7 +82,7 @@ Here is the list of currently used jQuery plugins that need to be converted:
 
 ## Installing and running the project
 - Clone the repository onto your computer :
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
+  `git clone https://github.com/Stevens-Mark/WealthHealth.git`
 
 - Inside this repository, install the packages/dependencies :
  `npm install`
@@ -106,8 +105,6 @@ The converted plugin can be found here:
 - If you DIRECTLY create new employee records from the home page, then ONLY these records will be displayed in the table. BUT if you pass to the VIEW of the current employee records FIRST, then mock data will be loaded into the table to demonstrate the site functionality (this data will be put into your local storage, so you may want to remove it afterwards).
 - The site uses REDUX as a state management system, but local storage has also been used so state persists between site reloads.
 
-
-# OPENCLASSROOMS PROJECT 14 *(Français)*
 
 # Wealth Health
 
@@ -194,7 +191,7 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ## Installer et exécuter le projet
 - Clonez le repo sur votre ordinateur :
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
+  `git clone https://github.com/Stevens-Mark/WealthHealth.git`
 
 - Dans ce dépôt, installez les paquets/dépendances :
  `npm install`
