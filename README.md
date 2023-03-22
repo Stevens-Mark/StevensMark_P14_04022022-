@@ -1,8 +1,6 @@
 ![WealthHealth](/src/assets/logos/WealthHealth.webp)
 
 
-# OPENCLASSROOMS PROJECT 14 *(English)*
-
 # Wealth Health
 
 - THIS VERSION USES A MONGODB ATLAS DATABASE AS THE BACKEND (NoSQL database)
@@ -80,15 +78,15 @@ Here is the list of currently used jQuery plugins that need to be converted:
 
 ### BackEnd
 
-- Clone the repository P14_Backend onto your computer : 
-  `git clone https://github.com/Stevens-Mark/P14_Backend.git`
+- Clone the repository Backend onto your computer : branch "main"
+  `git clone https://github.com/Stevens-Mark/Backend-for-WealthHealth.git`
 
 - Follow the instructions in the ReadMe.md file.
 - Make sure the backend is running before you start the FrontEnd
 
 ### FrontEnd
 - Clone the repository onto your computer : branch "db"
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
+  `git clone https://github.com/Stevens-Mark/WealthHealth.git`
 
 - Inside this repository, install the packages/dependencies :
  `npm install`
@@ -191,15 +189,15 @@ Voici la liste des plugins jQuery actuellement utilisés qui doivent être conve
 
 ### BackEnd
 
-- Clonez le dépôt P14_Backend sur votre ordinateur : 
-  `git clone https://github.com/Stevens-Mark/P14_Backend.git`
+- Clonez le Backend sur votre ordinateur : branche "main"
+  `git clone https://github.com/Stevens-Mark/Backend-for-WealthHealth.git`
 
 - Suivez les instructions dans le fichier ReadMe.md.
 - Assurez-vous que le backend fonctionne avant de lancer le FrontEnd.
 
 ### FrontEnd
 - Clonez le repo sur votre ordinateur : branche "db"
-  `git clone https://github.com/Stevens-Mark/StevensMark_P14_04022022`
+  `git clone https://github.com/Stevens-Mark/WealthHealth.git`
 
 - Dans ce dépôt, installez les paquets/dépendances :
  `npm install`
