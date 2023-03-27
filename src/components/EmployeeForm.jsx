@@ -29,15 +29,14 @@ const Container = styled.div`
 
 const Form = styled.form`
   background: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightNavy}`)};
-  border: 1px solid ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightGreen}`)};
+  border: 1px solid ${({ theme }) => (theme === 'light' ? `${colors.secondary}` : `${colors.lightGreen}`)};
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  // font-family: Arial;
-  padding: 1.2rem;
-  width: 17rem;
-  @media (min-width: 445px) {
-    width: 25rem;
-  }
+  align-items: center;
+  padding: 2rem;
+  width: 75vw;
+  max-width: 1024px;
   
   label {
     font-weight: bold;
@@ -54,16 +53,42 @@ const Form = styled.form`
   }
 `;
 
+const Data = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  
+  @media (min-width: 767px) {
+      flex-direction: row;
+    }
+`;
+
+const Details = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 767px) {
+       width: 45%;
+    }
+`;
+
 const FieldSet = styled.fieldset`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.5rem;
   margin: 1rem 0rem;
+
+  @media (min-width: 767px) {
+      width: 45%;
+      margin: unset;
+    }
 `;
 
 const IsError = styled.p`
   color: ${({ theme }) => (theme === 'light' ? `${colors.warning}` : `${colors.chromeBlue}`)};
   font-weight: bold;
-  // text-align: center;
   margin-top: -10px;
 `;
 
@@ -76,17 +101,23 @@ const Save = styled.button`
   display: block;
   font-size: 1.1rem;
   font-weight: bold;
-  margin-top: 1rem;
+  margin-top: 2rem;
   padding: 0.5rem;
   transition: 0.4s;
-  width: 100%;
+  width: 75vw;
+
+  @media (min-width: 767px) {
+    width: 25vw;
+  }
 
   &:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
+    color: ${colors.tertiary};
     opacity: 0.85;
     transition: 0.4s;
   }
 `;
+
 
 /**
  * Renders the 'EmployeeForm' form
@@ -233,42 +264,50 @@ const EmployeeForm = ( props ) => {
 
   return (
     <Container>
-      <Form data-testid="form" theme={theme} onSubmit={handleSubmit}>  
-        <label htmlFor="firstName">First Name</label>
-          <input type="text"
-            id="firstName"
-            value={input.firstName}
-            required={true}
-            maxLength={30}
-            onChange={(e) => handleText(e)}/>
-            {error.firstName && <IsError theme={theme}>⚠️ First Name: 2 letters min.</IsError>}    
+      <Form data-testid="form" theme={theme} onSubmit={handleSubmit}> 
+      <Data>
+        <Details>
+          <label htmlFor="firstName">First Name</label>
+            <input type="text"
+              id="firstName"
+              value={input.firstName}
+              required={true}
+              maxLength={30}
+              onChange={(e) => handleText(e)}/>
+              {error.firstName && <IsError theme={theme}>⚠️ First Name: 2 letters min.</IsError>}    
 
-        <label htmlFor="lastName">Last Name</label>
-          <input type="text"
-            id="lastName" 
-            value={input.lastName}
-            required={true}
-            maxLength={30}
-            onChange={(e) => handleText(e)}/>   
-            {error.lastName && <IsError theme={theme}>⚠️ Last Name: 2 letters min.</IsError>}       
+          <label htmlFor="lastName">Last Name</label>
+            <input type="text"
+              id="lastName" 
+              value={input.lastName}
+              required={true}
+              maxLength={30}
+              onChange={(e) => handleText(e)}/>   
+              {error.lastName && <IsError theme={theme}>⚠️ Last Name: 2 letters min.</IsError>}       
 
-        <label htmlFor="dateOfBirth">Date Of Birth</label>
-          <input type="date"
-            id="dateOfBirth" 
-            value={displayDOB}
-            required={true}
-            max={SetBirthDateLimit(18)}   // age limit between 18-70 years
-            min={SetBirthDateLimit(70)}
-            onChange={(e) => handleDOB(e.target.value)}/>   
- 
-        <label htmlFor="startDate">Start Date</label>
-          <input type="date"
-            id="startDate" 
-            value={displayStart}
-            required={true}
-            min={SetDateLimit(-30)}   // 30 days BEFORE so minus number
-            max={SetDateLimit(120)}   // 120 days AFTER so positive number
-            onChange={(e) => handleStartDate(e.target.value)}/> 
+          <label htmlFor="dateOfBirth">Date Of Birth</label>
+            <input type="date"
+              id="dateOfBirth" 
+              value={displayDOB}
+              required={true}
+              max={SetBirthDateLimit(18)}   // age limit between 18-70 years
+              min={SetBirthDateLimit(70)}
+              onChange={(e) => handleDOB(e.target.value)}/>   
+  
+          <label htmlFor="startDate">Start Date</label>
+            <input type="date"
+              id="startDate" 
+              value={displayStart}
+              required={true}
+              min={SetDateLimit(-30)}   // 30 days BEFORE so minus number
+              max={SetDateLimit(120)}   // 120 days AFTER so positive number
+              onChange={(e) => handleStartDate(e.target.value)}/>
+
+          <Select
+              id={"department"}
+              listItems={departments}
+              onChange={(e) => setInput({...input, department: e.target.value})} /> 
+        </Details>
 
         <FieldSet>
           <legend>Address</legend>
@@ -305,11 +344,7 @@ const EmployeeForm = ( props ) => {
             onChange={(e) => setInput({...input, zipCode: e.target.value})}/>
             {error.zipCode && <IsError theme={theme}>⚠️ Should be 5 digits</IsError>} 
         </FieldSet>
-        
-          <Select
-            id={"department"}
-            listItems={departments}
-            onChange={(e) => setInput({...input, department: e.target.value})} /> 
+      </Data>
 
         <Save data-testid="submitButton" theme={theme} type="submit">Save</Save>
       </Form>  

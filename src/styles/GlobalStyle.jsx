@@ -21,10 +21,12 @@ code {
 }
 
 main {
-  min-height: 85vh;
   background-color: ${({ isDarkMode }) => (isDarkMode ? `${colors.darkNavy}` : `${colors.primary}`)};
-  padding-top: 125px;
+  padding-top: 107px;
+  // width: 100%;
+  min-height: calc(100vh - 245px);
 }
+
 
 a {
   text-decoration: none;

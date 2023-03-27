@@ -14,6 +14,8 @@
 - iv using MongoDB - branch db
 - v using MongoDB full CRUD version - branch full
 
+-The "main" and "full" branches benefit from a slightly improved layout of the input form.
+
 ## Switch a jQuery library to React
 
 ## Scenario
@@ -118,6 +120,7 @@ The converted plugin can be found here:
 - iv Utilisation de MongoDB - branch db
 - v utiliser MongoDB (version CRUD)- branche full
 
+- Les branches "main" et "full" bénéficient d'une présentation légèrement améliorée du formulaire de saisie.
 
 ## Faites passer une librairie jQuery vers React
 
