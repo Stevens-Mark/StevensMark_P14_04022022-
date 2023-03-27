@@ -33,14 +33,14 @@ const Container = styled.div`
 
 const Form = styled.form`
   background: ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightNavy}`)};
-  border: 1px solid ${({ theme }) => (theme === 'light' ? `${colors.tertiary}` : `${colors.lightGreen}`)};
+  border: 1px solid ${({ theme }) => (theme === 'light' ? `${colors.secondary}` : `${colors.lightGreen}`)};
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  padding: 1.2rem;
-  width: 17rem;
-  @media (min-width: 445px) {
-    width: 25rem;
-  }
+  align-items: center;
+  padding: 2rem;
+  width: 75vw;
+  max-width: 1024px;
   
   label {
     font-weight: bold;
@@ -57,16 +57,47 @@ const Form = styled.form`
   }
 `;
 
+const Data = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  
+  @media (min-width: 767px) {
+      flex-direction: row;
+    }
+`;
+
+const Details = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 767px) {
+       width: 45%;
+    }
+`;
+
 const FieldSet = styled.fieldset`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.5rem;
   margin: 1rem 0rem;
+
+  @media (min-width: 767px) {
+      width: 45%;
+      margin: unset;
+    }
 `;
 
 const IsError = styled.p`
   color: ${({ theme }) => (theme === 'light' ? `${colors.warning}` : `${colors.chromeBlue}`)};
   font-weight: bold;
   margin-top: -10px;
+`;
+
+const Alerts = styled(IsError)`
+  margin-top: 1.5rem;
 `;
 
 const Alert = styled(IsError)`
@@ -82,16 +113,21 @@ const Save = styled.button`
   display: block;
   font-size: 1.1rem;
   font-weight: bold;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: -1rem;
   padding: 0.5rem;
   transition: 0.4s;
-  width: 100%;
+  width: 75vw;
+
+  @media (min-width: 767px) {
+    width: 25vw;
+  }
 
   &:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
+    color: ${colors.tertiary};
     opacity: 0.85;
     transition: 0.4s;
-    color: ${colors.tertiary};
   }
 `;
 
@@ -239,91 +275,96 @@ const EmployeeForm = ( props ) => {
         } 
   }
 
-
   return (
     <Container>
       <Form data-testid="form" theme={theme} onSubmit={handleSubmit}>  
-        <label htmlFor="firstName">First Name</label>
-          <input type="text"
-            id="firstName"
-            autoFocus
-            value={input.firstName}
-            required={true}
-            maxLength={30}
-            onChange={(e) => handleText(e)}/>
-            {error.firstName && <IsError theme={theme}>⚠️ First Name: 2 letters min.</IsError>}    
+        <Data>
+          <Details>
+            <label htmlFor="firstName">First Name</label>
+              <input type="text"
+                id="firstName"
+                autoFocus
+                value={input.firstName}
+                required={true}
+                maxLength={30}
+                onChange={(e) => handleText(e)}/>
+                {error.firstName && <IsError theme={theme}>⚠️ First Name: 2 letters min.</IsError>}    
 
-        <label htmlFor="lastName">Last Name</label>
-          <input type="text"
-            id="lastName" 
-            value={input.lastName}
-            required={true}
-            maxLength={30}
-            onChange={(e) => handleText(e)}/>   
-            {error.lastName && <IsError theme={theme}>⚠️ Last Name: 2 letters min.</IsError>}       
+            <label htmlFor="lastName">Last Name</label>
+              <input type="text"
+                id="lastName" 
+                value={input.lastName}
+                required={true}
+                maxLength={30}
+                onChange={(e) => handleText(e)}/>   
+                {error.lastName && <IsError theme={theme}>⚠️ Last Name: 2 letters min.</IsError>}       
 
-        <label htmlFor="dateOfBirth">Date Of Birth</label>
-          <input type="date"
-            id="dateOfBirth" 
-            value={displayDOB}
-            required={true}
-            max={SetBirthDateLimit(18)}   // age limit between 18-70 years
-            min={SetBirthDateLimit(70)}
-            onChange={(e) => handleDOB(e.target.value)}/>   
- 
-        <label htmlFor="startDate">Start Date</label>
-          <input type="date"
-            id="startDate" 
-            value={displayStart}
-            required={true}
-            min={SetDateLimit(-30)}   // 30 days BEFORE so minus number
-            max={SetDateLimit(120)}   // 120 days AFTER so positive number
-            onChange={(e) => handleStartDate(e.target.value)}/> 
+            <label htmlFor="dateOfBirth">Date Of Birth</label>
+              <input type="date"
+                id="dateOfBirth" 
+                value={displayDOB}
+                required={true}
+                max={SetBirthDateLimit(18)}   // age limit between 18-70 years
+                min={SetBirthDateLimit(70)}
+                onChange={(e) => handleDOB(e.target.value)}/>   
+    
+            <label htmlFor="startDate">Start Date</label>
+              <input type="date"
+                id="startDate" 
+                value={displayStart}
+                required={true}
+                min={SetDateLimit(-30)}   // 30 days BEFORE so minus number
+                max={SetDateLimit(120)}   // 120 days AFTER so positive number
+                onChange={(e) => handleStartDate(e.target.value)}/> 
 
-        <FieldSet>
-          <legend>Address</legend>
-          <label htmlFor="street">Street</label>
-          <input type="text"
-            id="street"
-            value={input.street}
-            required={true}
-            maxLength={60}
-            onChange={(e) => handleText(e)}/> 
-            {error.street && <IsError theme={theme}>⚠️ Please check address</IsError>} 
+            <Select
+              id={"department"}
+              listItems={departments}
+              onChange={(e) => setInput({...input, department: e.target.value})} /> 
+          </Details>
+            
+          <FieldSet>
+            <legend>Address</legend>
+            <label htmlFor="street">Street</label>
+            <input type="text"
+              id="street"
+              value={input.street}
+              required={true}
+              maxLength={60}
+              onChange={(e) => handleText(e)}/> 
+              {error.street && <IsError theme={theme}>⚠️ Please check address</IsError>} 
 
-          <label htmlFor="city">City</label>
-          <input type="text"
-            id="city"
-            value={input.city}
-            required={true}
-            maxLength={30}
-            onChange={(e) => handleText(e)}/> 
-            {error.city && <IsError theme={theme}>⚠️ Please check city name</IsError>}
+            <label htmlFor="city">City</label>
+            <input type="text"
+              id="city"
+              value={input.city}
+              required={true}
+              maxLength={30}
+              onChange={(e) => handleText(e)}/> 
+              {error.city && <IsError theme={theme}>⚠️ Please check city name</IsError>}
 
-          <Select 
-            id={"state"}
-            listItems={states}
-            onChange={(e) => setInput({...input, state: e.target.value})} />
-        
-          <label htmlFor="zipCode">Zip Code</label>
-          <input type="number"
-            id="zipCode"
-            placeholder='5 digits'
-            value={input.zipCode}
-            min={0}
-            required={true}
-            onChange={(e) => setInput({...input, zipCode: e.target.value})}/>
-            {error.zipCode && <IsError theme={theme}>⚠️ Should be 5 digits</IsError>} 
-        </FieldSet>
-        
-          <Select
-            id={"department"}
-            listItems={departments}
-            onChange={(e) => setInput({...input, department: e.target.value})} /> 
+            <Select 
+              id={"state"}
+              listItems={states}
+              onChange={(e) => setInput({...input, state: e.target.value})} />
+          
+            <label htmlFor="zipCode">Zip Code</label>
+            <input type="number"
+              id="zipCode"
+              placeholder='5 digits'
+              value={input.zipCode}
+              min={0}
+              required={true}
+              onChange={(e) => setInput({...input, zipCode: e.target.value})}/>
+              {error.zipCode && <IsError theme={theme}>⚠️ Should be 5 digits</IsError>} 
+          </FieldSet>
+         </Data>
 
             {isLoading && <LoadingIcon />}
-              <Alert theme={theme}>{isError}</Alert>
-              <Alert theme={theme}>{isAddError}</Alert>
+              <Alerts>
+                <Alert theme={theme}>{isError}</Alert>
+                <Alert theme={theme}>{isAddError}</Alert>
+              </Alerts>
               {/* Display error message & disable save button if NOT online */}
               <Detector render={({ online }) => (
                 <Alert theme={theme}>{online ? "" : "Offline : Please check your connection !"}

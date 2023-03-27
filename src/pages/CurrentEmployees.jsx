@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 85vh;
+  min-height: calc(100vh - 245px);
 `;
 
 const IsError = styled.p`
